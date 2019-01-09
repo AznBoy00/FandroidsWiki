@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="main_toolbar_color" format="reference"/>
+    <attr name="main_status_bar_color" format="reference"/>
+    <attr name="main_toolbar_title_color" format="reference"/>
+    <attr name="main_toolbar_icon_color" format="reference"/>
+    <attr name="page_status_bar_color" format="reference"/>
+    <attr name="page_expanded_status_bar_color" format="reference"/>
+    <attr name="page_toolbar_color" format="reference"/>
+    <attr name="page_toolbar_icon_color" format="reference"/>
+    <attr name="themed_icon_color" format="reference"/>
+    <attr name="toc_item_background" format="reference"/>
+    <attr name="edit_improve_tag_selected_drawable" format="reference" />
+    <attr name="edit_improve_tag_unselected_drawable" format="reference" />
+    <attr name="lead_image_drawable" format="reference"/>
+    <attr name="list_separator_drawable" format="reference"/>
+    <attr name="list_separator_drawable_bottom_content" format="reference"/>
+    <attr name="nearby_marker_drawable" format="reference"/>
+    <attr name="tab_item_selector" format="reference"/>
+    <attr name="tab_shadow_drawable" format="reference"/>
+    <attr name="material_theme_shadow" format="reference"/>
+    <attr name="nav_tab_background_color" format="reference" />
+    <attr name="nav_tab_item_color_state" format="reference" />
+    <attr name="button_highlight_border_shape" format="reference" />
+    <attr name="randomizer_dice_icon_color" format="reference" />
+    <attr name="shadow_background_drawable" format="reference" />
+    <attr name="tab_counts_shape_border" format="reference" />
+    <attr name="page_tab_counts_shape_border" format="reference" />
+
+    <attr name="multi_select_background_color" format="reference" />
+    <attr name="searchItemBackground" format="reference" />
+
+    <attr name="material_theme_primary_color" format="color" />
+    <attr name="material_theme_secondary_color" format="color" />
+    <attr name="material_theme_de_emphasised_color" format="color" />
+    <attr name="material_theme_border_color" format="color" />
+    <attr name="primary_text_color" format="color" />
+    <attr name="secondary_text_color" format="color" />
+    <attr name="section_title_color" format="color" />
+    <attr name="paper_color" format="color" />
+    <attr name="chart_shade1" format="color" />
+    <attr name="chart_shade4" format="color" />
+    <attr name="chart_shade5" format="color" />
+    <attr name="chart_shade7" format="color" />
+    <attr name="green_highlight_color" format="color" />
+    <attr name="thumb_off_color" format="color" />
+    <attr name="track_off_color" format="color" />
+    <attr name="toc_h1_h2_color" format="color" />
+
+    <declare-styleable name="CabSearchView">
+        <attr name="cabEnabled" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="AutoFitRecyclerView">
+        <attr name="minColumnWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="EditTextAutoSummarizePreference">
+        <attr name="editTextAutoSummarizePreferenceStyle" format="reference" />
+        <attr name="autoSummarize" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="LongPreference">
+        <attr name="longPreferenceStyle" format="reference" />
+        <attr name="radix" format="integer" />
+        <attr name="summaryFormat" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="IntPreference">
+        <attr name="intPreferenceStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="OnboardingPageView">
+        <attr name="centeredImage" format="reference" />
+        <attr name="primaryText" format="string" />
+        <attr name="secondaryText" format="string" />
+        <attr name="tertiaryText" format="string" />
+        <attr name="switchText" format="string" />
+        <attr name="imageSize" format="dimension" />
+        <attr name="background" format="reference" />
+        <attr name="showListView" format="boolean" />
+        <attr name="dataType" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="DiscreteSeekBar">
+        <attr name="min" format="integer" />
+        <attr name="tickDrawable" format="reference" />
+        <attr name="centerDrawable" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CircularProgressBar">
+        <attr name="progressColor" format="color" />
+        <attr name="progressBackgroundColor" format="color" />
+        <attr name="progressStrokeWidth" format="dimension" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,98 @@
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:layout_width="match_parent"
+    tools:layout_height="@dimen/view_card_header_height"
+    tools:parentTag="android.support.constraint.ConstraintLayout">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/view_card_header_image"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/shape_circle"
+        android:contentDescription="@null"
+        android:padding="4dp"
+        android:tint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_restore_black_24dp"
+        tools:backgroundTint="@color/accent50" />
+
+    <TextView
+        android:id="@+id/view_card_header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textColor="?attr/section_title_color"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_card_header_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Lorem ipsum" />
+
+    <TextView
+        android:id="@+id/view_card_header_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="6dp"
+        android:textColor="?attr/secondary_text_color"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view_list_card_header_lang_background"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Lorem ipsum" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/view_list_card_header_lang_background"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        app:srcCompat="@drawable/lang_button_shape_border"
+        app:tint="?attr/material_theme_de_emphasised_color"
+        app:layout_constraintTop_toTopOf="@+id/view_list_card_header_lang_code"
+        app:layout_constraintBottom_toBottomOf="@+id/view_list_card_header_lang_code"
+        app:layout_constraintStart_toStartOf="@+id/view_list_card_header_lang_code"
+        app:layout_constraintEnd_toEndOf="@+id/view_list_card_header_lang_code"
+        android:contentDescription="@null"/>
+
+    <TextView
+        android:id="@+id/view_list_card_header_lang_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:textAllCaps="true"
+        android:textColor="?attr/material_theme_de_emphasised_color"
+        android:textSize="9sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view_list_card_header_menu"
+        tools:text="zh-hant"/>
+
+    <ImageView
+        android:id="@+id/view_list_card_header_menu"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:contentDescription="@string/abc_action_menu_overflow_description"
+        android:padding="8dp"
+        android:tint="?attr/secondary_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_more_vert_white_24dp" />
+
+</merge>

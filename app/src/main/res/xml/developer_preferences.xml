@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/preferences_developer_feature_testing_heading">
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preferences_developer_announcements_heading">
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/EditTextAutoSummarizePreference"
+            android:key="@string/preference_key_announcement_country_override"
+            android:title="@string/preferences_developer_announcement_country_override"
+            android:dialogMessage="@string/preferences_developer_announcement_country_override_hint" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_announcement_ignore_date"
+            android:title="@string/preferences_developer_announcement_ignore_date" />
+
+        <org.wikipedia.settings.IntPreference
+            style="@style/IntPreference"
+            android:key="@string/preference_key_announcement_version_code"
+            android:title="@string/preference_key_announcement_version_code"
+            android:dialogMessage="@string/preferences_developer_announcement_version_code_hint"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preferences_developer_restbase_heading">
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_use_restbase_manual"
+            android:title="@string/preference_key_use_restbase_manual" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_use_restbase"
+            android:title="@string/preference_key_use_restbase" />
+
+        <org.wikipedia.settings.IntPreference
+            style="@style/IntPreference"
+            android:key="@string/preference_key_restbase_ticket"
+            android:title="@string/preference_key_restbase_ticket" />
+
+        <org.wikipedia.settings.IntPreference
+            style="@style/IntPreference"
+            android:key="@string/preference_key_request_successes"
+            android:title="@string/preference_key_request_successes" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/DataStringPreference"
+            android:key="@string/preference_key_restbase_uri_format"
+            android:title="@string/preference_key_restbase_uri_format"
+            android:dialogMessage="Prod: %1$s://%2$s/api/rest_v1/
+            \nLabs: http://appservice.wmflabs.org/%2$s/v1/
+            \nDev: http://host:6927/%2$s/v1/
+            \n%1$s &#10139; protocol (https if omitted)
+            \n%2$s &#10139; WP host" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/DataStringPreference"
+            android:key="@string/preference_key_mediawiki_base_uri"
+            android:title="@string/preference_key_mediawiki_base_uri"
+            android:dialogMessage="Prod (default if blank): https://wikipedia.org
+            \nDev: http://host:8080
+            \nBeta cluster: https://wikipedia.beta.wmflabs.org" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_mediawiki_base_uri_supports_lang_code"
+            android:title="@string/preference_key_mediawiki_base_uri_supports_lang_code"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preferences_developer_logging_heading">
+
+        <ListPreference
+            android:key="@string/preference_key_retrofit_log_level"
+            android:title="@string/preferences_developer_retrofit_log_level"
+            android:entries="@array/preference_values_retrofit_log"
+            android:entryValues="@array/preference_values_retrofit_log"
+            android:summary="%s" />
+
+        <org.wikipedia.settings.IntPreference
+            style="@style/IntPreference"
+            android:key="@string/preference_key_session_timeout"
+            android:title="@string/preferences_developer_session_timeout_title" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/EditTextAutoSummarizePreference"
+            android:key="@string/preference_key_remote_log"
+            android:title="@string/preferences_developer_remote_log_title"
+            android:dialogMessage="@string/preferences_developer_remote_log_summary" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/EditTextAutoSummarizePreference"
+            android:key="@string/preference_key_app_channel"
+            android:title="@string/preference_key_app_channel" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preferences_developer_misc_heading">
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_notification_show_all"
+            android:title="@string/preference_key_notification_show_all"
+            android:defaultValue="false" />
+
+        <org.wikipedia.settings.LongPreference
+            style="@style/LongPreference"
+            android:key="@string/preference_key_page_last_shown"
+            android:title="@string/preference_key_page_last_shown" />
+
+        <Preference android:key="@string/preferences_developer_user_option_key"
+            android:title="@string/preferences_developer_user_option_title"
+            android:summary="@string/preferences_developer_user_option_summary" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/DataStringPreference"
+            android:key="@string/preference_key_reading_app_install_id"
+            android:title="@string/preference_key_reading_app_install_id" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/DataStringPreference"
+            android:key="@string/preference_key_login_user_id_map"
+            android:title="@string/preference_key_login_user_id_map" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/DataStringPreference"
+            android:key="@string/preference_key_language"
+            android:title="@string/preference_key_language" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/DataStringPreference"
+            android:key="@string/preference_key_language_app"
+            android:title="@string/preference_key_language_app" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/DataStringPreference"
+            android:key="@string/preference_key_language_mru"
+            android:title="@string/preference_key_language_mru" />
+
+        <org.wikipedia.settings.IntPreference
+            style="@style/IntPreference"
+            android:key="@string/preference_key_total_anon_descriptions_edited"
+            android:title="@string/preference_key_total_anon_descriptions_edited" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/DataStringPreference"
+            android:key="@string/preference_key_locally_known_notifications"
+            android:title="@string/preference_key_locally_known_notifications" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/DataStringPreference"
+            android:key="@string/preference_key_remote_notifications_seen_time"
+            android:title="@string/preference_key_remote_notifications_seen_time" />
+
+        <!-- TODO: expose in wildcard preference. -->
+        <org.wikipedia.settings.LongPreference
+            style="@style/LongPreference"
+            android:key="dailyEventTask-lastrun"
+            android:title="dailyEventTask-lastrun" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_show_developer_settings"
+            android:title="@string/preference_key_show_developer_settings" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_memory_leak_test"
+            android:title="@string/preference_key_memory_leak_test" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_crashed_before_activity_created"
+            android:title="@string/preference_key_crashed_before_activity_created" />
+
+        <Preference android:key="@string/preferences_developer_crash_key"
+            android:title="@string/preferences_developer_crash_title"
+            android:summary="@string/preferences_developer_crash_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preferences_developer_onboarding_heading">
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_initial_onboarding_enabled"
+            android:title="@string/preference_key_initial_onboarding_enabled" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_description_edit_tutorial_enabled"
+            android:title="@string/preference_key_description_edit_tutorial_enabled" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_toc_tutorial_enabled"
+            android:title="@string/preference_key_toc_tutorial_enabled" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_share_tutorial_enabled"
+            android:title="@string/preference_key_share_tutorial_enabled" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_multilingual_search_tutorial_enabled"
+            android:title="@string/preference_key_multilingual_search_tutorial_enabled" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_reading_list_tutorial_enabled"
+            android:title="@string/preference_key_reading_list_tutorial_enabled" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_reading_list_sync_reminder_enabled"
+            android:title="@string/preference_key_reading_list_sync_reminder_enabled" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_reading_list_login_reminder_enabled"
+            android:title="@string/preference_key_reading_list_login_reminder_enabled" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_feed_customize_onboarding_card_enabled"
+            android:title="@string/preference_key_feed_customize_onboarding_card_enabled" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_feed_readinglists_sync_onboarding_card_enabled"
+            android:title="@string/preference_key_feed_readinglists_sync_onboarding_card_enabled" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/DataStringPreference"
+            android:key="@string/preference_key_feed_hidden_cards"
+            android:title="@string/preference_key_feed_hidden_cards"/>
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_show_reading_lists_sync_prompt"
+            android:title="@string/preference_key_show_reading_lists_sync_prompt" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_reading_lists_first_time_sync"
+            android:title="@string/preference_key_reading_lists_first_time_sync" />
+
+        <SwitchPreferenceCompat
+            android:key="@string/preference_key_show_remove_chinese_variant_prompt"
+            android:title="@string/preference_key_show_remove_chinese_variant_prompt" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preferences_developer_reading_list_category">
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/EditTextAutoSummarizePreference"
+            android:dialogMessage="@string/preferences_developer_summary_configure_articles"
+            android:key="@string/preference_key_add_articles"
+            android:title="@string/preferences_developer_add_articles" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/EditTextAutoSummarizePreference"
+            android:dialogMessage="@string/preferences_developer_summary_configure_reading_lists"
+            android:key="@string/preference_key_add_reading_lists"
+            android:title="@string/preferences_developer_add_lists" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/EditTextAutoSummarizePreference"
+            android:dialogMessage="@string/preferences_developer_summary_configure_reading_lists"
+            android:key="@string/preference_key_delete_reading_lists"
+            android:title="@string/preferences_developer_delete_lists" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/EditTextAutoSummarizePreference"
+            android:dialogMessage="@string/preferences_developer_summary_configure_reading_lists"
+            android:key="@string/preference_key_delete_test_reading_lists"
+            android:title="@string/preferences_developer_test_delete_lists" />
+
+        <org.wikipedia.settings.EditTextAutoSummarizePreference
+            style="@style/EditTextAutoSummarizePreference"
+            android:dialogMessage="This number of malformed pages will be added to the default reading list:"
+            android:key="@string/preference_key_add_malformed_reading_list_page"
+            android:title="Add malformed pages to reading list" />
+
+    </PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>

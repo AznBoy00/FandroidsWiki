@@ -1,2 +1,7 @@
-# SOEN390TeamFandroidWiki
- Code Issues 0 Pull requests 0 Projects 0 Wiki Insights Settings Wikipedia Android App by Team Fandroid for SOEN 390 in Concordia University - Winter 2019
+### Wikipedia Android app
+
+This repository contains the source code for the official Wikipedia Android app.
+
+### Documentation
+
+All documentation is kept on [our wiki](https://www.mediawiki.org/wiki/Wikimedia_Apps/Team/Wikipedia_Android_app_hacking). Check it out!
