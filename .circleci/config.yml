@@ -39,7 +39,7 @@ jobs:
           command: sudo chmod +x ./gradlew
 
       - run:
-          name: Download Dependencies
+          name: Run JUnit Tests
           command: ./gradlew testDevDebug
 
       - save_cache:
