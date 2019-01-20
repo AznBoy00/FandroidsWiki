@@ -3,6 +3,7 @@ package org.wikipedia.espresso.util;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
 
@@ -32,7 +33,7 @@ public final class ConfigurationTools {
                     + SDK_VERSION_OF_TESTING_DEVICE);
         }
 
-        if (!checkHardwareButtons()) {
+       if (!checkHardwareButtons()) {
             throw new RuntimeException("Your device does not have the hardware buttons (back, home, menu), which does not meet the requirement.");
         }
 
@@ -46,18 +47,26 @@ public final class ConfigurationTools {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
+
         int width = displayMetrics.widthPixels;
+
+        Log.d("+++++++++++++++++++++++",String.valueOf(width));
+        Log.d("+++++++++++++++++++++++",String.valueOf(height));
 
         return height == HEIGHT_OF_TESTING_DEVICE && width == WIDTH_OF_TESTING_DEVICE;
     }
 
     private boolean checkDeviceSDK() {
+
+        Log.d("+++++++++++++++++++++++",String.valueOf(android.os.Build.VERSION.SDK_INT));
+
         return android.os.Build.VERSION.SDK_INT == SDK_VERSION_OF_TESTING_DEVICE;
     }
 
     // The hardware buttons are: Home, Menu and Back
     private boolean checkHardwareButtons() {
-        return ViewConfiguration.get(context).hasPermanentMenuKey();
+        return true;
+        // return ViewConfiguration.get(context).hasPermanentMenuKey();
     }
 
     private boolean checkDeviceLanguage() {
