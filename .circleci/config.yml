@@ -30,11 +30,9 @@ jobs:
           - v1-dependencies-{{ checksum "build.gradle" }}
           - v1-dependencies-
     
-      - run:
-          name: Accept SDK Permissions 
-          command: sdkmanager --update && yes | sdkmanager --licenses
-        
-      - run: sdkmanager --install "ndk-bundle" && yes | sdkmanager --licenses
+      - run: sdkmanager --install "ndk-bundle"
+      
+      - run: sdkmanager --licenses
       
       - run:
           name: Download Dependencies
