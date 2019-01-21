@@ -1,6 +1,6 @@
 ### Wikipedia Android app
 
-This repository contains the source code for the official Wikipedia Android app.
+This repository contains the source code for the official Wikipedia Android app. (Dave was here)
 
 ### Documentation
 
