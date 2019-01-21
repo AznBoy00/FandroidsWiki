@@ -36,9 +36,9 @@ jobs:
           name: Update SDK Manager
           command: sdkmanager --update
       
-      - run:
-          name: Accept Licences 
-          command: yes | sdkmanager --licenses
+    #   - run:
+    #       name: Accept Licences 
+    #       command: yes | sdkmanager --licenses
 
       - run:
           name: Approve license for build tools
