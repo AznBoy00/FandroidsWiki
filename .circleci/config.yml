@@ -30,7 +30,7 @@ jobs:
           - v1-dependencies-{{ checksum "build.gradle" }}
           - v1-dependencies-
     
-    - run:
+      - run:
           name: Accept SDK Permissions 
           command: sdkmanager --update && yes | sdkmanager --licenses
         
