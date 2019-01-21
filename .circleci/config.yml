@@ -30,23 +30,13 @@ jobs:
           - v1-dependencies-{{ checksum "build.gradle" }}
           - v1-dependencies-
 
-      #- run:  yes | sdkmanager "platforms;android-28"
-
       - run:
           name: Update SDK Manager
           command: sdkmanager --update
-      
-    #   - run:
-    #       name: Accept Licences 
-    #       command: yes | sdkmanager --licenses
 
       - run:
           name: Approve license for build tools
           command: (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
-
-      #- run: sdkmanager --install "ndk-bundle"
-      
-      #- run: sdkmanager --licenses
       
       - run:
           name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
@@ -55,13 +45,6 @@ jobs:
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
-
-      
-      #- run:
-      #    name: Accept SDK Permissions 
-      #    command: sdkmanager --update && yes | sdkmanager --licenses
-        
-     # - run: sdkmanager --install "ndk-bundle" && yes | sdkmanager --licenses
 
       - run:
           name: Run JUnit Tests
