@@ -29,10 +29,14 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "build.gradle" }}
           - v1-dependencies-
-    
+
+      - run:  yes | sdkmanager "platforms;android-28"
+      
       - run: sdkmanager --install "ndk-bundle"
       
       - run: sdkmanager --licenses
+      
+      
       
       - run:
           name: Download Dependencies
