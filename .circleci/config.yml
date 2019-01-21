@@ -37,7 +37,10 @@ jobs:
       - run:
           name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
           command: sudo chmod +x ./gradlew
-
+      - run:
+          name: Accept SDK Permissions 
+          command: sdkmanager --update && yes | sdkmanager --licenses
+          
       - run:
           name: Run JUnit Tests
           command: ./gradlew testDevDebug
