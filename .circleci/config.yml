@@ -34,6 +34,8 @@ jobs:
       
       - run: sdkmanager --licenses
       
+      - run:  yes | sdkmanager "platforms;android-28"
+      
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
