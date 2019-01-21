@@ -34,10 +34,10 @@ jobs:
 
       - run:
           name: Update SDK Manager
-          command: sdkmanager --update && yes
+          command: sdkmanager --update
       - run:
           name: Accept Licences 
-          command: sdkmanager --licenses
+          command: yes | sdkmanager --licenses
 
       #- run: sdkmanager --install "ndk-bundle"
       
