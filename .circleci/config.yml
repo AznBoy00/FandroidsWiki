@@ -46,6 +46,7 @@ jobs:
           name: Download Dependencies
           command: ./gradlew androidDependencies
 
+
       - run:
           name: Run JUnit Tests
           command: ./gradlew testDevDebug
