@@ -50,23 +50,23 @@ public final class ConfigurationTools {
 
         int width = displayMetrics.widthPixels;
 
-        Log.d("+++++++++++++++++++++++",String.valueOf(width));
-        Log.d("+++++++++++++++++++++++",String.valueOf(height));
+        //Log.d("+++++++++++++++++++++++",String.valueOf(width));
+        //Log.d("+++++++++++++++++++++++",String.valueOf(height));
 
         return height == HEIGHT_OF_TESTING_DEVICE && width == WIDTH_OF_TESTING_DEVICE;
     }
 
     private boolean checkDeviceSDK() {
 
-        Log.d("+++++++++++++++++++++++",String.valueOf(android.os.Build.VERSION.SDK_INT));
+        //Log.d("+++++++++++++++++++++++",String.valueOf(android.os.Build.VERSION.SDK_INT));
 
         return android.os.Build.VERSION.SDK_INT == SDK_VERSION_OF_TESTING_DEVICE;
     }
 
     // The hardware buttons are: Home, Menu and Back
     private boolean checkHardwareButtons() {
-        return true;
-        // return ViewConfiguration.get(context).hasPermanentMenuKey();
+        //return true;
+        return ViewConfiguration.get(context).hasPermanentMenuKey();
     }
 
     private boolean checkDeviceLanguage() {

@@ -7,7 +7,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnitRunner;
 
 import org.wikipedia.dataclient.okhttp.TestStubInterceptor;
-//import org.wikipedia.espresso.MockInstrumentationInterceptor;
+import org.wikipedia.espresso.MockInstrumentationInterceptor;
 import org.wikipedia.espresso.util.ConfigurationTools;
 import org.wikipedia.settings.Prefs;
 import org.wikipedia.settings.PrefsIoUtil;
@@ -20,8 +20,10 @@ import static org.wikipedia.espresso.Constants.TEST_COMPARISON_OUTPUT_FOLDER;
 public class WikipediaTestRunner extends AndroidJUnitRunner {
     @Override
     public void onStart() {
-        deviceRequirementsCheck();
+        //Setting for special devices
+        //deviceRequirementsCheck();
         //TestStubInterceptor.setCallback(new MockInstrumentationInterceptor(InstrumentationRegistry.getContext()));
+
         clearAppInfo();
         disableOnboarding();
         cleanUpComparisonResults();
