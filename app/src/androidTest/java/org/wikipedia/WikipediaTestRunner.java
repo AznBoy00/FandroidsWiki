@@ -20,8 +20,10 @@ import static org.wikipedia.espresso.Constants.TEST_COMPARISON_OUTPUT_FOLDER;
 public class WikipediaTestRunner extends AndroidJUnitRunner {
     @Override
     public void onStart() {
-        deviceRequirementsCheck();
-        TestStubInterceptor.setCallback(new MockInstrumentationInterceptor(InstrumentationRegistry.getContext()));
+        //Setting for special devices
+        //deviceRequirementsCheck();
+        //TestStubInterceptor.setCallback(new MockInstrumentationInterceptor(InstrumentationRegistry.getContext()));
+
         clearAppInfo();
         disableOnboarding();
         cleanUpComparisonResults();
