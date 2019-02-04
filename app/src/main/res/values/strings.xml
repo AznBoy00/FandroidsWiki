@@ -83,6 +83,10 @@
     <string name="dialog_message_leaving_edit_leave">Leave</string>
     <string name="dialog_message_leaving_edit_stay">Stay</string>
     <string name="menu_show_toc">Table of Contents</string>
+
+    <!-- Added for the new text-to-speech button -->
+    <string name="menu_show_text_to_speech">Text-To-Speech</string>
+
     <string name="search_no_results_found">No results found</string>
     <string name="search_reading_list_no_results">No results found in \"%s\"</string>
     <string name="search_reading_lists_no_results">No results found in reading lists</string>
