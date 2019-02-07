@@ -53,21 +53,37 @@
         app:layout_constraintStart_toEndOf="@+id/article_menu_find_in_page"
         app:srcCompat="@drawable/ic_format_size_white_24dp" />
 
+    <!--<android.support.v7.widget.AppCompatImageView-->
+        <!--android:id="@+id/article_menu_text_to_speech"-->
+        <!--android:layout_width="64dp"-->
+        <!--android:layout_height="64dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:contentDescription="@string/menu_show_text_to_speech"-->
+        <!--android:padding="16dp"-->
+        <!--android:tag="6"-->
+        <!--app:layout_constraintEnd_toStartOf="@+id/article_menu_show_toc"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/article_menu_font_and_theme"-->
+        <!--app:srcCompat="@drawable/texttospeech_24dp"-->
+        <!--tools:layout_editor_absoluteY="297dp" />-->
+
     <!--Text to Speech Button-->
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/article_menu_text_to_speech"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="false"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/menu_show_text_to_speech"
+        android:cropToPadding="true"
         android:padding="16dp"
+        android:scaleType="fitCenter"
         android:tag="6"
         app:layout_constraintEnd_toStartOf="@+id/article_menu_show_toc"
         app:layout_constraintStart_toEndOf="@+id/article_menu_font_and_theme"
-        app:srcCompat="@drawable/texttospeech_24dp"
-        tools:layout_editor_absoluteY="297dp" />
+        app:srcCompat="@drawable/text_to_speech_24dp"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/article_menu_show_toc"
