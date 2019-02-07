@@ -72,6 +72,7 @@
         android:id="@+id/article_menu_text_to_speech"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
         android:adjustViewBounds="false"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/menu_show_text_to_speech"
@@ -81,8 +82,7 @@
         android:tag="6"
         app:layout_constraintEnd_toStartOf="@+id/article_menu_show_toc"
         app:layout_constraintStart_toEndOf="@+id/article_menu_font_and_theme"
-        app:srcCompat="@drawable/text_to_speech_24dp"
-        tools:layout_editor_absoluteX="280dp"
+        app:srcCompat="@drawable/ic_text_to_speech_24dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <android.support.v7.widget.AppCompatImageView
