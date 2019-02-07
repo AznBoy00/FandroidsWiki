@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -222,6 +223,14 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         @Override
         public void updateBookmark(boolean pageSaved) {
             setBookmarkIconForPageSavedState(pageSaved);
+        }
+        @Override
+        public void textToSpeech() {
+            // INSERT TTS FEATURE HERE
+            Log.e("Page!!!!!","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            Toast toast = Toast.makeText(getContext(), "TEST", Toast.LENGTH_SHORT);
+            toast.show();
+            // TODO textToSpeech();
         }
     };
 
