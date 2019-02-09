@@ -1,8 +1,6 @@
 package org.wikipedia;
 
-import android.util.Log;
-
-import org.wikipedia.dataclient.okhttp.OkHttpConnectionFactory;
+import org.wikipedia.util.WikiResponseUtils;
 
 import java.io.IOException;
 
@@ -12,13 +10,20 @@ import okhttp3.Response;
 
 public class ApiService {
 
-    private String TAG = "ApiService";
+    private final String TAG = "ApiService";
 
     //TODO check how it works
     //OkHttpClient client =OkHttpConnectionFactory.getClient();
 
+    //Use singleton pattern:
+    private static final ApiService apiServiceInstance = new ApiService();
+    private ApiService(){};
+    public static ApiService getApiServiceInstance()
+    {
+        return apiServiceInstance;
+    };
     //Create a new okHttpClient
-    OkHttpClient client = new OkHttpClient();
+    private final OkHttpClient client = new OkHttpClient();
 
     // Get request using okhttp
     public String run(String url) throws IOException {
@@ -26,7 +31,6 @@ public class ApiService {
                 .url(url)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            Log.e(TAG,response.toString());
             return response.body().string();
         }
     }
@@ -35,7 +39,8 @@ public class ApiService {
     // Local test fuction
     public static void main(String[] args) throws IOException {
         ApiService example = new ApiService();
-        String response = example.run("https://en.wikipedia.org/w/api.php?action=opensearch&search=2010%E2%80%932017%20Toronto%20serial%20homicides&limit=1&format=json");
+        String response = example.run("https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&search=bee");
+        response = WikiResponseUtils.getWikiDescriptionFromResponse(response);
         System.out.println(response);
     }
 

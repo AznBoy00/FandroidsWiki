@@ -36,7 +36,9 @@ import org.wikipedia.ApiService;
 import org.wikipedia.BackPressedHandler;
 import org.wikipedia.Constants;
 import org.wikipedia.LongPressHandler;
+import org.wikipedia.NetworkUtils;
 import org.wikipedia.R;
+import org.wikipedia.WikiQueryTask;
 import org.wikipedia.WikipediaApp;
 import org.wikipedia.activity.FragmentUtil;
 import org.wikipedia.analytics.FindInPageFunnel;
@@ -84,6 +86,7 @@ import org.wikipedia.views.ObservableWebView;
 import org.wikipedia.views.SwipeRefreshLayoutWithScroll;
 import org.wikipedia.views.WikiPageErrorView;
 
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
@@ -228,18 +231,14 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         @Override
         public void textToSpeech() {
             // INSERT TTS FEATURE HERE
-            Log.e("PageFragment","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            //Log.e("PageFragment","insde texttospeech");
             Toast toast = Toast.makeText(getContext(), "TEST", Toast.LENGTH_SHORT);
             toast.show();
             // TODO textToSpeech();
-
-            try {
-                ApiService tempApiService = new ApiService();
-                String pageDescription = tempApiService.run("https://en.wikipedia.org/w/api.php?action=opensearch&search=2010%E2%80%932017%20Toronto%20serial%20homicides&limit=1&format=json");
-                Log.e("PageFragmentAnswer",pageDescription);
-            }catch (Exception e ){
-               e.printStackTrace();
-            }
+            //Log.e("PageFragment",model.getTitle().getDescription());
+            //Log.e("PageFragment",model.getTitle().getDisplayText());
+            URL wikiSearchQuery = NetworkUtils.buildUrl(model.getTitle().getDisplayText());
+            new WikiQueryTask().execute(wikiSearchQuery);
         }
     };
 
