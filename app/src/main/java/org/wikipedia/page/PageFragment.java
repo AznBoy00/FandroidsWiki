@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
@@ -16,6 +18,7 @@ import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -26,6 +29,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -36,6 +40,7 @@ import org.wikipedia.BackPressedHandler;
 import org.wikipedia.Constants;
 import org.wikipedia.LongPressHandler;
 import org.wikipedia.R;
+import org.wikipedia.TTS.TTSVoiceRead;
 import org.wikipedia.WikipediaApp;
 import org.wikipedia.activity.FragmentUtil;
 import org.wikipedia.analytics.FindInPageFunnel;
@@ -94,6 +99,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static android.app.Activity.RESULT_OK;
 import static org.wikipedia.page.PageActivity.ACTION_RESUME_READING;
+import static org.wikipedia.page.PageActivity.newIntent;
 import static org.wikipedia.page.PageCacher.loadIntoCache;
 import static org.wikipedia.settings.Prefs.isDescriptionEditTutorialEnabled;
 import static org.wikipedia.settings.Prefs.isLinkPreviewEnabled;
@@ -106,6 +112,8 @@ import static org.wikipedia.util.StringUtil.addUnderscores;
 import static org.wikipedia.util.ThrowableUtil.isOffline;
 import static org.wikipedia.util.UriUtil.decodeURL;
 import static org.wikipedia.util.UriUtil.visitInExternalBrowser;
+
+import org.wikipedia.TTS.*;
 
 public class PageFragment extends Fragment implements BackPressedHandler {
     public interface Callback {
@@ -129,6 +137,7 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         void onPageHideAllContent();
         void onPageSetToolbarFadeEnabled(boolean enabled);
         void onPageSetToolbarElevationEnabled(boolean enabled);
+
     }
 
     private boolean pageRefreshed;
@@ -166,6 +175,8 @@ public class PageFragment extends Fragment implements BackPressedHandler {
 
     @NonNull
     private final SwipeRefreshLayout.OnRefreshListener pageRefreshListener = this::refreshPage;
+
+    TTSRead tts;
 
     private PageActionTab.Callback pageActionTabsCallback = new PageActionTab.Callback() {
         @Override
@@ -227,9 +238,18 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         @Override
         public void textToSpeech() {
             // INSERT TTS FEATURE HERE
+            Log.e("TTS", "play");
+           // tts.TTSPlay("Hello for test");
+            tts = new TTSRead();
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.page_fragment,tts).commit();
+
+            Log.e("TTS","oncreate_PF");
             Log.e("Page!!!!!","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             Toast toast = Toast.makeText(getContext(), "TEST", Toast.LENGTH_SHORT);
             toast.show();
+            Log.e("TTS","TTS error2");
             // TODO textToSpeech();
         }
     };
@@ -277,6 +297,7 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         app = (WikipediaApp) requireActivity().getApplicationContext();
         model = new PageViewModel();
         pageFragmentLoadState = new PageFragmentLoadState();
+
     }
 
     @Override

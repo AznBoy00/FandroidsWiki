@@ -1,5 +1,7 @@
 // see also http://stackoverflow.com/questions/17050654/get-android-gradle-plugin-checkstyle-working-together-command-line-usage
 apply plugin: 'checkstyle'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 check.dependsOn 'checkstyle'
 
