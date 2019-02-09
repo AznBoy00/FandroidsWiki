@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.wikipedia.ApiService;
 import org.wikipedia.BackPressedHandler;
 import org.wikipedia.Constants;
 import org.wikipedia.LongPressHandler;
@@ -227,10 +228,18 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         @Override
         public void textToSpeech() {
             // INSERT TTS FEATURE HERE
-            Log.e("Page!!!!!","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            Log.e("PageFragment","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             Toast toast = Toast.makeText(getContext(), "TEST", Toast.LENGTH_SHORT);
             toast.show();
             // TODO textToSpeech();
+
+            try {
+                ApiService tempApiService = new ApiService();
+                String pageDescription = tempApiService.run("https://en.wikipedia.org/w/api.php?action=opensearch&search=2010%E2%80%932017%20Toronto%20serial%20homicides&limit=1&format=json");
+                Log.e("PageFragmentAnswer",pageDescription);
+            }catch (Exception e ){
+               e.printStackTrace();
+            }
         }
     };
 
