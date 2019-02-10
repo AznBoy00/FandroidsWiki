@@ -41,6 +41,7 @@ import org.wikipedia.Constants;
 import org.wikipedia.LongPressHandler;
 import org.wikipedia.R;
 import org.wikipedia.TTS.TTSVoiceRead;
+//import org.wikipedia.TTSListener;
 import org.wikipedia.WikipediaApp;
 import org.wikipedia.activity.FragmentUtil;
 import org.wikipedia.analytics.FindInPageFunnel;
@@ -90,6 +91,7 @@ import org.wikipedia.views.WikiPageErrorView;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -172,6 +174,7 @@ public class PageFragment extends Fragment implements BackPressedHandler {
     @Nullable private AvCallback avCallback;
 
     private WikipediaApp app;
+    private TextToSpeech mSpeech;
 
     @NonNull
     private final SwipeRefreshLayout.OnRefreshListener pageRefreshListener = this::refreshPage;
@@ -235,15 +238,15 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         public void updateBookmark(boolean pageSaved) {
             setBookmarkIconForPageSavedState(pageSaved);
         }
+
         @Override
         public void textToSpeech() {
             // INSERT TTS FEATURE HERE
             Log.e("TTS", "play");
-           // tts.TTSPlay("Hello for test");
-            tts = new TTSRead();
-
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.page_fragment,tts).commit();
+            mSpeech = new TextToSpeech(getContext(),new TTSListener());
+            mSpeech.speak("Hello", TextToSpeech.QUEUE_FLUSH, null);
+            //tts = new TTSRead();
+            //tts.TTSPlay("Hello for test");
 
             Log.e("TTS","oncreate_PF");
             Log.e("Page!!!!!","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -253,6 +256,30 @@ public class PageFragment extends Fragment implements BackPressedHandler {
             // TODO textToSpeech();
         }
     };
+
+    public class TTSListener implements TextToSpeech.OnInitListener {
+        private final String TAG = "TTSListener";
+        @Override
+        public void onInit(int status) {
+            // TODO Auto-generated method stub
+            if (status == TextToSpeech.SUCCESS) {
+                int supported = mSpeech.setLanguage(Locale.CANADA);
+               if ((supported != TextToSpeech.LANG_AVAILABLE) && (supported != TextToSpeech.LANG_COUNTRY_AVAILABLE)) {
+                  Toast.makeText(getContext(), "不支持当前语言！", Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, "onInit: 支持当前选择语言");
+                }else{
+
+               }
+                Log.i(TAG, "onInit: TTS引擎初始化成功");
+            }
+            else{
+                Log.i(TAG, "onInit: TTS引擎初始化失败");
+            }
+
+        }}
+
+
+
 
     public ObservableWebView getWebView() {
         return webView;
