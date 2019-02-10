@@ -6,6 +6,9 @@ import org.wikipedia.page.shareafact.SharedImageCleanupTask;
 import org.wikipedia.settings.RemoteConfigRefreshTask;
 import org.wikipedia.util.ReleaseUtil;
 
+// 390 Imports
+import org.wikipedia.notifications.NotificationRandomArticle;
+
 import io.reactivex.Completable;
 import io.reactivex.schedulers.Schedulers;
 

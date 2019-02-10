@@ -213,4 +213,12 @@
             app:tint="?attr/material_theme_secondary_color" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/noti_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:visibility="visible"
+        tools:text="TestNotification" />
+
 </LinearLayout>

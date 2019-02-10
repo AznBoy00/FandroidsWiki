@@ -243,6 +243,12 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize"
             android:theme="@style/AppTheme.ActionBar" />
 
+        <!--<activity-->
+            <!--android:name=".notifications.NotificationRandomArticle"-->
+            <!--android:label="@string/notifications_activity_title"-->
+            <!--android:configChanges="orientation|keyboardHidden|keyboard|screenSize"-->
+            <!--android:theme="@style/AppTheme.ActionBar" />-->
+
         <activity
             android:name=".page.tabs.TabActivity"
             android:theme="@style/AppTheme" />
@@ -312,6 +318,12 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name=".notifications.NotificationPollBroadcastReceiver.ACTION_POLL" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".notifications.NotificationRandomArticle">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 

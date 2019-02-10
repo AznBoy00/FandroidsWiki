@@ -1,7 +1,9 @@
 package org.wikipedia.main;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -24,6 +26,7 @@ import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.feed.FeedFragment;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.navtab.NavTab;
+import org.wikipedia.notifications.Notification;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
 import org.wikipedia.readinglist.ReadingListSyncBehaviorDialogs;
@@ -35,6 +38,10 @@ import org.wikipedia.util.AnimationUtil;
 import org.wikipedia.util.DimenUtil;
 import org.wikipedia.util.FeedbackUtil;
 import org.wikipedia.views.WikiDrawerLayout;
+
+// 390 Project Imports
+import org.wikipedia.notifications.TimerRandomArticle;
+import org.wikipedia.notifications.NotificationRandomArticle;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,6 +84,16 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             getSupportActionBar().setTitle("");
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
+
+        // 390 Project Addition - Timer For Random Article
+        TimerRandomArticle newArticleNotification = new TimerRandomArticle(this);
+        newArticleNotification.alarmManager();
+//        IntentFilter filter = new IntentFilter(Intent.ACTION_USER_PRESENT);
+//        BroadcastReceiver mReceiver = new NotificationRandomArticle();
+//        NotificationRandomArticle nR = new NotificationRandomArticle();
+//        nR.onCreat(savedInstanceState);
+
+        // 390 Project Addition - Timer For Random Article Ends
 
         drawerLayout.setDragEdgeWidth(getResources().getDimensionPixelSize(R.dimen.drawer_drag_margin));
         drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
