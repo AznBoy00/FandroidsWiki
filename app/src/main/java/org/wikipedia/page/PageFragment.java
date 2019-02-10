@@ -175,11 +175,13 @@ public class PageFragment extends Fragment implements BackPressedHandler {
 
     private WikipediaApp app;
     private TextToSpeech mSpeech;
-
+    private int supported;
+    private boolean isTTSReading;
+    private String readingStr;
     @NonNull
     private final SwipeRefreshLayout.OnRefreshListener pageRefreshListener = this::refreshPage;
 
-    TTSRead tts;
+
 
     private PageActionTab.Callback pageActionTabsCallback = new PageActionTab.Callback() {
         @Override
@@ -243,12 +245,12 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         public void textToSpeech() {
             // INSERT TTS FEATURE HERE
             Log.e("TTS", "play");
-            mSpeech = new TextToSpeech(getContext(),new TTSListener());
-            mSpeech.speak("Hello", TextToSpeech.QUEUE_FLUSH, null);
-            //tts = new TTSRead();
-            //tts.TTSPlay("Hello for test");
 
-            Log.e("TTS","oncreate_PF");
+            //mSpeech = new TextToSpeech(getContext(),new TTSListener());
+            //mSpeech.speak("Hello", TextToSpeech.QUEUE_FLUSH, null);
+            mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
+           // playTTS();
+
             Log.e("Page!!!!!","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             Toast toast = Toast.makeText(getContext(), "TEST", Toast.LENGTH_SHORT);
             toast.show();
@@ -259,11 +261,23 @@ public class PageFragment extends Fragment implements BackPressedHandler {
 
     public class TTSListener implements TextToSpeech.OnInitListener {
         private final String TAG = "TTSListener";
+
+//        public void onCreate(Bundle savedInstanceState) {
+//            //super.onCreate(savedInstanceState);
+//            Log.i(TAG,"TTSvr oncreate");
+//            //tts="This is the test for TTS voice reading.";
+//            //mSpeech=new android.speech.tts.TextToSpeech(this, this);
+//            supported=mSpeech.setLanguage(Locale.US);
+//           // toSpeech.speak(TTSTestText, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
+//            Log.i(TAG,"TTSvr oncreate done");
+//        }
+
         @Override
         public void onInit(int status) {
             // TODO Auto-generated method stub
             if (status == TextToSpeech.SUCCESS) {
-                int supported = mSpeech.setLanguage(Locale.CANADA);
+                //int supported = mSpeech.setLanguage(Locale.CANADA);
+                supported = mSpeech.setLanguage(Locale.US);
                if ((supported != TextToSpeech.LANG_AVAILABLE) && (supported != TextToSpeech.LANG_COUNTRY_AVAILABLE)) {
                   Toast.makeText(getContext(), "不支持当前语言！", Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "onInit: 支持当前选择语言");
@@ -276,9 +290,22 @@ public class PageFragment extends Fragment implements BackPressedHandler {
                 Log.i(TAG, "onInit: TTS引擎初始化失败");
             }
 
-        }}
+        }
+    }
 
+    public void setReadingStr(String input){
+        readingStr = input;
+    }
 
+    public void playTTS(){
+        if(isTTSReading == false){
+            isTTSReading = true;
+            mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
+        }
+        if(isTTSReading == true && mSpeech != null){
+            mSpeech.stop();
+        }
+    }
 
 
     public ObservableWebView getWebView() {
@@ -324,7 +351,10 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         app = (WikipediaApp) requireActivity().getApplicationContext();
         model = new PageViewModel();
         pageFragmentLoadState = new PageFragmentLoadState();
-
+        mSpeech = new TextToSpeech(getContext(),new TTSListener());
+        isTTSReading = false;
+        String test = "This is a long long long long long long long long long long long long long long long test string.";
+        setReadingStr(test);
     }
 
     @Override
