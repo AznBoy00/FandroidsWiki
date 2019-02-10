@@ -64,7 +64,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments('butterknife.minSdk': minSdkVersion.apiString,
-                          'butterknife.debuggable': 'false')
+                        'butterknife.debuggable': 'false')
             }
         }
     }
@@ -139,7 +139,7 @@ android {
         custom {
             versionName computeVersionName(customChannel)
             // next line is for injecting a custom channel value into the custom/AndroidManifest.xml
-            manifestPlaceholders = [customChannel:getProperty('customChannel').toString()]
+            manifestPlaceholders = [customChannel: getProperty('customChannel').toString()]
             signingConfig signingConfigs.prod
             dimension 'default'
         }
@@ -155,7 +155,8 @@ android {
     }
 
     packagingOptions {
-        exclude 'META-INF/services/javax.annotation.processing.Processor' // required by Butter Knife
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        // required by Butter Knife
 
         // For Espresso testing libraries. See http://stackoverflow.com/q/33800924/970346.
         exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
@@ -171,7 +172,7 @@ android {
 }
 
 // Map for the version code that gives each ABI a value.
-ext.abiCodes = ['armeabi-v7a':1, 'arm64-v8a':2, x86:3, x86_64:4]
+ext.abiCodes = ['armeabi-v7a': 1, 'arm64-v8a': 2, x86: 3, x86_64: 4]
 
 // For per-density APKs, create a similar map like this:
 // ext.densityCodes = ['mdpi': 1, 'hdpi': 2, 'xhdpi': 3]
@@ -198,7 +199,8 @@ dependencies {
     String retrofitVersion = '2.4.0'
     String espressoVersion = '3.0.1'
     String butterKnifeVersion = '8.8.1'
-    String frescoVersion = '1.11.0' // When updating this version, resync file copies under app/src/main/java/com/facebook
+    String frescoVersion = '1.11.0'
+    // When updating this version, resync file copies under app/src/main/java/com/facebook
     String testingSupportVersion = '1.0.2'
     String mockitoCore = 'org.mockito:mockito-core:1.9.5'
     String leakCanaryVersion = '1.6.2'
@@ -217,7 +219,7 @@ dependencies {
     implementation "com.android.support:palette-v7:$supportVersion"
     implementation "com.android.support:preference-v14:$supportVersion"
 
-    implementation ('com.github.michael-rapp:chrome-like-tab-switcher:0.3.7') {
+    implementation('com.github.michael-rapp:chrome-like-tab-switcher:0.3.7') {
         // TODO: remove when this component updates its own dependency on Support 28.0.0
         exclude group: 'com.android.support'
     }
@@ -240,11 +242,12 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.8.1'
     implementation 'org.jsoup:jsoup:1.11.3'
 
+    implementation 'com.android.support:support-v4:28.0.0'
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
 
     android.productFlavors.each { flavor ->
         String dep
-        if('dev' == flavor.name) {
+        if ('dev' == flavor.name) {
             dep = "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
         } else {
             dep = "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
@@ -266,7 +269,8 @@ dependencies {
     // Required by Android JUnit Runner.
     androidTestImplementation "com.android.support:support-annotations:$supportVersion"
     androidTestImplementation "com.android.support.test:rules:$testingSupportVersion" // JUnit Rules
-    androidTestImplementation "com.android.support.test:runner:$testingSupportVersion" // Android JUnit Runner
+    androidTestImplementation "com.android.support.test:runner:$testingSupportVersion"
+    // Android JUnit Runner
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
 
