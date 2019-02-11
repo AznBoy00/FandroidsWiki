@@ -265,8 +265,12 @@ public class PageFragment extends Fragment implements BackPressedHandler {
             URL wikiSearchQuery = NetworkUtils.buildUrl(articleTitle);
             try {
                 readingStr = new WikiQueryTask().execute(wikiSearchQuery).get();
+                Log.i(TAG, "TTS: Success");
+                Toast.makeText(getActivity(), "Execution of Text-To-Speech", Toast.LENGTH_LONG).show();
             }catch (Exception e){
                 e.printStackTrace();
+                Log.i(TAG, "TTS: Fail");
+                Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
             }
             mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
         }
@@ -310,7 +314,6 @@ public class PageFragment extends Fragment implements BackPressedHandler {
             mSpeech.stop();
         }
     }
-
 
     public ObservableWebView getWebView() {
         return webView;
