@@ -10,28 +10,34 @@ import java.net.URL;
 
 
 public class WikiQueryTask extends AsyncTask<URL,Void,String> {
+
     private final String TAG = "WikiQueryTask";
+
     protected String doInBackground(URL... params) {
         URL searchUrl = params[0];
-        String wikiSearchResults = null;
+        String wikiResult = null;
         ApiService wikiApiService = ApiService.getApiServiceInstance();
-        try{wikiSearchResults = wikiApiService.run(searchUrl.toString());}catch (IOException e){
+        try{
+            String wikiSearchResults = wikiApiService.run(searchUrl.toString());
+            wikiResult = retrieveResult(wikiSearchResults);
+        }
+        catch (IOException e){
             e.printStackTrace();
         }
-        return wikiSearchResults;
+        return wikiResult;
     }
 
-    @Override
-    protected void onPostExecute(String wikiSearchResults) {
+    protected String retrieveResult(String wikiSearchResults) {
+        String description = null;
         if (wikiSearchResults != null && !wikiSearchResults.equals("")) {
-            String description = wikiSearchResults;
+            description = wikiSearchResults;
             description = WikiResponseUtils.getWikiDescriptionFromResponse(description);
-            Log.d(TAG,"Successful Return!");
-            Log.d(TAG,description);
+            Log.d(TAG,"The return was successful!");
         }
         else{
-            Log.d(TAG,"nothing Return!");
+            Log.d(TAG,"Return failed!");
         }
+        return description;
     }
 
 }
