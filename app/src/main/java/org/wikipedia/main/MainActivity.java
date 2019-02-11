@@ -16,6 +16,9 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+
+import com.allyants.notifyme.NotifyMe;
 
 import org.wikipedia.Constants;
 import org.wikipedia.R;
@@ -29,6 +32,7 @@ import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.Notification;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
+import org.wikipedia.random.RandomActivity;
 import org.wikipedia.readinglist.ReadingListSyncBehaviorDialogs;
 import org.wikipedia.readinglist.database.ReadingListDbHelper;
 import org.wikipedia.settings.AboutActivity;
@@ -88,11 +92,6 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         // 390 Project Addition - Timer For Random Article
         TimerRandomArticle newArticleNotification = new TimerRandomArticle(this);
         newArticleNotification.alarmManager();
-//        IntentFilter filter = new IntentFilter(Intent.ACTION_USER_PRESENT);
-//        BroadcastReceiver mReceiver = new NotificationRandomArticle();
-//        NotificationRandomArticle nR = new NotificationRandomArticle();
-//        nR.onCreat(savedInstanceState);
-
         // 390 Project Addition - Timer For Random Article Ends
 
         drawerLayout.setDragEdgeWidth(getResources().getDimensionPixelSize(R.dimen.drawer_drag_margin));
@@ -106,7 +105,19 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         });
         drawerView.setCallback(new DrawerViewCallback());
         shouldShowMainDrawer(true);
+
+        /** 390 Project Addition - Test Button for Random Article**/
+        Button button_notify_me = findViewById(R.id.noti_test);
+        button_notify_me.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotificationRandomArticle newRandomArticle = new NotificationRandomArticle();
+                newRandomArticle.createNotificationForRandomArticle(getApplicationContext());
+            }
+        });
+
     }
+
 
     @Override
     public void onResume() {

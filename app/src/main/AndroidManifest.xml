@@ -327,6 +327,15 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name="com.allyants.notifyme.NotificationPublisher" />
+        <receiver android:name="com.allyants.notifyme.BootNotifyMe">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".readinglist.sync.ReadingListSyncService"
             android:exported="false">
