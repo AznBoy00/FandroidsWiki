@@ -37,6 +37,7 @@ public class NetworkUtils {
      * Builds the URL used to query wikipedia.
      */
     public static URL buildUrl(String wikiSearchQuery) {
+        System.out.print(WIKI_BASE_URL);
         Uri builtUri = Uri.parse(WIKI_BASE_URL+wikiSearchQuery).buildUpon().build();
 
         URL url = null;

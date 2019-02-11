@@ -308,7 +308,8 @@ public class PageFragment extends Fragment implements BackPressedHandler {
     }
 
     //play & stop
-    public void playTTS(){
+    public void
+    playTTS(){
         if(isTTSReading == false){
             isTTSReading = true;
             mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
