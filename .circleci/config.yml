@@ -54,7 +54,7 @@ jobs:
 
       - run:
           name: Run JUnit Tests
-          command: ./gradlew testDevDebug
+          command: COVERAGE=TRUE ./gradlew testDevDebug
 
       - save_cache:
           paths:
@@ -67,3 +67,5 @@ jobs:
 
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: app/build/test-results
+
+      - run: curl -s https://codecov.io/bash | bash
