@@ -42,8 +42,7 @@ import org.wikipedia.Constants;
 import org.wikipedia.LongPressHandler;
 import org.wikipedia.NetworkUtils;
 import org.wikipedia.R;
-import org.wikipedia.TTS.TTSVoiceRead;
-//import org.wikipedia.TTSListener;
+
 import org.wikipedia.WikiQueryTask;
 import org.wikipedia.WikipediaApp;
 import org.wikipedia.activity.FragmentUtil;
@@ -120,7 +119,7 @@ import static org.wikipedia.util.ThrowableUtil.isOffline;
 import static org.wikipedia.util.UriUtil.decodeURL;
 import static org.wikipedia.util.UriUtil.visitInExternalBrowser;
 
-import org.wikipedia.TTS.*;
+
 
 public class PageFragment extends Fragment implements BackPressedHandler {
     public interface Callback {
@@ -184,6 +183,7 @@ public class PageFragment extends Fragment implements BackPressedHandler {
     private int supported;
     private boolean isTTSReading;
     private String readingStr;
+    private int count;
     @NonNull
     private final SwipeRefreshLayout.OnRefreshListener pageRefreshListener = this::refreshPage;
 
@@ -249,26 +249,25 @@ public class PageFragment extends Fragment implements BackPressedHandler {
 
         @Override
         public void textToSpeech() {
-
-            /* Work in progress
-            // INSERT TTS FEATURE HERE
-            Log.e("TTS", "play");
-            //mSpeech = new TextToSpeech(getContext(),new TTSListener());
-            //mSpeech.speak("Hello", TextToSpeech.QUEUE_FLUSH, null);
-            // playTTS();
-            // TODO textToSpeech();
-            */
-
-            // Transforms the article's title to a string that will be ready to be integrated to an URL
-            String articleTitle = (model.getTitle().getDisplayText()).replace(" ", "%20");
-            // Builds the articleTitle to an URL
-            URL wikiSearchQuery = NetworkUtils.buildUrl(articleTitle);
-            try {
-                readingStr = new WikiQueryTask().execute(wikiSearchQuery).get();
-            }catch (Exception e){
-                e.printStackTrace();
+            String articleTitle;
+            URL wikiSearchQuery;
+            if(count == 0)
+            {
+                count++;
+                // Transforms the article's title to a string that will be ready to be integrated to an URL
+                articleTitle = (model.getTitle().getDisplayText()).replace(" ", "%20");
+                // Builds the articleTitle to an URL
+                wikiSearchQuery = NetworkUtils.buildUrl(articleTitle);
+                try {
+                    readingStr = new WikiQueryTask().execute(wikiSearchQuery).get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                isTTSReading = true;
+                mSpeech.speak(readingStr, TextToSpeech.QUEUE_FLUSH, null);
+            }else {
+                playTTS();
             }
-            mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
         }
     };
 
@@ -297,17 +296,28 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         }
     }
 
+    //TODO for TTS feature improvement next sprint
+    // + load string improvement
+    // + auto detect article language
+    // + save & record position to continue
+    // + adjust speech speed
+    //======================================
+
     public void setReadingStr(String input){
         readingStr = input;
     }
 
+    //play & stop
     public void playTTS(){
         if(isTTSReading == false){
             isTTSReading = true;
             mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
-        }
+        }else
         if(isTTSReading == true && mSpeech != null){
+            isTTSReading = false;
             mSpeech.stop();
+            //This log is very important for developing/debugging content ignoring
+            Log.i(TAG,"_TTS Check for current readingStr: " +  readingStr);
         }
     }
 
@@ -357,6 +367,7 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         pageFragmentLoadState = new PageFragmentLoadState();
         mSpeech = new TextToSpeech(getContext(),new TTSListener());
         isTTSReading = false;
+        count = 0;
         //String test = "";
        /* setReadingStr(readingStr);
         Log.e(TAG,readingStr);*/
