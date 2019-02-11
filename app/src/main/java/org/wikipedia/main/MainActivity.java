@@ -14,6 +14,7 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 
 import org.wikipedia.Constants;
 import org.wikipedia.R;
@@ -41,7 +42,8 @@ import butterknife.ButterKnife;
 
 // 390 Project Imports
 import org.wikipedia.notifications.TimerRandomArticle;
-
+import org.wikipedia.notifications.NotificationRandomArticle;
+import com.allyants.notifyme.NotifyMe;
 
 import static org.wikipedia.Constants.ACTIVITY_REQUEST_INITIAL_ONBOARDING;
 
@@ -94,9 +96,18 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         drawerView.setCallback(new DrawerViewCallback());
         shouldShowMainDrawer(true);
 
-        // 390 Project - Setup Broadcast Reciever / alarmManager for RandomArticleNotification
+        // 390 Project - Setup Broadcast Receiver / alarmManager for RandomArticleNotification
         TimerRandomArticle newArticleNotification = new TimerRandomArticle(this);
         newArticleNotification.alarmManager();
+        /** 390 Project Addition - Test Button for Random Article**/
+        Button button_notify_me = findViewById(R.id.noti_test);
+        button_notify_me.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NotificationRandomArticle newRandomArticle = new NotificationRandomArticle();
+                newRandomArticle.createNotificationForRandomArticle(getApplicationContext());
+            }
+        });
     }
 
     @Override

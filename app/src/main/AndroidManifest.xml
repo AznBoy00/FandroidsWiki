@@ -315,7 +315,17 @@
             </intent-filter>
         </receiver>
         
-        <!-- 390 recievers -->
+        <!-- 390 receivers -->
+
+        <receiver android:name="com.allyants.notifyme.NotificationPublisher" />
+        <receiver android:name="com.allyants.notifyme.BootNotifyMe">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
         <receiver android:name=".notifications.NotificationRandomArticle">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

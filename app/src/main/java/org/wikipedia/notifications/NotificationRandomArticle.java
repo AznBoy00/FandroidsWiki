@@ -38,7 +38,20 @@ public class NotificationRandomArticle extends BroadcastReceiver {
     }
 
     public void createNotificationForRandomArticle(Context context) {
-        //Write the code for creating notification
+        String etTitle = "Hey!, Want to read something interesting";
+        String etContent = "Click here to read a random article on Wikipedia";
+        NotifyMe notifyMe = new NotifyMe.Builder(context)
+                .title(etTitle)
+                .content(etContent)
+                .color(255,0,0,255)
+                .led_color(255,255,255,255)
+                //.time(now)
+                .addAction(new Intent(),"Snooze",false)
+                .key("test")
+                .addAction(new Intent(),"Dismiss",true,false)
+                .addAction(new Intent(context,RandomActivity.class),"Done")
+                .large_icon(R.mipmap.launcher)
+                .build();
     }
 
 }
