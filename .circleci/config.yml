@@ -72,4 +72,4 @@ jobs:
           path: app/build/test-results
 
       - codecov/upload:
-          file: ~/
+          file: ~/codecov.yml
