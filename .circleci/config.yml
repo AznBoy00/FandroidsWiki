@@ -71,4 +71,5 @@ jobs:
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: app/build/test-results
 
-      - run: curl -s https://codecov.io/bash | bash
+      - codecov/upload:
+          file: {{ coverage_report_filepath }}
