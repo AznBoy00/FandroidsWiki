@@ -96,7 +96,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         drawerView.setCallback(new DrawerViewCallback());
         shouldShowMainDrawer(true);
 
-        // 390 Project - Setup Broadcast Receiver / alarmManager for RandomArticleNotification
+        /** 390 Project - Setup Broadcast Receiver / alarmManager for RandomArticleNotification **/
         TimerRandomArticle newArticleNotification = new TimerRandomArticle(this);
         newArticleNotification.alarmManager();
         /** 390 Project Addition - Test Button for Random Article**/

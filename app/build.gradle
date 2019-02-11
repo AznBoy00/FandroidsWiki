@@ -258,6 +258,14 @@ dependencies {
     testImplementation "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
     testImplementation "commons-io:commons-io:2.6"
 
+    // mockito
+    testImplementation 'org.mockito:mockito-core:2.4.0'
+    androidTestImplementation 'org.mockito:mockito-core:2.4.0'
+    // PowerMock
+    testImplementation 'org.powermock:powermock-core:1.7.0RC2'
+    testImplementation 'org.powermock:powermock-module-junit4:1.7.0RC2'
+    testImplementation 'org.powermock:powermock-api-mockito2:1.7.0RC2'
+
     androidTestImplementation mockitoCore
     androidTestRuntimeOnly 'com.crittercism.dexmaker:dexmaker:1.4'
     androidTestImplementation 'com.crittercism.dexmaker:dexmaker-mockito:1.4'
