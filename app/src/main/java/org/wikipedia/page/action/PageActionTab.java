@@ -46,7 +46,6 @@ public enum PageActionTab implements EnumCode {
         @Override
         public void select(@NonNull Callback cb) {
             //TODO
-            //Log.e("Page!!!!!","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             cb.textToSpeech();
         }
     },

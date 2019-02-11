@@ -15,17 +15,18 @@ public class ApiService {
     //TODO check how it works
     //OkHttpClient client =OkHttpConnectionFactory.getClient();
 
-    //Use singleton pattern:
+    // Uses Singleton pattern:
     private static final ApiService apiServiceInstance = new ApiService();
     private ApiService(){};
     public static ApiService getApiServiceInstance()
     {
         return apiServiceInstance;
     };
-    //Create a new okHttpClient
+
+    // Creates a new okHttpClient
     private final OkHttpClient client = new OkHttpClient();
 
-    // Get request using okhttp
+    // Gets request using okhttp
     public String run(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
@@ -35,8 +36,7 @@ public class ApiService {
         }
     }
 
-
-    // Local test fuction
+    // Local test function
     public static void main(String[] args) throws IOException {
         ApiService example = new ApiService();
         String response = example.run("https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&search=bee");
@@ -44,6 +44,6 @@ public class ApiService {
         System.out.println(response);
     }
 
-    }
+}
 
 

@@ -249,44 +249,32 @@ public class PageFragment extends Fragment implements BackPressedHandler {
 
         @Override
         public void textToSpeech() {
+
+            /* Work in progress
             // INSERT TTS FEATURE HERE
             Log.e("TTS", "play");
-
             //mSpeech = new TextToSpeech(getContext(),new TTSListener());
             //mSpeech.speak("Hello", TextToSpeech.QUEUE_FLUSH, null);
-           // playTTS();
-
-            Log.e("Page!!!!!","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            //Log.e("PageFragment","insde texttospeech");
-            Toast toast = Toast.makeText(getContext(), "TEST", Toast.LENGTH_SHORT);
-            toast.show();
-            Log.e("TTS","TTS error2");
+            // playTTS();
             // TODO textToSpeech();
-            //Log.e("PageFragment",model.getTitle().getDescription());
-            //Log.e("PageFragment",model.getTitle().getDisplayText());
-            URL wikiSearchQuery = NetworkUtils.buildUrl(model.getTitle().getDisplayText());
+            */
+
+            // Transforms the article's title to a string that will be ready to be integrated to an URL
+            String articleTitle = (model.getTitle().getDisplayText()).replace(" ", "%20");
+            // Builds the articleTitle to an URL
+            URL wikiSearchQuery = NetworkUtils.buildUrl(articleTitle);
             try {
                 readingStr = new WikiQueryTask().execute(wikiSearchQuery).get();
             }catch (Exception e){
                 e.printStackTrace();
             }
-
             mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
         }
     };
 
     public class TTSListener implements TextToSpeech.OnInitListener {
-        private final String TAG = "TTSListener";
 
-//        public void onCreate(Bundle savedInstanceState) {
-//            //super.onCreate(savedInstanceState);
-//            Log.i(TAG,"TTSvr oncreate");
-//            //tts="This is the test for TTS voice reading.";
-//            //mSpeech=new android.speech.tts.TextToSpeech(this, this);
-//            supported=mSpeech.setLanguage(Locale.US);
-//           // toSpeech.speak(TTSTestText, android.speech.tts.TextToSpeech.QUEUE_FLUSH, null);
-//            Log.i(TAG,"TTSvr oncreate done");
-//        }
+        private final String TAG = "TTSListener";
 
         @Override
         public void onInit(int status) {
@@ -295,17 +283,17 @@ public class PageFragment extends Fragment implements BackPressedHandler {
                 //int supported = mSpeech.setLanguage(Locale.CANADA);
                 supported = mSpeech.setLanguage(Locale.US);
                if ((supported != TextToSpeech.LANG_AVAILABLE) && (supported != TextToSpeech.LANG_COUNTRY_AVAILABLE)) {
-                  Toast.makeText(getContext(), "not support original language！", Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, "onInit: support original language");
-                }else{
-
+                  Toast.makeText(getContext(), "Language not supported！", Toast.LENGTH_SHORT).show();
+                  Log.i(TAG, "onInit: " + supported + " language not supported");
+                }
+                else{
+                   Log.i(TAG, "onInit: " + supported + " language supported");
                }
-                Log.i(TAG, "onInit: TTS success");
+                Log.i(TAG, "onInit: TTS have been initialized");
             }
             else{
-                Log.i(TAG, "onInit: TTS failed");
+                Log.i(TAG, "onInit: TTS have not been initialized");
             }
-
         }
     }
 

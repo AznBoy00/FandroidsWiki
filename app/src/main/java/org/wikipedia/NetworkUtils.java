@@ -37,19 +37,14 @@ public class NetworkUtils {
      * Builds the URL used to query wikipedia.
      */
     public static URL buildUrl(String wikiSearchQuery) {
-        Uri builtUri = Uri.parse(WIKI_BASE_URL+wikiSearchQuery).buildUpon()
-                //.appendQueryParameter(PARAM_QUERY, githubSearchQuery)
-                //.appendQueryParameter(PARAM_SORT, sortBy)
-                .build();
+        Uri builtUri = Uri.parse(WIKI_BASE_URL+wikiSearchQuery).buildUpon().build();
 
-        Log.e("URL","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+builtUri.toString());
         URL url = null;
         try {
             url = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         return url;
     }
 }

@@ -98,7 +98,6 @@ public class ReadingListPage {
     }
 
     @Nullable public String description() {
-        Log.d("ReadingListPage","!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         Log.d("ReadingListPage",description);
         return description;
     }
