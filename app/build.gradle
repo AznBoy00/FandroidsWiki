@@ -54,7 +54,7 @@ android {
 
     defaultConfig {
         applicationId 'org.wikipedia'
-        minSdkVersion 19
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 268
         testApplicationId 'org.wikipedia.test'
@@ -239,7 +239,7 @@ dependencies {
     implementation 'net.hockeyapp.android:HockeySDK:5.1.0'
     implementation 'org.apache.commons:commons-lang3:3.8.1'
     implementation 'org.jsoup:jsoup:1.11.3'
-
+    implementation 'com.github.jakebonk:NotifyMe:1.0.0'
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
 
     android.productFlavors.each { flavor ->
@@ -257,6 +257,14 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:3.8'
     testImplementation "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
     testImplementation "commons-io:commons-io:2.6"
+
+    // mockito
+    testImplementation 'org.mockito:mockito-core:2.4.0'
+    androidTestImplementation 'org.mockito:mockito-core:2.4.0'
+    // PowerMock
+    testImplementation 'org.powermock:powermock-core:1.7.0RC2'
+    testImplementation 'org.powermock:powermock-module-junit4:1.7.0RC2'
+    testImplementation 'org.powermock:powermock-api-mockito2:1.7.0RC2'
 
     androidTestImplementation mockitoCore
     androidTestRuntimeOnly 'com.crittercism.dexmaker:dexmaker:1.4'
