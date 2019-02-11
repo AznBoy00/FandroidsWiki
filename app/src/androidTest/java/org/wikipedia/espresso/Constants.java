@@ -10,9 +10,12 @@ public final class Constants {
     public static final String TEST_JSON_ASSET_FOLDER = "espresso/json/";
     public static final int SCREENSHOT_COMPRESSION_QUALITY = 100;
     public static final float SCREENSHOT_COMPARE_PERCENT_TOLERANCE = 0f;
-    public static final int HEIGHT_OF_TESTING_DEVICE = 1280;
+    public static final int HEIGHT_OF_TESTING_DEVICE = 1344;
     public static final int WIDTH_OF_TESTING_DEVICE = 720;
-    public static final int SDK_VERSION_OF_TESTING_DEVICE = 26;
+    // DEFAULT SETTING FOR RESOLUTION
+    //public static final int HEIGHT_OF_TESTING_DEVICE = 1280;
+    //public static final int WIDTH_OF_TESTING_DEVICE = 720;
+    public static final int SDK_VERSION_OF_TESTING_DEVICE = 27;
     public static final String DEFAULT_LANGUAGE_OF_TESTING_DEVICE = Locale.ENGLISH.getDisplayLanguage();
 
     private Constants() { }
