@@ -39,6 +39,10 @@ import org.wikipedia.views.WikiDrawerLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+// 390 Project Imports
+import org.wikipedia.notifications.TimerRandomArticle;
+
+
 import static org.wikipedia.Constants.ACTIVITY_REQUEST_INITIAL_ONBOARDING;
 
 public class MainActivity extends SingleFragmentActivity<MainFragment>
@@ -89,6 +93,10 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         });
         drawerView.setCallback(new DrawerViewCallback());
         shouldShowMainDrawer(true);
+
+        // 390 Project - Setup Broadcast Reciever / alarmManager for RandomArticleNotification
+        TimerRandomArticle newArticleNotification = new TimerRandomArticle(this);
+        newArticleNotification.alarmManager();
     }
 
     @Override

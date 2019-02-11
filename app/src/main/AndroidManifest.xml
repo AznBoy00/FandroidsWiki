@@ -314,6 +314,13 @@
                 <action android:name=".notifications.NotificationPollBroadcastReceiver.ACTION_POLL" />
             </intent-filter>
         </receiver>
+        
+        <!-- 390 recievers -->
+        <receiver android:name=".notifications.NotificationRandomArticle">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
         <service
             android:name=".readinglist.sync.ReadingListSyncService"
