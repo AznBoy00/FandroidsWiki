@@ -1,15 +1,11 @@
 package org.wikipedia;
 
-import org.junit.Test;
 
 import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-
-import static org.hamcrest.Matchers.is;
+import org.junit.Test;
 import static org.junit.Assert.*;
-
-
 
 public class ApiServiceTest {
 
