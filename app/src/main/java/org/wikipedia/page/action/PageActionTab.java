@@ -1,9 +1,14 @@
 package org.wikipedia.page.action;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
+import android.widget.Toast;
 
 import org.wikipedia.model.EnumCode;
 import org.wikipedia.model.EnumCodeMap;
+import org.wikipedia.page.PageActivity;
+import org.wikipedia.page.PageFragment;
 
 public enum PageActionTab implements EnumCode {
     ADD_TO_READING_LIST() {
@@ -36,6 +41,14 @@ public enum PageActionTab implements EnumCode {
             cb.onFontAndThemeTabSelected();
         }
     },
+    // TEXT_TO_SPEECH ACTION
+    TEXT_TO_SPEECH() {
+        @Override
+        public void select(@NonNull Callback cb) {
+            //TODO
+            cb.textToSpeech();
+        }
+    },
     VIEW_TOC() {
         @Override
         public void select(@NonNull Callback cb) {
@@ -66,5 +79,6 @@ public enum PageActionTab implements EnumCode {
         void onFontAndThemeTabSelected();
         void onViewToCTabSelected();
         void updateBookmark(boolean pageSaved);
+        void textToSpeech();
     }
 }

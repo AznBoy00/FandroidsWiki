@@ -23,6 +23,7 @@ import org.wikipedia.bridge.CommunicationBridge;
 import org.wikipedia.database.contract.PageImageHistoryContract;
 import org.wikipedia.dataclient.okhttp.HttpStatusException;
 import org.wikipedia.dataclient.okhttp.OfflineCacheInterceptor;
+import org.wikipedia.dataclient.page.PageClient;
 import org.wikipedia.dataclient.page.PageClientFactory;
 import org.wikipedia.dataclient.page.PageLead;
 import org.wikipedia.descriptions.DescriptionEditClient;
@@ -33,6 +34,7 @@ import org.wikipedia.page.leadimages.LeadImagesHandler;
 import org.wikipedia.page.tabs.Tab;
 import org.wikipedia.pageimages.PageImage;
 import org.wikipedia.readinglist.database.ReadingListDbHelper;
+import org.wikipedia.readinglist.database.ReadingListPage;
 import org.wikipedia.settings.Prefs;
 import org.wikipedia.util.DateUtil;
 import org.wikipedia.util.DimenUtil;
@@ -42,6 +44,7 @@ import org.wikipedia.util.ResourceUtil;
 import org.wikipedia.util.log.L;
 import org.wikipedia.views.ObservableWebView;
 import org.wikipedia.views.SwipeRefreshLayoutWithScroll;
+import org.wikipedia.widgets.WidgetProviderFeaturedPage;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -161,10 +164,19 @@ public class PageFragmentLoadState {
             return;
         }
         PageBackStackItem item = currentTab.getBackStack().get(currentTab.getBackStackPosition());
+        ReadingListPage tempListPage = new ReadingListPage(item.getTitle());
+
         // display the page based on the backstack item, stage the scrollY position based on
         // the backstack item.
         fragment.loadPage(item.getTitle(), item.getHistoryEntry(), false, item.getScrollY());
+
+        //PageClient temp = PageClientFactory.create(item.getTitle().getWikiSite(),item.getTitle().namespace());
         L.d("Loaded page " + item.getTitle().getDisplayText() + " from backstack");
+        L.d("Loaded page " + item.getTitle().getConvertedText()+ " from backstack1");
+        L.d("Loaded page " + item.getTitle().getMobileUri()+ " from backstack2");
+        L.d("Loaded page " + item.getTitle().getFragment()+ " from backstack3");
+        L.d("Loaded page " + item.getTitle().getPrefixedText()+ " from backstack4");
+        L.d("Loaded page"+ item.getTitle().getUriForAction("POST")+  "from backstack5");
     }
 
     public void updateCurrentBackStackItem() {
