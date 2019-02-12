@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
@@ -264,7 +265,14 @@ public class PageFragment extends Fragment implements BackPressedHandler {
                     e.printStackTrace();
                 }
                 isTTSReading = true;
-                mSpeech.speak(readingStr, TextToSpeech.QUEUE_FLUSH, null);
+
+                //fixed bug for different api version
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null, null);
+                }else{
+                    mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
+                }
+
             }else {
                 playTTS();
             }
@@ -312,13 +320,30 @@ public class PageFragment extends Fragment implements BackPressedHandler {
     playTTS(){
         if(isTTSReading == false){
             isTTSReading = true;
-            mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
+            //fixed bug for different api version
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null, null);
+            }else{
+                mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
+            }
+            Log.i(TAG,"_TTS Check for current reading status " +  isTTSReading);
         }else
         if(isTTSReading == true && mSpeech != null){
-            isTTSReading = false;
-            mSpeech.stop();
-            //This log is very important for developing/debugging content ignoring
-            Log.i(TAG,"_TTS Check for current readingStr: " +  readingStr);
+            //fixed bug for not replay after current speak finished
+            if(mSpeech.isSpeaking()) {
+                isTTSReading = false;
+                Log.i(TAG, "_TTS Check for current reading status " + isTTSReading);
+                mSpeech.stop();
+                //This log is very important for developing/debugging content ignoring
+                Log.i(TAG, "_TTS Check for current readingStr: " + readingStr);
+            }else {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null, null);
+                }else{
+                    mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
+                }
+                Log.i(TAG,"_TTS Check for current reading status " +  isTTSReading);
+            }
         }
     }
 
@@ -431,6 +456,8 @@ public class PageFragment extends Fragment implements BackPressedHandler {
     public void onDestroy() {
         super.onDestroy();
         app.getRefWatcher().watch(this);
+        mSpeech.stop();
+        mSpeech.shutdown();
     }
 
     @Override

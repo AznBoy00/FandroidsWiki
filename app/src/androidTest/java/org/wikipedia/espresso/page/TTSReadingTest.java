@@ -51,7 +51,7 @@ public class TTSReadingTest {
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-//
+//        // this shall be required for first use or initialed cache
 //        ViewInteraction appCompatTextView = onView(
 //                allOf(withId(R.id.fragment_onboarding_skip_button), withText("Skip"),
 //                        childAtPosition(
@@ -70,15 +70,15 @@ public class TTSReadingTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(android.R.id.button2), withText("No thanks"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.buttonPanel),
-                                        0),
-                                2)));
-        appCompatButton.perform(scrollTo(), click());
+        //this shall be required for devices with multiple version of Chinese
+//        ViewInteraction appCompatButton = onView(
+//                allOf(withId(android.R.id.button2), withText("No thanks"),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withId(R.id.buttonPanel),
+//                                        0),
+//                                2)));
+//        appCompatButton.perform(scrollTo(), click());
 
         ViewInteraction linearLayout = onView(
                 allOf(withId(R.id.search_container),
@@ -189,16 +189,6 @@ public class TTSReadingTest {
                         isDisplayed()));
         appCompatImageView4.perform(click());
 
-        ViewInteraction frameLayout = onView(
-                allOf(withId(R.id.new_tab_container),
-                        childAtPosition(
-                                allOf(withId(R.id.page_contents_container),
-                                        childAtPosition(
-                                                withId(R.id.page_fragment),
-                                                0)),
-                                0),
-                        isDisplayed()));
-        frameLayout.check(matches(isDisplayed()));
 
         try {
             Thread.sleep(3000);
