@@ -1,5 +1,7 @@
 package org.wikipedia.main;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -44,6 +46,8 @@ import butterknife.ButterKnife;
 import org.wikipedia.notifications.TimerRandomArticle;
 import org.wikipedia.notifications.NotificationRandomArticle;
 import com.allyants.notifyme.NotifyMe;
+
+import java.util.Calendar;
 
 import static org.wikipedia.Constants.ACTIVITY_REQUEST_INITIAL_ONBOARDING;
 
@@ -108,6 +112,17 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 newRandomArticle.createNotificationForRandomArticle(getApplicationContext());
             }
         });
+
+        Calendar alarm = Calendar.getInstance();
+        alarm.set(Calendar.HOUR_OF_DAY, 23);
+        alarm.set(Calendar.MINUTE, 46);
+        alarm.set(Calendar.SECOND, 0);
+
+        Intent intent = new Intent(getApplicationContext(), NotificationRandomArticle.class);
+        PendingIntent pIntent;
+        pIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        mAlarm.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarm.getTimeInMillis(), pIntent);
     }
 
     @Override
