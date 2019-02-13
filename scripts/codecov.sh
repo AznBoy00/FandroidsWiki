@@ -9,6 +9,6 @@ for file in $REPORT; do
 done
 
 wget -O - -q "https://codecov.io/bash" > .codecov
-chmod +x .codecov
+sudo chmod +x .codecov
 ./.codecov -t $CODECOV_TOKEN
 echo "Uploaded code coverage"
