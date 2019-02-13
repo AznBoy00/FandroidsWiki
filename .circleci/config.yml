@@ -7,6 +7,9 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.3
 
+codecov:
+  token: 7ef45b92-7ba6-4aba-b2c9-a7ba57230630
+
 test:
     post:
         - if [ -e ./gradlew ]; then ./gradlew jacocoTestReport;else gradle jacocoTestReport;fi
