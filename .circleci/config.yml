@@ -7,13 +7,6 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.3
 
-codecov:
-  token: 7ef45b92-7ba6-4aba-b2c9-a7ba57230630
-
-test:
-    post:
-        - if [ -e ./gradlew ]; then ./gradlew jacocoTestReport;else gradle jacocoTestReport;fi
-        - bash <(curl -s https://codecov.io/bash)
 jobs:
   build:
     docker:
@@ -30,6 +23,7 @@ jobs:
     environment:
       # Customize the JVM maximum heap limit
       JVM_OPTS: -Xmx3200m
+      CODECOV_TOKEN: 7ef45b92-7ba6-4aba-b2c9-a7ba57230630
       TERM: dumb
     
     steps:
@@ -74,5 +68,9 @@ jobs:
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: app/build/test-results
 
-      - codecov/upload:
-          file: test-coverage-path
+      #- codecov/upload:
+      #    file: test-coverage-path
+
+      - run:
+            name: Upload Coverage
+            command: ./scripts/codecov.sh
