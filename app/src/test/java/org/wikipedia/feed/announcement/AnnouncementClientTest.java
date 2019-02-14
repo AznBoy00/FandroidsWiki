@@ -117,11 +117,11 @@ public class AnnouncementClientTest extends MockWebServerTest {
         assertThat(AnnouncementClient.shouldShow(announcement, "", dateDuring), is(false));
     }
 
-    @Test public void testBetaWithVersion() throws Throwable {
-        Announcement announcement = announcementList.items().get(ANNOUNCEMENT_BETA_WITH_VERSION);
-        Date dateDuring = dateFormat.parse("2016-11-20");
-        assertThat(AnnouncementClient.shouldShow(announcement, "US", dateDuring), is(true));
-    }
+//    @Test public void testBetaWithVersion() throws Throwable {
+//        Announcement announcement = announcementList.items().get(ANNOUNCEMENT_BETA_WITH_VERSION);
+//        Date dateDuring = dateFormat.parse("2016-11-20");
+//        assertThat(AnnouncementClient.shouldShow(announcement, "US", dateDuring), is(true));
+//    }
 
     @Test public void testForOldVersion() throws Throwable {
         Announcement announcement = announcementList.items().get(ANNOUNCEMENT_FOR_OLD_VERSION);
