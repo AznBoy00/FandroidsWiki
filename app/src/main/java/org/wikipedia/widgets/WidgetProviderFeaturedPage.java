@@ -88,7 +88,7 @@ public class WidgetProviderFeaturedPage extends AppWidgetProvider {
         final PageTitle title = new PageTitle(
                 MainPageNameData.valueFor(app.getAppOrSystemLanguageCode()),
                 app.getWikiSite());
-
+        L.e("Downloaded page " + title.getDisplayText());
         getApiService(title)
                 .lead(title.getWikiSite(), null, null, null, title.getPrefixedText(),
                         DimenUtil.calculateLeadImageWidth())
@@ -96,7 +96,7 @@ public class WidgetProviderFeaturedPage extends AppWidgetProvider {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(rsp -> {
                     PageLead lead = rsp.body();
-                    L.d("Downloaded page " + title.getDisplayText());
+                    L.e("Downloaded page " + title.getDisplayText());
                     String titleText = findFeaturedArticleTitle(lead.getLeadSectionContent());
 
                     cb.onFeaturedArticleReceived(titleText);

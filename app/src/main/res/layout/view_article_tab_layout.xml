@@ -52,13 +52,32 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintStart_toEndOf="@+id/article_menu_find_in_page"
         app:srcCompat="@drawable/ic_format_size_white_24dp" />
+
+    <!--Text to Speech Button-->
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/article_menu_text_to_speech"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:adjustViewBounds="false"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/menu_show_text_to_speech"
+        android:cropToPadding="true"
+        android:padding="16dp"
+        android:scaleType="fitCenter"
+        android:tag="5"
+        app:layout_constraintEnd_toStartOf="@+id/article_menu_show_toc"
+        app:layout_constraintStart_toEndOf="@+id/article_menu_font_and_theme"
+        app:srcCompat="@drawable/ic_text_to_speech_24dp"
+        tools:layout_editor_absoluteY="0dp" />
+
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/article_menu_show_toc"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:padding="@dimen/bottom_toolbar_item_padding"
         android:contentDescription="@string/menu_show_toc"
-        android:tag="5"
+        android:tag="6"
         android:background="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_list_white_24dp"/>

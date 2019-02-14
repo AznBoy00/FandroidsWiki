@@ -8,7 +8,10 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
@@ -16,6 +19,7 @@ import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -26,15 +30,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.wikipedia.ApiService;
 import org.wikipedia.BackPressedHandler;
 import org.wikipedia.Constants;
 import org.wikipedia.LongPressHandler;
+import org.wikipedia.NetworkUtils;
 import org.wikipedia.R;
+
+import org.wikipedia.WikiQueryTask;
 import org.wikipedia.WikipediaApp;
 import org.wikipedia.activity.FragmentUtil;
 import org.wikipedia.analytics.FindInPageFunnel;
@@ -82,8 +92,11 @@ import org.wikipedia.views.ObservableWebView;
 import org.wikipedia.views.SwipeRefreshLayoutWithScroll;
 import org.wikipedia.views.WikiPageErrorView;
 
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -93,6 +106,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static android.app.Activity.RESULT_OK;
 import static org.wikipedia.page.PageActivity.ACTION_RESUME_READING;
+import static org.wikipedia.page.PageActivity.newIntent;
 import static org.wikipedia.page.PageCacher.loadIntoCache;
 import static org.wikipedia.settings.Prefs.isDescriptionEditTutorialEnabled;
 import static org.wikipedia.settings.Prefs.isLinkPreviewEnabled;
@@ -105,6 +119,8 @@ import static org.wikipedia.util.StringUtil.addUnderscores;
 import static org.wikipedia.util.ThrowableUtil.isOffline;
 import static org.wikipedia.util.UriUtil.decodeURL;
 import static org.wikipedia.util.UriUtil.visitInExternalBrowser;
+
+
 
 public class PageFragment extends Fragment implements BackPressedHandler {
     public interface Callback {
@@ -128,6 +144,7 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         void onPageHideAllContent();
         void onPageSetToolbarFadeEnabled(boolean enabled);
         void onPageSetToolbarElevationEnabled(boolean enabled);
+
     }
 
     private boolean pageRefreshed;
@@ -161,10 +178,17 @@ public class PageFragment extends Fragment implements BackPressedHandler {
     @Nullable private AvPlayer avPlayer;
     @Nullable private AvCallback avCallback;
 
+    private String TAG ="PageFragment";
     private WikipediaApp app;
-
+    private TextToSpeech mSpeech;
+    private int supported;
+    private boolean isTTSReading;
+    private String readingStr;
+    private int count;
     @NonNull
     private final SwipeRefreshLayout.OnRefreshListener pageRefreshListener = this::refreshPage;
+
+
 
     private PageActionTab.Callback pageActionTabsCallback = new PageActionTab.Callback() {
         @Override
@@ -223,7 +247,106 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         public void updateBookmark(boolean pageSaved) {
             setBookmarkIconForPageSavedState(pageSaved);
         }
+
+        @Override
+        public void textToSpeech() {
+            String articleTitle;
+            URL wikiSearchQuery;
+            if(count == 0)
+            {
+                count++;
+                // Transforms the article's title to a string that will be ready to be integrated to an URL
+                articleTitle = (model.getTitle().getDisplayText()).replace(" ", "%20");
+                // Builds the articleTitle to an URL
+                wikiSearchQuery = NetworkUtils.buildUrl(articleTitle);
+                try {
+                    readingStr = new WikiQueryTask().execute(wikiSearchQuery).get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                isTTSReading = true;
+
+                //fixed bug for different api version
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null, null);
+                }else{
+                    mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
+                }
+
+            }else {
+                playTTS();
+            }
+        }
     };
+
+    public class TTSListener implements TextToSpeech.OnInitListener {
+
+        private final String TAG = "TTSListener";
+
+        @Override
+        public void onInit(int status) {
+            // TODO Auto-generated method stub
+            if (status == TextToSpeech.SUCCESS) {
+                //int supported = mSpeech.setLanguage(Locale.CANADA);
+                supported = mSpeech.setLanguage(Locale.US);
+               if ((supported != TextToSpeech.LANG_AVAILABLE) && (supported != TextToSpeech.LANG_COUNTRY_AVAILABLE)) {
+                  Toast.makeText(getContext(), "Language not supported！", Toast.LENGTH_SHORT).show();
+                  Log.i(TAG, "onInit: " + supported + " language not supported");
+                }
+                else{
+                   Log.i(TAG, "onInit: " + supported + " language supported");
+               }
+                Log.i(TAG, "onInit: TTS have been initialized");
+            }
+            else{
+                Log.i(TAG, "onInit: TTS have not been initialized");
+            }
+        }
+    }
+
+    //TODO for TTS feature improvement next sprint
+    // + load string improvement
+    // + auto detect article language
+    // + save & record position to continue
+    // + adjust speech speed
+    //======================================
+
+    public void setReadingStr(String input){
+        readingStr = input;
+    }
+
+    //play & stop
+    public void
+    playTTS(){
+        if(isTTSReading == false){
+            isTTSReading = true;
+            //fixed bug for different api version
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null, null);
+            }else{
+                mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
+            }
+            Log.i(TAG,"_TTS Check for current reading status " +  isTTSReading);
+        }else
+        if(isTTSReading == true && mSpeech != null){
+            //fixed bug for not replay after current speak finished
+            if(mSpeech.isSpeaking()) {
+                isTTSReading = false;
+                Log.i(TAG, "_TTS Check for current reading status " + isTTSReading);
+                mSpeech.stop();
+                //This log is very important for developing/debugging content ignoring
+                Log.i(TAG, "_TTS Check for current readingStr: " + readingStr);
+            }else {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null, null);
+                }else{
+                    mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null);
+                }
+                Log.i(TAG,"_TTS Check for current reading status " +  isTTSReading);
+            }
+        }
+    }
+
 
     public ObservableWebView getWebView() {
         return webView;
@@ -268,6 +391,12 @@ public class PageFragment extends Fragment implements BackPressedHandler {
         app = (WikipediaApp) requireActivity().getApplicationContext();
         model = new PageViewModel();
         pageFragmentLoadState = new PageFragmentLoadState();
+        mSpeech = new TextToSpeech(getContext(),new TTSListener());
+        isTTSReading = false;
+        count = 0;
+        //String test = "";
+       /* setReadingStr(readingStr);
+        Log.e(TAG,readingStr);*/
     }
 
     @Override
@@ -327,6 +456,8 @@ public class PageFragment extends Fragment implements BackPressedHandler {
     public void onDestroy() {
         super.onDestroy();
         app.getRefWatcher().watch(this);
+        mSpeech.stop();
+        mSpeech.shutdown();
     }
 
     @Override
