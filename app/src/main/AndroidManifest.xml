@@ -247,6 +247,11 @@
             android:name=".page.tabs.TabActivity"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".qrcode.QRCodeActivity"
+            android:label=""
+            />
+
         <provider
             android:authorities="${applicationId}"
             android:name=".database.AppContentProvider"
