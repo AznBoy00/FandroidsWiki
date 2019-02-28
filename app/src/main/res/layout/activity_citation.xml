@@ -44,12 +44,14 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="60dp"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/globalLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -62,23 +64,27 @@
                 android:textAlignment="center"
                 android:layout_marginTop="20dp"
                 android:textSize="20sp"
-                android:text="Choose your citation style:"
+                android:text="@string/citation_first_title"
                 android:textColor="@color/color_state_white"/>
 
             <LinearLayout
+                android:id="@+id/firstButtonRow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/button_apa"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:text="APA"/>
+                    android:text="@string/citation_apa"/>
+
                 <Button
+                    android:id="@+id/button_mla"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:text="MLA"/>
+                    android:text="@string/citation_mla"/>
             </LinearLayout>
 
             <LinearLayout
@@ -88,49 +94,46 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/button_ieee"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:text="IEEE" />
+                    android:text="@string/citation_ieee" />
 
                 <Button
+                    android:id="@+id/button_latex"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:text="LATEX" />
+                    android:text="@string/citation_latex" />
             </LinearLayout>
 
             <TextView
+                android:id="@+id/secondTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:textAlignment="center"
                 android:textSize="30sp"
-                android:text="Here is your citation!"
+                android:text="@string/citation_second_title"
                 android:textColor="@color/color_state_white"/>
 
             <TextView
+                android:id="@+id/citation_box_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="150dp"
                 android:maxHeight="150dp"
                 android:layout_margin="15dp"
                 android:padding="15dp"
-                android:text="We are currently generating your citation!\nPlease wait a few seconds...."
+                android:text="@string/citation_box_text"
                 android:background="@drawable/citation_box"/>
 
             <Button
+                android:id="@+id/button_copy_citation"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
-                android:text="Copy citation"/>
+                android:text="@string/citation_copy_citation"/>
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-        </LinearLayout>
-
     </FrameLayout>
 </FrameLayout>

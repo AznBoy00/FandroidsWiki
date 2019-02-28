@@ -43,6 +43,16 @@
     <string name="menu_page_recently_viewed">Recently viewed</string>
     <string name="menu_page_citation">Cite this page</string>
 
+    <!-- Citation page -->
+    <string name="citation_first_title">Choose your citation style:</string>
+    <string name="citation_apa">APA</string>
+    <string name="citation_mla">MLA</string>
+    <string name="citation_ieee">IEEE</string>
+    <string name="citation_latex">LATEX</string>
+    <string name="citation_second_title">Here is your citation!</string>
+    <string name="citation_box_text">We are currently generating your citation!\nPlease wait a few seconds....</string>
+    <string name="citation_copy_citation">Copy citation</string>
+
     <!-- Long press menu -->
     <string name="menu_long_press_open_page">Open</string>
     <string name="menu_long_press_open_in_new_tab">Open in new tab</string>
