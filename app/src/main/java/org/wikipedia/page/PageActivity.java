@@ -38,6 +38,7 @@ import android.widget.Toast;
 import net.hockeyapp.android.metrics.MetricsManager;
 
 import org.apache.commons.lang3.StringUtils;
+import org.wikipedia.citation.CitationActivity;
 import org.wikipedia.Constants;
 import org.wikipedia.R;
 import org.wikipedia.WikipediaApp;
@@ -371,6 +372,10 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         } else {
             loadMainPageInCurrentTab();
         }
+    }
+
+    private void changeToAnotherActivity(Intent intent){
+        startActivity(intent);
     }
 
     /**
@@ -715,6 +720,12 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         @Override
         public void recentlyViewedClick() {
             goToMainTab(NavTab.HISTORY.code());
+        }
+        @Override
+        public void citeThisPageClick() {
+            Intent intent = new Intent(getApplicationContext(), CitationActivity.class);
+            startActivity(intent);
+            //changeToAnotherActivity(intent);
         }
     }
 

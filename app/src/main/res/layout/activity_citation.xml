@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_citation_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base10"
+    tools:context="org.wikipedia.citation.CitationActivity">
+
+    <!-- Old code - ?attr does not work for background -->
+    <!--<FrameLayout-->
+    <!--android:id="@+id/page_toolbar_container"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="?attr/page_toolbar_color"-->
+    <!--android:elevation="4dp">-->
+
+    <FrameLayout
+        android:id="@+id/page_toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:elevation="4dp">
+
+        <!--Old code - ?attr does not work for text color -->
+        <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/page_toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:theme="@style/PageToolbarTheme"-->
+        <!--app:titleTextColor="?attr/page_toolbar_icon_color"-->
+        <!--app:navigationIcon="@drawable/ic_icon_w_back">-->
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/page_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/PageToolbarTheme"
+            app:titleTextColor="#FFF"
+            app:navigationIcon="@drawable/ic_icon_w_back">
+        </android.support.v7.widget.Toolbar>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/firstTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:text="Choose your citation style!"
+            android:textColor="@color/color_state_white"/>
+
+        <LinearLayout
+            android:id="@+id/firstButtonRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="APA"/>
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="MLA"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/secondButtonRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="IEE"/>
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="LATEX"/>
+        </LinearLayout>
+
+    </FrameLayout>
+</FrameLayout>
