@@ -271,7 +271,7 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
 
     private void goToQRTab() {
         // TODO: QR Tab
-        //startActivity(QRCodeActivity.newIntent(this));
+        // startActivity(QRCodeActivity.newIntent());
     }
 
     public void showToolbar() {
@@ -725,6 +725,7 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
 
         @Override
         public void generateQRcodeClick() {
+            // TODO QR TAB STUFF
             goToQRTab();
         }
 
