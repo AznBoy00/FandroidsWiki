@@ -54,56 +54,91 @@
             android:id="@+id/globalLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/firstTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textAlignment="center"
                 android:layout_marginTop="20dp"
-                android:textSize="20sp"
                 android:text="@string/citation_first_title"
-                android:textColor="@color/color_state_white"/>
+                android:textAlignment="center"
+                android:textColor="@color/color_state_white"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:id="@+id/firstButtonRow"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="37dp"
                 android:layout_margin="20dp"
                 android:gravity="center">
 
-                <Button
-                    android:id="@+id/button_apa"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="@string/citation_apa"/>
+                <RadioGroup
+                    android:id="@+id/citation_radiogroup_btn"
+                    android:layout_width="252dp"
+                    android:layout_height="match_parent"
+                    android:checkedButton="@+id/button_apa"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/button_mla"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="@string/citation_mla"/>
+                    <RadioButton
+                        android:id="@+id/button_apa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/citation_style_button_selected"
+                        android:button="@android:color/transparent"
+                        android:checked="true"
+                        android:clickable="true"
+                        android:paddingLeft="30dp"
+                        android:text="@string/citation_apa"
+                        android:textColor="@color/color_state_black" />
+
+                    <RadioButton
+                        android:id="@+id/button_mla"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/citation_style_button_unselected"
+                        android:button="@android:color/transparent"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:paddingLeft="30dp"
+                        android:text="@string/citation_mla"
+                        android:textColor="@color/color_state_white" />
+
+                    <RadioButton
+                        android:id="@+id/button_ieee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/citation_style_button_unselected"
+                        android:button="@android:color/transparent"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:paddingLeft="30dp"
+                        android:text="@string/citation_ieee"
+                        android:textColor="@color/color_state_white" />
+                </RadioGroup>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/secondButtonRow"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center">
 
-                <Button
-                    android:id="@+id/button_ieee"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="@string/citation_ieee" />
-
-                <Button
+                <CheckBox
                     android:id="@+id/button_latex"
                     android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:text="@string/citation_latex" />
+                    android:layout_height="42dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/citation_style_button_unselected"
+                    android:button="@android:color/transparent"
+                    android:clickable="true"
+                    android:paddingLeft="31dp"
+                    android:text="@string/citation_latex"
+                    android:textColor="@color/color_state_white" />
             </LinearLayout>
 
             <TextView
@@ -111,28 +146,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:textAlignment="center"
-                android:textSize="30sp"
                 android:text="@string/citation_second_title"
-                android:textColor="@color/color_state_white"/>
+                android:textAlignment="center"
+                android:textColor="@color/color_state_white"
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/citation_box_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="150dp"
-                android:maxHeight="150dp"
                 android:layout_margin="15dp"
+                android:background="@drawable/citation_box"
+                android:maxHeight="150dp"
+                android:minHeight="150dp"
                 android:padding="15dp"
-                android:text="@string/citation_box_text"
-                android:background="@drawable/citation_box"/>
+                android:text="@string/citation_box_text" />
 
             <Button
                 android:id="@+id/button_copy_citation"
+                style="@style/App.Button"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
-                android:text="@string/citation_copy_citation"/>
+                android:text="@string/citation_copy_citation" />
 
         </LinearLayout>
     </FrameLayout>
