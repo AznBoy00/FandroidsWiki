@@ -56,7 +56,7 @@ import org.wikipedia.main.MainActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.page.linkpreview.LinkPreviewDialog;
 import org.wikipedia.page.tabs.TabActivity;
-import org.wikipedia.qrcode.QRCodeActivity;
+import org.wikipedia.qrcode.QRCodeGenerateActivity;
 import org.wikipedia.readinglist.AddToReadingListDialog;
 import org.wikipedia.readinglist.database.ReadingListPage;
 import org.wikipedia.search.SearchFragment;
@@ -270,8 +270,7 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
     }
 
     private void goToQRTab() {
-        // TODO: QR Tab
-        // startActivity(QRCodeActivity.newIntent());
+        startActivity(QRCodeGenerateActivity.newIntent(this));
     }
 
     public void showToolbar() {
@@ -725,7 +724,6 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
 
         @Override
         public void generateQRcodeClick() {
-            // TODO QR TAB STUFF
             goToQRTab();
         }
 
