@@ -56,6 +56,7 @@ import org.wikipedia.language.LangLinksActivity;
 import org.wikipedia.main.MainActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.page.linkpreview.LinkPreviewDialog;
+import org.wikipedia.page.tabs.Tab;
 import org.wikipedia.page.tabs.TabActivity;
 import org.wikipedia.readinglist.AddToReadingListDialog;
 import org.wikipedia.readinglist.database.ReadingListPage;
@@ -87,6 +88,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 
 import static org.wikipedia.Constants.ACTIVITY_REQUEST_SETTINGS;
+import static org.wikipedia.settings.Prefs.getMediaWikiBaseUrl;
 import static org.wikipedia.settings.Prefs.isLinkPreviewEnabled;
 import static org.wikipedia.util.UriUtil.visitInExternalBrowser;
 
@@ -121,6 +123,10 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
     @Nullable private Unbinder unbinder;
 
     private PageFragment pageFragment;
+    private Tab currentTab = new Tab();
+    private PageBackStackItem item;
+    private PageViewModel model;
+    private String title;
 
     private WikipediaApp app;
     private ActionMode currentActionMode;
@@ -200,6 +206,9 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
             // then we must have been launched with an Intent, so... handle it!
             handleIntent(getIntent());
         }
+
+//        pageFragment.getBottomContentView().getpag
+//        parentFragment.getContext(), Uri.parse(page.getTitle().getMobileUri(
     }
 
 
@@ -723,7 +732,12 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         }
         @Override
         public void citeThisPageClick() {
+            //PageBackStackItem item = currentTab.getBackStack().get(currentTab.getBackStackPosition());
+            WikiSite wiki = new WikiSite(lkjgetData());
+            PageTitle title = wiki.titleForUri(intent.getData());
             Intent intent = new Intent(getApplicationContext(), CitationActivity.class);
+            intent.putExtra("item_MobileURI", uri);
+            intent.putExtra("item_Title", "My Value 2");
             startActivity(intent);
             //changeToAnotherActivity(intent);
         }
