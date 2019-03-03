@@ -283,6 +283,12 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
 
+    //ZXING library
+    implementation 'com.journeyapps:zxing-android-embedded:2.3.0@aar'
+    implementation 'com.journeyapps:zxing-android-legacy:2.3.0@aar'
+    implementation 'com.journeyapps:zxing-android-integration:2.3.0@aar'
+    implementation 'com.google.zxing:core:3.2.0'
+
 }
 
 private setSigningConfigKey(config, Properties props) {
