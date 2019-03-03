@@ -1,10 +1,12 @@
 package org.wikipedia.citation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -12,11 +14,15 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.wikipedia.R;
+import org.wikipedia.page.PageBackStackItem;
+import org.wikipedia.page.tabs.Tab;
+import org.wikipedia.readinglist.database.ReadingListPage;
 
-public class CitationActivity extends AppCompatActivity {
+public class CitationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RadioGroup citationStyleGroup;
     private RadioButton citationStyleBtn;
@@ -26,6 +32,8 @@ public class CitationActivity extends AppCompatActivity {
     private RadioButton citationStyleBtn_IEEE;
 
     private CheckBox citationLaTeXBtn;
+
+    private Tab currentTab = new Tab();
 
     //private RadioGroup.OnCheckedChangeListener radio_group_listener;
 
@@ -44,9 +52,46 @@ public class CitationActivity extends AppCompatActivity {
         setCitationStyleBtnBG(R.id.button_apa);
         setCitationLaTeXBtnBG(false);
 
+        Intent intent = getIntent();
+        String data = intent.getStringExtra("item_MobileURI");
+        Log.e("##################################", "###############################");
+        Log.e("PASSSING STRING", data);
+        Log.e("##################################", "###############################");
+        Toast.makeText(CitationActivity.this, data, Toast.LENGTH_SHORT).show();
+
         addListenerOnRadioGroupButton();
         addListenerOnCheckButton();
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        Toast.makeText(CitationActivity.this, "Click Detected", Toast.LENGTH_SHORT).show();
+        // Get Page Information
+        PageBackStackItem DisplayItem = getURLitem();
+        TextView citation_box = (TextView) findViewById(R.id.citation_box_text);
+        // Find and Monitor Button Click
+
+        Button btn = (Button) findViewById(R.id.IEEE_Button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Setup Citation Generator
+                CitationGenerator generator =  new CitationGenerator(getURLitem());
+                // Create IEEE Citation String
+                String citation  = generator.IEEECitationGenerator(getURLitem().getTitle().toString());
+                citation_box.setText(citation);
+                Toast.makeText(CitationActivity.this, citation, Toast.LENGTH_SHORT).show();
+                setContentView(citation_box);
+            }
+        });
+    }
+
+
+    public PageBackStackItem getURLitem(){
+        PageBackStackItem item = currentTab.getBackStack().get(currentTab.getBackStackPosition());
+
+        return item;
     }
 
 
@@ -100,6 +145,10 @@ public class CitationActivity extends AppCompatActivity {
             citationStyleBtn_MLA.setTextColor(R.color.color_state_white);
             citationStyleBtn_IEEE.setTextColor(R.color.color_state_black);
         }
+    }
+
+    public void setOnClickListener() {
+
     }
 
     public void addListenerOnCheckButton() {
