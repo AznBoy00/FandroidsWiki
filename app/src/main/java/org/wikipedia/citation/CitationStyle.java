@@ -2,5 +2,6 @@ package org.wikipedia.citation;
 
 public enum CitationStyle {
 
-    APA, MLA, IEEE
+    APA, MLA, IEEE, LATEX
+
 }
