@@ -49,17 +49,18 @@
 
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
+
         <LinearLayout
-            android:orientation="vertical"
+            android:layout_width="387dp"
+            android:layout_height="400dp"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
                 <ImageView
                     android:id="@+id/imgResult"
@@ -69,17 +70,18 @@
 
                 <ProgressBar
                     android:id="@+id/loader"
-                    android:visibility="gone"
-                    android:padding="110dp"
-                    android:layout_alignLeft="@+id/imgResult"
-                    android:layout_alignBottom="@+id/imgResult"
-                    android:layout_alignRight="@+id/imgResult"
-                    android:layout_alignTop="@+id/imgResult"
-                    android:indeterminate="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/imgResult"
+                    android:layout_alignTop="@+id/imgResult"
+                    android:layout_alignRight="@+id/imgResult"
+                    android:layout_alignBottom="@+id/imgResult"
+                    android:indeterminate="true"
+                    android:padding="110dp"
+                    android:visibility="gone" />
 
             </RelativeLayout>
+
             <TextView
                 android:id="@+id/qrcode"
                 android:layout_width="wrap_content"
