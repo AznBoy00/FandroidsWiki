@@ -20,6 +20,14 @@ public class CitationGenerator {
         setDateTime();
     }
 
+    //For Testing
+    public CitationGenerator (String URL, String title, String date, String year){
+        this.mobileURL = URL;
+        this.title = title;
+        this.currentDate = date;
+        this.currentYear = year;
+    }
+
     public void setDateTime() {
         DateFormat date = new SimpleDateFormat("d MMM yyyy");
         this.currentDate = date.format(Calendar.getInstance().getTime());
@@ -49,7 +57,7 @@ public class CitationGenerator {
     public String APACitationGenerator(){
         String citeBuilder = "";
         citeBuilder +=  title + ". (n.d.). ";
-        citeBuilder += "In <i>Wikipedia: The free encyclopedia<i>. Retrieved ";
+        citeBuilder += "In Wikipedia: The free encyclopedia. Retrieved ";
         citeBuilder += currentDate;
         citeBuilder += ", from ";
         citeBuilder += mobileURL;
@@ -59,7 +67,7 @@ public class CitationGenerator {
     public String MLACitationGenerator(){
         String citeBuilder = "";
         citeBuilder += "\"" + title + ",\"";
-        citeBuilder += " <i>Wikipedia: The Free Encyclopedia<i>. Web. ";
+        citeBuilder += " Wikipedia: The Free Encyclopedia. Web. ";
         citeBuilder += currentDate;
         citeBuilder += ", ";
         citeBuilder += mobileURL;
