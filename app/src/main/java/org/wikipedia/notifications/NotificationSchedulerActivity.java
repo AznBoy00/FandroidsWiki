@@ -1,22 +1,17 @@
 package org.wikipedia.notifications;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.AlarmManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TimePicker;
 import android.app.TimePickerDialog;
 import android.widget.TextView;
-import android.widget.Button;
-import com.allyants.notifyme.NotifyMe;
 import org.wikipedia.R;
 import org.wikipedia.activity.BaseActivity;
-import org.wikipedia.main.MainActivity;
-import org.wikipedia.random.RandomActivity;
 import java.util.Calendar;
-import org.wikipedia.activity.BaseActivity;
 
 public class NotificationSchedulerActivity extends BaseActivity {
     TextView TextView_Time;
@@ -38,8 +33,10 @@ public class NotificationSchedulerActivity extends BaseActivity {
     @Override
     protected Dialog onCreateDialog(int id) {
         Calendar c = Calendar.getInstance();
+        TimePickerDialog tpd = new TimePickerDialog(NotificationSchedulerActivity.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK, TimeMap, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+
         if (id == 1) {
-            return new TimePickerDialog(NotificationSchedulerActivity.this, TimeMap, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+            return tpd;
         }
         return null;
 
