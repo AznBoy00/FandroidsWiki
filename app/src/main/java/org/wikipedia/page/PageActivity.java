@@ -23,6 +23,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.ActionMode;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -732,14 +733,10 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         }
         @Override
         public void citeThisPageClick() {
-            //PageBackStackItem item = currentTab.getBackStack().get(currentTab.getBackStackPosition());
-            WikiSite wiki = new WikiSite(lkjgetData());
-            PageTitle title = wiki.titleForUri(intent.getData());
             Intent intent = new Intent(getApplicationContext(), CitationActivity.class);
-            intent.putExtra("item_MobileURI", uri);
-            intent.putExtra("item_Title", "My Value 2");
+            intent.putExtra("item_MobileURI", "https://www.wikipedia.org/My_FAKE_URL");
+            intent.putExtra("item_Title", "My_Fake_Title");
             startActivity(intent);
-            //changeToAnotherActivity(intent);
         }
     }
 
