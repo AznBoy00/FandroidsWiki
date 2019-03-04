@@ -43,9 +43,9 @@ public class CitationGenerator {
         citStyle = CitationStyle.APA;
     }
 
-    public CitationGenerator (PageBackStackItem item){
-        mobileURL = item.getTitle().getMobileUri().toString();
-        webURL = item.getTitle().getCanonicalUri().toString();
+    public CitationGenerator (String URL){
+        mobileURL = URL;
+        webURL = URL;
         setDateTime();
     }
 
