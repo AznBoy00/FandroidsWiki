@@ -169,6 +169,18 @@
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
                 android:text="@string/citation_copy_citation" />
+            
+            <Button
+                android:id="@+id/IEEE_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IEEE" />
+
+            <Button
+                android:id="@+id/Latex_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Latex" />
 
         </LinearLayout>
     </FrameLayout>
