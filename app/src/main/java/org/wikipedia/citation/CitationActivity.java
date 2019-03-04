@@ -29,6 +29,10 @@ public class CitationActivity extends AppCompatActivity {
 
     private CheckBox citationLaTeXBtn;
 
+    private String URLText;
+    private String TitleText;
+    private TextView citation_box;
+
     //private RadioGroup.OnCheckedChangeListener radio_group_listener;
 
     @Override
@@ -48,34 +52,53 @@ public class CitationActivity extends AppCompatActivity {
 
         // Get Page Information
         Intent intent = getIntent();
-        String URLText = intent.getStringExtra("item_MobileURI");
-        String TitleText = intent.getStringExtra("item_Title");
+        this.URLText = intent.getStringExtra("item_MobileURI");
+        this.TitleText = intent.getStringExtra("item_Title");
 
-        TextView citation_box = (TextView) findViewById(R.id.citation_box_text);
-        // Find and Monitor Button Click
-        Button btn = (Button) findViewById(R.id.IEEE_Button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Setup Citation Generator
-                CitationGenerator generator =  new CitationGenerator(URLText);
-                // Create IEEE Citation String
-                String citation  = generator.IEEECitationGenerator(TitleText);
-                citation_box.setText(citation);
-                Toast.makeText(CitationActivity.this, citation, Toast.LENGTH_SHORT).show();
-                //setContentView(citation_box);
-            }
-        });
+        this.citation_box = (TextView) findViewById(R.id.citation_box_text);
+
+        IEEEButtonHandler();
+        latexButtonHandler();
+
 
         addListenerOnRadioGroupButton();
         addListenerOnCheckButton();
 
     }
 
+    private void IEEEButtonHandler() {
+        // Find and Monitor Button Click
+        Button btnIEEE = (Button) findViewById(R.id.IEEE_Button);
+        btnIEEE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Setup Citation Generator
+                CitationGenerator generator =  new CitationGenerator(URLText, TitleText);
+                // Create IEEE Citation String
+                String citation  = generator.IEEECitationGenerator();
+                citation_box.setText(citation);
+            }
+        });
+    }
+
+    private void latexButtonHandler(){
+        // Find and Monitor Button Click
+        Button btnLatex = (Button) findViewById(R.id.Latex_Button);
+        btnLatex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Setup Citation Generator
+                CitationGenerator generator =  new CitationGenerator(URLText, TitleText);
+                // Create IEEE Citation String
+                String citation  = generator.LatexCitationGenerator();
+                citation_box.setText(citation);
+            }
+        });
+    }
+
+
 
     public void addListenerOnRadioGroupButton() {
-
-
         //citationStyleBtn = (Button) findViewById(R.id.citationStyleBtn);
 
         citationStyleGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
