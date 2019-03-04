@@ -43,9 +43,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 // 390 Project Imports
-import org.wikipedia.notifications.TimerRandomArticle;
 import org.wikipedia.notifications.NotificationRandomArticle;
-import com.allyants.notifyme.NotifyMe;
 
 import java.util.Calendar;
 
