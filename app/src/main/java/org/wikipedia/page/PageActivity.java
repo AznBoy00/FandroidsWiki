@@ -724,6 +724,8 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         @Override
         public void citeThisPageClick() {
             Intent intent = new Intent(getApplicationContext(), CitationActivity.class);
+            intent.putExtra("item_MobileURI", "https://www.wikipedia.org/My_FAKE_URL");
+            intent.putExtra("item_Title", "My_Fake_Title");
             startActivity(intent);
             //changeToAnotherActivity(intent);
         }
