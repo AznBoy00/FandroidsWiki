@@ -56,6 +56,7 @@ import org.wikipedia.language.LangLinksActivity;
 import org.wikipedia.main.MainActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.page.linkpreview.LinkPreviewDialog;
+import org.wikipedia.page.tabs.Tab;
 import org.wikipedia.page.tabs.TabActivity;
 import org.wikipedia.readinglist.AddToReadingListDialog;
 import org.wikipedia.readinglist.database.ReadingListPage;
@@ -723,9 +724,11 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         }
         @Override
         public void citeThisPageClick() {
+            Tab currentTab = app.getTabList().get(app.getTabList().size() - 1); //get latest tab
+            PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
             Intent intent = new Intent(getApplicationContext(), CitationActivity.class);
-            intent.putExtra("item_MobileURI", "https://www.wikipedia.org/My_FAKE_URL");
-            intent.putExtra("item_Title", "My_Fake_Title");
+            intent.putExtra("item_MobileURI", lastTab.getTitle().getMobileUri());
+            intent.putExtra("item_Title", lastTab.getTitle().getDisplayText());
             startActivity(intent);
             //changeToAnotherActivity(intent);
         }
