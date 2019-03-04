@@ -1,5 +1,6 @@
 package org.wikipedia.citation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.wikipedia.R;
@@ -43,6 +45,27 @@ public class CitationActivity extends AppCompatActivity {
         citationLaTeXBtn = findViewById(R.id.button_latex);
         setCitationStyleBtnBG(R.id.button_apa);
         setCitationLaTeXBtnBG(false);
+
+        // Get Page Information
+        Intent intent = getIntent();
+        String URLText = intent.getStringExtra("item_MobileURI");
+        String TitleText = intent.getStringExtra("item_Title");
+
+        TextView citation_box = (TextView) findViewById(R.id.citation_box_text);
+        // Find and Monitor Button Click
+        Button btn = (Button) findViewById(R.id.IEEE_Button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Setup Citation Generator
+                CitationGenerator generator =  new CitationGenerator(URLText);
+                // Create IEEE Citation String
+                String citation  = generator.IEEECitationGenerator(TitleText);
+                citation_box.setText(citation);
+                Toast.makeText(CitationActivity.this, citation, Toast.LENGTH_SHORT).show();
+                //setContentView(citation_box);
+            }
+        });
 
         addListenerOnRadioGroupButton();
         addListenerOnCheckButton();
