@@ -17,14 +17,14 @@ import org.wikipedia.random.RandomActivity;
 public class NotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        String CHANNEL_ID = "my_channel_01";
+        String CHANNEL_ID = "channel_01";
         PendingIntent notificationIntent = PendingIntent.getActivity(context,0,new Intent(context, RandomActivity.class),0);
 
         NotificationManager manager =( NotificationManager ) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 
-            CharSequence name = "my_channel";
-            String Description = "This is my channel";
+            CharSequence name = "notification_channel";
+            String Description = "This is the notification channel";
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
             mChannel.setDescription(Description);
@@ -36,22 +36,20 @@ public class NotificationReceiver extends BroadcastReceiver {
             manager.createNotificationChannel(mChannel);
         }
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,CHANNEL_ID)
-                .setSmallIcon(R.drawable.w_nav_mark)
-                .setContentTitle("Hey! Want to read something interesting?")
-                .setContentText("Click here to read a random article on Wikipedia.");
-
-        builder.setDefaults(NotificationCompat.DEFAULT_SOUND);
-        builder.setAutoCancel(true);
-
         Intent resultIntent = new Intent(context, RandomActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(NotificationSchedulerActivity.class);
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_wikipedia)
+                .setContentTitle("Hey! Want to read something interesting?")
+                .setContentText("Click here to read a random article on Wikipedia.");
+        builder.addAction(R.drawable.ic_wikipedia, "Check it out", notificationIntent);
+        builder.setDefaults(NotificationCompat.DEFAULT_SOUND);
+        builder.setAutoCancel(true);
         builder.setContentIntent(resultPendingIntent);
-        ;
 
         manager.notify(1, builder.build());
         //mm.cancel(1);

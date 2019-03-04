@@ -215,11 +215,15 @@
 
     <Button
         android:id="@+id/notification_settings"
-        style="@style/App.Button.White"
+        style="@style/TransparentButton"
         android:layout_width="374dp"
         android:layout_height="wrap_content"
-        android:text="Notification Settings"
+        android:drawableLeft="@drawable/ic_notifications_black_24dp"
+        android:fontFamily="sans-serif"
+        android:text="\t\t Notification Settings"
         android:textAlignment="viewStart"
+        android:textAllCaps="false"
         android:textColor="@color/base0"
+        android:textSize="16sp"
         android:visibility="visible" />
 </LinearLayout>
