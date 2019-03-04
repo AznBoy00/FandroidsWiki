@@ -22,7 +22,7 @@ import org.wikipedia.page.PageBackStackItem;
 import org.wikipedia.page.tabs.Tab;
 import org.wikipedia.readinglist.database.ReadingListPage;
 
-public class CitationActivity extends AppCompatActivity implements View.OnClickListener {
+public class CitationActivity extends AppCompatActivity {
 
     private RadioGroup citationStyleGroup;
     private RadioButton citationStyleBtn;
@@ -34,8 +34,6 @@ public class CitationActivity extends AppCompatActivity implements View.OnClickL
     private CheckBox citationLaTeXBtn;
 
     private Tab currentTab = new Tab();
-
-    //private RadioGroup.OnCheckedChangeListener radio_group_listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,53 +50,35 @@ public class CitationActivity extends AppCompatActivity implements View.OnClickL
         setCitationStyleBtnBG(R.id.button_apa);
         setCitationLaTeXBtnBG(false);
 
-        Intent intent = getIntent();
-        String data = intent.getStringExtra("item_MobileURI");
-        Log.e("##################################", "###############################");
-        Log.e("PASSSING STRING", data);
-        Log.e("##################################", "###############################");
-        Toast.makeText(CitationActivity.this, data, Toast.LENGTH_SHORT).show();
 
-        addListenerOnRadioGroupButton();
-        addListenerOnCheckButton();
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        Toast.makeText(CitationActivity.this, "Click Detected", Toast.LENGTH_SHORT).show();
         // Get Page Information
-        PageBackStackItem DisplayItem = getURLitem();
+        Intent intent = getIntent();
+        String URLText = intent.getStringExtra("item_MobileURI");
+        String TitleText = intent.getStringExtra("item_Title");
+
         TextView citation_box = (TextView) findViewById(R.id.citation_box_text);
         // Find and Monitor Button Click
-
         Button btn = (Button) findViewById(R.id.IEEE_Button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Setup Citation Generator
-                CitationGenerator generator =  new CitationGenerator(getURLitem());
+                CitationGenerator generator =  new CitationGenerator(URLText);
                 // Create IEEE Citation String
-                String citation  = generator.IEEECitationGenerator(getURLitem().getTitle().toString());
+                String citation  = generator.IEEECitationGenerator(TitleText);
                 citation_box.setText(citation);
                 Toast.makeText(CitationActivity.this, citation, Toast.LENGTH_SHORT).show();
-                setContentView(citation_box);
+                //setContentView(citation_box);
             }
         });
+
+        addListenerOnRadioGroupButton();
+        addListenerOnCheckButton();
     }
 
-
-    public PageBackStackItem getURLitem(){
-        PageBackStackItem item = currentTab.getBackStack().get(currentTab.getBackStackPosition());
-
-        return item;
-    }
 
 
     public void addListenerOnRadioGroupButton() {
-
-
-        //citationStyleBtn = (Button) findViewById(R.id.citationStyleBtn);
 
         citationStyleGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -152,9 +132,6 @@ public class CitationActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void addListenerOnCheckButton() {
-
-
-        //citationStyleBtn = (Button) findViewById(R.id.citationStyleBtn);
 
         citationLaTeXBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
