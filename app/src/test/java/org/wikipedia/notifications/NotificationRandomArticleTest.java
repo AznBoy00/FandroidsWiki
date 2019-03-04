@@ -50,8 +50,8 @@ public class NotificationRandomArticleTest {
     /** Test for Notification being created **/
     @Test
     public void testNotificationCreated() {
-        intent = new Intent(RuntimeEnvironment.application, NotificationRandomArticle.class);
-        NotificationRandomArticle cNotification = mock(NotificationRandomArticle.class);
+        intent = new Intent(RuntimeEnvironment.application, NotificationReceiver.class);
+        NotificationReceiver cNotification = mock(NotificationReceiver.class);
 
         cNotification.createNotificationForRandomArticle(context);
         verify(cNotification).createNotificationForRandomArticle(context);

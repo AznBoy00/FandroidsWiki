@@ -13,7 +13,7 @@ import org.wikipedia.R;
 
 /* This class will display a Notification of a Random Article */
 
-public class NotificationRandomArticle extends BroadcastReceiver {
+public class NotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String CHANNEL_ID = "my_channel_01";
