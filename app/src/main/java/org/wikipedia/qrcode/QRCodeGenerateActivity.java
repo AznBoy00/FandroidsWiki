@@ -1,14 +1,12 @@
 package org.wikipedia.qrcode;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -95,8 +93,7 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
                 hintMap.put(EncodeHintType.MARGIN, 1);
                 QRCodeWriter qrCodeWriter = new QRCodeWriter();
                 try {
-                    BitMatrix byteMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, size,
-                            size, hintMap);
+                    BitMatrix byteMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, size, size, hintMap);
                     int height = byteMatrix.getHeight();
                     int width = byteMatrix.getWidth();
                     self.qrImage = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
@@ -114,7 +111,6 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
                     });
                 } catch (WriterException e) {
                     e.printStackTrace();
-                    alert(e.getMessage());
                 }
             }
         }).start();
@@ -127,20 +123,6 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
         } else {
             imgResult.setImageBitmap(bitmap);
         }
-    }
-
-    private void alert(String message){
-        AlertDialog dlg = new AlertDialog.Builder(this)
-                .setTitle("QRCode Generator")
-                .setMessage(message)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .create();
-        dlg.show();
     }
 
     private void done(){
