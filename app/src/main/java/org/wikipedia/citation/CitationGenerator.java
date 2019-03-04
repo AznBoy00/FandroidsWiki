@@ -1,54 +1,35 @@
 package org.wikipedia.citation;
 
-import java.sql.Time;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import org.wikipedia.citation.CitationStyle;
-import org.wikipedia.page.PageBackStackItem;
 
 import java.util.Calendar;
 public class CitationGenerator {
-    private String outPutString;
-    private final String _WIKIPEDIA = "Wikipedia";
-    private String citationDate;
-    private String link;
+
     private String mobileURL;
-    private CitationStyle citStyle;
-    private String textFormat;
+    private String title;
     private String currentDate;
+    private String currentYear;
 
-    public CitationGenerator(){
-        outPutString = "";
-        citationDate = "";
-        link = "";
-        textFormat = "";
-        citStyle = CitationStyle.APA;
-    }
 
-    public CitationGenerator(String keyWord, String link )
-    {
-        outPutString = "";
-        citationDate = "";
-        this.link = "";
-        textFormat = "";
-        citStyle = CitationStyle.APA;
-    }
-
-    public CitationGenerator (String URL){
-        mobileURL = URL;
+    public CitationGenerator (String URL, String title){
+        this.mobileURL = URL;
+        this.title = title;
         setDateTime();
     }
 
     public void setDateTime() {
-        DateFormat df = new SimpleDateFormat("d MMM yyyy");
-        this.currentDate = df.format(Calendar.getInstance().getTime());
+        DateFormat date = new SimpleDateFormat("d MMM yyyy");
+        this.currentDate = date.format(Calendar.getInstance().getTime());
+        DateFormat year = new SimpleDateFormat("yyyy");
+        this.currentYear = year.format(Calendar.getInstance().getTime());
     }
 
-    public String IEEECitationGenerator(String ArticleTitle){
+    public String IEEECitationGenerator(){
         String citeBuilder = "";
-        citeBuilder += "\"" + ArticleTitle + ",\"";
+        citeBuilder += "\"" + title + ",\"";
         citeBuilder += " Wikipedia,";
         citeBuilder += currentDate;
         citeBuilder += ". [Online]. Available: ";
@@ -58,22 +39,17 @@ public class CitationGenerator {
         return citeBuilder;
     }
 
-    public void setCitationDate(String date)
-    {
-        this.setCitationDate(date, "","","");
+    public String LatexCitationGenerator(){
+        String citeBuilder = "";
+        citeBuilder += "@misc{ wiki:###, \n";
+        citeBuilder += " \t author = \"{Wikipedia Contributors}\",\n";
+        citeBuilder += " \t title = \"" + title + "\",\n";
+        citeBuilder += " \t year = \"" + currentYear + "\",\n";
+        citeBuilder += " \t url = \"" + mobileURL + "\",\n";
+        citeBuilder += " \t note = \"[Online; accessed " + currentDate + "]\"\n";
+        citeBuilder += "}";
+
+        return citeBuilder;
     }
-
-    public void setCitationDate(String date, String month, String day, String year)
-    {
-        citationDate = date;
-    }
-
-
-
-
-    public String getOutPutString(){
-        return  outPutString;
-    }
-
 
 }
