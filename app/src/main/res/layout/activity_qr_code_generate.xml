@@ -37,6 +37,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     tools:layout_editor_absoluteY="493dp" />
                 <TextView
+                    android:id="@+id/qrdesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="ARTICLE URL"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="493dp" />
+                <TextView
                     android:id="@+id/qrurl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,24 +76,10 @@
                     android:id="@+id/imgResult"
                     android:layout_width="260dp"
                     android:layout_height="260dp" />
-
-
-                <ProgressBar
-                    android:id="@+id/loader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/imgResult"
-                    android:layout_alignTop="@+id/imgResult"
-                    android:layout_alignRight="@+id/imgResult"
-                    android:layout_alignBottom="@+id/imgResult"
-                    android:indeterminate="true"
-                    android:padding="110dp"
-                    android:visibility="gone" />
-
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/qrcode"
+                android:id="@+id/qrinstruction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

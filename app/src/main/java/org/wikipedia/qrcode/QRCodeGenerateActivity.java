@@ -22,20 +22,24 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import org.wikipedia.R;
+import org.wikipedia.WikipediaApp;
+import org.wikipedia.page.PageBackStackItem;
+import org.wikipedia.page.tabs.Tab;
 
 import java.util.EnumMap;
 import java.util.Map;
 
 public class QRCodeGenerateActivity extends AppCompatActivity {
-
     //TODO
     //Create all varibles here. such as imageview which can show the QR code
+    private static final String TAG = "QRCodeGenerateActivity";
 
     protected QRCodeGenerateActivity self;
     protected Snackbar snackbar;
     protected Bitmap qrImage;
 
     protected TextView qrtitle;
+    protected TextView qrdesc;
     protected TextView qrurl;
     protected ImageView imgResult;
     protected ProgressBar loader;
@@ -52,21 +56,27 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qr_code_generate);
         self = this;
         imgResult = (ImageView)findViewById(R.id.imgResult);
-//        qrtitle.setText();
-//        qrurl.setText();
-        this.generateImage();
+        qrtitle = (TextView)findViewById(R.id.qrtitle);
+        qrdesc = (TextView)findViewById(R.id.qrdesc);
+        qrurl = (TextView)findViewById(R.id.qrurl);
+        WikipediaApp app = WikipediaApp.getInstance();
+        Tab currentTab = app.getTabList().get(app.getTabList().size() - 1); //get latest tab
+        PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
+        qrtitle.setText("Article: " + lastTab.getTitle().getText());
+        qrdesc.setText("Description: " + lastTab.getTitle().getDescription());
+        qrurl.setText("URL: " + lastTab.getTitle().getCanonicalUri());
+        Log.d(TAG, qrtitle.getText() + " " + qrdesc.getText() + " " + qrurl.getText());
+        this.generateImage(lastTab.getTitle().getCanonicalUri());
     }
 
-    protected void generateImage(){
-//        final String url = (String)qrurl.getText();
-        final String url = "http://google.ca";
+    protected void generateImage(String url){
         new Thread(new Runnable() {
             @Override
             public void run() {
                 int size = imgResult.getMeasuredWidth();
                 if( size > 1){
                     size = 260;
-                    Log.e("QRCode Generator", "Size is force set to " + size);
+                    Log.e(TAG, "Size is force set to " + size);
                 }
 
                 Map<EncodeHintType, Object> hintMap = new EnumMap<>(EncodeHintType.class);
