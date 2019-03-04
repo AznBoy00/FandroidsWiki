@@ -7,6 +7,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import org.wikipedia.R;
@@ -21,8 +23,9 @@ public class NotificationReceiver extends BroadcastReceiver {
         PendingIntent notificationIntent = PendingIntent.getActivity(context,0,new Intent(context, RandomActivity.class),0);
 
         NotificationManager manager =( NotificationManager ) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 
+        // Create a channel for our random article notifications
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             CharSequence name = "notification_channel";
             String Description = "This is the notification channel";
             int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -41,7 +44,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         stackBuilder.addParentStack(NotificationSchedulerActivity.class);
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
+        // Build the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_wikipedia)
                 .setContentTitle("Hey! Want to read something interesting?")
@@ -54,4 +57,5 @@ public class NotificationReceiver extends BroadcastReceiver {
         manager.notify(1, builder.build());
         //mm.cancel(1);
     }
+
 }

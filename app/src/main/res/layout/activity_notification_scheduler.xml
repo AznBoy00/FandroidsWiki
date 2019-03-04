@@ -31,13 +31,31 @@
         android:id="@+id/btnNotify"
         style="@style/App.Button.Black"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="72dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="136dp"
         android:layout_marginEnd="8dp"
         android:onClick="btn_set_alarm"
         android:text="Set Notification Time"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_cancel_notification"
+        style="@style/App.Button.Black"
+        android:layout_width="201dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="unSetAlarm"
+        android:text="Turn Off Notifications"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnNotify"
+        app:layout_constraintVertical_bias="0.173" />
 </android.support.constraint.ConstraintLayout>

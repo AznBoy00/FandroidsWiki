@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.AlarmManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TimePicker;
 import android.app.TimePickerDialog;
 import android.widget.TextView;
@@ -21,7 +22,6 @@ public class NotificationSchedulerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_scheduler);
         TextView_Time= findViewById(R.id.TextView_Time);
-
     }
 
     // Method that shows the TimePickerDialog when the button is clicked
@@ -33,8 +33,11 @@ public class NotificationSchedulerActivity extends BaseActivity {
     @Override
     protected Dialog onCreateDialog(int id) {
         Calendar c = Calendar.getInstance();
-        TimePickerDialog tpd = new TimePickerDialog(NotificationSchedulerActivity.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK, TimeMap, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
+        //Display the time picker as a Clock
+        // TimePickerDialog tpd = new TimePickerDialog(NotificationSchedulerActivity.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK, TimeMap, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
 
+        // Display the timePicker as a spinner
+        TimePickerDialog tpd = new TimePickerDialog(NotificationSchedulerActivity.this,android.R.style.Theme_Holo_Dialog, TimeMap, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false);
         if (id == 1) {
             return tpd;
         }
@@ -60,10 +63,19 @@ public class NotificationSchedulerActivity extends BaseActivity {
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY , PendingIntent.getBroadcast(getApplicationContext(), 0, alertIntent,
                             PendingIntent.FLAG_UPDATE_CURRENT ));
 
-                    //alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), PendingIntent.getBroadcast(getApplicationContext(), 0, alertIntent,
-                    //PendingIntent.FLAG_UPDATE_CURRENT ));
-                    TextView_Time.setText(hourOfDay + ":" + minute);
-
+                    //Display the specified notification time
+                    if(minute<10) {
+                        TextView_Time.setText(hourOfDay + ":0" + minute);
+                    }else{
+                        TextView_Time.setText(hourOfDay + ":" + minute);
+                    }
                 }
             };
+
+    public void unSetAlarm(View view){
+        Intent alertIntent = new Intent(getApplicationContext(), NotificationReceiver.class);
+        PendingIntent sender = PendingIntent.getBroadcast(this, 0, alertIntent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService( ALARM_SERVICE );
+        alarmManager.cancel(sender);
+    }
 }
