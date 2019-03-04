@@ -11,8 +11,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
@@ -42,7 +43,7 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
     protected TextView qrdesc;
     protected TextView qrurl;
     protected ImageView imgResult;
-    protected ProgressBar loader;
+    protected Button qrdone;
 
     //using the QRcode funtion
     public static Intent newIntent(@NonNull Context context) {
@@ -51,14 +52,17 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("QRCodeGenerateActivity","QRCodeGenerateActivity_onCreate");
+        Log.d(TAG,"QRCodeGenerateActivity_onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code_generate);
         self = this;
+
         imgResult = (ImageView)findViewById(R.id.imgResult);
         qrtitle = (TextView)findViewById(R.id.qrtitle);
         qrdesc = (TextView)findViewById(R.id.qrdesc);
         qrurl = (TextView)findViewById(R.id.qrurl);
+        qrdone = (Button)findViewById(R.id.qrdone);
+
         WikipediaApp app = WikipediaApp.getInstance();
         Tab currentTab = app.getTabList().get(app.getTabList().size() - 1); //get latest tab
         PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
@@ -67,6 +71,13 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
         qrurl.setText("URL: " + lastTab.getTitle().getCanonicalUri());
         Log.d(TAG, qrtitle.getText() + " " + qrdesc.getText() + " " + qrurl.getText());
         this.generateImage(lastTab.getTitle().getCanonicalUri());
+
+        qrdone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                self.done();
+            }
+        });
     }
 
     protected void generateImage(String url){
@@ -130,5 +141,9 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
                 })
                 .create();
         dlg.show();
+    }
+
+    private void done(){
+        finish();
     }
 }
