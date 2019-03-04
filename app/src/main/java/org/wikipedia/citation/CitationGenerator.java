@@ -27,6 +27,47 @@ public class CitationGenerator {
         this.currentYear = year.format(Calendar.getInstance().getTime());
     }
 
+    public String citationCook(CitationStyle citationStyle){
+        if(citationStyle == CitationStyle.APA){
+            return APACitationGenerator();
+        }
+        if(citationStyle == CitationStyle.MLA)
+        {
+            return MLACitationGenerator();
+        }
+        if(citationStyle == CitationStyle.IEEE)
+        {
+            return IEEECitationGenerator();
+        }
+        if(citationStyle == CitationStyle.LATEX)
+        {
+            return LatexCitationGenerator();
+        }
+        return "ERROR: Invalid style input";
+    }
+
+    public String APACitationGenerator(){
+        String citeBuilder = "";
+        citeBuilder +=  title + ". (n.d.). ";
+        citeBuilder += "In <i>Wikipedia: The free encyclopedia<i>. Retrieved ";
+        citeBuilder += currentDate;
+        citeBuilder += ", from ";
+        citeBuilder += mobileURL;
+
+        return citeBuilder;
+    }
+    public String MLACitationGenerator(){
+        String citeBuilder = "";
+        citeBuilder += "\"" + title + ",\"";
+        citeBuilder += " <i>Wikipedia: The Free Encyclopedia<i>. Web. ";
+        citeBuilder += currentDate;
+        citeBuilder += ", ";
+        citeBuilder += mobileURL;
+
+        return citeBuilder;
+    }
+
+
     public String IEEECitationGenerator(){
         String citeBuilder = "";
         citeBuilder += "\"" + title + ",\"";
