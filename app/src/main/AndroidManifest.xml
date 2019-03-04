@@ -11,6 +11,10 @@
     updateable via an alternative appstore update mechanism), the package name
     should be specific to the update mechanism channel.
     -->
+    <!-- 390 permissions -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <!-- 390 permissions -->
+  
     <uses-permission android:name="android.permission.INTERNET" />
     <!--
  HockeyApp places a maxSdkVersion on the WRITE_EXTERNAL_STORAGE permission,
@@ -29,6 +33,18 @@
         android:maxSdkVersion="22" />
     <uses-permission
         android:name="android.permission.MANAGE_ACCOUNTS"
+        android:maxSdkVersion="22" />
+
+    <!-- For notifications, e.g. User account notices, etc. -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <!-- For being able to receive notifications upon boot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- To be notified when device boot up has completed.-->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />	37	    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
+  <!-- For Nearby feature -->
         android:maxSdkVersion="22" /> <!-- For notifications, e.g. User account notices, etc. -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
@@ -168,6 +184,10 @@
             android:name=".settings.NotificationSettingsActivity"
             android:label="@string/notification_preferences_title"
             android:theme="@style/AppTheme.ActionBar" />
+        <activity
+                    android:name=".notifications.NotificationSchedulerActivity"
+                    android:label="Schedule Notifications"
+                    android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".settings.AboutActivity"
             android:label="@string/about_activity_title"
@@ -330,7 +350,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name=".notifications.NotificationPollBroadcastReceiver.ACTION_POLL" />
             </intent-filter>
-        </receiver> <!-- 390 receivers -->
+        </receiver>
+        
+        <!-- 390 receivers -->
+        <receiver android:name=".notifications.NotificationReceiver" />
+        <!-- 390 receivers -->
+        
         <receiver android:name="com.allyants.notifyme.NotificationPublisher" />
         <receiver android:name="com.allyants.notifyme.BootNotifyMe">
             <intent-filter>
@@ -344,7 +369,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
+  
         <service
             android:name=".readinglist.sync.ReadingListSyncService"
             android:exported="false">
