@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import org.wikipedia.R;
+import org.wikipedia.random.RandomActivity;
 
 /* This class will display a Notification of a Random Article */
 
@@ -17,7 +18,7 @@ public class NotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String CHANNEL_ID = "my_channel_01";
-        //PendingIntent notification = PendingIntent.getActivity(context,0,new Intent(context, NotificationSchedulerActivity.class),0);
+        PendingIntent notificationIntent = PendingIntent.getActivity(context,0,new Intent(context, RandomActivity.class),0);
 
         NotificationManager manager =( NotificationManager ) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -43,7 +44,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         builder.setDefaults(NotificationCompat.DEFAULT_SOUND);
         builder.setAutoCancel(true);
 
-        Intent resultIntent = new Intent(context, NotificationSchedulerActivity.class);
+        Intent resultIntent = new Intent(context, RandomActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(NotificationSchedulerActivity.class);
         stackBuilder.addNextIntent(resultIntent);
