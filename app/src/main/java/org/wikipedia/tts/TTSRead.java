@@ -1,12 +1,8 @@
-package org.wikipedia.TTS;
+package org.wikipedia.tts;
 
 import android.net.Uri;
-import android.speech.tts.TextToSpeech;
-import android.util.Log;
 
 //import org.wikipedia.alpha.R;
-
-import java.util.Locale;
 
 
 ///**

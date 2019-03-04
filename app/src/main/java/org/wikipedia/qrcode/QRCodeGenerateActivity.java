@@ -1,3 +1,5 @@
+//Reference code : https://github.com/konglie/android-qrcode-generator
+
 package org.wikipedia.qrcode;
 
 import android.content.Context;
@@ -31,6 +33,7 @@ import java.util.Map;
 public class QRCodeGenerateActivity extends AppCompatActivity {
     //TODO
     //Create all varibles here. such as imageview which can show the QR code
+
     private static final String TAG = "QRCodeGenerateActivity";
 
     protected QRCodeGenerateActivity self;
@@ -43,7 +46,7 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
     protected ImageView imgResult;
     protected Button qrdone;
 
-    //using the QRcode funtion
+    //pass intent
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, QRCodeGenerateActivity.class);
     }
@@ -83,17 +86,17 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
             @Override
             public void run() {
                 int size = imgResult.getMeasuredWidth();
-                if( size > 1){
+         /*       if( size > 1){
                     size = 260;
                     Log.e(TAG, "Size is force set to " + size);
-                }
+                }*/
 
-                Map<EncodeHintType, Object> hintMap = new EnumMap<>(EncodeHintType.class);
+              /*  Map<EncodeHintType, Object> hintMap = new EnumMap<>(EncodeHintType.class);
                 hintMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-                hintMap.put(EncodeHintType.MARGIN, 1);
+                hintMap.put(EncodeHintType.MARGIN, 1);*/
                 QRCodeWriter qrCodeWriter = new QRCodeWriter();
                 try {
-                    BitMatrix byteMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, size, size, hintMap);
+                    BitMatrix byteMatrix = qrCodeWriter.encode(url, BarcodeFormat.QR_CODE, 500 , 500);
                     int height = byteMatrix.getHeight();
                     int width = byteMatrix.getWidth();
                     self.qrImage = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
@@ -128,4 +131,23 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
     private void done(){
         finish();
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+    }
+
+
+    // Destory activity after it stopped
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+    }
+
+    //If we need to switch different apps
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+    }
+
 }
