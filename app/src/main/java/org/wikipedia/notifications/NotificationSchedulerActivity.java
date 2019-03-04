@@ -57,7 +57,7 @@ public class NotificationSchedulerActivity extends BaseActivity {
                     calendar.set(Calendar.MINUTE, minute);
                     calendar.set(Calendar.SECOND, 0);
 
-                    Intent alertIntent = new Intent(getApplicationContext(), AlertReceiver.class);
+                    Intent alertIntent = new Intent(getApplicationContext(), NotificationReceiver.class);
                     AlarmManager alarmManager = (AlarmManager) getSystemService( ALARM_SERVICE );
 
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY , PendingIntent.getBroadcast(getApplicationContext(), 0, alertIntent,

@@ -212,11 +212,14 @@
             app:srcCompat="@drawable/ic_open_in_new_black_24px"
             app:tint="?attr/material_theme_secondary_color" />
     </LinearLayout>
+
     <Button
-        android:id="@+id/noti_test"
-        android:layout_width="match_parent"
+        android:id="@+id/notification_settings"
+        style="@style/App.Button.White"
+        android:layout_width="374dp"
         android:layout_height="wrap_content"
-        android:text="Test"
-        android:visibility="visible"
-        tools:text="TestNotification" />
+        android:text="Notification Settings"
+        android:textAlignment="viewStart"
+        android:textColor="@color/base0"
+        android:visibility="visible" />
 </LinearLayout>
