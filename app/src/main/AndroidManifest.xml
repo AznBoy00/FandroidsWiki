@@ -34,6 +34,9 @@
     <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!-- 390 permissions -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
     <!-- For Nearby feature -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-feature android:name="android.hardware.location" tools:node="replace" android:required="false" />
