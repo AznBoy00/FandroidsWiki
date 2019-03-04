@@ -56,6 +56,7 @@ import org.wikipedia.main.MainActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.page.linkpreview.LinkPreviewDialog;
 import org.wikipedia.page.tabs.TabActivity;
+import org.wikipedia.qrcode.QRCodeGenerateActivity;
 import org.wikipedia.readinglist.AddToReadingListDialog;
 import org.wikipedia.readinglist.database.ReadingListPage;
 import org.wikipedia.search.SearchFragment;
@@ -716,6 +717,15 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         public void recentlyViewedClick() {
             goToMainTab(NavTab.HISTORY.code());
         }
+
+        @Override
+        public void generateQRcodeClick() {
+
+            Intent intent = new Intent(getApplicationContext(), QRCodeGenerateActivity.class);
+            startActivity(intent);
+
+        }
+
     }
 
     @Override
