@@ -85,7 +85,7 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                int size = imgResult.getMeasuredWidth();
+//                int size = imgResult.getMeasuredWidth();
          /*       if( size > 1){
                     size = 260;
                     Log.e(TAG, "Size is force set to " + size);
