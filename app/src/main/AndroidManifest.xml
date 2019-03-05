@@ -43,10 +43,10 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <!-- To be notified when device boot up has completed.-->
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />	37	    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     
   <!-- For Nearby feature -->
-        android:maxSdkVersion="22" /> <!-- For notifications, e.g. User account notices, etc. -->
+    <!-- For notifications, e.g. User account notices, etc. -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
