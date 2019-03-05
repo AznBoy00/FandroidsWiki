@@ -76,9 +76,16 @@
                 android:text="@string/menu_page_recently_viewed"/>
 
             <TextView
+
                 android:id="@+id/page_action_overflow_citation"
                 style="@style/OverflowMenuItem"
                 android:text="@string/menu_page_citation"/>
+          
+            <TextView
+                android:id="@+id/page_action_overflow_generate_qr_code"
+                style="@style/OverflowMenuItem"
+                android:text="@string/menu_page_generate_qr_code"/>
+
 
         </LinearLayout>
 

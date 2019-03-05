@@ -1,6 +1,5 @@
-package org.wikipedia.TTS;
+package org.wikipedia.tts;
 
-import android.content.ComponentName;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
