@@ -4,6 +4,7 @@
     package="org.wikipedia"
     android:installLocation="auto"
     tools:node="strict">
+
     <!--
     If the build is intended to be Google Play-updateable, the package name
     should be the same as for Google Play (name depends on Beta or Stable).
@@ -17,7 +18,7 @@
   
     <uses-permission android:name="android.permission.INTERNET" />
     <!--
- HockeyApp places a maxSdkVersion on the WRITE_EXTERNAL_STORAGE permission,
+     HockeyApp places a maxSdkVersion on the WRITE_EXTERNAL_STORAGE permission,
      therefore we need to replace it with our own tag with no version restrictions.
     -->
     <uses-permission
@@ -36,20 +37,19 @@
         android:maxSdkVersion="22" />
 
     <!-- For notifications, e.g. User account notices, etc. -->
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <!-- To be notified when device boot up has completed.-->
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />	37	    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     
   <!-- For Nearby feature -->
-        android:maxSdkVersion="22" /> <!-- For notifications, e.g. User account notices, etc. -->
+    <!-- For notifications, e.g. User account notices, etc. -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-feature
         android:name="android.hardware.location"
         android:required="false"
@@ -83,7 +83,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+      
         <activity android:name=".qrcode.QRCodeGenerateActivity"></activity>
+
         <!-- Multi-window support on Samsung devices -->
         <uses-library
             android:name="com.sec.android.app.multiwindow"
@@ -351,7 +353,7 @@
                 <action android:name=".notifications.NotificationPollBroadcastReceiver.ACTION_POLL" />
             </intent-filter>
         </receiver>
-        
+
         <!-- 390 receivers -->
         <receiver android:name=".notifications.NotificationReceiver" />
         <!-- 390 receivers -->
@@ -397,6 +399,16 @@
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver android:name=".savedpages.SavedPageSyncNotification" />
+        <activity
+            android:name=".citation.CitationActivity"
+            android:label="@string/title_activity_citation"
+            android:parentActivityName=".page.PageActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.wikipedia.page.PageActivity" />
+        </activity>
     </application>
 
 </manifest>
+
