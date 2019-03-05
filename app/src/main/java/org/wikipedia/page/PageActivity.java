@@ -720,10 +720,8 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
 
         @Override
         public void generateQRcodeClick() {
-
             Intent intent = new Intent(getApplicationContext(), QRCodeGenerateActivity.class);
             startActivity(intent);
-
         }
 
     }
