@@ -228,7 +228,7 @@
         android:visibility="visible" />
 
     <!--
-    Icon ic_qr_code downloaded from : https://icons8.com/icon/783/qr-code
+    Icon ic_qr_code downloaded from : https://www.flaticon.com/authors/pixelmeetup
     -->
     <Button
         android:id="@+id/button_qr_code"
