@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.wikipedia.page.PageBackStackItem;
 import org.wikipedia.page.PageTitle;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.powermock.api.mockito.PowerMockito.when;
@@ -38,6 +39,11 @@ public class QRCodeGenerateTest {
         QRCodeGenerateActivity qrCodeGenerateActivitySpy = Mockito.spy(QRCodeGenerateActivity.class);
         qrCodeGenerateActivitySpy.generateImage(lastTabMock.getTitle().getCanonicalUri());
         System.out.println("[" + TAG + "]" + "Mock URL: " + titleMock.getCanonicalUri() + " = String URL: " + url);
+
+        //Assert
+        assertEquals(url, lastTabMock.getTitle().getCanonicalUri());
+
+        //Verify
         verify(qrCodeGenerateActivitySpy).generateImage(lastTabMock.getTitle().getCanonicalUri());
     }
 }
