@@ -16,6 +16,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.FirebaseApp;
+
 import org.wikipedia.Constants;
 import org.wikipedia.R;
 import org.wikipedia.WikipediaApp;
@@ -37,6 +39,7 @@ import org.wikipedia.util.AnimationUtil;
 import org.wikipedia.util.DimenUtil;
 import org.wikipedia.util.FeedbackUtil;
 import org.wikipedia.views.WikiDrawerLayout;
+import org.wikipedia.firelogin.signInToWiki;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +57,8 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @BindView(R.id.single_fragment_toolbar_wordmark) View wordMark;
 
     Button button_notify_me;
+    Button button_wiki_plusplus;
+
     private boolean controlNavTabInFragment;
 
     public static Intent newIntent(@NonNull Context context) {
@@ -63,6 +68,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         ButterKnife.bind(this);
         AnimationUtil.setSharedElementTransitions(this);
         new AppShortcuts().init();
@@ -103,6 +109,13 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 openNotificationActivity();
             }
         });
+
+        button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
+        button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openPageActivity();
+            }
+        });
     }
 
     public void openNotificationActivity() {
@@ -115,6 +128,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         super.onResume();
         // update main nav drawer after rotating screen
         drawerView.updateState();
+    }
+
+    public void openPageActivity(){
+        Intent intent = new Intent(this, signInToWiki.class);
+        startActivity(intent);
     }
 
     @LayoutRes
