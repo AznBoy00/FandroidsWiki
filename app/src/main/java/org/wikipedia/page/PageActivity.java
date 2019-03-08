@@ -206,6 +206,7 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
             handleIntent(getIntent());
         }
 
+        /*
         // Sign into Wiki++ 390
         Button button = (Button) findViewById(R.id.wiki_plusplus);
         // Capture button clicks
@@ -217,7 +218,7 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
                 startActivity(myIntent);
             }
         });
-
+        */
 
     }
 

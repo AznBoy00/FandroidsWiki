@@ -23,10 +23,12 @@ import org.wikipedia.activity.SingleFragmentActivity;
 import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.feed.FeedFragment;
+import org.wikipedia.firelogin.signInToWiki;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
+import org.wikipedia.page.PageActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
 import org.wikipedia.readinglist.ReadingListSyncBehaviorDialogs;
 import org.wikipedia.readinglist.database.ReadingListDbHelper;
@@ -54,7 +56,9 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @BindView(R.id.single_fragment_toolbar_wordmark) View wordMark;
 
     Button button_notify_me;
+    Button button_wiki_plusplus;
     private boolean controlNavTabInFragment;
+
 
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, MainActivity.class);
@@ -103,10 +107,21 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 openNotificationActivity();
             }
         });
+        button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
+        button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openPageActivity();
+            }
+        });
     }
 
     public void openNotificationActivity() {
         Intent intent = new Intent(this, NotificationSchedulerActivity.class);
+        startActivity(intent);
+    }
+
+    public void openPageActivity(){
+        Intent intent = new Intent(this, PageActivity.class);
         startActivity(intent);
     }
 
