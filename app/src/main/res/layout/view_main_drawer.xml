@@ -226,4 +226,21 @@
         android:textColor="@color/base0"
         android:textSize="16sp"
         android:visibility="visible" />
+
+    <!--
+    Icon ic_qr_code downloaded from : https://icons8.com/icon/783/qr-code
+    -->
+    <Button
+        android:id="@+id/button_qr_code"
+        style="@style/TransparentButton"
+        android:layout_width="374dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_qr_code"
+        android:fontFamily="sans-serif"
+        android:text="\t\t QR Code Scanner"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/base0"
+        android:textSize="16sp"
+        android:visibility="visible" />
 </LinearLayout>
