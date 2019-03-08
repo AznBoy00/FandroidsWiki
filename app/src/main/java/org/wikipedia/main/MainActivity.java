@@ -25,6 +25,7 @@ import org.wikipedia.activity.SingleFragmentActivity;
 import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.feed.FeedFragment;
+import org.wikipedia.googleVision.searchResultsFromGoogleVisionActivity;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
@@ -103,13 +104,19 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         /** 390 Project - Setup Broadcast Receiver / alarmManager for RandomArticleNotification **/
         TimerRandomArticle newArticleNotification = new TimerRandomArticle(this);
         newArticleNotification.alarmManager();
-        /** 390 Project Addition - Test Button for Random Article**/
+
+        /** 390 Project Addition - Test Button for Random Article
+         * NOW USED FOR TESTING THE GOOGLE VISION SEARCH RESULTS**/
         Button button_notify_me = findViewById(R.id.noti_test);
         button_notify_me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NotificationRandomArticle newRandomArticle = new NotificationRandomArticle();
-                newRandomArticle.createNotificationForRandomArticle(getApplicationContext());
+//                NotificationRandomArticle newRandomArticle = new NotificationRandomArticle();
+//                newRandomArticle.createNotificationForRandomArticle(getApplicationContext());
+
+                Intent intent = new Intent(getApplicationContext(), searchResultsFromGoogleVisionActivity.class);
+                startActivity(intent);
+
             }
         });
 

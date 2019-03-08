@@ -218,5 +218,5 @@
         android:layout_height="wrap_content"
         android:text="Test"
         android:visibility="visible"
-        tools:text="TestNotification" />
+        tools:text="Test" />
 </LinearLayout>
