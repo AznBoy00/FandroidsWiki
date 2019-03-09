@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 
 
-public class WikiQueryTask extends AsyncTask<URL,Void,String> {
+public class WikiUrlRetriever extends AsyncTask<URL,Void,String> {
 
     private final String TAG = "WikiQueryTask";
 
@@ -20,7 +20,7 @@ public class WikiQueryTask extends AsyncTask<URL,Void,String> {
         try{
             String wikiSearchResults = wikiApiService.run(searchUrl.toString());
             System.out.println("TEST: wikiSearchResults is " + wikiSearchResults);
-            wikiResult = retrieveResult(wikiSearchResults);
+            wikiResult = retrieveURLFromResult(wikiSearchResults);
         }
         catch (IOException e){
             e.printStackTrace();
@@ -28,35 +28,17 @@ public class WikiQueryTask extends AsyncTask<URL,Void,String> {
         return wikiResult;
     }
 
-    protected String retrieveResult(String wikiSearchResults) {
+    protected String retrieveURLFromResult(String wikiSearchResults) {
         String description = null;
         if (wikiSearchResults != null && !wikiSearchResults.equals("")) {
             description = wikiSearchResults;
-            description = WikiResponseUtils.getWikiDescriptionFromResponse(description);
+            description = WikiResponseUtils.getWikiUrlsOnly(description);
             Log.d(TAG,"The return was successful!");
         }
         else{
             Log.d(TAG,"Return failed!");
         }
         return description;
-    }
-
-    public String startSearch(URL url) {
-        String wikiResult = null;
-        String urlString = null;
-        ApiService wikiApiService = ApiService.getApiServiceInstance();
-        try{
-            String wikiSearchResults = wikiApiService.run(url.toString());
-            if(!(wikiSearchResults == null && wikiSearchResults.equals(""))) {
-                urlString = WikiResponseUtils.getWikiUrlsOnly(wikiResult);
-                System.out.println("TEST: urlString is " + urlString);
-                return urlString;
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return wikiResult;
     }
 
 }

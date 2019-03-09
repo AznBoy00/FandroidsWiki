@@ -14,4 +14,16 @@ public class WikiResponseUtils {
 
         return description;
     }
+
+    public static String getWikiUrlsOnly(String response) {
+        // Uncleaned
+        String urls = response;
+
+        // Cleaning process
+        urls = urls.substring((urls.indexOf("https")), urls.length());
+        urls = urls.replace("\"", "");
+        urls = urls.replace("]]", "");
+        System.out.println("TEST: urls is " + urls);
+        return urls;
+    }
 }

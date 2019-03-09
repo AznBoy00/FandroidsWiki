@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -19,7 +18,6 @@ import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -30,14 +28,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.wikipedia.ApiService;
 import org.wikipedia.BackPressedHandler;
 import org.wikipedia.Constants;
 import org.wikipedia.LongPressHandler;
@@ -96,7 +92,6 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutionException;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -261,6 +256,7 @@ public class PageFragment extends Fragment implements BackPressedHandler {
                 wikiSearchQuery = NetworkUtils.buildUrl(articleTitle);
                 try {
                     readingStr = new WikiQueryTask().execute(wikiSearchQuery).get();
+                    System.out.println("TEST: The readingstr is " + readingStr);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
