@@ -29,6 +29,7 @@ import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
 import org.wikipedia.qrcode.QRCodeGenerateActivity;
+import org.wikipedia.qrcode.QRCodeScanActivity;
 import org.wikipedia.readinglist.ReadingListSyncBehaviorDialogs;
 import org.wikipedia.readinglist.database.ReadingListDbHelper;
 import org.wikipedia.settings.AboutActivity;
@@ -120,7 +121,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     }
 
     public void openQrCodeActivity() {
-        Intent intent = new Intent(this, QRCodeGenerateActivity.class);
+        Intent intent = new Intent(this, QRCodeScanActivity.class);
         startActivity(intent);
     }
 

@@ -50,6 +50,11 @@
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Request permission of camera for qr scanner-->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
+
     <uses-feature
         android:name="android.hardware.location"
         android:required="false"
@@ -83,8 +88,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-      
+
+        <!-- Activities for QR Code Generator and Scanner -->
         <activity android:name=".qrcode.QRCodeGenerateActivity"></activity>
+
+        <activity android:name=".qrcode.QRCodeScanActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <!-- Multi-window support on Samsung devices -->
         <uses-library
