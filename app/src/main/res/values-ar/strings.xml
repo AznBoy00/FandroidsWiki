@@ -23,7 +23,7 @@
 * عبد الإله صديقي
 * محمد أحمد عبد الفتاح
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingQuantity">
   <string name="app_name_prod">ويكيبيديا</string>
   <string name="app_name_beta">ويكيبيديا بيتا</string>
   <string name="app_name_alpha">ويكيبيديا ألفا</string>

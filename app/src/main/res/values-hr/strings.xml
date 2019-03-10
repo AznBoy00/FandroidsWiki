@@ -7,7 +7,7 @@
 * Vrhnje
 * Wumbolo
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingQuantity">
   <string name="app_name_prod">Wikipedija</string>
   <string name="app_name_beta">Wikipedija (beta)</string>
   <string name="app_name_alpha">Wikipedija Alpha</string>
@@ -246,7 +246,7 @@
   <string name="most_read_list_card_title">U trendu</string>
   <string name="view_static_card_icon_content_description">Ikona kartice</string>
   <string name="view_card_news_title">U novostima</string>
-  <plurals name="view_continue_reading_card_subtitle" fuzzy="true">
+  <plurals name="view_continue_reading_card_subtitle" fuzzy="true" tools:ignore="ImpliedQuantity">
     <item quantity="one">jučer</item>
     <item quantity="other">prije %d dana</item>
   </plurals>
