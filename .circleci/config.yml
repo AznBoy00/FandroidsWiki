@@ -62,6 +62,10 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
       - run:
+          name: Create gradle.properties
+          command: mkdir -p ~/.gradle && echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+
+      - run:
           name: Run Lint Tests
           command: ./gradlew lint test
     
