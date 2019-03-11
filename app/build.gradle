@@ -103,23 +103,23 @@ android {
     flavorDimensions 'default'
 
     productFlavors {
-//        dev {
-//            versionName computeVersionName('dev')
-//            applicationIdSuffix 'dev'
-//            signingConfig signingConfigs.debug
-//            dimension 'default'
-//        }
+        dev {
+            versionName computeVersionName('dev')
+            applicationIdSuffix 'dev'
+            signingConfig signingConfigs.debug
+            dimension 'default'
+        }
 //        prod {
 //            versionName computeVersionName('r')
 //            signingConfig signingConfigs.prod
 //            dimension 'default'
 //        }
-        alpha {
-            versionName computeVersionName('alpha')
-            applicationIdSuffix 'alpha'
-            signingConfig signingConfigs.debug
-            dimension 'default'
-        }
+//        alpha {
+//            versionName computeVersionName('alpha')
+//            applicationIdSuffix 'alpha'
+//            signingConfig signingConfigs.debug
+//            dimension 'default'
+//        }
 //        beta {
 //            versionName computeVersionName('beta')
 //            applicationIdSuffix 'beta'
