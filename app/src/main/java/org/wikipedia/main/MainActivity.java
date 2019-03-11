@@ -95,7 +95,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         drawerView.setCallback(new DrawerViewCallback());
         shouldShowMainDrawer(true);
 
-        /** 390 Project Addition - Test Button for Random Article**/
+        // 390 Project Addition - Test Button for Random Article
         button_notify_me = findViewById(R.id.notification_settings);
         button_notify_me.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,7 +14,7 @@
 * আফতাবুজ্জামান
 * ফাহাদ কাজমী
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">উইকিপিডিয়া</string>
   <string name="app_name_beta">উইকিপিডিয়া বেটা</string>
   <string name="app_name_alpha">উইকিপিডিয়া আলফা</string>
@@ -371,11 +371,11 @@
   <string name="reading_lists_menu_create_list">নতুন তালিকা তৈরি করুন</string>
   <string name="reading_lists_menu_sort_by">সাজান</string>
   <string name="reading_list_preference_login_or_signup_to_enable_sync_dialog_login">প্রবেশ করুন / নিবন্ধন করুন</string>
-  <plurals name="reading_list_article_offline_message">
+  <plurals name="reading_list_article_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">এই নিবন্ধটি এখন অফলাইনে উপলব্ধ হবে।</item>
     <item quantity="other">এই নিবন্ধগুলি এখন অফলাইনে উপলব্ধ হবে।</item>
   </plurals>
-  <plurals name="reading_list_article_not_offline_message">
+  <plurals name="reading_list_article_not_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">এই নিবন্ধটি আর অফলাইনে উপলব্ধ হবে না।</item>
     <item quantity="other">এই নিবন্ধগুলি আর অফলাইনে উপলব্ধ হবে না।</item>
   </plurals>
@@ -425,7 +425,7 @@
   <string name="most_read_list_card_title">প্রবণতা</string>
   <string name="view_static_card_icon_content_description">কার্ড আইকন</string>
   <string name="view_card_news_title">সংবাদে</string>
-  <plurals name="view_continue_reading_card_subtitle">
+  <plurals name="view_continue_reading_card_subtitle" tools:ignore="ImpliedQuantity">
     <item quantity="one">গতকাল</item>
     <item quantity="other">%d দিন আগে</item>
   </plurals>
@@ -488,7 +488,7 @@
   <string name="description_edit_revert_history">আপনি যদি আগ্রহী হন তাহলে, &lt;a href=\"%1$s\"&gt;সম্পাদনা ইতিহাস&lt;/a&gt; দেখুন।</string>
     <string name="size_gb">%.2f GB</string>
   <string name="size_mb">%.2f MB</string>
-    <plurals name="offline_compilation_download_time_remaining">
+    <plurals name="offline_compilation_download_time_remaining" tools:ignore="ImpliedQuantity">
     <item quantity="one">১ মিনিট বাকি</item>
     <item quantity="other">%d মিনিট বাকি</item>
   </plurals>
@@ -513,7 +513,7 @@
   <string name="events_count_text" fuzzy="true">এই দিনে %2$s হতে %3$d এর মধ্যে %1$s টি ঘটনা</string>
   <string name="this_year">এই বছর</string>
   <string name="back_to_top">উপরে ফিরে যান</string>
-  <plurals name="diff_years">
+  <plurals name="diff_years" tools:ignore="ImpliedQuantity">
     <item quantity="one">গত বছর</item>
     <item quantity="other">%d বছর আগে</item>
   </plurals>
@@ -525,7 +525,7 @@
   <string name="wikipedia_languages_add_language_text">ভাষা যোগ করুন</string>
   <string name="wikipedia_languages_remove_text">ভাষা সরান</string>
   <string name="wikipedia_languages_remove_action_mode_title">ভাষা সরান</string>
-  <plurals name="wikipedia_languages_remove_dialog_title">
+  <plurals name="wikipedia_languages_remove_dialog_title" tools:ignore="ImpliedQuantity">
     <item quantity="one">নির্বাচিত ভাষা সরাবেন?</item>
     <item quantity="other">নির্বাচিত ভাষাগুলি সরাবেন?</item>
   </plurals>

@@ -26,7 +26,7 @@
 * Sahehco
 * الناز
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">ویکی‌پدیا</string>
   <string name="app_name_beta">ویکی‌پدیا بتا</string>
   <string name="app_name_alpha">ویکی‌پدیا آلفا</string>
@@ -433,11 +433,11 @@
   <string name="reading_lists_menu_sort_by">مرتب‌سازی بر اساس</string>
   <string name="reading_lists_refresh_sync_option">همگام‌سازی</string>
   <string name="reading_list_preference_login_or_signup_to_enable_sync_dialog_login">ورود/ایجاد حساب کاربری</string>
-  <plurals name="reading_list_article_offline_message">
+  <plurals name="reading_list_article_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">اکنون در حالت آفلاین مقاله در دسترس است.</item>
     <item quantity="other">اکنون در حالت آفلاین این مقالات در دسترس هستند.</item>
   </plurals>
-  <plurals name="reading_list_article_not_offline_message">
+  <plurals name="reading_list_article_not_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">دیگر در حالت آفلاین مقاله در دسترس نیست.</item>
     <item quantity="other">دیگر در حالت آفلاین این مقالات در دسترس نیستند.</item>
   </plurals>
@@ -449,9 +449,9 @@
   <string name="notification_syncing_resume_button">ادامه</string>
   <string name="notification_syncing_cancel_button">کَنسِل</string>
   <string name="notification_syncing_reading_list_channel_description">فرایند همگام سازی فهرست مطالعه</string>
-  <string name="notification_channel_name" fuzzy="true">همگام سازی</string>
-  <string name="notification_syncing_title" fuzzy="true">بارگیری %1$d مقاله(ها)...</string>
-  <string name="notification_syncing_description" fuzzy="true">%1$d مقاله(ها) باقی مانده اند</string>
+  <string name="notification_channel_name" fuzzy="true" tools:ignore="ExtraTranslation">همگام سازی</string>
+  <string name="notification_syncing_title" fuzzy="true" tools:ignore="ExtraTranslation">بارگیری %1$d مقاله(ها)...</string>
+  <string name="notification_syncing_description" fuzzy="true" tools:ignore="ExtraTranslation">%1$d مقاله(ها) باقی مانده اند</string>
   <string name="notification_echo_channel_description">اعلان‌های ویکی‌پدیا</string>
   <string name="notifications_activity_title">اعلان‌ها</string>
   <string name="notifications_activity_title_archived">اعلان‌ها (بایگانی‌شده)</string>
@@ -492,7 +492,7 @@
   <string name="most_read_list_card_title">گریش‌ها</string>
   <string name="view_static_card_icon_content_description">آیکون کارت</string>
   <string name="view_card_news_title">در اخبار</string>
-  <plurals name="view_continue_reading_card_subtitle">
+  <plurals name="view_continue_reading_card_subtitle" tools:ignore="ImpliedQuantity">
     <item quantity="one">دیروز</item>
     <item quantity="other">%d روز پیش</item>
   </plurals>
@@ -561,7 +561,7 @@
   <string name="offline_read_final_rationale">اجازه دسترسی به حافظه دستگاه شما جهت استفاده از کتابخانه آفلاین مورد نیاز است.</string>
     <string name="size_gb">%.2f GB</string>
   <string name="size_mb">%.2f MB</string>
-    <plurals name="offline_compilation_download_time_remaining">
+    <plurals name="offline_compilation_download_time_remaining" tools:ignore="ImpliedQuantity">
     <item quantity="one">۱ دقیقه مانده</item>
     <item quantity="other">%d دقیقه مانده</item>
   </plurals>
@@ -591,7 +591,7 @@
   <string name="events_count_text">%1$s رویداد از %2$s تا %3$d</string>
   <string name="this_year">امسال</string>
   <string name="back_to_top">برگشت به بالا</string>
-  <plurals name="diff_years">
+  <plurals name="diff_years" tools:ignore="ImpliedQuantity">
     <item quantity="one">سال پیش</item>
     <item quantity="other">%d سال پیش</item>
   </plurals>

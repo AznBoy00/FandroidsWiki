@@ -4,7 +4,7 @@
 * Les Meloures
 * Robby
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">Wikipedia</string>
   <string name="app_name_beta">Wikipedia Beta</string>
   <string name="app_name_alpha">Wikipedia Alpha</string>
@@ -376,13 +376,13 @@
   <string name="notification_syncing_resume_button">Virufueren</string>
   <string name="notification_syncing_cancel_button">Ofbriechen</string>
     <string name="notification_syncing_reading_list_channel_description">Fortschrëtt vun der Synchronisatioun vu Lieslëschten</string>
-  <string name="notification_channel_name" fuzzy="true">Synchroniséieren</string>
-  <string name="notification_syncing_title" fuzzy="true">Erofluede vun %1$d Artikelen ....</string>
+  <string name="notification_channel_name" fuzzy="true" tools:ignore="ExtraTranslation">Synchroniséieren</string>
+  <string name="notification_syncing_title" fuzzy="true" tools:ignore="ExtraTranslation">Erofluede vun %1$d Artikelen ....</string>
   <plurals name="notification_syncing_description">
     <item quantity="one">%1$d Artikel iwwreg</item>
     <item quantity="other">%1$d Artikelen iwwreg</item>
   </plurals>
-  <string name="notification_syncing_reading_list_title" fuzzy="true">Synchronisatioun vun %1$d Lëscht(en)…</string>
+  <string name="notification_syncing_reading_list_title" fuzzy="true" tools:ignore="ExtraTranslation">Synchronisatioun vun %1$d Lëscht(en)…</string>
   <plurals name="notification_syncing_reading_list_description">
     <item quantity="one">nach %1$d Lëscht</item>
     <item quantity="other">nach %1$d%1$d Lëschten</item>
