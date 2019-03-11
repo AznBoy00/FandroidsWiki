@@ -23,7 +23,7 @@ jobs:
 
     environment:
       # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
+      JVM_OPTS: -Xmx4096m
       TERM: dumb
     
     steps:
@@ -52,9 +52,9 @@ jobs:
           command: ./gradlew androidDependencies
 
 
-      - run:
-          name: Run JUnit Tests
-          command: ./gradlew testDevDebug
+#      - run:
+#          name: Run JUnit Tests
+#          command: ./gradlew testDevDebug
 
       - save_cache:
           paths:
