@@ -19,7 +19,7 @@ jobs:
   # compile build
   - stage: compile
     language: android
-    script: ./gradlew -q app:dependencies --configuration compile
+    script: ./gradlew androidDependencies
   # test run section
   - stage: All Tests
     language: android
