@@ -1,10 +1,13 @@
 package org.wikipedia.googleVision;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.AdapterView;
 
 import org.wikipedia.NetworkUtils;
 import org.wikipedia.R;
@@ -21,54 +24,84 @@ public class searchResultsFromGoogleVisionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results_from_google_vision);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
+        // Declaration of views
+        WebView webView = (WebView) findViewById(R.id.webview);
+        ListView listview = (ListView) findViewById(R.id.listView_for_results);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.page_toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        // Set the toolbar
+        setSupportActionBar(toolbar);
+
+        // When the W icon have been clicked, it will finish/kill the activity
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                finish();
             }
         });
 
-        displayGoogleVisionResults();
+
+        // Get the list of urls
+        List<String> listviewUrlElements = displayGoogleVisionResults();
+        // Get the list of article titles
+        List<String> listviewNameElements = convertToTitle(listviewUrlElements);
+
+        // Adapter to automatically put in the listview
+        ArrayAdapter listAdapter = new ArrayAdapter<String>(this,
+                R.layout.search_results_listview, R.id.article_title, listviewNameElements);
+        listview.setAdapter(listAdapter);
+        // A webview will be opened and redirect to the corresponding page when clicked
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+            int position, long id) {
+                String url = listviewUrlElements.get(position);
+                listview.setVisibility(View.GONE);
+                webView.setVisibility(View.VISIBLE);
+                webView.loadUrl(url);
+            }
+
+        });
     }
 
-    //Cannot use the SearchResultsFragment, it has too many dependencies
-//    private void displayGoogleVisionResults() {
-//        String[] words = {"car"};
-//        SearchFragment searchFragment = new SearchFragment();
-//        for(int index=0; index < words.length ; index++){
-//            searchFragment.startSearch(words[index], true);
-//        }
-//    }
-
-    private void displayGoogleVisionResults() {
+    // Search keywords to find related articles
+    private List<String> displayGoogleVisionResults() {
         // Builds the articleTitle to an URL
         String[] keywords = {"honda", "toyota"};
         List<String> FinalListOfURL = new ArrayList<String>();
         List<String> listOfURL = new ArrayList<String>();
         for(int index=0; index < keywords.length; index++) {
             URL wikiSearchQuery = NetworkUtils.buildSpecialUrl(keywords[index]);
-            System.out.println("TEST: wikiSearchQuery is " + wikiSearchQuery);
             try {
                 String urls = new WikiUrlRetriever().execute(wikiSearchQuery).get();
-                System.out.println("TEST: The readingstr is " + urls);
                 listOfURL = Arrays.asList(urls.split(","));
                 for(int count=0; count < listOfURL.size(); count++) {
-                    System.out.println("TEST:"+count + "." + listOfURL.get(count) + "\n");
+                    // Add the elements to the ArrayList
                     FinalListOfURL.add(listOfURL.get(count));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        for(int count=0; count < FinalListOfURL.size(); count++) {
-            System.out.println("TEST!:"+count + "." + FinalListOfURL.get(count) + "\n");
+
+        //For testing all the elements inside the array
+//        for(int count=0; count < FinalListOfURL.size(); count++) {
+//            System.out.println("TEST!:"+count + "." + FinalListOfURL.get(count) + "\n");
+//        }
+
+        return FinalListOfURL;
+    }
+
+    // Get the article titles from the url
+    private List<String> convertToTitle(List<String> listOfUrls) {
+        List<String> titlesList = new ArrayList<String>();
+        String cleanTitle = null;
+        for(int index=0; index < listOfUrls.size(); index++) {
+            cleanTitle = (listOfUrls.get(index)).replace("https://en.wikipedia.org/wiki/", "");
+            cleanTitle = cleanTitle.replace("_", " ");
+            titlesList.add(cleanTitle);
         }
+        return titlesList;
     }
 
 }

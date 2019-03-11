@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class WikiUrlRetriever extends AsyncTask<URL,Void,String> {
 
-    private final String TAG = "WikiQueryTask";
+    private final String TAG = "WikiUrlRetriever";
 
     protected String doInBackground(URL... params) {
         URL searchUrl = params[0];
@@ -19,7 +19,6 @@ public class WikiUrlRetriever extends AsyncTask<URL,Void,String> {
         ApiService wikiApiService = ApiService.getApiServiceInstance();
         try{
             String wikiSearchResults = wikiApiService.run(searchUrl.toString());
-            System.out.println("TEST: wikiSearchResults is " + wikiSearchResults);
             wikiResult = retrieveURLFromResult(wikiSearchResults);
         }
         catch (IOException e){

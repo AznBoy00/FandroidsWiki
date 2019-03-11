@@ -256,7 +256,6 @@ public class PageFragment extends Fragment implements BackPressedHandler {
                 wikiSearchQuery = NetworkUtils.buildUrl(articleTitle);
                 try {
                     readingStr = new WikiQueryTask().execute(wikiSearchQuery).get();
-                    System.out.println("TEST: The readingstr is " + readingStr);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

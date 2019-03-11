@@ -160,7 +160,6 @@ public class SearchResultsFragment extends Fragment {
      *              too often.  If the search is forced, the network request is sent immediately.
      */
     public void startSearch(@Nullable String term, boolean force) {
-        System.out.println("TEST: in startSearch of searchResultsFragment");
         if (!force && StringUtils.equals(currentSearchTerm, term)) {
             return;
         }
@@ -388,7 +387,6 @@ public class SearchResultsFragment extends Fragment {
         for (SearchResult newResult : results) {
             boolean contains = false;
             for (SearchResult result : totalResults) {
-                System.out.println("TEST: result is " + result.getPageTitle());
                 if (newResult.getPageTitle().equals(result.getPageTitle())) {
                     contains = true;
                     break;

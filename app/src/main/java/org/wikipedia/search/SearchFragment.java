@@ -371,7 +371,6 @@ public class SearchFragment extends Fragment implements BackPressedHandler,
      *              too often.  If the search is forced, the network request is sent immediately.
      */
     public void startSearch(@Nullable String term, boolean force) {
-        System.out.println("TEST: in startsearch");
         if (!isSearchActive) {
             openSearch();
         }

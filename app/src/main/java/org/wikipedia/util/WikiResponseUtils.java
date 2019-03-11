@@ -23,7 +23,6 @@ public class WikiResponseUtils {
         urls = urls.substring((urls.indexOf("https")), urls.length());
         urls = urls.replace("\"", "");
         urls = urls.replace("]]", "");
-        System.out.println("TEST: urls is " + urls);
         return urls;
     }
 }

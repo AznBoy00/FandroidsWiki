@@ -19,7 +19,6 @@ public class WikiQueryTask extends AsyncTask<URL,Void,String> {
         ApiService wikiApiService = ApiService.getApiServiceInstance();
         try{
             String wikiSearchResults = wikiApiService.run(searchUrl.toString());
-            System.out.println("TEST: wikiSearchResults is " + wikiSearchResults);
             wikiResult = retrieveResult(wikiSearchResults);
         }
         catch (IOException e){
@@ -39,24 +38,6 @@ public class WikiQueryTask extends AsyncTask<URL,Void,String> {
             Log.d(TAG,"Return failed!");
         }
         return description;
-    }
-
-    public String startSearch(URL url) {
-        String wikiResult = null;
-        String urlString = null;
-        ApiService wikiApiService = ApiService.getApiServiceInstance();
-        try{
-            String wikiSearchResults = wikiApiService.run(url.toString());
-            if(!(wikiSearchResults == null && wikiSearchResults.equals(""))) {
-                urlString = WikiResponseUtils.getWikiUrlsOnly(wikiResult);
-                System.out.println("TEST: urlString is " + urlString);
-                return urlString;
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return wikiResult;
     }
 
 }
