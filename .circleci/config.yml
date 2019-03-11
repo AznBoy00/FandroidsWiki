@@ -63,7 +63,7 @@ jobs:
 
       - run:
           name: Run Lint Tests
-          command: ./gradlew lint --no-daemon -Dorg.gradle.parallel=false -Dkotlin.incremental=false -Dkotlin.compiler.execution.strategy="in-process"
+          command: ./gradlew lint --no-daemon -Dorg.gradle.parallel=false -Dkotlin.incremental=false -Dkotlin.compiler.execution.strategy="in-process" -Dorg.gradle.jvmargs=-Xmx4096M
     
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
           path: app/build/reports
