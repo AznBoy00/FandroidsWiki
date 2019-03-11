@@ -3,6 +3,7 @@ language: android
 before_install:
 - yes | sdkmanager "platforms;android-28"
 - sudo apt-get install jq
+- (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
 android:
   components:
@@ -10,6 +11,7 @@ android:
   - android-28
   licenses:
   - 'android-sdk-license-.+'
+
 
 jdk:
 - oraclejdk8
