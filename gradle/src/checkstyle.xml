@@ -20,7 +20,6 @@
     - some best practices
 -->
 
-<!--suppress XmlHighlighting -->
 <module name="Checker">
     <!--
         If you set the basedir property below, then all reported file
