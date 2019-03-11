@@ -105,7 +105,7 @@ android {
     productFlavors {
         dev {
             versionName computeVersionName('dev')
-            applicationIdSuffix '.dev'
+            applicationIdSuffix 'dev'
             signingConfig signingConfigs.debug
             dimension 'default'
         }
@@ -116,13 +116,13 @@ android {
         }
         alpha {
             versionName computeVersionName('alpha')
-            applicationIdSuffix '.alpha'
+            applicationIdSuffix 'alpha'
             signingConfig signingConfigs.debug
             dimension 'default'
         }
         beta {
             versionName computeVersionName('beta')
-            applicationIdSuffix '.beta'
+            applicationIdSuffix 'beta'
             signingConfig signingConfigs.prod
             dimension 'default'
         }
@@ -263,8 +263,8 @@ dependencies {
     testImplementation "commons-io:commons-io:2.6"
 
     // mockito
-    testImplementation 'org.mockito:mockito-core:2.25.0'
-    androidTestImplementation 'org.mockito:mockito-core:2.25.0'
+    testImplementation 'org.mockito:mockito-core:2.4.0'
+    androidTestImplementation 'org.mockito:mockito-core:2.4.0'
     // PowerMock
     testImplementation 'org.powermock:powermock-core:1.7.0RC2'
     testImplementation 'org.powermock:powermock-module-junit4:1.7.0RC2'
