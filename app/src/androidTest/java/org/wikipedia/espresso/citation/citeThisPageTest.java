@@ -68,7 +68,7 @@ public class citeThisPageTest {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(700);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -89,23 +89,6 @@ public class citeThisPageTest {
             e.printStackTrace();
         }
 
-        ViewInteraction linearLayout2 = onView(
-                allOf(withId(R.id.search_container),
-                        childAtPosition(
-                                allOf(withId(R.id.fragment_main_container),
-                                        childAtPosition(
-                                                withId(R.id.fragment_container),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        linearLayout2.perform(click());
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         ViewInteraction searchAutoComplete = onView(
                 allOf(withId(R.id.search_src_text),
                         childAtPosition(
@@ -115,16 +98,10 @@ public class citeThisPageTest {
                                                 1)),
                                 0),
                         isDisplayed()));
-        searchAutoComplete.perform(click());
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        searchAutoComplete.perform(replaceText("honda"), closeSoftKeyboard());
 
         ViewInteraction searchAutoComplete2 = onView(
-                allOf(withId(R.id.search_src_text),
+                allOf(withId(R.id.search_src_text), withText("honda"),
                         childAtPosition(
                                 allOf(withId(R.id.search_plate),
                                         childAtPosition(
@@ -132,7 +109,6 @@ public class citeThisPageTest {
                                                 1)),
                                 0),
                         isDisplayed()));
-        searchAutoComplete2.perform(replaceText("honda"), closeSoftKeyboard());
 
         try {
             Thread.sleep(10000);
@@ -140,29 +116,17 @@ public class citeThisPageTest {
             e.printStackTrace();
         }
 
-        DataInteraction constraintLayout = onData(anything())
-                .inAdapterView(allOf(withId(R.id.search_results_list),
-                        childAtPosition(
-                                withId(R.id.search_results_container),
-                                1)))
-                .atPosition(0);
+        searchAutoComplete2.perform(pressImeActionButton());
 
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        constraintLayout.perform(click());
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         ViewInteraction appCompatImageView = onView(
                 allOf(withId(R.id.page_toolbar_button_show_overflow_menu), withContentDescription("More options"),
@@ -173,6 +137,12 @@ public class citeThisPageTest {
                                 2),
                         isDisplayed()));
         appCompatImageView.perform(click());
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         ViewInteraction appCompatTextView2 = onView(
                 allOf(withId(R.id.page_action_overflow_citation), withText("Cite this page"),
