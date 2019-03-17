@@ -231,7 +231,7 @@
     Icon ic_qr_code downloaded from : https://www.flaticon.com/authors/pixelmeetup
     -->
     <Button
-        android:id="@+id/button_qr_code"
+        android:id="@+id/button_qr_reader"
         style="@style/TransparentButton"
         android:layout_width="374dp"
         android:layout_height="wrap_content"

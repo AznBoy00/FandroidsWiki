@@ -56,7 +56,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @BindView(R.id.single_fragment_toolbar_wordmark) View wordMark;
 
     Button button_notify_me;
-    Button button_qr_code;
+    Button button_qr_reader;
     private boolean controlNavTabInFragment;
 
     public static Intent newIntent(@NonNull Context context) {
@@ -106,8 +106,8 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 openNotificationActivity();
             }
         });
-        button_qr_code = findViewById(R.id.button_qr_code);
-        button_qr_code.setOnClickListener(new View.OnClickListener() {
+        button_qr_reader = findViewById(R.id.button_qr_code);
+        button_qr_reader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openQrCodeActivity();
