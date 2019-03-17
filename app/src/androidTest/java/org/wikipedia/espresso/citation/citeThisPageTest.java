@@ -153,6 +153,91 @@ public class citeThisPageTest {
                                 3),
                         isDisplayed()));
         appCompatTextView2.perform(click());
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.button_latex), withText("LATEX"),
+                        childAtPosition(
+                                allOf(withId(R.id.secondButtonRow),
+                                        childAtPosition(
+                                                withId(R.id.globalLinearLayout),
+                                                2)),
+                                0),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatRadioButton = onView(
+                allOf(withId(R.id.button_ieee), withText("IEEE"),
+                        childAtPosition(
+                                allOf(withId(R.id.citation_radiogroup_btn),
+                                        childAtPosition(
+                                                withId(R.id.firstButtonRow),
+                                                0)),
+                                2),
+                        isDisplayed()));
+        appCompatRadioButton.perform(click());
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatRadioButton2 = onView(
+                allOf(withId(R.id.button_mla), withText("MLA"),
+                        childAtPosition(
+                                allOf(withId(R.id.citation_radiogroup_btn),
+                                        childAtPosition(
+                                                withId(R.id.firstButtonRow),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatRadioButton2.perform(click());
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatRadioButton3 = onView(
+                allOf(withId(R.id.button_apa), withText("APA"),
+                        childAtPosition(
+                                allOf(withId(R.id.citation_radiogroup_btn),
+                                        childAtPosition(
+                                                withId(R.id.firstButtonRow),
+                                                0)),
+                                0),
+                        isDisplayed()));
+        appCompatRadioButton3.perform(click());
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.button_copy_citation), withText("Copy citation"),
+                        childAtPosition(
+                                allOf(withId(R.id.globalLinearLayout),
+                                        childAtPosition(
+                                                withId(R.id.frameLayout),
+                                                0)),
+                                5),
+                        isDisplayed()));
+        appCompatButton2.perform(click());
     }
 
     private static Matcher<View> childAtPosition(
