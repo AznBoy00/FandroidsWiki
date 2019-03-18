@@ -4,6 +4,8 @@ package org.wikipedia.mlkit;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.ml.vision.FirebaseVision;
@@ -29,6 +31,7 @@ public class MLKitService {
 
     private static ArrayList<String> detectObject = new ArrayList<>();
 
+    // detection
     public static void imageFromBitmap(Bitmap bitmap) {
         final FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
         FirebaseVisionOnDeviceImageLabelerOptions options =
@@ -37,6 +40,7 @@ public class MLKitService {
                         .build();
         FirebaseVisionImageLabeler labeler = FirebaseVision.getInstance()
                 .getOnDeviceImageLabeler(options);
+
 
         labeler.processImage(image).addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionImageLabel>>() {
             @Override
@@ -51,6 +55,7 @@ public class MLKitService {
         });
     }
 
+    // Return list
     private static ArrayList<String> processDataResult(List<FirebaseVisionImageLabel> firebaseVisionImageLabels) {
         ArrayList<String> tempList = new ArrayList<>();
 
