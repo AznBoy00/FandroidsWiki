@@ -67,6 +67,14 @@ jobs:
           name: Run Lint Tests
           command: ./gradlew lint
 
+      - run:
+          name: JacocoTestReport
+          command: ./gradlew build jacocoTestReport
+
+      - run:
+          name: Upload Test to Codecov
+          command: back <(curl -s https://codecov.io/bash)
+
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
