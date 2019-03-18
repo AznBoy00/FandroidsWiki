@@ -13,7 +13,7 @@
 * Sarrus
 * Yuvipanda
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">Wikipedia</string>
   <string name="app_name_beta">Wikipedia Beta</string>
   <string name="app_name_alpha">Wikipedia Alpha</string>
@@ -439,9 +439,9 @@
     <item quantity="one">Downloader artikel</item>
     <item quantity="other">Downloader artikler</item>
   </plurals>
-  <string name="notification_syncing_title" fuzzy="true">Henter %1$d artikler …</string>
-  <string name="notification_syncing_description" fuzzy="true">%1$d artikler tilbage</string>
-  <string name="notification_syncing_reading_list_title" fuzzy="true">Synkroniserer %1$d lister …</string>
+  <string name="notification_syncing_title" fuzzy="true" tools:ignore="ExtraTranslation">Henter %1$d artikler …</string>
+  <string name="notification_syncing_description" fuzzy="true" tools:ignore="ExtraTranslation">%1$d artikler tilbage</string>
+  <string name="notification_syncing_reading_list_title" fuzzy="true" tools:ignore="ExtraTranslation">Synkroniserer %1$d lister …</string>
   <plurals name="notification_syncing_reading_list_description">
     <item quantity="one">%1$d liste tilbage</item>
     <item quantity="other">%1$d lister tilbage</item>

@@ -12,7 +12,7 @@
 * Sudo77(new)
 * TomášPolonec
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingQuantity">
   <string name="app_name_prod">Wikipédia</string>
   <string name="app_name_beta">Wikipédia Beta</string>
   <string name="app_name_alpha">Wikipédia Alpha</string>
@@ -421,8 +421,8 @@
   <string name="notification_syncing_resume_button">Pokračovať</string>
   <string name="notification_syncing_cancel_button">Zrušiť</string>
   <string name="notification_syncing_reading_list_channel_description">Pokrok v synchronizácii zoznamov na prečítanie</string>
-  <string name="notification_channel_name" fuzzy="true">Synchronizovanie</string>
-  <string name="notification_syncing_title" fuzzy="true">Preberá sa %1$d {{PLURAL:%1$d|článok|články|článkov}}…</string>
+  <string name="notification_channel_name" fuzzy="true" tools:ignore="ExtraTranslation">Synchronizovanie</string>
+  <string name="notification_syncing_title" fuzzy="true" tools:ignore="ExtraTranslation">Preberá sa %1$d {{PLURAL:%1$d|článok|články|článkov}}…</string>
   <plurals name="notification_syncing_description">
     <item quantity="one">Ostáva %1$d článok</item>
     <item quantity="other">Ostávajú %1$d články</item>

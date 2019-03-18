@@ -9,7 +9,8 @@
     <org.wikipedia.feed.view.CardHeaderView
         android:id="@+id/view_featured_article_card_header"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/view_card_header_height" />
+        android:layout_height="@dimen/view_card_header_height"
+        tools:ignore="MissingConstraints" />
 
     <org.wikipedia.views.FaceAndColorDetectImageView
         style="@style/SimpleDraweeViewPlaceholder"
@@ -48,7 +49,8 @@
             android:lineSpacingMultiplier="0.9"
             android:maxLines="3"
             android:ellipsize="end"
-            tools:text="Lorem ipsum"/>
+            tools:text="Lorem ipsum"
+            tools:ignore="MissingConstraints" />
 
         <org.wikipedia.views.GoneIfEmptyTextView
             android:id="@+id/view_featured_article_card_article_subtitle"
