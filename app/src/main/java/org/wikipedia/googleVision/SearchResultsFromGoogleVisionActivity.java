@@ -106,7 +106,7 @@ public class SearchResultsFromGoogleVisionActivity extends AppCompatActivity {
     }
 
     // Get the article titles from the url
-    private List<String> convertToTitle(List<String> listOfUrls) {
+    public List<String> convertToTitle(List<String> listOfUrls) {
         List<String> titlesList = new ArrayList<String>();
         String cleanTitle = null;
         for(int index=0; index < listOfUrls.size(); index++) {

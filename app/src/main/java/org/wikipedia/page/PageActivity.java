@@ -206,17 +206,18 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
             handleIntent(getIntent());
         }
 
+        // TODO FIX ISSUE WITH NULL OBJECT REFERENCE
         // Sign into Wiki++ 390
-        Button button = (Button) findViewById(R.id.wiki_plusplus);
-        // Capture button clicks
-        button.setOnClickListener(new OnClickListener() {
-            public void onClick(View arg0) {
-
-                // Start NewActivity.class
-                Intent myIntent = new Intent(PageActivity.this, signInToWiki.class);
-                startActivity(myIntent);
-            }
-        });
+//        Button button = (Button) findViewById(R.id.wiki_plusplus);
+//        // Capture button clicks
+//        button.setOnClickListener(new OnClickListener() {
+//            public void onClick(View arg0) {
+//
+//                // Start NewActivity.class
+//                Intent myIntent = new Intent(PageActivity.this, signInToWiki.class);
+//                startActivity(myIntent);
+//            }
+//        });
 
 
     }
