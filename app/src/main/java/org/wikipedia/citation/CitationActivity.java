@@ -86,21 +86,25 @@ public class CitationActivity extends AppCompatActivity {
                 Log.e(logCitation,"real id "+checkedId);
                 if (citationStyleBtn != null && checkedId != -1) {
                     setCitationStyleBtnBG(checkedId);
-                    if(checkedId == R.id.button_apa) {
-                        Log.e(logCitation,"check  APA");
-                        citationStyle = CitationStyle.APA;
-                    }
-                    if(checkedId == R.id.button_mla) {
-                        Log.e(logCitation,"check  MLA");
-                        citationStyle = CitationStyle.MLA;
-                    }
-                    if(checkedId == R.id.button_ieee) {
-                        Log.e(logCitation,"check  IEEE");
-                        citationStyle = CitationStyle.IEEE;
-                    }
-                    if(checkedId == R.id.button_latex) {
-                        Log.e(logCitation,"check  LaTeX");
-                        citationStyle = CitationStyle.LATEX;
+                    switch(checkedId) {
+                        case R.id.button_apa:
+                            Log.e(logCitation,"check  APA");
+                            citationStyle = CitationStyle.APA;
+                            break;
+                        case R.id.button_mla:
+                            Log.e(logCitation,"check  MLA");
+                            citationStyle = CitationStyle.MLA;
+                            break;
+                        case R.id.button_ieee:
+                            Log.e(logCitation,"check  IEEE");
+                            citationStyle = CitationStyle.IEEE;
+                            break;
+                        case R.id.button_latex:
+                            Log.e(logCitation,"check  LATEX");
+                            citationStyle = CitationStyle.LATEX;
+                            break;
+                        default:
+                            break;
                     }
 
                     citationCooker(citationStyle);
@@ -111,46 +115,24 @@ public class CitationActivity extends AppCompatActivity {
     }
 
     public void setCitationStyleBtnBG(int checkedId){
-        if(checkedId == R.id.button_apa) {
-            citationStyleBtn_APA.setBackgroundResource(R.drawable.citation_style_button_selected);
-            citationStyleBtn_MLA.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_IEEE.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_LATEX.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_APA.setTextColor(R.color.color_state_black);
-            citationStyleBtn_MLA.setTextColor(R.color.color_state_white);
-            citationStyleBtn_IEEE.setTextColor(R.color.color_state_white);
-            citationStyleBtn_LATEX.setTextColor(R.color.color_state_white);
-
-        }
-        if(checkedId == R.id.button_mla) {
-            citationStyleBtn_APA.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_MLA.setBackgroundResource(R.drawable.citation_style_button_selected);
-            citationStyleBtn_IEEE.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_LATEX.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_APA.setTextColor(R.color.color_state_white);
-            citationStyleBtn_MLA.setTextColor(R.color.color_state_black);
-            citationStyleBtn_IEEE.setTextColor(R.color.color_state_white);
-            citationStyleBtn_LATEX.setTextColor(R.color.color_state_white);
-        }
-        if(checkedId == R.id.button_ieee) {
-            citationStyleBtn_APA.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_MLA.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_IEEE.setBackgroundResource(R.drawable.citation_style_button_selected);
-            citationStyleBtn_LATEX.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_APA.setTextColor(R.color.color_state_white);
-            citationStyleBtn_MLA.setTextColor(R.color.color_state_white);
-            citationStyleBtn_IEEE.setTextColor(R.color.color_state_black);
-            citationStyleBtn_LATEX.setTextColor(R.color.color_state_white);
-        }
-        if(checkedId == R.id.button_latex) {
-            citationStyleBtn_APA.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_MLA.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_IEEE.setBackgroundResource(R.drawable.citation_style_button_unselected);
-            citationStyleBtn_LATEX.setBackgroundResource(R.drawable.citation_style_button_selected);
-            citationStyleBtn_APA.setTextColor(R.color.color_state_white);
-            citationStyleBtn_MLA.setTextColor(R.color.color_state_white);
-            citationStyleBtn_IEEE.setTextColor(R.color.color_state_white);
-            citationStyleBtn_LATEX.setTextColor(R.color.color_state_black);
+        uncheckStyleBtnGroupBG();
+        switch(checkedId) {
+            case R.id.button_apa:
+                citationStyleBtn_APA.setBackgroundResource(R.drawable.citation_style_button_selected);
+                citationStyleBtn_APA.setTextColor(R.color.color_state_black);
+                break;
+            case R.id.button_mla:
+                citationStyleBtn_MLA.setBackgroundResource(R.drawable.citation_style_button_selected);
+                citationStyleBtn_MLA.setTextColor(R.color.color_state_black);
+                break;
+            case R.id.button_ieee:
+                citationStyleBtn_IEEE.setBackgroundResource(R.drawable.citation_style_button_selected);
+                citationStyleBtn_IEEE.setTextColor(R.color.color_state_black);
+                break;
+            case R.id.button_latex:
+                citationStyleBtn_LATEX.setBackgroundResource(R.drawable.citation_style_button_selected);
+                citationStyleBtn_LATEX.setTextColor(R.color.color_state_black);
+                break;
         }
     }
 
@@ -159,9 +141,11 @@ public class CitationActivity extends AppCompatActivity {
         citationStyleBtn_APA.setBackgroundResource(R.drawable.citation_style_button_unselected);
         citationStyleBtn_MLA.setBackgroundResource(R.drawable.citation_style_button_unselected);
         citationStyleBtn_IEEE.setBackgroundResource(R.drawable.citation_style_button_unselected);
+        citationStyleBtn_LATEX.setBackgroundResource(R.drawable.citation_style_button_unselected);
         citationStyleBtn_APA.setTextColor(R.color.color_state_white);
         citationStyleBtn_MLA.setTextColor(R.color.color_state_white);
         citationStyleBtn_IEEE.setTextColor(R.color.color_state_white);
+        citationStyleBtn_LATEX.setTextColor(R.color.color_state_white);
     }
 
     public void addListenerOnClipBoardBtn(){
