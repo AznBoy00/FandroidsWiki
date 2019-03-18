@@ -1,8 +1,10 @@
 package org.wikipedia.googleVision;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
@@ -43,7 +45,14 @@ public class SearchResultsFromGoogleVisionActivity extends AppCompatActivity {
 
 
         //TODO put your keywords from intent
-        String[] keywords = {"honda", "toyota"};
+        Intent intent = getIntent();
+        String [] keywords = intent.getStringArrayExtra("extra_data");
+        for(String index : keywords){
+
+            Log.e("55555555555555",index);
+
+        }
+        //String[] keywords = {"honda", "toyota"};
 
         // Get the list of urls
         List<String> listviewUrlElements = displayGoogleVisionResults(keywords);

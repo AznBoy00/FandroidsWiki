@@ -110,9 +110,6 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         button_smart_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                openNotificationActivity();
-//                NotificationRandomArticle newRandomArticle = new NotificationRandomArticle();
-//                newRandomArticle.createNotificationForRandomArticle(getApplicationContext());
                 Intent intent = new Intent(getApplicationContext(), MLActivity.class);
                 //Intent intent = new Intent(getApplicationContext(), searchResultsFromGoogleVisionActivity.class);
                 startActivity(intent);

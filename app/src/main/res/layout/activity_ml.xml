@@ -25,13 +25,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"></com.wonderkiln.camerakit.CameraView>
 
-    <ProgressBar
+    <!--TODO Implement it -->
+   <!-- <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/camera"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:indeterminate="true" />
+        android:indeterminate="true" />-->
 
     <LinearLayout
         android:layout_width="match_parent"

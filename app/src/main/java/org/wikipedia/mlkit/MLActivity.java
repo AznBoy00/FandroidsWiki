@@ -10,6 +10,7 @@ import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.wonderkiln.camerakit.CameraKitError;
 import com.wonderkiln.camerakit.CameraKitEvent;
@@ -19,9 +20,11 @@ import com.wonderkiln.camerakit.CameraKitVideo;
 import com.wonderkiln.camerakit.CameraView;
 
 import org.wikipedia.R;
+import org.wikipedia.googleVision.SearchResultsFromGoogleVisionActivity;
 import org.wikipedia.main.MainActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MLActivity extends AppCompatActivity {
     //For log debugging
@@ -69,23 +72,24 @@ public class MLActivity extends AppCompatActivity {
 
             @Override
             public void onImage(CameraKitImage cameraKitImage) {
-                Log.e(TAG,"111");
                 Bitmap bitmap = cameraKitImage.getBitmap();
                 bitmap = Bitmap.createScaledBitmap(bitmap,cameraView.getWidth(),cameraView.getHeight(),false);
                 cameraView.stop();
+                //TODO add progress dialog
                 MLKitService.imageFromBitmap(bitmap);
                 labelingObject = MLKitService.getDetectObject();
-                Log.e(TAG,"222");
-                for (String index : labelingObject){
-                    Log.e(TAG,"3333");
-                    Log.e(TAG, index);
-                }
+                String [] nextIntentArray = covertArrayListToArray(labelingObject);
 
-                // TODO add to searchResultsFromGoogleVisionActivity
-                if(labelingObject.size()>0)
+                // check if it detects or not
+                if(isDetected(nextIntentArray)==true)
                 {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SearchResultsFromGoogleVisionActivity.class);
+                intent.putExtra("extra_data",nextIntentArray);
                 startActivity(intent);
+                finish();
+                }
+                else{
+                    Toast.makeText(MLActivity.this,"Please try again",Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -96,6 +100,7 @@ public class MLActivity extends AppCompatActivity {
             }
         });
 
+        //Button to start camera
         btnDetect = findViewById(R.id.btn_detect);
         btnDetect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,11 +108,12 @@ public class MLActivity extends AppCompatActivity {
                 cameraView.start();
                 //get picture
                 cameraView.captureImage();
-                Log.e(TAG,"abc");
+                //get video
             }
         });
     }
 
+    // For screen rotation
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -116,6 +122,19 @@ public class MLActivity extends AppCompatActivity {
         ORIENTATIONS.append(Surface.ROTATION_270, 180);
     }
 
+    //Help function Detection is good or not
+    private boolean isDetected (String [] detectlist){
+        if(detectlist.length >0){
+            return true;
+        }
+        return false;
+    }
 
+    //Convert Object arraylist to string array
+    private String[] covertArrayListToArray(ArrayList<String> arrayList){
+        Object[] objArray = arrayList.toArray();
+        String [] array = Arrays.copyOf(objArray,objArray.length,String[].class);
+        return array;
+    }
 
 }

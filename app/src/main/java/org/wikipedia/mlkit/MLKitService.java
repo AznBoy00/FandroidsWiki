@@ -31,7 +31,7 @@ public class MLKitService {
 
     private static ArrayList<String> detectObject = new ArrayList<>();
 
-    // offline detection
+    // Offline detection
     public static void imageFromBitmap(Bitmap bitmap) {
         final FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
         FirebaseVisionOnDeviceImageLabelerOptions options =
@@ -55,7 +55,7 @@ public class MLKitService {
         });
     }
 
-    // Return list
+    // Return ArrayList
     private static ArrayList<String> processDataResult(List<FirebaseVisionImageLabel> firebaseVisionImageLabels) {
         ArrayList<String> tempList = new ArrayList<>();
 
