@@ -1,5 +1,7 @@
 package org.wikipedia.mlkit;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import com.wonderkiln.camerakit.CameraKitVideo;
 import com.wonderkiln.camerakit.CameraView;
 
 import org.wikipedia.R;
+import org.wikipedia.main.MainActivity;
 
 import java.util.ArrayList;
 
@@ -43,8 +46,8 @@ public class MLActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        super.onStop();
         cameraView.stop();
+        super.onStop();
     }
 
     @Override
@@ -52,9 +55,7 @@ public class MLActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ml);
         cameraView = (CameraView)findViewById(R.id.camera);
-        cameraView.start();
         btnDetect = findViewById(R.id.btn_detect);
-        //cameraView.start();
         cameraView.addCameraKitListener(new CameraKitEventListener() {
             @Override
             public void onEvent(CameraKitEvent cameraKitEvent) {
@@ -68,13 +69,25 @@ public class MLActivity extends AppCompatActivity {
 
             @Override
             public void onImage(CameraKitImage cameraKitImage) {
-                Log.d(TAG,"abc");
+                Log.e(TAG,"111");
                 Bitmap bitmap = cameraKitImage.getBitmap();
                 bitmap = Bitmap.createScaledBitmap(bitmap,cameraView.getWidth(),cameraView.getHeight(),false);
                 cameraView.stop();
                 MLKitService.imageFromBitmap(bitmap);
                 labelingObject = MLKitService.getDetectObject();
-                Log.d(TAG,"abc");
+                Log.e(TAG,"222");
+                for (String index : labelingObject){
+                    Log.e(TAG,"3333");
+                    Log.e(TAG, index);
+                }
+
+                // TODO add to searchResultsFromGoogleVisionActivity
+                if(labelingObject.size()>0)
+                {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                }
+
             }
 
             @Override
@@ -87,9 +100,10 @@ public class MLActivity extends AppCompatActivity {
         btnDetect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                cameraView.start();
                 //get picture
                 cameraView.captureImage();
-                Log.d(TAG,"abc");
+                Log.e(TAG,"abc");
             }
         });
     }

@@ -216,7 +216,6 @@
         android:id="@+id/noti_test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test"
         android:visibility="visible"
-        tools:text="Test" />
+        android:text="SMART CAMERA" />
 </LinearLayout>
