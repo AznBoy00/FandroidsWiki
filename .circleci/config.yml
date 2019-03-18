@@ -67,9 +67,9 @@ jobs:
 #          name: Run Lint Tests
 #          command: ./gradlew lint
 
-      - run:
-        name: jacocoTestReport
-        command: ./gradlew jacocoTestReport
+#      - run:
+#        name: jacocoTestReport
+#        command: ./gradlew jacocoTestReport
 
       - codecov/upload:
         file: {{ coverage_report_filepath }}
