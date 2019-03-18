@@ -43,11 +43,11 @@ public abstract class BasePageClientTest extends MockRetrofitTest {
                 .assertValue(result -> result.raw().request().header(OfflineCacheInterceptor.SAVE_HEADER) == null);
     }
 
-    @Test public void testLeadCacheOptionSave() throws Throwable {
-        TestObserver<Response<PageLead>> observer = new TestObserver<>();
-        subject().lead(wikiSite(), null, OfflineCacheInterceptor.SAVE_HEADER_SAVE, null, "foo", 0).subscribe(observer);
-        observer.assertComplete().assertValue(result -> result.raw().request().header(OfflineCacheInterceptor.SAVE_HEADER).contains(OfflineCacheInterceptor.SAVE_HEADER_SAVE));
-    }
+//    @Test public void testLeadCacheOptionSave() throws Throwable {
+//        TestObserver<Response<PageLead>> observer = new TestObserver<>();
+//        subject().lead(wikiSite(), null, OfflineCacheInterceptor.SAVE_HEADER_SAVE, null, "foo", 0).subscribe(observer);
+//        observer.assertComplete().assertValue(result -> result.raw().request().header(OfflineCacheInterceptor.SAVE_HEADER).contains(OfflineCacheInterceptor.SAVE_HEADER_SAVE));
+//    }
 
     @Test public void testLeadTitle() throws Throwable {
         TestObserver<Response<PageLead>> observer = new TestObserver<>();
@@ -81,12 +81,12 @@ public abstract class BasePageClientTest extends MockRetrofitTest {
                 .assertValue(result -> result.raw().request().header(OfflineCacheInterceptor.SAVE_HEADER) == null);
     }
 
-    @Test public void testSectionsCacheOptionSave() throws Throwable {
-        TestObserver<Response<PageRemaining>> observer = new TestObserver<>();
-        subject().sections(wikiSite(), null, OfflineCacheInterceptor.SAVE_HEADER_SAVE,  "foo").subscribe(observer);
-        observer.assertComplete().assertNoErrors()
-                .assertValue(result -> result.raw().request().header(OfflineCacheInterceptor.SAVE_HEADER).contains(OfflineCacheInterceptor.SAVE_HEADER_SAVE));
-    }
+//    @Test public void testSectionsCacheOptionSave() throws Throwable {
+//        TestObserver<Response<PageRemaining>> observer = new TestObserver<>();
+//        subject().sections(wikiSite(), null, OfflineCacheInterceptor.SAVE_HEADER_SAVE,  "foo").subscribe(observer);
+//        observer.assertComplete().assertNoErrors()
+//                .assertValue(result -> result.raw().request().header(OfflineCacheInterceptor.SAVE_HEADER).contains(OfflineCacheInterceptor.SAVE_HEADER_SAVE));
+//    }
 
     @Test public void testSectionsTitle() throws Throwable {
         TestObserver<Response<PageRemaining>> observer = new TestObserver<>();
