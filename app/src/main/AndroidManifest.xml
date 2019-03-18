@@ -393,7 +393,7 @@
         </activity>
 
         <activity
-            android:name=".googleVision.searchResultsFromGoogleVisionActivity"
+            android:name=".googleVision.SearchResultsFromGoogleVisionActivity"
             android:label="@string/title_activity_search_results_from_google_vision"
             android:theme="@style/AppTheme" />
     </application>

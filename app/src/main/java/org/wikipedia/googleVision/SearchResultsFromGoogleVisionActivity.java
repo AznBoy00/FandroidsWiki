@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class searchResultsFromGoogleVisionActivity extends AppCompatActivity {
+public class SearchResultsFromGoogleVisionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +42,11 @@ public class searchResultsFromGoogleVisionActivity extends AppCompatActivity {
         });
 
 
+        //TODO put your keywords from intent
+        String[] keywords = {"honda", "toyota"};
+
         // Get the list of urls
-        List<String> listviewUrlElements = displayGoogleVisionResults();
+        List<String> listviewUrlElements = displayGoogleVisionResults(keywords);
         // Get the list of article titles
         List<String> listviewNameElements = convertToTitle(listviewUrlElements);
 
@@ -65,9 +68,9 @@ public class searchResultsFromGoogleVisionActivity extends AppCompatActivity {
     }
 
     // Search keywords to find related articles
-    private List<String> displayGoogleVisionResults() {
+    public List<String> displayGoogleVisionResults(String[] keywords) {
         // Builds the articleTitle to an URL
-        String[] keywords = {"honda", "toyota"};
+//        String[] keywords = {"honda", "toyota"};
         List<String> FinalListOfURL = new ArrayList<String>();
         List<String> listOfURL = new ArrayList<String>();
         for(int index=0; index < keywords.length; index++) {
@@ -88,7 +91,7 @@ public class searchResultsFromGoogleVisionActivity extends AppCompatActivity {
 //        for(int count=0; count < FinalListOfURL.size(); count++) {
 //            System.out.println("TEST!:"+count + "." + FinalListOfURL.get(count) + "\n");
 //        }
-
+        System.out.println("TEST:"+ FinalListOfURL);
         return FinalListOfURL;
     }
 
