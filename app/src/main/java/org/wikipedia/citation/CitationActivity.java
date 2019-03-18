@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.wikipedia.R;
+import org.wikipedia.WikipediaApp;
 
 public class CitationActivity extends AppCompatActivity {
 
@@ -50,10 +51,17 @@ public class CitationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_citation);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.page_toolbar);
+        Toolbar toolbar = findViewById(R.id.page_toolbar);
         setSupportActionBar(toolbar);
 
-        citationStyleGroup = (RadioGroup) findViewById(R.id.citation_radiogroup_btn);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        citationStyleGroup = findViewById(R.id.citation_radiogroup_btn);
         citationStyleBtn_APA = citationStyleGroup.findViewById(R.id.button_apa);
         citationStyleBtn_MLA = citationStyleGroup.findViewById(R.id.button_mla);
         citationStyleBtn_IEEE = citationStyleGroup.findViewById(R.id.button_ieee);
