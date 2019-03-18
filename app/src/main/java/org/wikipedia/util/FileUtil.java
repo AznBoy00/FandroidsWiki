@@ -38,7 +38,6 @@ public final class FileUtil {
     /**
      * Reads the contents of a file, preserving line breaks.
      * @return contents of the given file as a String.
-     * @throws IOException
      */
     public static String readFile(final InputStream inputStream) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));

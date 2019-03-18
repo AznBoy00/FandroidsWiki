@@ -109,40 +109,40 @@ android {
             signingConfig signingConfigs.debug
             dimension 'default'
         }
-        prod {
-            versionName computeVersionName('r')
-            signingConfig signingConfigs.prod
-            dimension 'default'
-        }
-        alpha {
-            versionName computeVersionName('alpha')
-            applicationIdSuffix 'alpha'
-            signingConfig signingConfigs.debug
-            dimension 'default'
-        }
-        beta {
-            versionName computeVersionName('beta')
-            applicationIdSuffix 'beta'
-            signingConfig signingConfigs.prod
-            dimension 'default'
-        }
-        amazon {
-            versionName computeVersionName('amazon')
-            signingConfig signingConfigs.prod
-            dimension 'default'
-        }
-        fdroid {
-            versionName computeVersionName('fdroid')
-            signingConfig signingConfigs.prod
-            dimension 'default'
-        }
-        custom {
-            versionName computeVersionName(customChannel)
-            // next line is for injecting a custom channel value into the custom/AndroidManifest.xml
-            manifestPlaceholders = [customChannel: getProperty('customChannel').toString()]
-            signingConfig signingConfigs.prod
-            dimension 'default'
-        }
+//        prod {
+//            versionName computeVersionName('r')
+//            signingConfig signingConfigs.prod
+//            dimension 'default'
+//        }
+//        alpha {
+//            versionName computeVersionName('alpha')
+//            applicationIdSuffix 'alpha'
+//            signingConfig signingConfigs.debug
+//            dimension 'default'
+//        }
+//        beta {
+//            versionName computeVersionName('beta')
+//            applicationIdSuffix 'beta'
+//            signingConfig signingConfigs.prod
+//            dimension 'default'
+//        }
+//        amazon {
+//            versionName computeVersionName('amazon')
+//            signingConfig signingConfigs.prod
+//            dimension 'default'
+//        }
+//        fdroid {
+//            versionName computeVersionName('fdroid')
+//            signingConfig signingConfigs.prod
+//            dimension 'default'
+//        }
+//        custom {
+//            versionName computeVersionName(customChannel)
+//            // next line is for injecting a custom channel value into the custom/AndroidManifest.xml
+//            manifestPlaceholders = [customChannel: getProperty('customChannel').toString()]
+//            signingConfig signingConfigs.prod
+//            dimension 'default'
+//        }
     }
 
     splits {

@@ -5,7 +5,7 @@
 * Sveinn í Felli
 * Vignir
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">Wikipedia</string>
   <string name="app_name_beta">Wikipedia Beta</string>
   <string name="app_name_alpha">Wikipedia Alfa</string>
@@ -394,11 +394,11 @@
   <string name="reading_lists_menu_sort_by">Raða eftir</string>
   <string name="reading_lists_refresh_sync_option">Uppfæra samstillingu</string>
   <string name="reading_list_preference_login_or_signup_to_enable_sync_dialog_login">Skrá inn / Nýskrá</string>
-  <plurals name="reading_list_article_offline_message">
+  <plurals name="reading_list_article_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Þessi grein verður núna tiltæk án nettengingar.</item>
     <item quantity="other">Þessar greinar verða núna tiltækar án nettengingar.</item>
   </plurals>
-  <plurals name="reading_list_article_not_offline_message">
+  <plurals name="reading_list_article_not_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Þessi grein verður ekki lengur tiltæk án nettengingar.</item>
     <item quantity="other">Þessar greinar verða ekki lengur tiltækar án nettengingar.</item>
   </plurals>
@@ -408,12 +408,12 @@
   <string name="notification_syncing_pause_button">Í bið</string>
   <string name="notification_syncing_resume_button">Halda áfram</string>
   <string name="notification_syncing_cancel_button">Hætta við</string>
-  <plurals name="notification_syncing_reading_list_channel_name">
+  <plurals name="notification_syncing_reading_list_channel_name" tools:ignore="ImpliedQuantity">
     <item quantity="one">Samstilli leslista</item>
     <item quantity="other">Samstilli leslista</item>
   </plurals>
   <string name="notification_syncing_reading_list_channel_description">Framvinda samstillingar leslista</string>
-  <plurals name="notification_channel_name">
+  <plurals name="notification_channel_name" tools:ignore="ImpliedQuantity">
     <item quantity="one">Sæki grein</item>
     <item quantity="other">Sæki greinar</item>
   </plurals>
@@ -452,7 +452,7 @@
   <string name="most_read_list_card_title">Í umræðunni</string>
   <string name="view_static_card_icon_content_description">Táknmynd spjalds</string>
   <string name="view_card_news_title">Í fréttum</string>
-  <plurals name="view_continue_reading_card_subtitle">
+  <plurals name="view_continue_reading_card_subtitle" tools:ignore="ImpliedQuantity">
     <item quantity="one">Í gær</item>
     <item quantity="other">Fyrir %d dögum síðan</item>
   </plurals>
@@ -522,7 +522,7 @@
   <string name="offline_read_final_rationale">Til að nota safn án nettengingar er nauðsynlegt að hafa heimild til að skrifa í gagnageymslu tækisins.</string>
     <string name="size_gb">%.2f GB</string>
   <string name="size_mb">%.2f MB</string>
-    <plurals name="offline_compilation_download_time_remaining">
+    <plurals name="offline_compilation_download_time_remaining" tools:ignore="ImpliedQuantity">
     <item quantity="one">1 mínúta eftir</item>
     <item quantity="other">%d mínútur eftir</item>
   </plurals>
@@ -553,7 +553,7 @@
   <string name="events_count_text">%1$s atburðir frá %2$s–%3$d</string>
   <string name="this_year">Á þessu ári</string>
   <string name="back_to_top">Aftur efst</string>
-  <plurals name="diff_years">
+  <plurals name="diff_years" tools:ignore="ImpliedQuantity">
     <item quantity="one">Á síðasta ári</item>
     <item quantity="other">Fyrir %d árum síðan</item>
   </plurals>
@@ -565,7 +565,7 @@
   <string name="wikipedia_languages_add_language_text">Bæta við tungumáli</string>
   <string name="wikipedia_languages_remove_text">Fjarlægja tungumál</string>
   <string name="wikipedia_languages_remove_action_mode_title">Fjarlægja tungumál</string>
-  <plurals name="wikipedia_languages_remove_dialog_title">
+  <plurals name="wikipedia_languages_remove_dialog_title" tools:ignore="ImpliedQuantity">
     <item quantity="one">Fjarlægja valið tungumál?</item>
     <item quantity="other">Fjarlægja valin tungumál?</item>
   </plurals>

@@ -7,7 +7,7 @@
 * Giorgi Balakhadze
 * MIKHEIL
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">ვიკიპედია</string>
   <string name="app_name_beta">ვიკიპედია ბეტა</string>
   <string name="app_name_alpha">ვიკიპედია ალფა</string>
@@ -289,9 +289,9 @@
   <string name="notification_syncing_pause_button">პაუზა</string>
   <string name="notification_syncing_resume_button">გაგრძელება</string>
   <string name="notification_syncing_cancel_button">გაუქმება</string>
-  <string name="notification_channel_name" fuzzy="true">სინქრონიზაცია</string>
-  <string name="notification_syncing_title" fuzzy="true">იტვირთება %1$d სტატია…</string>
-  <string name="notification_syncing_description" fuzzy="true">დარჩა %1$d სტატია</string>
+  <string name="notification_channel_name" fuzzy="true" tools:ignore="ExtraTranslation">სინქრონიზაცია</string>
+  <string name="notification_syncing_title" fuzzy="true" tools:ignore="ExtraTranslation">იტვირთება %1$d სტატია…</string>
+  <string name="notification_syncing_description" fuzzy="true" tools:ignore="ExtraTranslation">დარჩა %1$d სტატია</string>
   <string name="view_continue_reading_card_title">განაგრძე კითხვა</string>
   <string name="view_because_you_read_card_title">რადგან თქვენ კითხულობთ</string>
   <string name="view_random_card_title">შემთხვევითი</string>

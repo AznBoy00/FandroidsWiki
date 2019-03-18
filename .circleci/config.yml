@@ -23,7 +23,7 @@ jobs:
 
     environment:
       # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
+      JVM_OPTS: -Xmx4096m
       TERM: dumb
     
     steps:
@@ -51,7 +51,6 @@ jobs:
           name: Download Dependencies
           command: ./gradlew androidDependencies
 
-
       - run:
           name: Run JUnit Tests
           command: ./gradlew testDevDebug
@@ -60,8 +59,12 @@ jobs:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-    
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
+
+      - run:
+          name: Run Lint Tests
+          command: ./gradlew lint
+
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
 
