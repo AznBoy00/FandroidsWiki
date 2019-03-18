@@ -49,7 +49,7 @@ public class SearchResultsFromGoogleVisionActivity extends AppCompatActivity {
         String [] keywords = intent.getStringArrayExtra("extra_data");
         for(String index : keywords){
 
-            Log.e("55555555555555",index);
+            Log.e("TEST:",index);
 
         }
         //String[] keywords = {"honda", "toyota"};
@@ -80,6 +80,7 @@ public class SearchResultsFromGoogleVisionActivity extends AppCompatActivity {
     public List<String> displayGoogleVisionResults(String[] keywords) {
         // Builds the articleTitle to an URL
 //        String[] keywords = {"honda", "toyota"};
+        System.out.println("TEST:" + keywords.toString());
         List<String> FinalListOfURL = new ArrayList<String>();
         List<String> listOfURL = new ArrayList<String>();
         for(int index=0; index < keywords.length; index++) {
@@ -111,6 +112,8 @@ public class SearchResultsFromGoogleVisionActivity extends AppCompatActivity {
         for(int index=0; index < listOfUrls.size(); index++) {
             cleanTitle = (listOfUrls.get(index)).replace("https://en.wikipedia.org/wiki/", "");
             cleanTitle = cleanTitle.replace("_", " ");
+            cleanTitle = cleanTitle.replace("%27", "'");
+            cleanTitle = cleanTitle.replace("%22", "\"");
             titlesList.add(cleanTitle);
         }
         return titlesList;
