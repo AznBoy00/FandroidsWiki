@@ -1,7 +1,5 @@
 package org.wikipedia.main;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -25,10 +23,10 @@ import org.wikipedia.activity.SingleFragmentActivity;
 import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.feed.FeedFragment;
-import org.wikipedia.googleVision.searchResultsFromGoogleVisionActivity;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
+import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
 import org.wikipedia.readinglist.ReadingListSyncBehaviorDialogs;
 import org.wikipedia.readinglist.database.ReadingListDbHelper;
@@ -44,11 +42,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 // 390 Project Imports
-import org.wikipedia.notifications.TimerRandomArticle;
-import org.wikipedia.notifications.NotificationRandomArticle;
-import com.allyants.notifyme.NotifyMe;
-
-import java.util.Calendar;
 
 import static org.wikipedia.Constants.ACTIVITY_REQUEST_INITIAL_ONBOARDING;
 
@@ -60,6 +53,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @BindView(R.id.single_fragment_toolbar) Toolbar toolbar;
     @BindView(R.id.single_fragment_toolbar_wordmark) View wordMark;
 
+    Button button_notify_me;
     private boolean controlNavTabInFragment;
 
     public static Intent newIntent(@NonNull Context context) {
@@ -101,35 +95,19 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         drawerView.setCallback(new DrawerViewCallback());
         shouldShowMainDrawer(true);
 
-        /** 390 Project - Setup Broadcast Receiver / alarmManager for RandomArticleNotification **/
-        TimerRandomArticle newArticleNotification = new TimerRandomArticle(this);
-        newArticleNotification.alarmManager();
-
-        /** 390 Project Addition - Test Button for Random Article
-         * NOW USED FOR TESTING THE GOOGLE VISION SEARCH RESULTS**/
-        Button button_notify_me = findViewById(R.id.noti_test);
+        // 390 Project Addition - Test Button for Random Article
+        button_notify_me = findViewById(R.id.notification_settings);
         button_notify_me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                NotificationRandomArticle newRandomArticle = new NotificationRandomArticle();
-//                newRandomArticle.createNotificationForRandomArticle(getApplicationContext());
-
-                Intent intent = new Intent(getApplicationContext(), searchResultsFromGoogleVisionActivity.class);
-                startActivity(intent);
-
+                openNotificationActivity();
             }
         });
+    }
 
-        Calendar alarm = Calendar.getInstance();
-        alarm.set(Calendar.HOUR_OF_DAY, 23);
-        alarm.set(Calendar.MINUTE, 46);
-        alarm.set(Calendar.SECOND, 0);
-
-        Intent intent = new Intent(getApplicationContext(), NotificationRandomArticle.class);
-        PendingIntent pIntent;
-        pIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        mAlarm.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarm.getTimeInMillis(), pIntent);
+    public void openNotificationActivity() {
+        Intent intent = new Intent(this, NotificationSchedulerActivity.class);
+        startActivity(intent);
     }
 
     @Override

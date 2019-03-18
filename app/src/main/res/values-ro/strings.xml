@@ -10,7 +10,7 @@
 * Minisarm
 * Wintereu
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingQuantity">
   <string name="app_name_prod">Wikipedia</string>
   <string name="app_name_beta">Wikipedia Beta</string>
   <string name="app_name_alpha">Wikipedia Alpha</string>

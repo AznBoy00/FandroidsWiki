@@ -38,6 +38,7 @@ import android.widget.Toast;
 import net.hockeyapp.android.metrics.MetricsManager;
 
 import org.apache.commons.lang3.StringUtils;
+import org.wikipedia.citation.CitationActivity;
 import org.wikipedia.Constants;
 import org.wikipedia.R;
 import org.wikipedia.WikipediaApp;
@@ -55,7 +56,9 @@ import org.wikipedia.language.LangLinksActivity;
 import org.wikipedia.main.MainActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.page.linkpreview.LinkPreviewDialog;
+import org.wikipedia.page.tabs.Tab;
 import org.wikipedia.page.tabs.TabActivity;
+import org.wikipedia.qrcode.QRCodeGenerateActivity;
 import org.wikipedia.readinglist.AddToReadingListDialog;
 import org.wikipedia.readinglist.database.ReadingListPage;
 import org.wikipedia.search.SearchFragment;
@@ -371,6 +374,10 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         } else {
             loadMainPageInCurrentTab();
         }
+    }
+
+    private void changeToAnotherActivity(Intent intent){
+        startActivity(intent);
     }
 
     /**
@@ -716,6 +723,26 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         public void recentlyViewedClick() {
             goToMainTab(NavTab.HISTORY.code());
         }
+      
+        @Override
+        public void citeThisPageClick() {
+            Tab currentTab = app.getTabList().get(app.getTabList().size() - 1); //get latest tab
+            PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
+            Intent intent = new Intent(getApplicationContext(), CitationActivity.class);
+            intent.putExtra("item_MobileURI", lastTab.getTitle().getMobileUri());
+            intent.putExtra("item_Title", lastTab.getTitle().getDisplayText());
+            startActivity(intent);
+            //changeToAnotherActivity(intent);
+        }
+
+
+        @Override
+        public void generateQRcodeClick() {
+            Intent intent = new Intent(getApplicationContext(), QRCodeGenerateActivity.class);
+            startActivity(intent);
+        }
+
+
     }
 
     @Override

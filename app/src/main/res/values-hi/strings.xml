@@ -23,7 +23,7 @@
 * चक्रपाणी
 * संजीव कुमार
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">विकिपीडिया</string>
   <string name="app_name_beta">विकिपीडिया बीटा</string>
   <string name="app_name_alpha">विकिपीडिया ऐल्फ़ा</string>
@@ -380,11 +380,11 @@
   <string name="reading_list_logout_option_reminder_dialog_text">कई लेख पढ़ने की सूचियों में सहेजे हुए हैं। क्या आप लाॅगआउट होने पर इन्हें रखना चाहते हैं?</string>
   <string name="reading_list_logout_option_reminder_dialog_yes">हाँ, सूचियों में आलेख रखें</string>
   <string name="reading_list_logout_option_reminder_dialog_no">नहीं, सूचियों से लेख हटाएं</string>
-  <plurals name="reading_list_article_offline_message">
+  <plurals name="reading_list_article_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">यह लेख अब ऑफलाइन उपलब्ध होगा।</item>
     <item quantity="other">These articles will now be available offline.</item>
   </plurals>
-  <plurals name="reading_list_article_not_offline_message">
+  <plurals name="reading_list_article_not_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">यह लेख अब आगे ऑफलाइन उपलब्ध नहीं होगा।</item>
     <item quantity="other">These articles will no longer be available offline.</item>
   </plurals>
@@ -394,9 +394,9 @@
   <string name="notification_syncing_pause_button" fuzzy="true">पॉज़ करें</string>
   <string name="notification_syncing_resume_button" fuzzy="true">रिज्यूम करें</string>
   <string name="notification_syncing_cancel_button" fuzzy="true">रद्द करें</string>
-  <string name="notification_channel_name" fuzzy="true">सिंक हो रहा है</string>
-  <string name="notification_syncing_title" fuzzy="true">%1$d लेख सिंक किये जा रहे हैं...</string>
-  <string name="notification_syncing_description" fuzzy="true">%1$d लेख बचे</string>
+  <string name="notification_channel_name" fuzzy="true" tools:ignore="ExtraTranslation">सिंक हो रहा है</string>
+  <string name="notification_syncing_title" fuzzy="true" tools:ignore="ExtraTranslation">%1$d लेख सिंक किये जा रहे हैं...</string>
+  <string name="notification_syncing_description" fuzzy="true" tools:ignore="ExtraTranslation">%1$d लेख बचे</string>
   <string name="view_continue_reading_card_title">पढ़ना जारी रखें</string>
   <string name="view_because_you_read_card_title">क्योंकि आप पढ़ते हैं</string>
   <string name="view_random_card_title">रैंडमाइज़र</string>
@@ -416,7 +416,7 @@
   <string name="most_read_list_card_title">रुझानों में</string>
   <string name="view_static_card_icon_content_description">कार्ड आइकॉन</string>
   <string name="view_card_news_title">समाचारों में</string>
-  <plurals name="view_continue_reading_card_subtitle" fuzzy="true">
+  <plurals name="view_continue_reading_card_subtitle" fuzzy="true" tools:ignore="ImpliedQuantity">
     <item quantity="one">कल</item>
     <item quantity="other">%d दिन पहले</item>
   </plurals>
@@ -468,7 +468,7 @@
   <string name="description_edit_revert_reason2">आपका संपादन एक परिक्षण या बर्बरता जैसा लगा।</string>
   <string name="description_edit_revert_history">अगर आप इच्छुक हैं,&lt;a href=\"%1$s\"&gt;सम्पादनों का इतिहास&lt;/a&gt; देखें।</string>
     <string name="offline_read_permission_rationale">ऑफ़लाइन विचरण के लिए आपके यंत्र पर संग्रहण का उपयोग करने की अनुमति आवश्यक है।</string>
-    <plurals name="offline_compilation_download_time_remaining">
+    <plurals name="offline_compilation_download_time_remaining" tools:ignore="ImpliedQuantity">
     <item quantity="one">1 मिनट बाकी</item>
     <item quantity="other">%d मिनट बाकी</item>
   </plurals>
@@ -491,7 +491,7 @@
   <string name="more_events_text" fuzzy="true">इस दिन पर अन्य ऐतिहासिक घटनाएं</string>
   <string name="events_count_text" fuzzy="true">%1$s घटनाक्रम %2$s से  - %3$d तक</string>
   <string name="this_year">इस साल</string>
-  <plurals name="diff_years">
+  <plurals name="diff_years" tools:ignore="ImpliedQuantity">
     <item quantity="one">पिछले साल</item>
     <item quantity="other">%d साल पहले</item>
   </plurals>
