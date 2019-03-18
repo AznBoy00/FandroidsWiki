@@ -220,4 +220,14 @@
         android:layout_height="wrap_content"
         android:visibility="visible"
         android:text="SMART CAMERA" />
+
+
+    <Button
+        android:id="@+id/wiki_plusplus"
+        style="@style/App.Button.White"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/accent90"
+        android:text="Login to Wiki++"
+        android:textColor="@color/base20" />
 </LinearLayout>

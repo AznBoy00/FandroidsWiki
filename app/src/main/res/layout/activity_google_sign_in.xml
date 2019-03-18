@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/hockeyapp_background_header"
+    android:orientation="vertical"
+    android:weightSum="4">
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="18dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:background="@drawable/gradientbackground"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imageView3"-->
+            <!--android:layout_width="300dp"-->
+            <!--android:layout_height="250dp"-->
+            <!--android:layout_marginTop="90dp"-->
+            <!--android:contentDescription="@string/tango_logo"-->
+            <!--app:srcCompat="@drawable/logotango" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="AskThe world!"-->
+            <!--android:textColor="#e2383e"-->
+            <!--android:textSize="30dp"-->
+            <!--android:fontFamily="cursive"-->
+            <!--/>-->
+
+
+
+    <!--</LinearLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/SignIn"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_weight="1"
+        android:background="#cacaca">
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="visible"
+            tools:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/sign_out_and_disconnect"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/sign_in_button"
+            android:layout_toRightOf="@+id/sign_in_button"
+            android:orientation="horizontal"
+            android:paddingLeft="100dp"
+            android:paddingRight="16dp"
+            android:visibility="gone"
+            tools:visibility="visible" android:paddingStart="100dp" android:paddingEnd="16dp">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/sign_out_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/sign_out_and_disconnect"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp"
+            android:text="sign out"
+            android:theme="@style/App.Button.Blue"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+
+    </RelativeLayout>
+
+</LinearLayout>
