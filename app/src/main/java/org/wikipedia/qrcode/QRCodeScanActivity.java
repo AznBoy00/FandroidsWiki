@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -34,12 +35,15 @@ public class QRCodeScanActivity extends AppCompatActivity {
     private CameraSource cameraSource;
     Button btn_qr_reader_scan;
     String intentData = "";
+    String detectedStr;
+    private final String logE = "Scanner";
+    private final String s = "wikipedia.org";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code_cam_scan);
-
+        detectedStr="";
         initViews();
     }
 
@@ -115,10 +119,18 @@ public class QRCodeScanActivity extends AppCompatActivity {
 
                         @Override
                         public void run() {
-
+                            detectedStr = barcodes.valueAt(0).displayValue;
+                            //Log.e(logE,"Detected string: " + detectedStr);
+                            if(isWikiLink(detectedStr)) {
                                 btn_qr_reader_scan.setText("Go to Wikipedia page!");
                                 intentData = barcodes.valueAt(0).displayValue;
                                 textToShow.setText(intentData);
+                            }else
+                            {
+                                btn_qr_reader_scan.setText("This is not a Wikipedia QR Code!");
+                                intentData = "";
+                                textToShow.setText(intentData);
+                            }
 
                         }
                     });
@@ -140,4 +152,12 @@ public class QRCodeScanActivity extends AppCompatActivity {
         super.onResume();
         initialiseDetectorsAndSources();
     }
+
+    public boolean isWikiLink(String str){
+
+        boolean isWiki = (str.indexOf(s) == -1)?false:true;
+        return isWiki;
+    }
+
+
 }
