@@ -58,6 +58,7 @@ public class MLActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ml);
         cameraView = (CameraView)findViewById(R.id.camera);
+        cameraView.start();
         btnDetect = findViewById(R.id.btn_detect);
         cameraView.addCameraKitListener(new CameraKitEventListener() {
             @Override
@@ -123,7 +124,7 @@ public class MLActivity extends AppCompatActivity {
     }
 
     //Help function Detection is good or not
-    private boolean isDetected (String [] detectlist){
+    public boolean isDetected (String [] detectlist){
         if(detectlist.length >0){
             return true;
         }
@@ -131,7 +132,7 @@ public class MLActivity extends AppCompatActivity {
     }
 
     //Convert Object arraylist to string array
-    private String[] covertArrayListToArray(ArrayList<String> arrayList){
+    public String[] covertArrayListToArray(ArrayList<String> arrayList){
         Object[] objArray = arrayList.toArray();
         String [] array = Arrays.copyOf(objArray,objArray.length,String[].class);
         return array;
