@@ -31,12 +31,12 @@ public class MLKitService {
 
     private static ArrayList<String> detectObject = new ArrayList<>();
 
-    // detection
+    // offline detection
     public static void imageFromBitmap(Bitmap bitmap) {
         final FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
         FirebaseVisionOnDeviceImageLabelerOptions options =
                 new FirebaseVisionOnDeviceImageLabelerOptions.Builder()
-                        .setConfidenceThreshold(0.8f)
+                        .setConfidenceThreshold(0.5f)
                         .build();
         FirebaseVisionImageLabeler labeler = FirebaseVision.getInstance()
                 .getOnDeviceImageLabeler(options);

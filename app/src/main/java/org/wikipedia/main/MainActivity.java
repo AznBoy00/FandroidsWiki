@@ -56,7 +56,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @BindView(R.id.single_fragment_toolbar) Toolbar toolbar;
     @BindView(R.id.single_fragment_toolbar_wordmark) View wordMark;
 
-    Button button_notify_me;
+    Button button_smart_camera;
     private boolean controlNavTabInFragment;
 
     public static Intent newIntent(@NonNull Context context) {
@@ -99,8 +99,8 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         shouldShowMainDrawer(true);
 
         // 390 Project Addition - Test Button for Random Article
-        button_notify_me = findViewById(R.id.notification_settings);
-        button_notify_me.setOnClickListener(new View.OnClickListener() {
+        button_smart_camera = findViewById(R.id.smart_camera);
+        button_smart_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                openNotificationActivity();

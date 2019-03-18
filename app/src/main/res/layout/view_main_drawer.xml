@@ -215,7 +215,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/noti_test"
+        android:id="@+id/smart_camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible"
