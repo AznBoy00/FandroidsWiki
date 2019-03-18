@@ -24,6 +24,7 @@ import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.feed.FeedFragment;
 import org.wikipedia.history.HistoryFragment;
+import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
@@ -108,6 +109,25 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     public void openNotificationActivity() {
         Intent intent = new Intent(this, NotificationSchedulerActivity.class);
         startActivity(intent);
+//                NotificationRandomArticle newRandomArticle = new NotificationRandomArticle();
+//                newRandomArticle.createNotificationForRandomArticle(getApplicationContext());
+                Intent intent = new Intent(getApplicationContext(), MLActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), searchResultsFromGoogleVisionActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        Calendar alarm = Calendar.getInstance();
+        alarm.set(Calendar.HOUR_OF_DAY, 23);
+        alarm.set(Calendar.MINUTE, 46);
+        alarm.set(Calendar.SECOND, 0);
+
+        Intent intent = new Intent(getApplicationContext(), NotificationRandomArticle.class);
+        PendingIntent pIntent;
+        pIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        mAlarm.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarm.getTimeInMillis(), pIntent);
     }
 
     @Override

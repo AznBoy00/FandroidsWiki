@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lineartop"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true">
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Welcome to use wiki machine learning kit"
+           android:layout_weight="0.25"
+           android:textAlignment="center"/>
+    </LinearLayout>
+
+    <com.wonderkiln.camerakit.CameraView
+        android:id ="@+id/camera"
+        android:layout_above="@id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.wonderkiln.camerakit.CameraView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text="Text"
+            android:onClick="recognizeText"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text="Faces"
+            android:onClick="detectFaces"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text="Labels"
+            android:onClick="generateLabels"/>
+        <Button
+            android:id="@+id/btn_detect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text="DETECT" />
+    </LinearLayout>
+</RelativeLayout>

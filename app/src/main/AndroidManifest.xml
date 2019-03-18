@@ -4,7 +4,6 @@
     package="org.wikipedia"
     android:installLocation="auto"
     tools:node="strict">
-
     <!--
     If the build is intended to be Google Play-updateable, the package name
     should be the same as for Google Play (name depends on Beta or Stable).
@@ -12,10 +11,6 @@
     updateable via an alternative appstore update mechanism), the package name
     should be specific to the update mechanism channel.
     -->
-    <!-- 390 permissions -->
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
-    <!-- 390 permissions -->
-
     <uses-permission android:name="android.permission.INTERNET" />
     <!--
      HockeyApp places a maxSdkVersion on the WRITE_EXTERNAL_STORAGE permission,
@@ -34,22 +29,11 @@
         android:maxSdkVersion="22" />
     <uses-permission
         android:name="android.permission.MANAGE_ACCOUNTS"
-        android:maxSdkVersion="22" />
-
-    <!-- For notifications, e.g. User account notices, etc. -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <!-- For being able to receive notifications upon boot -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-    <!-- To be notified when device boot up has completed.-->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-  <!-- For Nearby feature -->
-    <!-- For notifications, e.g. User account notices, etc. -->
+        android:maxSdkVersion="22" /> <!-- For notifications, e.g. User account notices, etc. -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-feature
         android:name="android.hardware.location"
         android:required="false"
@@ -83,9 +67,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-
-        <activity android:name=".qrcode.QRCodeGenerateActivity"></activity>
-
+        <activity
+            android:name=".mlkit.MLActivity"
+            android:label="@string/title_activity_ml"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <!-- Multi-window support on Samsung devices -->
         <uses-library
             android:name="com.sec.android.app.multiwindow"
@@ -94,6 +79,13 @@
         <meta-data
             android:name="com.sec.android.support.multiwindow"
             android:value="true" />
+        <!--
+        The following is used for google firebase ml kit
+        -->
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="label" />
+
         <!--
         The following is used for determining the distribution channel.
         Set "value" to "Google Play" for Google Play Store.
@@ -186,10 +178,6 @@
             android:name=".settings.NotificationSettingsActivity"
             android:label="@string/notification_preferences_title"
             android:theme="@style/AppTheme.ActionBar" />
-        <activity
-                    android:name=".notifications.NotificationSchedulerActivity"
-                    android:label="Schedule Notifications"
-                    android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".settings.AboutActivity"
             android:label="@string/about_activity_title"
@@ -352,12 +340,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name=".notifications.NotificationPollBroadcastReceiver.ACTION_POLL" />
             </intent-filter>
-        </receiver>
-
-        <!-- 390 receivers -->
-        <receiver android:name=".notifications.NotificationReceiver" />
-        <!-- 390 receivers -->
-
+        </receiver> <!-- 390 receivers -->
         <receiver android:name="com.allyants.notifyme.NotificationPublisher" />
         <receiver android:name="com.allyants.notifyme.BootNotifyMe">
             <intent-filter>
@@ -366,11 +349,11 @@
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </receiver>
-        <!--<receiver android:name=".notifications.NotificationRandomArticle">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
+        <receiver android:name=".notifications.NotificationRandomArticle">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
         <service
             android:name=".readinglist.sync.ReadingListSyncService"
@@ -412,7 +395,7 @@
         <activity
             android:name=".googleVision.searchResultsFromGoogleVisionActivity"
             android:label="@string/title_activity_search_results_from_google_vision"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
