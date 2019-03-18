@@ -28,6 +28,8 @@ import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
+import org.wikipedia.qrcode.QRCodeGenerateActivity;
+import org.wikipedia.qrcode.QRCodeScanActivity;
 import org.wikipedia.readinglist.ReadingListSyncBehaviorDialogs;
 import org.wikipedia.readinglist.database.ReadingListDbHelper;
 import org.wikipedia.settings.AboutActivity;
@@ -54,6 +56,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @BindView(R.id.single_fragment_toolbar_wordmark) View wordMark;
 
     Button button_notify_me;
+    Button button_qr_reader;
     private boolean controlNavTabInFragment;
 
     public static Intent newIntent(@NonNull Context context) {
@@ -103,10 +106,22 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 openNotificationActivity();
             }
         });
+        button_qr_reader = findViewById(R.id.button_qr_reader);
+        button_qr_reader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openQrCodeActivity();
+            }
+        });
     }
 
     public void openNotificationActivity() {
         Intent intent = new Intent(this, NotificationSchedulerActivity.class);
+        startActivity(intent);
+    }
+
+    public void openQrCodeActivity() {
+        Intent intent = new Intent(this, QRCodeScanActivity.class);
         startActivity(intent);
     }
 

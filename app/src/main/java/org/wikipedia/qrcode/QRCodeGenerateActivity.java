@@ -53,18 +53,19 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG,"QRCodeGenerateActivity_onCreate");
+        Log.d(TAG, "QRCodeGenerateActivity_onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code_generate);
         self = this;
 
-        imgResult = (ImageView)findViewById(R.id.imgResult);
-        qrtitle = (TextView)findViewById(R.id.qrtitle);
-        qrdesc = (TextView)findViewById(R.id.qrdesc);
-        qrurl = (TextView)findViewById(R.id.qrurl);
-        qrdone = (Button)findViewById(R.id.qrdone);
+        imgResult = (ImageView) findViewById(R.id.imgResult);
+        qrtitle = (TextView) findViewById(R.id.qrtitle);
+        qrdesc = (TextView) findViewById(R.id.qrdesc);
+        qrurl = (TextView) findViewById(R.id.qrurl);
+        qrdone = (Button) findViewById(R.id.qrdone);
 
         WikipediaApp app = WikipediaApp.getInstance();
+        try{
         Tab currentTab = app.getTabList().get(app.getTabList().size() - 1); //get latest tab
         PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
         qrtitle.setText("Article: " + lastTab.getTitle().getText());
@@ -72,7 +73,10 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
         qrurl.setText("URL: " + lastTab.getTitle().getCanonicalUri());
         Log.d(TAG, qrtitle.getText() + " " + qrdesc.getText() + " " + qrurl.getText());
         this.generateImage(lastTab.getTitle().getCanonicalUri());
-
+        }catch (ArrayIndexOutOfBoundsException e){
+        Log.e(TAG, "Array out of bound exception");
+        e.printStackTrace();
+        }
         qrdone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
