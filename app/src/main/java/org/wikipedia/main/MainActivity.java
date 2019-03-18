@@ -25,6 +25,7 @@ import org.wikipedia.activity.SingleFragmentActivity;
 import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.feed.FeedFragment;
+import org.wikipedia.firelogin.wikiSignIn;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
@@ -131,7 +132,8 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     }
 
     public void openPageActivity(){
-        Intent intent = new Intent(this, signInToWiki.class);
+        //Intent intent = new Intent(this, signInToWiki.class);
+        Intent intent = new Intent(this, wikiSignIn.class);
         startActivity(intent);
     }
 
