@@ -27,6 +27,7 @@ import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.feed.FeedFragment;
 import org.wikipedia.googleVision.searchResultsFromGoogleVisionActivity;
 import org.wikipedia.history.HistoryFragment;
+import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
@@ -113,8 +114,8 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             public void onClick(View v) {
 //                NotificationRandomArticle newRandomArticle = new NotificationRandomArticle();
 //                newRandomArticle.createNotificationForRandomArticle(getApplicationContext());
-
-                Intent intent = new Intent(getApplicationContext(), searchResultsFromGoogleVisionActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MLActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), searchResultsFromGoogleVisionActivity.class);
                 startActivity(intent);
 
             }

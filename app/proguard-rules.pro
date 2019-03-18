@@ -9,6 +9,13 @@
 #      L.d("baz");
 #  }
 
+# pass the guard error
+-ignorewarnings
+
+-keep class * {
+    public private *;
+}
+
 -dontnote butterknife.internal.**
 # --- /Butter Knife ---
 

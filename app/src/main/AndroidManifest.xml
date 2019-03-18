@@ -4,7 +4,6 @@
     package="org.wikipedia"
     android:installLocation="auto"
     tools:node="strict">
-
     <!--
     If the build is intended to be Google Play-updateable, the package name
     should be the same as for Google Play (name depends on Beta or Stable).
@@ -12,7 +11,6 @@
     updateable via an alternative appstore update mechanism), the package name
     should be specific to the update mechanism channel.
     -->
-
     <uses-permission android:name="android.permission.INTERNET" />
     <!--
      HockeyApp places a maxSdkVersion on the WRITE_EXTERNAL_STORAGE permission,
@@ -31,15 +29,9 @@
         android:maxSdkVersion="22" />
     <uses-permission
         android:name="android.permission.MANAGE_ACCOUNTS"
-        android:maxSdkVersion="22" />
-
-    <!-- For notifications, e.g. User account notices, etc. -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-
-    <!-- For being able to receive notifications upon boot -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-    <!-- For Nearby feature -->
+        android:maxSdkVersion="22" /> <!-- For notifications, e.g. User account notices, etc. -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- For being able to receive notifications upon boot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-feature
@@ -56,11 +48,8 @@
     <uses-feature
         android:name="android.hardware.wifi"
         android:required="false"
-        tools:node="replace" />
-
-    <!-- For keeping the device awake while performing background tasks, such as syncing offline articles. -->
+        tools:node="replace" /> <!-- For keeping the device awake while performing background tasks, such as syncing offline articles. -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <!--
         Don't let Google Play filter out devices that just have fake touch
         (e.g. mouse and keyboard instead of a real touchscreen).
@@ -78,7 +67,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-
+        <activity
+            android:name=".mlkit.MLActivity"
+            android:label="@string/title_activity_ml"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <!-- Multi-window support on Samsung devices -->
         <uses-library
             android:name="com.sec.android.app.multiwindow"
@@ -87,6 +79,12 @@
         <meta-data
             android:name="com.sec.android.support.multiwindow"
             android:value="true" />
+        <!--
+        The following is used for google firebase ml kit
+        -->
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="label" />
 
         <!--
         The following is used for determining the distribution channel.
@@ -325,7 +323,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_featured_page" />
         </receiver>
-
         <!--
         This is a receiver that receives an intent from the Play Store app upon first launch
         after the app is installed, if the original link that led the user to the Play Store
@@ -343,10 +340,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name=".notifications.NotificationPollBroadcastReceiver.ACTION_POLL" />
             </intent-filter>
-        </receiver>
-
-        <!-- 390 receivers -->
-
+        </receiver> <!-- 390 receivers -->
         <receiver android:name="com.allyants.notifyme.NotificationPublisher" />
         <receiver android:name="com.allyants.notifyme.BootNotifyMe">
             <intent-filter>
@@ -392,7 +386,7 @@
         <activity
             android:name=".googleVision.searchResultsFromGoogleVisionActivity"
             android:label="@string/title_activity_search_results_from_google_vision"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
