@@ -10,8 +10,12 @@ import android.widget.Button;
 import android.widget.TimePicker;
 import android.app.TimePickerDialog;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.wikipedia.R;
 import org.wikipedia.activity.BaseActivity;
+import org.wikipedia.citation.CitationActivity;
+
 import java.util.Calendar;
 
 public class NotificationSchedulerActivity extends BaseActivity {
@@ -22,6 +26,13 @@ public class NotificationSchedulerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_scheduler);
         TextView_Time= findViewById(R.id.TextView_Time);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService( ALARM_SERVICE );
+//        if (alarmManager.getNextAlarmClock() == null) {
+//            TextView_Time.setText("Current Daily Notification Time: OFF");
+//        } else {
+//            TextView_Time.setText("Current Daily Notification Time: " + alarmManager.getNextAlarmClock());
+//        }
     }
 
     // Method that shows the TimePickerDialog when the button is clicked
@@ -46,36 +57,39 @@ public class NotificationSchedulerActivity extends BaseActivity {
     }
 
     protected TimePickerDialog.OnTimeSetListener TimeMap =
-            new TimePickerDialog.OnTimeSetListener() {
+        new TimePickerDialog.OnTimeSetListener() {
 
-                // Sets the time of the notification via the TimePickerDialog and sets the alarmManager to repeat the notifications everyday
-                @Override
-                public void onTimeSet(TimePicker TimeP, int hourOfDay, int minute) {
+            // Sets the time of the notification via the TimePickerDialog and sets the alarmManager to repeat the notifications everyday
+            @Override
+            public void onTimeSet(TimePicker TimeP, int hourOfDay, int minute) {
 
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    calendar.set(Calendar.MINUTE, minute);
-                    calendar.set(Calendar.SECOND, 0);
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                calendar.set(Calendar.MINUTE, minute);
+                calendar.set(Calendar.SECOND, 0);
 
-                    Intent alertIntent = new Intent(getApplicationContext(), NotificationReceiver.class);
-                    AlarmManager alarmManager = (AlarmManager) getSystemService( ALARM_SERVICE );
+                Intent alertIntent = new Intent(getApplicationContext(), NotificationReceiver.class);
+                AlarmManager alarmManager = (AlarmManager) getSystemService( ALARM_SERVICE );
 
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY , PendingIntent.getBroadcast(getApplicationContext(), 0, alertIntent,
-                            PendingIntent.FLAG_UPDATE_CURRENT ));
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY , PendingIntent.getBroadcast(getApplicationContext(), 0, alertIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT ));
 
-                    //Display the specified notification time
-                    if(minute<10) {
-                        TextView_Time.setText(hourOfDay + ":0" + minute);
-                    }else{
-                        TextView_Time.setText(hourOfDay + ":" + minute);
-                    }
+                //Display the specified notification time
+                if(minute<10) {
+                    TextView_Time.setText(hourOfDay + ":0" + minute);
+                } else {
+                    TextView_Time.setText(hourOfDay + ":" + minute);
                 }
-            };
+                Toast.makeText(NotificationSchedulerActivity.this, "Timer Set.", Toast.LENGTH_SHORT).show();
+            }
+        };
 
     public void unSetAlarm(View view){
         Intent alertIntent = new Intent(getApplicationContext(), NotificationReceiver.class);
         PendingIntent sender = PendingIntent.getBroadcast(this, 0, alertIntent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService( ALARM_SERVICE );
         alarmManager.cancel(sender);
+        TextView_Time.setText("Current Daily Notification Time: OFF");
+        Toast.makeText(NotificationSchedulerActivity.this, "Daily Notification: OFF.", Toast.LENGTH_SHORT).show();
     }
 }
