@@ -24,15 +24,16 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
+import org.wikipedia.R;
+
 public class QRCodeScanActivity extends AppCompatActivity {
 
-    SurfaceView surfaceView;
-    TextView txtBarcodeValue;
+    SurfaceView cameraView;
+    TextView textToShow;
     private BarcodeDetector barcodeDetector;
     private CameraSource cameraSource;
-    Button btnAction;
+    Button btn_qr_reader_scan;
     String intentData = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +44,23 @@ public class QRCodeScanActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        txtBarcodeValue = findViewById(R.id.txtBarcodeValue);
-        surfaceView = findViewById(R.id.surfaceView);
-        btnAction = findViewById(R.id.btnAction);
+        textToShow = findViewById(R.id.txtBarcodeValue);
+        cameraView = findViewById(R.id.surfaceView);
+        btn_qr_reader_scan = findViewById(R.id.btn_qr_reader_scan);
 
 
-        btnAction.setOnClickListener(new View.OnClickListener() {
+        btn_qr_reader_scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(intentData)));
-
+                if (btn_qr_reader_scan.getText() == "Go to Wikipedia page!") {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(intentData)));
+                    btn_qr_reader_scan.setText("Scanning...");
+                    textToShow.setText("No Barcode Detected");
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Can't find any QR code...",Toast.LENGTH_SHORT).show();
+                }
             }
     });
 }
@@ -65,12 +72,12 @@ public class QRCodeScanActivity extends AppCompatActivity {
 
         cameraSource = new CameraSource.Builder(this, barcodeDetector) .setRequestedPreviewSize(1920, 1080).setAutoFocusEnabled(true).build();
 
-        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
+        cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 try {
                     if (ActivityCompat.checkSelfPermission(QRCodeScanActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        cameraSource.start(surfaceView.getHolder());
+                        cameraSource.start(cameraView.getHolder());
                     } else {
                         ActivityCompat.requestPermissions(QRCodeScanActivity.this, new
                                 String[]{Manifest.permission.CAMERA}, 201);
@@ -104,15 +111,14 @@ public class QRCodeScanActivity extends AppCompatActivity {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
 
-
-                    txtBarcodeValue.post(new Runnable() {
+                    textToShow.post(new Runnable() {
 
                         @Override
                         public void run() {
 
-                                btnAction.setText("LAUNCH URL");
+                                btn_qr_reader_scan.setText("Go to Wikipedia page!");
                                 intentData = barcodes.valueAt(0).displayValue;
-                                txtBarcodeValue.setText(intentData);
+                                textToShow.setText(intentData);
 
                         }
                     });

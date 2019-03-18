@@ -106,7 +106,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 openNotificationActivity();
             }
         });
-        button_qr_reader = findViewById(R.id.button_qr_code);
+        button_qr_reader = findViewById(R.id.button_qr_reader);
         button_qr_reader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
