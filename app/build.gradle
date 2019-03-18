@@ -303,8 +303,17 @@ dependencies {
     //use camera plugin
     implementation 'com.wonderkiln:camerakit:0.13.1'
     //implementation 'com.github.d-max:spots-dialog:1.1@aar'
+    //Firestore
+    implementation 'com.google.firebase:firebase-database:16.1.0'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.firebase:firebase-storage:16.1.0'
 
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
+    implementation 'com.google.firebase:firebase-firestore:18.1.0'
 }
+
+
 
 private setSigningConfigKey(config, Properties props) {
     if (props) {
@@ -342,3 +351,6 @@ private String appId(ProductFlavor flavor) {
     String id = android.defaultConfig.applicationId + (suffix ? ".$suffix" : '')
     return id
 }
+
+apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
