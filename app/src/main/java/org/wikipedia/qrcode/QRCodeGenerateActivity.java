@@ -35,6 +35,7 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
     //Create all varibles here. such as imageview which can show the QR code
 
     private static final String TAG = "QRCodeGenerateActivity";
+    private String titleText, descText, urlText;
 
     protected QRCodeGenerateActivity self;
     protected Snackbar snackbar;
@@ -53,26 +54,36 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG,"QRCodeGenerateActivity_onCreate");
+        Log.d(TAG, "QRCodeGenerateActivity_onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_code_generate);
         self = this;
 
-        imgResult = (ImageView)findViewById(R.id.imgResult);
-        qrtitle = (TextView)findViewById(R.id.qrtitle);
-        qrdesc = (TextView)findViewById(R.id.qrdesc);
-        qrurl = (TextView)findViewById(R.id.qrurl);
-        qrdone = (Button)findViewById(R.id.qrdone);
+        imgResult = (ImageView) findViewById(R.id.imgResult);
+        qrtitle = (TextView) findViewById(R.id.qrtitle);
+        qrdesc = (TextView) findViewById(R.id.qrdesc);
+        qrurl = (TextView) findViewById(R.id.qrurl);
+        qrdone = (Button) findViewById(R.id.qrdone);
 
         WikipediaApp app = WikipediaApp.getInstance();
-        Tab currentTab = app.getTabList().get(app.getTabList().size() - 1); //get latest tab
-        PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
-        qrtitle.setText("Article: " + lastTab.getTitle().getText());
-        qrdesc.setText("Description: " + lastTab.getTitle().getDescription());
-        qrurl.setText("URL: " + lastTab.getTitle().getCanonicalUri());
-        Log.d(TAG, qrtitle.getText() + " " + qrdesc.getText() + " " + qrurl.getText());
-        this.generateImage(lastTab.getTitle().getCanonicalUri());
 
+        try{
+            Tab currentTab = app.getTabList().get(app.getTabList().size() - 1); //get latest tab
+            PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
+
+            titleText = "Article: " + lastTab.getTitle().getText();
+            descText = "Description: " + lastTab.getTitle().getDescription();
+            urlText = "URL: " + lastTab.getTitle().getCanonicalUri();
+
+            qrtitle.setText(titleText);
+            qrdesc.setText(descText);
+            qrurl.setText(urlText);
+            Log.d(TAG, qrtitle.getText() + " " + qrdesc.getText() + " " + qrurl.getText());
+            this.generateImage(lastTab.getTitle().getCanonicalUri());
+        }catch (ArrayIndexOutOfBoundsException e){
+        Log.e(TAG, "Array out of bound exception");
+        e.printStackTrace();
+        }
         qrdone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

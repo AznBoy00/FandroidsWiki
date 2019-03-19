@@ -230,4 +230,29 @@
         android:background="@color/accent90"
         android:text="Login to Wiki++"
         android:textColor="@color/base20" />
+        android:drawableLeft="@drawable/ic_notifications_black_24dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/notification_main_button"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/base0"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <!--
+    Icon ic_qr_code downloaded from : https://www.flaticon.com/authors/pixelmeetup
+    -->
+    <Button
+        android:id="@+id/button_qr_reader"
+        style="@style/TransparentButton"
+        android:layout_width="374dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_qr_code"
+        android:fontFamily="sans-serif"
+        android:text="@string/qr_scanner_main_button"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/base0"
+        android:textSize="16sp"
+        android:visibility="visible" />
 </LinearLayout>

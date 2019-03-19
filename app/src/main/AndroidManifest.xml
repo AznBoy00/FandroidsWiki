@@ -34,6 +34,13 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!-- Request permission of camera for qr reader-->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+
     <uses-feature
         android:name="android.hardware.location"
         android:required="false"
@@ -71,6 +78,19 @@
             android:name=".mlkit.MLActivity"
             android:label="@string/title_activity_ml"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <!-- Activities for QR Code Generator and Scanner -->
+        <activity android:name=".qrcode.QRCodeGenerateActivity"></activity>
+
+        <activity android:name=".qrcode.QRCodeScanActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
+
         <!-- Multi-window support on Samsung devices -->
         <uses-library
             android:name="com.sec.android.app.multiwindow"
@@ -293,14 +313,16 @@
             android:exported="false"
             android:label="@string/user_option_sync_label"
             android:syncable="true" />
+
+        <!-- QR reader -->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/provider_paths" />
         </provider>
 
         <receiver

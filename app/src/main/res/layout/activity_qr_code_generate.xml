@@ -14,11 +14,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
-        android:text="ARTICLE TITLE"
+        android:text="@string/qr_generator_title"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@null"/>
 
     <TextView
         android:id="@+id/qrdesc"
@@ -28,12 +29,13 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="ARTICLE URL"
+        android:text="@string/qr_generator_description"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/qrurl"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/qrtitle" />
+        app:layout_constraintTop_toBottomOf="@+id/qrtitle"
+        android:contentDescription="@null"/>
 
     <TextView
         android:id="@+id/qrurl"
@@ -42,11 +44,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="ARTICLE URL"
+        android:text="@string/qr_generator_url"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/qrdesc" />
+        app:layout_constraintTop_toBottomOf="@+id/qrdesc"
+        android:contentDescription="@null"/>
 
     <ImageView
         android:id="@+id/imgResult"
@@ -59,7 +62,8 @@
         app:layout_constraintBottom_toTopOf="@+id/qrinstruction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/qrurl" />
+        app:layout_constraintTop_toBottomOf="@+id/qrurl"
+        android:contentDescription="@null"/>
 
 
     <TextView
@@ -69,12 +73,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="50dp"
-        android:text="Scan this QR code to access the same wiki article."
+        android:text="@string/qr_scanner_instruction"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/qrdone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@null"/>
 
 
     <Button
@@ -86,8 +91,9 @@
         android:layout_marginBottom="50dp"
         android:width="500dp"
         android:height="5dp"
-        android:text="Done"
+        android:text="@string/description_edit_success_done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@null"/>
 </android.support.constraint.ConstraintLayout>

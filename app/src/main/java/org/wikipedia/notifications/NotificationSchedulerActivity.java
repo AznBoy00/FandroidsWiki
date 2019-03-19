@@ -20,6 +20,9 @@ import java.util.Calendar;
 
 public class NotificationSchedulerActivity extends BaseActivity {
     TextView TextView_Time;
+    private String notificationOff = "Current Daily Notification Time: OFF";
+    private String timerSet = "Timer Set.";
+    private String setTime1, setTime2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,13 +77,16 @@ public class NotificationSchedulerActivity extends BaseActivity {
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY , PendingIntent.getBroadcast(getApplicationContext(), 0, alertIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT ));
 
+                setTime1 = hourOfDay + ":0" + minute;
+                setTime1 = hourOfDay + ":" + minute;
+
                 //Display the specified notification time
                 if(minute<10) {
-                    TextView_Time.setText(hourOfDay + ":0" + minute);
+                    TextView_Time.setText(setTime1);
                 } else {
-                    TextView_Time.setText(hourOfDay + ":" + minute);
+                    TextView_Time.setText(setTime1);
                 }
-                Toast.makeText(NotificationSchedulerActivity.this, "Timer Set.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NotificationSchedulerActivity.this, timerSet, Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -89,7 +95,7 @@ public class NotificationSchedulerActivity extends BaseActivity {
         PendingIntent sender = PendingIntent.getBroadcast(this, 0, alertIntent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService( ALARM_SERVICE );
         alarmManager.cancel(sender);
-        TextView_Time.setText("Current Daily Notification Time: OFF");
-        Toast.makeText(NotificationSchedulerActivity.this, "Daily Notification: OFF.", Toast.LENGTH_SHORT).show();
+        TextView_Time.setText(notificationOff);
+        Toast.makeText(NotificationSchedulerActivity.this, notificationOff, Toast.LENGTH_SHORT).show();
     }
 }
