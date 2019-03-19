@@ -215,21 +215,39 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/notification_settings"
+        style="@style/TransparentButton"
+        android:layout_width="374dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_notifications_black_24dp"
+        android:fontFamily="sans-serif"
+        android:text="\t\t Notification Settings"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/base0"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <Button
         android:id="@+id/smart_camera"
+        style="@style/TransparentButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        android:text="SMART CAMERA" />
+        android:text="\t\t\t\t\t\tSMART CAMERA"
+        android:textAlignment="viewStart"
+        android:textColor="@color/base0"
+        android:visibility="visible" />
 
 
     <Button
         android:id="@+id/wiki_plusplus"
-        style="@style/App.Button.White"
+        style="@style/TransparentButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/accent90"
-        android:text="Login to Wiki++"
-        android:textColor="@color/base20" />
+        android:background="@android:color/transparent"
+        android:text="\t\t\t\t\t\tLogin to Wiki++"
+        android:textAlignment="viewStart"
+        android:textColor="@color/base0" />
         android:drawableLeft="@drawable/ic_notifications_black_24dp"
         android:fontFamily="sans-serif"
         android:text="@string/notification_main_button"
@@ -255,4 +273,5 @@
         android:textColor="@color/base0"
         android:textSize="16sp"
         android:visibility="visible" />
+
 </LinearLayout>
