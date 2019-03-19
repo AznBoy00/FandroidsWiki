@@ -37,9 +37,9 @@ public class CitationActivity extends AppCompatActivity {
 
     private Button copyClip;
 
-    private String URLText;
-    private String TitleText;
-    private TextView citation_box;
+    private String urlText;
+    private String titleText;
+    private TextView citationBox;
     private CitationGenerator generator;
     private String citation;
     private CitationStyle citationStyle;
@@ -71,13 +71,13 @@ public class CitationActivity extends AppCompatActivity {
 
         // Get Page Information
         Intent intent = getIntent();
-        this.URLText = intent.getStringExtra("item_MobileURI");
-        this.TitleText = intent.getStringExtra("item_Title");
+        this.urlText = intent.getStringExtra("item_MobileURI");
+        this.titleText = intent.getStringExtra("item_Title");
 
-        this.citation_box = (TextView) findViewById(R.id.citation_box_text);
+        this.citationBox = (TextView) findViewById(R.id.citation_box_text);
 
         // !!the following order is very important!!
-        generator =  new CitationGenerator(URLText, TitleText);
+        generator =  new CitationGenerator(urlText, titleText);
         citationStyle = CitationStyle.APA;
         addListenerOnRadioGroupButton();
         citationCooker(citationStyle);
@@ -172,7 +172,7 @@ public class CitationActivity extends AppCompatActivity {
     {
         Log.e(logCitation,"string cook");
         citation = generator.citationCook(citationStyle);
-        citation_box.setText(citation);
+        citationBox.setText(citation);
     }
 
 }
