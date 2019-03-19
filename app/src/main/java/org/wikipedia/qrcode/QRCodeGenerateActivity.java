@@ -35,6 +35,7 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
     //Create all varibles here. such as imageview which can show the QR code
 
     private static final String TAG = "QRCodeGenerateActivity";
+    private String titleText, descText, urlText;
 
     protected QRCodeGenerateActivity self;
     protected Snackbar snackbar;
@@ -65,14 +66,20 @@ public class QRCodeGenerateActivity extends AppCompatActivity {
         qrdone = (Button) findViewById(R.id.qrdone);
 
         WikipediaApp app = WikipediaApp.getInstance();
+
         try{
-        Tab currentTab = app.getTabList().get(app.getTabList().size() - 1); //get latest tab
-        PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
-        qrtitle.setText("Article: " + lastTab.getTitle().getText());
-        qrdesc.setText("Description: " + lastTab.getTitle().getDescription());
-        qrurl.setText("URL: " + lastTab.getTitle().getCanonicalUri());
-        Log.d(TAG, qrtitle.getText() + " " + qrdesc.getText() + " " + qrurl.getText());
-        this.generateImage(lastTab.getTitle().getCanonicalUri());
+            Tab currentTab = app.getTabList().get(app.getTabList().size() - 1); //get latest tab
+            PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
+
+            titleText = "Article: " + lastTab.getTitle().getText();
+            descText = "Description: " + lastTab.getTitle().getDescription();
+            urlText = "URL: " + lastTab.getTitle().getCanonicalUri();
+
+            qrtitle.setText(titleText);
+            qrdesc.setText(descText);
+            qrurl.setText(urlText);
+            Log.d(TAG, qrtitle.getText() + " " + qrdesc.getText() + " " + qrurl.getText());
+            this.generateImage(lastTab.getTitle().getCanonicalUri());
         }catch (ArrayIndexOutOfBoundsException e){
         Log.e(TAG, "Array out of bound exception");
         e.printStackTrace();

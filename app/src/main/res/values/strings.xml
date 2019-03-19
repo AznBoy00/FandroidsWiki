@@ -727,4 +727,22 @@
     <string name="no_barcode_detected">No Barcode Detected</string>
     <string name="scan">Scanning....</string>
 
+    <!--Text to Speech-->
+    <string name="text_to_speech_description">Text to Speech</string>
+    <string name="text_to_speech_play">Play</string>
+
+    <!--Daily Notification-->
+    <string name="notification_main_button">\t\t Notification Settings</string>
+    <string name="notification_set_time">Set Notification Time</string>
+    <string name="notification_turn_off">Turn Off Notifications</string>
+
+    <!--QR Code Generator-->
+    <string name="qr_generator_title">ARTICLE TITLE</string>
+    <string name="qr_generator_description">ARTICLE DESCRIPTION</string>
+    <string name="qr_generator_url">ARTICLE URL</string>
+
+    <!--QR Code Scanner-->
+    <string name="qr_scanner_main_button">\t\t QR Code Scanner</string>
+    <string name="qr_scanner_instruction">Scan this QR code to access the same wiki article.</string>
+
 </resources>
