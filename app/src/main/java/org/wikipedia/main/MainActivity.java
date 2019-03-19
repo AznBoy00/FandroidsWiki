@@ -1,5 +1,7 @@
 package org.wikipedia.main;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -16,6 +18,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.FirebaseApp;
+
 import org.wikipedia.Constants;
 import org.wikipedia.R;
 import org.wikipedia.WikipediaApp;
@@ -23,7 +27,9 @@ import org.wikipedia.activity.SingleFragmentActivity;
 import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.feed.FeedFragment;
+import org.wikipedia.firelogin.wikiSignIn;
 import org.wikipedia.history.HistoryFragment;
+import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
@@ -39,6 +45,7 @@ import org.wikipedia.util.AnimationUtil;
 import org.wikipedia.util.DimenUtil;
 import org.wikipedia.util.FeedbackUtil;
 import org.wikipedia.views.WikiDrawerLayout;
+import org.wikipedia.firelogin.signInToWiki;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,8 +62,10 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @BindView(R.id.single_fragment_toolbar) Toolbar toolbar;
     @BindView(R.id.single_fragment_toolbar_wordmark) View wordMark;
 
+    Button button_smart_camera;
     Button button_notify_me;
     Button button_qr_reader;
+    Button button_wiki_plusplus;
     private boolean controlNavTabInFragment;
 
     public static Intent newIntent(@NonNull Context context) {
@@ -66,6 +75,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         ButterKnife.bind(this);
         AnimationUtil.setSharedElementTransitions(this);
         new AppShortcuts().init();
@@ -99,11 +109,20 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         shouldShowMainDrawer(true);
 
         // 390 Project Addition - Test Button for Random Article
-        button_notify_me = findViewById(R.id.notification_settings);
-        button_notify_me.setOnClickListener(new View.OnClickListener() {
+        button_smart_camera = findViewById(R.id.smart_camera);
+        button_smart_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openNotificationActivity();
+                Intent intent = new Intent(getApplicationContext(), MLActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), searchResultsFromGoogleVisionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
+        button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openPageActivity();
             }
         });
         button_qr_reader = findViewById(R.id.button_qr_reader);
@@ -130,6 +149,12 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         super.onResume();
         // update main nav drawer after rotating screen
         drawerView.updateState();
+    }
+
+    public void openPageActivity(){
+        //Intent intent = new Intent(this, signInToWiki.class);
+        Intent intent = new Intent(this, wikiSignIn.class);
+        startActivity(intent);
     }
 
     @LayoutRes

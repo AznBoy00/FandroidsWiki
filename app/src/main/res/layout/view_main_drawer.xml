@@ -215,10 +215,21 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/notification_settings"
-        style="@style/TransparentButton"
-        android:layout_width="374dp"
+        android:id="@+id/smart_camera"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:text="SMART CAMERA" />
+
+
+    <Button
+        android:id="@+id/wiki_plusplus"
+        style="@style/App.Button.White"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/accent90"
+        android:text="Login to Wiki++"
+        android:textColor="@color/base20" />
         android:drawableLeft="@drawable/ic_notifications_black_24dp"
         android:fontFamily="sans-serif"
         android:text="@string/notification_main_button"

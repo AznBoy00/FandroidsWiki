@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+//for google services
+apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'jacoco-android'
 
 //Google Play Service API (SDK)
 apply plugin: 'com.android.application'
@@ -44,6 +47,10 @@ final JavaVersion JAVA_VERSION = JavaVersion.VERSION_1_8
 android {
     // Keep version in sync with /project.properties
     compileSdkVersion 28
+
+    lintOptions {
+        abortOnError false
+    }
 
     compileOptions {
         sourceCompatibility = JAVA_VERSION
@@ -92,12 +99,12 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro', 'proguard-rules-debug.pro'
             testProguardFile 'test-proguard-rules.pro'
         }
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             testProguardFile 'test-proguard-rules.pro'
         }
@@ -164,6 +171,9 @@ android {
         // For Espresso testing libraries. See http://stackoverflow.com/q/33800924/970346.
         exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
         exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
+        //Fix found with OS independent path 'META-INF/proguard/androidx-annotations.pro' issues
+        //exclude 'META-INF/androidx.exifinterface_exifinterface.version'
+        exclude 'META-INF/proguard/androidx-annotations.pro'
     }
 
     testOptions {
@@ -192,7 +202,6 @@ apply from: '../gradle/src/test.gradle'
 apply from: '../gradle/src/checkstyle.gradle'
 
 dependencies {
-
     // To keep the Maven Central dependencies up-to-date
     // use http://gradleplease.appspot.com/ or http://search.maven.org/.
     // Debug with ./gradlew -q app:dependencies --configuration compile
@@ -208,8 +217,10 @@ dependencies {
     String mockitoCore = 'org.mockito:mockito-core:1.9.5'
     String leakCanaryVersion = '1.6.2'
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'com.google.guava:guava:26.0-android'
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:support-compat:$supportVersion"
     implementation "com.android.support:support-core-utils:$supportVersion"
     implementation "com.android.support:support-core-ui:$supportVersion"
@@ -292,10 +303,28 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-integration:2.3.0@aar'
     implementation 'com.google.zxing:core:3.2.0'
 
+    //use firebase
+    implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.google.firebase:firebase-ml-vision:19.0.2'
+    implementation 'com.google.firebase:firebase-ml-vision-image-label-model:17.0.2'
+
+    //use camera plugin
+    implementation 'com.wonderkiln:camerakit:0.13.1'
+    //implementation 'com.github.d-max:spots-dialog:1.1@aar'
+    //Firestore
+    implementation 'com.google.firebase:firebase-database:16.1.0'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.firebase:firebase-storage:16.1.0'
+
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
+    implementation 'com.google.firebase:firebase-firestore:18.1.0'
     //Google Vision API (SDK)
     implementation 'com.google.android.gms:play-services-vision:17.0.2'
 
 }
+
+
 
 private setSigningConfigKey(config, Properties props) {
     if (props) {
@@ -333,3 +362,6 @@ private String appId(ProductFlavor flavor) {
     String id = android.defaultConfig.applicationId + (suffix ? ".$suffix" : '')
     return id
 }
+
+apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true

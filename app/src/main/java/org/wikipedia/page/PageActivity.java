@@ -31,6 +31,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -80,6 +82,7 @@ import org.wikipedia.views.TabCountsView;
 import org.wikipedia.views.ViewUtil;
 import org.wikipedia.widgets.WidgetProviderFeaturedPage;
 import org.wikipedia.wiktionary.WiktionaryDialog;
+import org.wikipedia.firelogin.signInToWiki;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -202,6 +205,21 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
             // then we must have been launched with an Intent, so... handle it!
             handleIntent(getIntent());
         }
+
+        // TODO FIX ISSUE WITH NULL OBJECT REFERENCE
+        // Sign into Wiki++ 390
+//        Button button = (Button) findViewById(R.id.wiki_plusplus);
+//        // Capture button clicks
+//        button.setOnClickListener(new OnClickListener() {
+//            public void onClick(View arg0) {
+//
+//                // Start NewActivity.class
+//                Intent myIntent = new Intent(PageActivity.this, signInToWiki.class);
+//                startActivity(myIntent);
+//            }
+//        });
+
+
     }
 
 
@@ -734,7 +752,6 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
             startActivity(intent);
             //changeToAnotherActivity(intent);
         }
-
 
         @Override
         public void generateQRcodeClick() {
