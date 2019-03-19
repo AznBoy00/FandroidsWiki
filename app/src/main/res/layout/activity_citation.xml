@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_citation_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base10"
+    tools:context="org.wikipedia.citation.CitationActivity">
+
+    <!-- Old code - ?attr does not work for background -->
+    <!--<FrameLayout-->
+    <!--android:id="@+id/page_toolbar_container"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="?attr/page_toolbar_color"-->
+    <!--android:elevation="4dp">-->
+
+    <FrameLayout
+        android:id="@+id/page_toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:elevation="4dp">
+
+        <!--Old code - ?attr does not work for text color -->
+        <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/page_toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:theme="@style/PageToolbarTheme"-->
+        <!--app:titleTextColor="?attr/page_toolbar_icon_color"-->
+        <!--app:navigationIcon="@drawable/ic_icon_w_back">-->
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/page_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/PageToolbarTheme"
+            app:titleTextColor="#FFFFFF"
+            app:navigationIcon="@drawable/ic_icon_w_back">
+        </android.support.v7.widget.Toolbar>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/globalLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/firstTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="@string/citation_first_title"
+                android:textAlignment="center"
+                android:textColor="@color/color_state_white"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/firstButtonRow"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                android:gravity="center">
+
+                <RadioGroup
+                    android:id="@+id/citation_radiogroup_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checkedButton="@+id/button_apa"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/button_apa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/citation_style_button_selected"
+                        android:button="@android:color/transparent"
+                        android:checked="true"
+                        android:clickable="true"
+                        android:paddingLeft="0dp"
+                        android:text="@string/citation_apa"
+                        android:textColor="@color/color_state_black" />
+
+                    <RadioButton
+                        android:id="@+id/button_mla"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/citation_style_button_unselected"
+                        android:button="@android:color/transparent"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:paddingLeft="0dp"
+                        android:text="@string/citation_mla"
+                        android:textColor="@color/color_state_white" />
+
+                    <RadioButton
+                        android:id="@+id/button_ieee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/citation_style_button_unselected"
+                        android:button="@android:color/transparent"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:paddingLeft="0dp"
+                        android:text="@string/citation_ieee"
+                        android:textColor="@color/color_state_white" />
+
+                    <RadioButton
+                        android:id="@+id/button_latex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/citation_style_button_unselected"
+                        android:button="@android:color/transparent"
+                        android:checked="false"
+                        android:clickable="true"
+                        android:paddingLeft="0dp"
+                        android:text="@string/citation_latex"
+                        android:textColor="@color/color_state_white" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/secondTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="@string/citation_second_title"
+                android:textAlignment="center"
+                android:textColor="@color/color_state_white"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/citation_box_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/citation_box"
+                android:maxHeight="150dp"
+                android:minHeight="150dp"
+                android:padding="15dp"
+                android:text="@string/citation_box_text" />
+
+            <Button
+                android:id="@+id/button_copy_citation"
+                style="@style/App.Button"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:text="@string/citation_copy_citation" />
+
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

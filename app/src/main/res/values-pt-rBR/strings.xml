@@ -27,7 +27,7 @@
 * Walesson
 * Webysther
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">Wikipédia</string>
   <string name="app_name_beta">Wikipédia Beta</string>
   <string name="app_name_alpha">Wikipédia Alpha</string>
@@ -443,11 +443,11 @@
   <string name="reading_lists_menu_sort_by">Ordenar por</string>
   <string name="reading_lists_refresh_sync_option">Atualizar sincronização</string>
   <string name="reading_list_preference_login_or_signup_to_enable_sync_dialog_login">Entrar / Inscrever-se</string>
-  <plurals name="reading_list_article_offline_message">
+  <plurals name="reading_list_article_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Este artigo agora estará disponível off-line.</item>
     <item quantity="other">Estes artigos agora estarão disponíveis off-line.</item>
   </plurals>
-  <plurals name="reading_list_article_not_offline_message">
+  <plurals name="reading_list_article_not_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Este artigo não estará mais disponível off-line.</item>
     <item quantity="other">Estes artigos não estarão mais disponíveis off-line.</item>
   </plurals>
@@ -459,12 +459,12 @@
   <string name="notification_syncing_pause_button">Pausar</string>
   <string name="notification_syncing_resume_button">Retomar</string>
   <string name="notification_syncing_cancel_button">Cancelar</string>
-  <plurals name="notification_syncing_reading_list_channel_name">
+  <plurals name="notification_syncing_reading_list_channel_name" tools:ignore="ImpliedQuantity">
     <item quantity="one">Sincronizando a lista de leitura</item>
     <item quantity="other">Sincronizando as listas de leitura</item>
   </plurals>
   <string name="notification_syncing_reading_list_channel_description">Progresso da sincronização das listas de leitura</string>
-  <plurals name="notification_channel_name">
+  <plurals name="notification_channel_name" tools:ignore="ImpliedQuantity">
     <item quantity="one">Download de artigo</item>
     <item quantity="other">Download de artigos</item>
   </plurals>
@@ -492,7 +492,7 @@
   <string name="notifications_view_archived">Ver arquivadas</string>
   <string name="notifications_prefs">Preferências de notificação</string>
   <string name="notifications_archive">Marcar como lida e arquivar</string>
-  <plurals name="notification_archive_message">
+  <plurals name="notification_archive_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Notificação arquivada</item>
     <item quantity="other">%d notificações arquivadas</item>
   </plurals>
@@ -532,7 +532,7 @@
   <string name="most_read_list_card_title">Tendências</string>
   <string name="view_static_card_icon_content_description">Ícone do cartão</string>
   <string name="view_card_news_title">Eventos recentes</string>
-  <plurals name="view_continue_reading_card_subtitle">
+  <plurals name="view_continue_reading_card_subtitle" tools:ignore="ImpliedQuantity">
     <item quantity="one">ontem</item>
     <item quantity="other">%d dias atrás</item>
   </plurals>
@@ -602,7 +602,7 @@
   <string name="offline_read_final_rationale">É necessário ter permissão de acesso ao armazenamento do seu dispositivo para usar a biblioteca sem acesso à Internet.</string>
     <string name="size_gb">%.2f GB</string>
   <string name="size_mb">%.2f MB</string>
-    <plurals name="offline_compilation_download_time_remaining">
+    <plurals name="offline_compilation_download_time_remaining" tools:ignore="ImpliedQuantity">
     <item quantity="one">falta 1 minuto</item>
     <item quantity="other">faltam %d minutos</item>
   </plurals>
@@ -633,7 +633,7 @@
   <string name="events_count_text">%1$s eventos de %2$s–%3$d</string>
   <string name="this_year">Este ano</string>
   <string name="back_to_top">Voltar ao topo</string>
-  <plurals name="diff_years">
+  <plurals name="diff_years" tools:ignore="ImpliedQuantity">
     <item quantity="one">Ano passado</item>
     <item quantity="other">%d anos atrás</item>
   </plurals>
@@ -645,7 +645,7 @@
   <string name="wikipedia_languages_add_language_text">Adicionar idioma</string>
   <string name="wikipedia_languages_remove_text">Remover idioma</string>
   <string name="wikipedia_languages_remove_action_mode_title">Remover idioma</string>
-  <plurals name="wikipedia_languages_remove_dialog_title">
+  <plurals name="wikipedia_languages_remove_dialog_title" tools:ignore="ImpliedQuantity">
     <item quantity="one">Remover o idioma selecionado?</item>
     <item quantity="other">Remover idiomas selecionados?</item>
   </plurals>

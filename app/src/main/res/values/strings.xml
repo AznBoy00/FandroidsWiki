@@ -41,6 +41,9 @@
     <string name="menu_page_open_a_new_tab">Open a new tab</string>
     <string name="menu_page_reading_lists">Reading lists</string>
     <string name="menu_page_recently_viewed">Recently viewed</string>
+    <string name="menu_page_citation">Cite this page</string>
+    <string name="menu_page_generate_qr_code">Generate QR code</string>
+
 
     <!-- Long press menu -->
     <string name="menu_long_press_open_page">Open</string>
@@ -86,6 +89,16 @@
 
     <!-- Added for the new text-to-speech button -->
     <string name="menu_show_text_to_speech">Text-To-Speech</string>
+
+    <!-- Citation page -->
+    <string name="citation_first_title">Choose your citation style:</string>
+    <string name="citation_apa">APA</string>
+    <string name="citation_mla">MLA</string>
+    <string name="citation_ieee">IEEE</string>
+    <string name="citation_latex">LATEX</string>
+    <string name="citation_second_title">Here is your citation!</string>
+    <string name="citation_box_text">We are currently generating your citation!\nPlease wait a few seconds....</string>
+    <string name="citation_copy_citation">Copy citation</string>
 
     <string name="search_no_results_found">No results found</string>
     <string name="search_reading_list_no_results">No results found in \"%s\"</string>
@@ -708,5 +721,31 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_search_results_from_google_vision">searchResultsFromGoogleVision
+    </string>
+    <string name="title_activity_citation">CitationActivity</string>
+    <string name="below_is_the_qr_code">Below is the QR code!</string>
+    <string name="qr_code_here">QR CODE HERE!</string>
+    <string name="title_activity_ml">MLActivity</string>
+    <string name="no_barcode_detected">No Barcode Detected</string>
+    <string name="scan">Scanning....</string>
+
+    <!--Text to Speech-->
+    <string name="text_to_speech_description">Text to Speech</string>
+    <string name="text_to_speech_play">Play</string>
+
+    <!--Daily Notification-->
+    <string name="notification_main_button">\t\t Notification Settings</string>
+    <string name="notification_set_time">Set Notification Time</string>
+    <string name="notification_turn_off">Turn Off Notifications</string>
+
+    <!--QR Code Generator-->
+    <string name="qr_generator_title">ARTICLE TITLE</string>
+    <string name="qr_generator_description">ARTICLE DESCRIPTION</string>
+    <string name="qr_generator_url">ARTICLE URL</string>
+
+    <!--QR Code Scanner-->
+    <string name="qr_scanner_main_button">\t\t QR Code Scanner</string>
+    <string name="qr_scanner_instruction">Scan this QR code to access the same wiki article.</string>
 
 </resources>

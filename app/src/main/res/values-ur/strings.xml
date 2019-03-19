@@ -13,7 +13,7 @@
 * عرفان ارشد
 * محمد افضل
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">ویکیپیڈیا</string>
   <string name="app_name_beta">ویکیپیڈیا آزمائشی</string>
   <string name="app_name_alpha">ویکیپیڈیا الفا</string>
@@ -387,7 +387,7 @@
   <string name="notification_syncing_pause_button">روکیں</string>
   <string name="notification_syncing_resume_button">دوبارہ شروع کریں</string>
   <string name="notification_syncing_cancel_button">تنسیخ کریں</string>
-  <string name="notification_channel_name" fuzzy="true">مطابقت پزیر ھو رہا ہے</string>
+  <string name="notification_channel_name" fuzzy="true" tools:ignore="ExtraTranslation">مطابقت پزیر ھو رہا ہے</string>
   <plurals name="notification_syncing_title">
     <item quantity="one">%1$d مضمون ڈاؤنلوڈ ہو رہا ہے…</item>
     <item quantity="other">%1$d مضامین ڈاؤنلوڈ ہو رہے ہیں…</item>
