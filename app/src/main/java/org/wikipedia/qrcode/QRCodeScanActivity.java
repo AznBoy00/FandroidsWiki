@@ -37,7 +37,11 @@ public class QRCodeScanActivity extends AppCompatActivity {
     String intentData = "";
     String detectedStr;
     private final String logE = "Scanner";
-    private final String s = "wikipedia.org";
+    private final String WIKI_STRING = "wikipedia.org";
+    private final String SCANNING = "Scanning...";
+    private final String NO_BAR_CODE = "No Barcode Detected";
+    private final String WIKI_QR_DETECTED = "Go to Wikipedia page!";
+    private final String WIKI_QR__NOT_DETECTED = "This is not a Wikipedia QR Code!";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +63,8 @@ public class QRCodeScanActivity extends AppCompatActivity {
 
                 if (btn_qr_reader_scan.getText() == "Go to Wikipedia page!") {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(intentData)));
-                    btn_qr_reader_scan.setText("Scanning...");
-                    textToShow.setText("No Barcode Detected");
+                    btn_qr_reader_scan.setText(SCANNING);
+                    textToShow.setText(NO_BAR_CODE);
                 }
                 else {
                     Toast.makeText(getApplicationContext(),"Can't find any QR code...",Toast.LENGTH_SHORT).show();
@@ -122,12 +126,12 @@ public class QRCodeScanActivity extends AppCompatActivity {
                             detectedStr = barcodes.valueAt(0).displayValue;
                             //Log.e(logE,"Detected string: " + detectedStr);
                             if(isWikiLink(detectedStr)) {
-                                btn_qr_reader_scan.setText("Go to Wikipedia page!");
+                                btn_qr_reader_scan.setText(WIKI_QR_DETECTED);
                                 intentData = barcodes.valueAt(0).displayValue;
                                 textToShow.setText(intentData);
                             }else
                             {
-                                btn_qr_reader_scan.setText("This is not a Wikipedia QR Code!");
+                                btn_qr_reader_scan.setText(WIKI_QR__NOT_DETECTED);
                                 intentData = "";
                                 textToShow.setText(intentData);
                             }
@@ -154,8 +158,7 @@ public class QRCodeScanActivity extends AppCompatActivity {
     }
 
     public boolean isWikiLink(String str){
-
-        boolean isWiki = (str.indexOf(s) == -1)?false:true;
+        boolean isWiki = (str.indexOf(WIKI_STRING) == -1)?false:true;
         return isWiki;
     }
 
