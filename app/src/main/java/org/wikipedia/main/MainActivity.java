@@ -109,6 +109,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         shouldShowMainDrawer(true);
 
         // 390 Project Addition - Test Button for Random Article
+
         button_smart_camera = findViewById(R.id.smart_camera);
         button_smart_camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +131,14 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             @Override
             public void onClick(View v) {
                 openQrCodeActivity();
+            }
+        });
+
+        button_notify_me = findViewById(R.id.notification_settings);
+        button_notify_me.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNotificationActivity();
             }
         });
     }

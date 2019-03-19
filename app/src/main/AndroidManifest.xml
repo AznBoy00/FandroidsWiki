@@ -199,6 +199,10 @@
             android:label="@string/notification_preferences_title"
             android:theme="@style/AppTheme.ActionBar" />
         <activity
+            android:name=".notifications.NotificationSchedulerActivity"
+            android:label="Schedule Notifications"
+            android:theme="@style/AppTheme.ActionBar" />
+        <activity
             android:name=".settings.AboutActivity"
             android:label="@string/about_activity_title"
             android:theme="@style/AppTheme.ActionBar" />
@@ -375,7 +379,7 @@
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".notifications.NotificationRandomArticle">
+        <receiver android:name=".notifications.NotificationReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
