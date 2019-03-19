@@ -45,6 +45,10 @@ android {
     // Keep version in sync with /project.properties
     compileSdkVersion 28
 
+    lintOptions {
+        abortOnError false
+    }
+
     compileOptions {
         sourceCompatibility = JAVA_VERSION
         targetCompatibility = JAVA_VERSION
@@ -166,7 +170,7 @@ android {
         exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
         exclude 'META-INF/maven/com.google.guava/guava/pom.properties'
         //Fix found with OS independent path 'META-INF/proguard/androidx-annotations.pro' issues
-        exclude 'META-INF/androidx.exifinterface_exifinterface.version'
+        //exclude 'META-INF/androidx.exifinterface_exifinterface.version'
         exclude 'META-INF/proguard/androidx-annotations.pro'
     }
 
