@@ -4,7 +4,7 @@
 * Sovichet
 * គីមស៊្រុន
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">វិគីភីឌា</string>
   <string name="app_name_beta">វិគីភីឌាបេតា</string>
   <string name="app_name_alpha">វិគីភីឌាអាល់ហ្វា</string>
@@ -273,8 +273,8 @@
   <string name="notification_syncing_pause_button">សម្រាក</string>
   <string name="notification_syncing_resume_button">បន្តវិញ</string>
   <string name="notification_syncing_cancel_button">បោះបង់</string>
-  <string name="notification_syncing_title" fuzzy="true">កំពុងទាញយកអត្ថបទចំនួន %1$d …</string>
-  <string name="notification_syncing_description" fuzzy="true">នៅសល់អត្ថបទចំនួន %1$d</string>
+  <string name="notification_syncing_title" fuzzy="true" tools:ignore="ExtraTranslation">កំពុងទាញយកអត្ថបទចំនួន %1$d …</string>
+  <string name="notification_syncing_description" fuzzy="true" tools:ignore="ExtraTranslation">នៅសល់អត្ថបទចំនួន %1$d</string>
   <string name="view_continue_reading_card_title">អានបន្ត</string>
   <string name="view_because_you_read_card_title">ព្រោះអ្នកបានអាន</string>
   <string name="view_random_card_action">បោះគ្រាប់ឡុកឡាក់</string>

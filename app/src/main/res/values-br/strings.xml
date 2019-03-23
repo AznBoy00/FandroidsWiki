@@ -8,7 +8,7 @@
 * Gwenn-Ael
 * Y-M D
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingQuantity">
   <string name="app_name_prod">Wikipedia</string>
   <string name="app_name_beta">Wikipedia Beta</string>
   <string name="app_name_alpha">Wikipedia Alpha</string>
@@ -349,8 +349,8 @@
   <string name="default_reading_list_description">Roll dre ziouer evit ho pennadoù enrollet</string>
   <string name="no_user_lists_title">Renkañ pennadoù er rolloù</string>
   <string name="reading_list_saved_list_rename">%1$s (krouet gant an implijer)</string>
-  <string name="reading_list_article_offline_message">{[PLURAL|one=Gallout a reot gwelet ar pennad-mañ ezlinenn hiviziken|Gallout a reot gwelet ar pennadoù-mañ ezlinenn hiviziken.</string>
-  <plurals name="reading_list_article_not_offline_message">
+  <string name="reading_list_article_offline_message" tools:ignore="ExtraTranslation">{[PLURAL|one=Gallout a reot gwelet ar pennad-mañ ezlinenn hiviziken|Gallout a reot gwelet ar pennadoù-mañ ezlinenn hiviziken.</string>
+  <plurals name="reading_list_article_not_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Ne c\'hallor ket gwelet ar pennadoù-mañ ezlinenn pelloc\'h</item>
     <item quantity="other">e c\'hallor ket gwelet ar pennad-mañ ezlinenn pelloc\'h.</item>
   </plurals>
@@ -372,7 +372,7 @@
   <string name="most_read_list_card_title">Gizioù ar mare</string>
   <string name="view_static_card_icon_content_description">Arlun ar gartenn</string>
   <string name="view_card_news_title">Er C\'heleier</string>
-  <plurals name="view_continue_reading_card_subtitle" fuzzy="true">
+  <plurals name="view_continue_reading_card_subtitle" fuzzy="true" tools:ignore="ImpliedQuantity">
     <item quantity="one">Dec\'h</item>
     <item quantity="other">%d devezh zo</item>
   </plurals>
@@ -424,7 +424,7 @@
   <string name="offline_read_permission_rationale">Ret eo kaout gwir da vont d\'ar skokañ en hoc\'h ardivink evit merdeiñ ezlinenn.</string>
     <string name="size_gb">%.2f GB</string>
   <string name="size_mb">%.2f MB</string>
-    <plurals name="offline_compilation_download_time_remaining">
+    <plurals name="offline_compilation_download_time_remaining" tools:ignore="ImpliedQuantity">
     <item quantity="one">1 vunutenn a chom</item>
     <item quantity="other">%d munutenn a chom</item>
   </plurals>

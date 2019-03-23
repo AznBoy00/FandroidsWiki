@@ -4,7 +4,7 @@
 * Kandar
 * Uchup19
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">Wikipédia</string>
   <string name="app_name_beta">Wikipédia Béta</string>
   <string name="app_name_alpha">Wikipédia Alfa</string>
@@ -362,9 +362,9 @@
   <string name="notification_syncing_pause_button">Tunda</string>
   <string name="notification_syncing_resume_button">Teruskeun</string>
   <string name="notification_syncing_cancel_button">Bolay</string>
-  <string name="notification_channel_name" fuzzy="true">Nyingkronkeun</string>
-  <string name="notification_syncing_title" fuzzy="true">Keur ngundeur %1$d artikel...</string>
-  <string name="notification_syncing_description" fuzzy="true">%1$d artikel sésa</string>
+  <string name="notification_channel_name" fuzzy="true" tools:ignore="ExtraTranslation">Nyingkronkeun</string>
+  <string name="notification_syncing_title" fuzzy="true" tools:ignore="ExtraTranslation">Keur ngundeur %1$d artikel...</string>
+  <string name="notification_syncing_description" fuzzy="true" tools:ignore="ExtraTranslation">%1$d artikel sésa</string>
   <string name="view_continue_reading_card_title">Tuluykeun maca</string>
   <string name="view_because_you_read_card_title">Sabab anjeun maca</string>
   <string name="view_random_card_title">Kaca acak</string>
@@ -463,5 +463,5 @@
   <string name="more_events_text" fuzzy="true">Kajadian sajarah lianna dina poé ieu</string>
   <string name="events_count_text" fuzzy="true">%1$s kajadian ti %2$s - %3$d</string>
   <string name="this_year">Taun ieu</string>
-  <string name="diff_years">{{PLURAL|one=Taun kamari|%d ka tukang}</string>
+  <string name="diff_years" tools:ignore="ExtraTranslation">{{PLURAL|one=Taun kamari|%d ka tukang}</string>
 </resources>

@@ -18,6 +18,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.FirebaseApp;
+
 import org.wikipedia.Constants;
 import org.wikipedia.R;
 import org.wikipedia.WikipediaApp;
@@ -25,10 +27,15 @@ import org.wikipedia.activity.SingleFragmentActivity;
 import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.feed.FeedFragment;
+import org.wikipedia.firelogin.wikiSignIn;
 import org.wikipedia.history.HistoryFragment;
+import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
+import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
+import org.wikipedia.qrcode.QRCodeGenerateActivity;
+import org.wikipedia.qrcode.QRCodeScanActivity;
 import org.wikipedia.readinglist.ReadingListSyncBehaviorDialogs;
 import org.wikipedia.readinglist.database.ReadingListDbHelper;
 import org.wikipedia.settings.AboutActivity;
@@ -38,16 +45,12 @@ import org.wikipedia.util.AnimationUtil;
 import org.wikipedia.util.DimenUtil;
 import org.wikipedia.util.FeedbackUtil;
 import org.wikipedia.views.WikiDrawerLayout;
+import org.wikipedia.firelogin.signInToWiki;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 // 390 Project Imports
-import org.wikipedia.notifications.TimerRandomArticle;
-import org.wikipedia.notifications.NotificationRandomArticle;
-import com.allyants.notifyme.NotifyMe;
-
-import java.util.Calendar;
 
 import static org.wikipedia.Constants.ACTIVITY_REQUEST_INITIAL_ONBOARDING;
 
@@ -59,6 +62,10 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @BindView(R.id.single_fragment_toolbar) Toolbar toolbar;
     @BindView(R.id.single_fragment_toolbar_wordmark) View wordMark;
 
+    Button button_smart_camera;
+    Button button_notify_me;
+    Button button_qr_reader;
+    Button button_wiki_plusplus;
     private boolean controlNavTabInFragment;
 
     public static Intent newIntent(@NonNull Context context) {
@@ -68,6 +75,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         ButterKnife.bind(this);
         AnimationUtil.setSharedElementTransitions(this);
         new AppShortcuts().init();
@@ -100,29 +108,49 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         drawerView.setCallback(new DrawerViewCallback());
         shouldShowMainDrawer(true);
 
-        /** 390 Project - Setup Broadcast Receiver / alarmManager for RandomArticleNotification **/
-        TimerRandomArticle newArticleNotification = new TimerRandomArticle(this);
-        newArticleNotification.alarmManager();
-        /** 390 Project Addition - Test Button for Random Article**/
-        Button button_notify_me = findViewById(R.id.noti_test);
-        button_notify_me.setOnClickListener(new View.OnClickListener() {
+        // 390 Project Addition - Test Button for Random Article
+
+        button_smart_camera = findViewById(R.id.smart_camera);
+        button_smart_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NotificationRandomArticle newRandomArticle = new NotificationRandomArticle();
-                newRandomArticle.createNotificationForRandomArticle(getApplicationContext());
+                Intent intent = new Intent(getApplicationContext(), MLActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), searchResultsFromGoogleVisionActivity.class);
+                startActivity(intent);
             }
         });
 
-        Calendar alarm = Calendar.getInstance();
-        alarm.set(Calendar.HOUR_OF_DAY, 23);
-        alarm.set(Calendar.MINUTE, 46);
-        alarm.set(Calendar.SECOND, 0);
+        button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
+        button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                openPageActivity();
+            }
+        });
+        button_qr_reader = findViewById(R.id.button_qr_reader);
+        button_qr_reader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openQrCodeActivity();
+            }
+        });
 
-        Intent intent = new Intent(getApplicationContext(), NotificationRandomArticle.class);
-        PendingIntent pIntent;
-        pIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        mAlarm.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, alarm.getTimeInMillis(), pIntent);
+        button_notify_me = findViewById(R.id.notification_settings);
+        button_notify_me.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openNotificationActivity();
+            }
+        });
+    }
+
+    public void openNotificationActivity() {
+        Intent intent = new Intent(this, NotificationSchedulerActivity.class);
+        startActivity(intent);
+    }
+
+    public void openQrCodeActivity() {
+        Intent intent = new Intent(this, QRCodeScanActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -130,6 +158,12 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         super.onResume();
         // update main nav drawer after rotating screen
         drawerView.updateState();
+    }
+
+    public void openPageActivity(){
+        //Intent intent = new Intent(this, signInToWiki.class);
+        Intent intent = new Intent(this, wikiSignIn.class);
+        startActivity(intent);
     }
 
     @LayoutRes

@@ -13,7 +13,7 @@
 * בנימין
 * המקיסט
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingQuantity">
   <string name="app_name_prod">ויקיפדיה</string>
   <string name="app_name_beta">ויקיפדיה בטא</string>
   <string name="app_name_alpha">ויקיפדיה אלפא</string>

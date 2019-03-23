@@ -7,7 +7,7 @@
 * Tow
 * ਪ੍ਰਚਾਰਕ
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">ਵਿਕੀਪੀਡੀਆ</string>
   <string name="app_name_beta">ਵਿਕੀਪੀਡੀਆ ਬੇਟਾ</string>
   <string name="app_name_alpha">ਵਿਕੀਪੀਡੀਆ ਅਲਫ਼ਾ</string>
@@ -261,7 +261,7 @@
   <string name="most_read_list_card_title">ਪ੍ਰਚਲਤ</string>
   <string name="view_static_card_icon_content_description">ਕਾਰਡ ਆਈਕਾਨ</string>
   <string name="view_card_news_title">ਖ਼ਬਰਾਂ \'ਚ</string>
-  <plurals name="view_continue_reading_card_subtitle" fuzzy="true">
+  <plurals name="view_continue_reading_card_subtitle" fuzzy="true" tools:ignore="ImpliedQuantity">
     <item quantity="one">ਕੱਲ੍ਹ</item>
     <item quantity="other">%d ਦਿਨ ਪਹਿਲਾਂ</item>
   </plurals>

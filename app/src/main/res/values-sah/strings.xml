@@ -7,7 +7,7 @@
 * Алгыс
 * Марианна
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">Бикипиэдьийэ</string>
   <string name="app_name_beta">Бикипиэдьийэ (бета)</string>
   <string name="app_name_alpha">Бикипиэдьийэ (альфа)</string>
@@ -418,9 +418,9 @@
   <string name="notification_syncing_pause_button">Быстах тохтобул</string>
   <string name="notification_syncing_resume_button">Салгыы</string>
   <string name="notification_syncing_cancel_button">Салҕаама</string>
-  <string name="notification_channel_name" fuzzy="true">Синхронизация</string>
-  <string name="notification_syncing_title" fuzzy="true">%1$d ыстатыйа хачайданна…</string>
-  <string name="notification_syncing_description" fuzzy="true">%1$d ыстатыйа хаалла</string>
+  <string name="notification_channel_name" fuzzy="true" tools:ignore="ExtraTranslation">Синхронизация</string>
+  <string name="notification_syncing_title" fuzzy="true" tools:ignore="ExtraTranslation">%1$d ыстатыйа хачайданна…</string>
+  <string name="notification_syncing_description" fuzzy="true" tools:ignore="ExtraTranslation">%1$d ыстатыйа хаалла</string>
   <string name="notification_echo_channel_description">Бикипиэдьийэ биллэриилэрэ</string>
   <string name="notifications_activity_title">Биллэриилэр</string>
   <string name="notifications_activity_title_archived">Биллэриилэр (архыып)</string>
@@ -561,7 +561,7 @@
   <string name="wikipedia_languages_add_language_text">Тылы эбии</string>
   <string name="wikipedia_languages_remove_text" fuzzy="true">Сот</string>
   <string name="wikipedia_languages_remove_action_mode_title">Тылы сот</string>
-  <string name="wikipedia_languages_remove_dialog_title" fuzzy="true">Талбыт тылларгын сотоҕун дуо?</string>
+  <string name="wikipedia_languages_remove_dialog_title" fuzzy="true" tools:ignore="ExtraTranslation">Талбыт тылларгын сотоҕун дуо?</string>
   <string name="more_language_options">эбии</string>
   <string name="add_wikipedia_languages_text">Бикипиэдьийэ тылларын эп</string>
   <string name="dialog_of_remove_chinese_variants_from_app_lang_title">Тыллар испииһэктэриттэн кытай тылын сотоҕун дуо?</string>

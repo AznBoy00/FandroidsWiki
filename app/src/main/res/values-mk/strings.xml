@@ -3,7 +3,7 @@
 * Bjankuloski06
 * Монтехристо
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">Википедија</string>
   <string name="app_name_beta">Википедија Бета</string>
   <string name="app_name_alpha">Википедија Алфа</string>
@@ -418,11 +418,11 @@
   <string name="reading_lists_menu_sort_by">Подреди по</string>
   <string name="reading_lists_refresh_sync_option">Превчитај усогласување</string>
   <string name="reading_list_preference_login_or_signup_to_enable_sync_dialog_login">Најава / регистрација</string>
-  <plurals name="reading_list_article_offline_message">
+  <plurals name="reading_list_article_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Статијава сега ќе биде достапна вонмрежно.</item>
     <item quantity="other">Статииве сега ќе бидат достапни вонмрежно.</item>
   </plurals>
-  <plurals name="reading_list_article_not_offline_message">
+  <plurals name="reading_list_article_not_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Статијава повеќе нема да биде достапна вонмрежно.</item>
     <item quantity="other">Статииве повеќе нема да бидат достапни вонмрежно.</item>
   </plurals>
@@ -434,12 +434,12 @@
   <string name="notification_syncing_pause_button">Паузирај</string>
   <string name="notification_syncing_resume_button">Продолжи</string>
   <string name="notification_syncing_cancel_button">Откажи</string>
-  <plurals name="notification_syncing_reading_list_channel_name">
+  <plurals name="notification_syncing_reading_list_channel_name" tools:ignore="ImpliedQuantity">
     <item quantity="one">Усогласување на списокот за читање</item>
     <item quantity="other">Усогласување на списоците за читање</item>
   </plurals>
   <string name="notification_syncing_reading_list_channel_description">Напредок на усогласувањето на списоци за читање</string>
-  <plurals name="notification_channel_name">
+  <plurals name="notification_channel_name" tools:ignore="ImpliedQuantity">
     <item quantity="one">Преземање на статијата</item>
     <item quantity="other">Преземање на статиите</item>
   </plurals>
@@ -467,7 +467,7 @@
   <string name="notifications_view_archived">Погл. архивирани</string>
   <string name="notifications_prefs">Нагодувања на известувањата</string>
   <string name="notifications_archive">Означи како прочитано и архивирај</string>
-  <plurals name="notification_archive_message">
+  <plurals name="notification_archive_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Известувањето е архивирано</item>
     <item quantity="other">Архивирани се %d известувања</item>
   </plurals>
@@ -507,7 +507,7 @@
   <string name="most_read_list_card_title">Најчитани</string>
   <string name="view_static_card_icon_content_description">Икона за картичка</string>
   <string name="view_card_news_title">Вести</string>
-  <plurals name="view_continue_reading_card_subtitle">
+  <plurals name="view_continue_reading_card_subtitle" tools:ignore="ImpliedQuantity">
     <item quantity="one">вчера</item>
     <item quantity="other">пред %d дена</item>
   </plurals>
@@ -577,7 +577,7 @@
   <string name="offline_read_final_rationale">Се бара дозвола за зачувување на вашиот уред за да можете да ја користите Вонмрежната библиотека.</string>
     <string name="size_gb">%.2f ГБ</string>
   <string name="size_mb">%.2f МБ</string>
-    <plurals name="offline_compilation_download_time_remaining">
+    <plurals name="offline_compilation_download_time_remaining" tools:ignore="ImpliedQuantity">
     <item quantity="one">Преостанува една минута</item>
     <item quantity="other">Преостануваат %d минути</item>
   </plurals>
@@ -608,7 +608,7 @@
   <string name="events_count_text">%1$s настани од %2$s–%3$d</string>
   <string name="this_year">Годинава</string>
   <string name="back_to_top">Најгоре</string>
-  <plurals name="diff_years">
+  <plurals name="diff_years" tools:ignore="ImpliedQuantity">
     <item quantity="one">Лани</item>
     <item quantity="other">Пред %d години</item>
   </plurals>
@@ -620,7 +620,7 @@
   <string name="wikipedia_languages_add_language_text">Додај јазик</string>
   <string name="wikipedia_languages_remove_text">Отстрани јазик</string>
   <string name="wikipedia_languages_remove_action_mode_title">Отстрани јазик</string>
-  <plurals name="wikipedia_languages_remove_dialog_title">
+  <plurals name="wikipedia_languages_remove_dialog_title" tools:ignore="ImpliedQuantity">
     <item quantity="one">Да го отстранам избраниот јазик?</item>
     <item quantity="other">Да ги отстранам избраните јазици?</item>
   </plurals>

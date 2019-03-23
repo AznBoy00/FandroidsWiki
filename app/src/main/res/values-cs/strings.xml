@@ -17,7 +17,7 @@
 * Vojtěch Dostál
 * Walter Klosse
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingQuantity">
   <string name="app_name_prod">Wikipedie</string>
   <string name="app_name_beta">Wikipedie Beta</string>
   <string name="app_name_alpha">Wikipedie Alfa</string>
