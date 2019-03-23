@@ -12,7 +12,7 @@
 * Protnet
 * Tgkarounos
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">Βικιπαίδεια</string>
   <string name="app_name_beta">Βικιπαίδεια Beta</string>
   <string name="app_name_alpha">Βικιπαίδεια Alpha</string>
@@ -554,7 +554,7 @@
   <string name="wikipedia_languages_add_language_text">Προσθήκη γλώσσας</string>
   <string name="wikipedia_languages_remove_text">Αφαίρεση γλώσσας</string>
   <string name="wikipedia_languages_remove_action_mode_title">Αφαίρεση γλώσσας</string>
-  <string name="wikipedia_languages_remove_dialog_title" fuzzy="true">Αφαίρεση των επιλεγμένων γλώσσα(-ών);</string>
+  <string name="wikipedia_languages_remove_dialog_title" fuzzy="true" tools:ignore="ExtraTranslation">Αφαίρεση των επιλεγμένων γλώσσα(-ών);</string>
   <string name="wikipedia_languages_remove_warning_dialog_title">Δεν μπορούν να αφαιρεθούν όλες οι γλώσσες</string>
   <string name="wikipedia_languages_remove_warning_dialog_content">Κρατήστε τουλάχιστον μια γλώσσα Βικιπαίδειας από την οποία θα γίνεται αναζήτηση και ανάγνωση περιεχομένου.</string>
   <string name="more_language_options">περισσότερα</string>

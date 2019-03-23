@@ -31,6 +31,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -38,6 +40,7 @@ import android.widget.Toast;
 import net.hockeyapp.android.metrics.MetricsManager;
 
 import org.apache.commons.lang3.StringUtils;
+import org.wikipedia.citation.CitationActivity;
 import org.wikipedia.Constants;
 import org.wikipedia.R;
 import org.wikipedia.WikipediaApp;
@@ -55,7 +58,9 @@ import org.wikipedia.language.LangLinksActivity;
 import org.wikipedia.main.MainActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.page.linkpreview.LinkPreviewDialog;
+import org.wikipedia.page.tabs.Tab;
 import org.wikipedia.page.tabs.TabActivity;
+import org.wikipedia.qrcode.QRCodeGenerateActivity;
 import org.wikipedia.readinglist.AddToReadingListDialog;
 import org.wikipedia.readinglist.database.ReadingListPage;
 import org.wikipedia.search.SearchFragment;
@@ -77,6 +82,7 @@ import org.wikipedia.views.TabCountsView;
 import org.wikipedia.views.ViewUtil;
 import org.wikipedia.widgets.WidgetProviderFeaturedPage;
 import org.wikipedia.wiktionary.WiktionaryDialog;
+import org.wikipedia.firelogin.signInToWiki;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -199,6 +205,21 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
             // then we must have been launched with an Intent, so... handle it!
             handleIntent(getIntent());
         }
+
+        // TODO FIX ISSUE WITH NULL OBJECT REFERENCE
+        // Sign into Wiki++ 390
+//        Button button = (Button) findViewById(R.id.wiki_plusplus);
+//        // Capture button clicks
+//        button.setOnClickListener(new OnClickListener() {
+//            public void onClick(View arg0) {
+//
+//                // Start NewActivity.class
+//                Intent myIntent = new Intent(PageActivity.this, signInToWiki.class);
+//                startActivity(myIntent);
+//            }
+//        });
+
+
     }
 
 
@@ -371,6 +392,10 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         } else {
             loadMainPageInCurrentTab();
         }
+    }
+
+    private void changeToAnotherActivity(Intent intent){
+        startActivity(intent);
     }
 
     /**
@@ -716,6 +741,25 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
         public void recentlyViewedClick() {
             goToMainTab(NavTab.HISTORY.code());
         }
+      
+        @Override
+        public void citeThisPageClick() {
+            Tab currentTab = app.getTabList().get(app.getTabList().size() - 1); //get latest tab
+            PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
+            Intent intent = new Intent(getApplicationContext(), CitationActivity.class);
+            intent.putExtra("item_MobileURI", lastTab.getTitle().getMobileUri());
+            intent.putExtra("item_Title", lastTab.getTitle().getDisplayText());
+            startActivity(intent);
+            //changeToAnotherActivity(intent);
+        }
+
+        @Override
+        public void generateQRcodeClick() {
+            Intent intent = new Intent(getApplicationContext(), QRCodeGenerateActivity.class);
+            startActivity(intent);
+        }
+
+
     }
 
     @Override

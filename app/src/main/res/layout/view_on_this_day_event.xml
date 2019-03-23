@@ -49,7 +49,8 @@
             android:textColor="?attr/chart_shade7"
             android:textSize="12sp"
             android:maxLines="1"
-            tools:text="123 years ago" />
+            tools:text="123 years ago"
+            tools:ignore="MissingConstraints" />
     </android.support.constraint.ConstraintLayout>
 
     <LinearLayout

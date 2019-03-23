@@ -33,6 +33,7 @@ public final class RichTextUtil {
      *
      * @see {@link android.text.TextUtils#copySpansFrom}
      */
+    @SuppressWarnings("JavaDoc")
     public static void copySpans(@NonNull Spanned src,
                                  @NonNull Spannable dst,
                                  @NonNull Collection<Object> spans) {
@@ -61,6 +62,7 @@ public final class RichTextUtil {
      * @see {@link android.view.inputmethod.BaseInputConnection#removeComposingSpans}
      * @see {@link android.inputmethod.latin.inputlogic.InputLogic#setComposingTextInternalWithBackgroundColor}
      */
+    @SuppressWarnings("JavadocReference")
     @NonNull public static List<Object> getComposingSpans(@NonNull Spanned spanned,
                                                           int start,
                                                           int end) {

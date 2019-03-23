@@ -28,7 +28,7 @@
 * Verdy p
 * Wladek92
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingQuantity">
   <string name="app_name_prod">Wikipédia</string>
   <string name="app_name_beta">Wikipédia Bêta</string>
   <string name="app_name_alpha">Wikipédia Alpha</string>
@@ -444,11 +444,11 @@
   <string name="reading_lists_menu_sort_by">Trier par</string>
   <string name="reading_lists_refresh_sync_option">Rafraîchir la synchronisation</string>
   <string name="reading_list_preference_login_or_signup_to_enable_sync_dialog_login">Connexion / inscription</string>
-  <plurals name="reading_list_article_offline_message">
+  <plurals name="reading_list_article_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Cet article est désormais disponible hors connexion.</item>
     <item quantity="other">Ces articles sont désormais disponibles hors connexion.</item>
   </plurals>
-  <plurals name="reading_list_article_not_offline_message">
+  <plurals name="reading_list_article_not_offline_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Cet article n’est plus disponible hors connexion.</item>
     <item quantity="other">Ces articles ne sont plus disponibles hors connexion.</item>
   </plurals>
@@ -460,7 +460,7 @@
   <string name="notification_syncing_pause_button">Pause</string>
   <string name="notification_syncing_resume_button">Reprise</string>
   <string name="notification_syncing_cancel_button">Annulation</string>
-  <plurals name="notification_syncing_reading_list_channel_name">
+  <plurals name="notification_syncing_reading_list_channel_name" tools:ignore="ImpliedQuantity">
     <item quantity="one">Synchronisation dela liste de lecture</item>
     <item quantity="other">Synchronisation des listes de lecture</item>
   </plurals>
@@ -492,7 +492,7 @@
   <string name="notifications_view_archived">Afficher les archivées</string>
   <string name="notifications_prefs">Préférences de notification</string>
   <string name="notifications_archive">Marquer comme lu et archiver</string>
-  <plurals name="notification_archive_message">
+  <plurals name="notification_archive_message" tools:ignore="ImpliedQuantity">
     <item quantity="one">Notification archivée</item>
     <item quantity="other">%d notifications archivées</item>
   </plurals>
@@ -532,7 +532,7 @@
   <string name="most_read_list_card_title">Tendance</string>
   <string name="view_static_card_icon_content_description">Icône de la carte</string>
   <string name="view_card_news_title">Dans l’actualité</string>
-  <plurals name="view_continue_reading_card_subtitle">
+  <plurals name="view_continue_reading_card_subtitle" tools:ignore="ImpliedQuantity">
     <item quantity="one">hier</item>
     <item quantity="other">il y a %d jours</item>
   </plurals>
@@ -602,7 +602,7 @@
   <string name="offline_read_final_rationale">Le droit d’accéder au stockage sur votre appareil est nécessaire pour utiliser la Bibliothèque hors connexion.</string>
     <string name="size_gb">%.2f GB</string>
   <string name="size_mb">%.2f MB</string>
-    <plurals name="offline_compilation_download_time_remaining">
+    <plurals name="offline_compilation_download_time_remaining" tools:ignore="ImpliedQuantity">
     <item quantity="one">1 minute restante</item>
     <item quantity="other">%d minutes restantes</item>
   </plurals>
@@ -633,7 +633,7 @@
   <string name="events_count_text">%1$s événements pour %2$s-%3$d</string>
   <string name="this_year">Cette année</string>
   <string name="back_to_top">Retour au début</string>
-  <plurals name="diff_years">
+  <plurals name="diff_years" tools:ignore="ImpliedQuantity">
     <item quantity="one">Année dernière</item>
     <item quantity="other">Il y a %d ans</item>
   </plurals>
@@ -645,7 +645,7 @@
   <string name="wikipedia_languages_add_language_text">Ajouter une langue</string>
   <string name="wikipedia_languages_remove_text">Supprimer une langue</string>
   <string name="wikipedia_languages_remove_action_mode_title">Supprimer une langue</string>
-  <plurals name="wikipedia_languages_remove_dialog_title">
+  <plurals name="wikipedia_languages_remove_dialog_title" tools:ignore="ImpliedQuantity">
     <item quantity="one">Supprimer la langue sélectionnée ?</item>
     <item quantity="other">Supprimer les langues sélectionnées ?</item>
   </plurals>

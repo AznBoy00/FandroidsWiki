@@ -4,7 +4,7 @@
 * Gitartha.bordoloi
 * Sagsag
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
   <string name="app_name_prod">ৱিকিপিডিয়া</string>
   <string name="app_name_beta">ৱিকিপিডিয়া বিটা</string>
   <string name="app_name_alpha">ৱিকিপিডিয়া আল্‌ফা</string>
@@ -316,8 +316,8 @@
   <string name="reading_list_preference_login_to_enable_sync_dialog_cancel">বাতিল কৰক</string>
   <string name="reading_list_preference_login_to_enable_sync_dialog_login">প্ৰৱেশ</string>
   <string name="reading_list_turned_sync_off_dialog_settings">ছেটিংছ</string>
-  <string name="reading_list_article_offline_message" fuzzy="true">এই প্ৰবন্ধটো এতিয়া অফলাইন উপলব্ধ হ\'ব।</string>
-  <string name="reading_list_article_not_offline_message" fuzzy="true">এই প্ৰবন্ধটো এতিয়া অফলাইন উপলব্ধ নহ\'ব।</string>
+  <string name="reading_list_article_offline_message" fuzzy="true" tools:ignore="ExtraTranslation">এই প্ৰবন্ধটো এতিয়া অফলাইন উপলব্ধ হ\'ব।</string>
+  <string name="reading_list_article_not_offline_message" fuzzy="true" tools:ignore="ExtraTranslation">এই প্ৰবন্ধটো এতিয়া অফলাইন উপলব্ধ নহ\'ব।</string>
   <string name="user_option_sync_label">পছন্দসমূহ</string>
     <string name="view_continue_reading_card_title">পঢ়া অব্যাহত ৰাখক</string>
   <string name="view_because_you_read_card_title">কাৰণ আপুনি পঢ়িছে</string>

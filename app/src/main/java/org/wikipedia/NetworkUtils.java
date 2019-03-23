@@ -32,6 +32,8 @@ public class NetworkUtils {
 
     final static String WIKI_BASE_URL =
             "https://en.wikipedia.org/w/api.php?action=opensearch&limit=1&format=json&search=";
+    final static String WIKI_BASE_URL_SPECIAL =
+            "https://en.wikipedia.org/w/api.php?action=opensearch&limit=10&format=json&search=";
 
     /**
      * Builds the URL used to query wikipedia.
@@ -39,6 +41,19 @@ public class NetworkUtils {
     public static URL buildUrl(String wikiSearchQuery) {
         System.out.print(WIKI_BASE_URL);
         Uri builtUri = Uri.parse(WIKI_BASE_URL+wikiSearchQuery).buildUpon().build();
+
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    public static URL buildSpecialUrl(String wikiSearchQuery) {
+        System.out.print(WIKI_BASE_URL);
+        Uri builtUri = Uri.parse(WIKI_BASE_URL_SPECIAL+wikiSearchQuery).buildUpon().build();
 
         URL url = null;
         try {
