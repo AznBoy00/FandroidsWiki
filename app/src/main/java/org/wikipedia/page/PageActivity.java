@@ -759,6 +759,12 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
             startActivity(intent);
         }
 
+        @Override
+        public void shareViaNfc() {
+            Intent intent = new Intent(getApplicationContext(), NfcActivity.class);
+            startActivity(intent);
+        }
+
 
     }
 

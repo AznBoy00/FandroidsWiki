@@ -34,6 +34,7 @@ public class PageActionOverflowView extends FrameLayout {
         void recentlyViewedClick();
         void citeThisPageClick();
         void generateQRcodeClick();
+        void shareViaNfc();
 
     }
 
@@ -67,7 +68,8 @@ public class PageActionOverflowView extends FrameLayout {
 
     @OnClick({R.id.page_action_overflow_forward, R.id.page_action_overflow_back,
             R.id.page_action_overflow_open_a_new_tab, R.id.page_action_overflow_reading_lists,
-            R.id.page_action_overflow_recently_viewed, R.id.page_action_overflow_citation, R.id.page_action_overflow_generate_qr_code})
+            R.id.page_action_overflow_recently_viewed, R.id.page_action_overflow_citation,
+            R.id.page_action_overflow_generate_qr_code, R.id.page_action_overflow_share_nfc})
 
     void onItemClick(View view) {
         if (popupWindowHost != null) {
@@ -99,6 +101,8 @@ public class PageActionOverflowView extends FrameLayout {
             case R.id.page_action_overflow_generate_qr_code:
                 callback.generateQRcodeClick();
                 break;
+            case R.idpage_action_overflow_share_nfc:
+                callback.shareViaNfc();
             default:
                 break;
         }

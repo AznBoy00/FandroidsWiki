@@ -4,6 +4,7 @@
     package="org.wikipedia"
     android:installLocation="auto"
     tools:node="strict">
+
     <!--
     If the build is intended to be Google Play-updateable, the package name
     should be the same as for Google Play (name depends on Beta or Stable).
@@ -34,12 +35,14 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <!-- Request permission of camera for qr reader-->
+    <!-- Request permission of camera for qr reader -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <!-- Permission for NFC -->
+    <uses-permission android:name="android.permission.NFC" />
 
     <uses-feature
         android:name="android.hardware.location"
@@ -77,19 +80,21 @@
         <activity
             android:name=".mlkit.MLActivity"
             android:label="@string/title_activity_ml"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- Activities for QR Code Generator and Scanner -->
-        <activity android:name=".qrcode.QRCodeGenerateActivity"></activity>
-
-        <activity android:name=".qrcode.QRCodeScanActivity" >
+        <activity android:name=".qrcode.QRCodeGenerateActivity" />
+        <activity android:name=".qrcode.QRCodeScanActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
+
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
 
         <!-- Multi-window support on Samsung devices -->
         <uses-library
@@ -99,9 +104,7 @@
         <meta-data
             android:name="com.sec.android.support.multiwindow"
             android:value="true" />
-        <!--
-        The following is used for google firebase ml kit
-        -->
+        <!--         The following is used for google firebase ml kit -->
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="label" />
@@ -302,10 +305,8 @@
         <activity
             android:name=".page.tabs.TabActivity"
             android:theme="@style/AppTheme" />
-
-        <activity android:name=".firelogin.signInToWiki"/>
-
-        <activity android:name=".firelogin.wikiSignIn"/>
+        <activity android:name=".firelogin.signInToWiki" />
+        <activity android:name=".firelogin.wikiSignIn" />
 
         <provider
             android:name=".database.AppContentProvider"
@@ -412,6 +413,7 @@
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver android:name=".savedpages.SavedPageSyncNotification" />
+
         <activity
             android:name=".citation.CitationActivity"
             android:label="@string/title_activity_citation"
@@ -421,12 +423,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.wikipedia.page.PageActivity" />
         </activity>
-
         <activity
             android:name=".googleVision.SearchResultsFromGoogleVisionActivity"
             android:label="@string/title_activity_search_results_from_google_vision"
             android:theme="@style/AppTheme" />
+        <activity android:name=".nfc.NfcActivity"></activity>
     </application>
 
 </manifest>
-

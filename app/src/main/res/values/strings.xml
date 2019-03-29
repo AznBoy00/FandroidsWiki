@@ -43,6 +43,7 @@
     <string name="menu_page_recently_viewed">Recently viewed</string>
     <string name="menu_page_citation">Cite this page</string>
     <string name="menu_page_generate_qr_code">Generate QR code</string>
+    <string name="menu_page_share_nfc">Share via NFC</string>
 
 
     <!-- Long press menu -->
