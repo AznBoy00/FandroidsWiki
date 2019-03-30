@@ -17,8 +17,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.haha.perflib.Main;
 
 import org.wikipedia.Constants;
 import org.wikipedia.R;
@@ -68,6 +72,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     Button button_wiki_plusplus;
     private boolean controlNavTabInFragment;
 
+    //Firebase
+    private String username;
+    private FirebaseAuth firebaseAuth;
+
+
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, MainActivity.class);
     }
@@ -75,10 +84,19 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // initialize firebase
         FirebaseApp.initializeApp(this);
+
         ButterKnife.bind(this);
         AnimationUtil.setSharedElementTransitions(this);
         new AppShortcuts().init();
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        username = user.getDisplayName();
+        Toast.makeText(MainActivity.this, "Welcome back!!! "+user.getDisplayName(), Toast.LENGTH_SHORT).show();
 
         if (Prefs.isInitialOnboardingEnabled() && savedInstanceState == null) {
             // Updating preference so the search multilingual tooltip
@@ -114,9 +132,15 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         button_smart_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MLActivity.class);
-                //Intent intent = new Intent(getApplicationContext(), searchResultsFromGoogleVisionActivity.class);
-                startActivity(intent);
+                openMLActivity();
+            }
+        });
+
+        button_qr_reader = findViewById(R.id.button_qr_reader);
+        button_qr_reader.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openQrCodeActivity();
             }
         });
 
@@ -124,13 +148,6 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openPageActivity();
-            }
-        });
-        button_qr_reader = findViewById(R.id.button_qr_reader);
-        button_qr_reader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openQrCodeActivity();
             }
         });
 
@@ -143,6 +160,12 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         });
     }
 
+    public void openMLActivity(){
+
+        Intent intent = new Intent(getApplicationContext(), MLActivity.class);
+        startActivity(intent);
+    }
+
     public void openNotificationActivity() {
         Intent intent = new Intent(this, NotificationSchedulerActivity.class);
         startActivity(intent);
@@ -153,17 +176,18 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         startActivity(intent);
     }
 
+    public void openPageActivity(){
+        //Intent intent = new Intent(this, signInToWiki.class);
+        Intent intent = new Intent(this, signInToWiki.class);
+        startActivity(intent);
+    }
+
+
     @Override
     public void onResume() {
         super.onResume();
         // update main nav drawer after rotating screen
         drawerView.updateState();
-    }
-
-    public void openPageActivity(){
-        //Intent intent = new Intent(this, signInToWiki.class);
-        Intent intent = new Intent(this, signInToWiki.class);
-        startActivity(intent);
     }
 
     @LayoutRes
@@ -347,6 +371,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         @Override public void aboutClick() {
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
             closeMainDrawer();
+        }
+
+        @Override
+        public void loginLogoutClickByfirebase() {
+            Toast.makeText(MainActivity.this,"Thank you " + username,Toast.LENGTH_SHORT).show();
         }
     }
 }

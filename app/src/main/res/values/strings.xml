@@ -748,4 +748,11 @@
     <string name="qr_scanner_main_button">\t\t QR Code Scanner</string>
     <string name="qr_scanner_instruction">Scan this QR code to access the same wiki article.</string>
 
+    <!--Smart Camera-->
+    <string name="smart_camera_tool_bar_button">\t\t Smart Camera</string>>
+
+    <!--Authentication-->
+    <string name="sign_in">Sign out</string>
+
+
 </resources>

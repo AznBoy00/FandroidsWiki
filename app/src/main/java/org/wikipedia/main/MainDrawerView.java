@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.wikipedia.BuildConfig;
 import org.wikipedia.R;
@@ -22,20 +26,37 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainDrawerView extends ScrollView {
+
+    //Firebase
+    private String username;
+    private FirebaseAuth firebaseAuth;
+
     public interface Callback {
         void loginLogoutClick();
+
+        void loginLogoutClickByfirebase();
+
         void notificationsClick();
+
         void settingsClick();
+
         void configureFeedClick();
+
         void aboutClick();
     }
 
-    @BindView(R.id.main_drawer_account_name) TextView accountNameView;
-    @BindView(R.id.main_drawer_login_button) TextView loginLogoutButton;
-    @BindView(R.id.main_drawer_account_avatar) ImageView accountAvatar;
-    @BindView(R.id.main_drawer_account_wiki_globe) ImageView accountWikiGlobe;
-    @BindView(R.id.main_drawer_notifications_container) ViewGroup notificationsContainer;
-    @Nullable Callback callback;
+    @BindView(R.id.main_drawer_account_name)
+    TextView accountNameView;
+    @BindView(R.id.main_drawer_login_button)
+    TextView loginLogoutButton;
+    @BindView(R.id.main_drawer_account_avatar)
+    ImageView accountAvatar;
+    @BindView(R.id.main_drawer_account_wiki_globe)
+    ImageView accountWikiGlobe;
+    @BindView(R.id.main_drawer_notifications_container)
+    ViewGroup notificationsContainer;
+    @Nullable
+    Callback callback;
 
     public MainDrawerView(Context context) {
         super(context);
@@ -57,14 +78,27 @@ public class MainDrawerView extends ScrollView {
     }
 
     public void updateState() {
-        if (AccountUtil.isLoggedIn()) {
-            accountNameView.setText(AccountUtil.getUserName());
-            accountNameView.setVisibility(VISIBLE);
-            loginLogoutButton.setText(getContext().getString(R.string.preference_title_logout));
-            loginLogoutButton.setTextColor(ResourceUtil.getThemedColor(getContext(), R.attr.colorError));
-            accountAvatar.setVisibility(View.VISIBLE);
-            accountWikiGlobe.setVisibility(View.GONE);
-            notificationsContainer.setVisibility(View.VISIBLE);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            if (AccountUtil.isLoggedIn()) {
+                accountNameView.setText(AccountUtil.getUserName());
+                accountNameView.setVisibility(VISIBLE);
+                loginLogoutButton.setText(getContext().getString(R.string.preference_title_logout));
+                loginLogoutButton.setTextColor(ResourceUtil.getThemedColor(getContext(), R.attr.colorError));
+                accountAvatar.setVisibility(View.VISIBLE);
+                accountWikiGlobe.setVisibility(View.GONE);
+                notificationsContainer.setVisibility(View.VISIBLE);
+            } else {
+                accountNameView.setText(user.getDisplayName());
+                accountNameView.setVisibility(VISIBLE);
+                loginLogoutButton.setText(getContext().getString(R.string.preference_title_logout));
+                loginLogoutButton.setTextColor(ResourceUtil.getThemedColor(getContext(), R.attr.colorError));
+                accountAvatar.setVisibility(View.VISIBLE);
+                accountWikiGlobe.setVisibility(View.GONE);
+                notificationsContainer.setVisibility(View.VISIBLE);
+            }
         } else {
             accountNameView.setVisibility(GONE);
             loginLogoutButton.setText(getContext().getString(R.string.main_drawer_login));
@@ -75,44 +109,53 @@ public class MainDrawerView extends ScrollView {
         }
     }
 
-    @OnClick(R.id.main_drawer_settings_container) void onSettingsClick() {
+
+    @OnClick(R.id.main_drawer_settings_container)
+    void onSettingsClick() {
         if (callback != null) {
             callback.settingsClick();
         }
     }
 
-    @OnClick(R.id.main_drawer_configure_container) void onConfigureClick() {
+    @OnClick(R.id.main_drawer_configure_container)
+    void onConfigureClick() {
         if (callback != null) {
             callback.configureFeedClick();
         }
     }
 
-    @OnClick(R.id.main_drawer_notifications_container) void onNotificationsClick() {
+    @OnClick(R.id.main_drawer_notifications_container)
+    void onNotificationsClick() {
         if (callback != null) {
             callback.notificationsClick();
         }
     }
 
-    @OnClick(R.id.main_drawer_donate_container) void onDonateClick() {
+    @OnClick(R.id.main_drawer_donate_container)
+    void onDonateClick() {
         UriUtil.visitInExternalBrowser(getContext(),
                 Uri.parse(String.format(getContext().getString(R.string.donate_url),
                         BuildConfig.VERSION_NAME, WikipediaApp.getInstance().language().getSystemLanguageCode())));
     }
 
-    @OnClick(R.id.main_drawer_about_container) void onAboutClick() {
+    @OnClick(R.id.main_drawer_about_container)
+    void onAboutClick() {
         if (callback != null) {
             callback.aboutClick();
         }
     }
 
-    @OnClick(R.id.main_drawer_help_container) void onHelpClick() {
+    @OnClick(R.id.main_drawer_help_container)
+    void onHelpClick() {
         UriUtil.visitInExternalBrowser(getContext(),
                 Uri.parse(getContext().getString(R.string.android_app_faq_url)));
     }
 
-    @OnClick(R.id.main_drawer_login_button) void onLoginClick() {
+    @OnClick(R.id.main_drawer_login_button)
+    void onLoginClick() {
         if (callback != null) {
-            callback.loginLogoutClick();
+            //callback.loginLogoutClick();
+            callback.loginLogoutClickByfirebase();
         }
     }
 

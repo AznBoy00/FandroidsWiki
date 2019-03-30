@@ -70,7 +70,7 @@ public class signInToWiki extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         myDbRef = database.getReference().child("users");
 
-
+        // authentication listener
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -96,15 +96,16 @@ public class signInToWiki extends AppCompatActivity {
         };
     }
 
-
+    //Start another activity and receive a result back
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(signInToWiki.this, "Sign in 2", Toast.LENGTH_SHORT).show();
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(signInToWiki.this, "Sign IN CANCEL", Toast.LENGTH_SHORT).show();
+                Toast.makeText(signInToWiki.this, "Sign in", Toast.LENGTH_SHORT).show();
+            }
+            else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(signInToWiki.this, "Please sign in again", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
