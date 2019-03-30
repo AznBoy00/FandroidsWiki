@@ -162,7 +162,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
 
     public void openPageActivity(){
         //Intent intent = new Intent(this, signInToWiki.class);
-        Intent intent = new Intent(this, wikiSignIn.class);
+        Intent intent = new Intent(this, signInToWiki.class);
         startActivity(intent);
     }
 
