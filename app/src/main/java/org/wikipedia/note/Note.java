@@ -22,6 +22,14 @@ public class Note {
         this.lastModifiedTime = lastModifiedTime;
     }
 
+    // TODO Delete this constructor once you add authorId, noteBookId, lastModifiedTime
+    public Note(int noteId, String noteTitle, String noteContent, String createdTime) {
+        this.noteId = noteId;
+        this.noteTitle = noteTitle;
+        this.noteContent = noteContent;
+        this.createdTime = createdTime;
+    }
+
     @Override
     public boolean equals(@Nullable Object obj) {
         return super.equals(obj);
