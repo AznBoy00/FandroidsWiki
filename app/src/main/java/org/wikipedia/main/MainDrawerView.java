@@ -59,6 +59,8 @@ public class MainDrawerView extends ScrollView {
     @Nullable
     Callback callback;
 
+    @BindView(R.id.group_chat)
+    Button button_group_chat;
     @BindView(R.id.smart_camera)
     Button button_smart_camera;
     @BindView(R.id.notification_settings)
@@ -67,6 +69,8 @@ public class MainDrawerView extends ScrollView {
     Button button_qr_reader;
     @BindView(R.id.wiki_plusplus)
     Button button_wiki_plusplus;
+
+
 
 
     public MainDrawerView(Context context) {
@@ -101,6 +105,7 @@ public class MainDrawerView extends ScrollView {
                 accountAvatar.setVisibility(View.VISIBLE);
                 accountWikiGlobe.setVisibility(View.GONE);
                 notificationsContainer.setVisibility(View.VISIBLE);
+                button_wiki_plusplus.setVisibility(View.VISIBLE);
             } else {
                 accountNameView.setText(user.getDisplayName());
                 accountNameView.setVisibility(VISIBLE);
@@ -112,6 +117,8 @@ public class MainDrawerView extends ScrollView {
                 button_smart_camera.setVisibility(View.VISIBLE);
                 button_notify_me.setVisibility(View.VISIBLE);
                 button_qr_reader.setVisibility(View.VISIBLE);
+                button_group_chat.setVisibility(View.VISIBLE);
+                button_wiki_plusplus.setVisibility(View.GONE);
             }
         } else {
             accountNameView.setVisibility(GONE);
@@ -123,6 +130,8 @@ public class MainDrawerView extends ScrollView {
             button_smart_camera.setVisibility(View.GONE);
             button_notify_me.setVisibility(View.GONE);
             button_qr_reader.setVisibility(View.GONE);
+            button_group_chat.setVisibility(View.GONE);
+            button_wiki_plusplus.setVisibility(View.VISIBLE);
         }
     }
 

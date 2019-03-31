@@ -152,6 +152,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
 
             //for other option
             //button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
+            //button_wiki_plusplus.setVisibility(View.GONE);
             button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     openPageActivity();
@@ -167,7 +168,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 }
             });
 
-
+            button_group_chat.setVisibility(View.VISIBLE);
             button_group_chat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
