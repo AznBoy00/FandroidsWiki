@@ -9,7 +9,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.wikipedia.R;
 
-public class EditNoteActivity extends AppCompatActivity {
+public class ViewNoteActivity extends AppCompatActivity {
 
     private String userName;
     private FirebaseDatabase firebaseDatabase;
@@ -18,7 +18,7 @@ public class EditNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_note);
+        setContentView(R.layout.activity_view_note);
 
         userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 

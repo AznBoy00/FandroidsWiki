@@ -1,7 +1,10 @@
 package org.wikipedia.note;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -15,9 +18,10 @@ import org.wikipedia.R;
 public class MyNoteActivity extends AppCompatActivity {
 
     private ListView notesListView;
-    private Button button_add_note;
+    private Button button_add_new_note;
 
     private String userName;
+    private RecyclerView myNotesList;
 
     // Firebase connection
     private FirebaseDatabase firebaseDatabase;
@@ -31,25 +35,54 @@ public class MyNoteActivity extends AppCompatActivity {
 
         userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
-
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("Notes");
 
         notesListView = findViewById(R.id.notes_listView);
-        button_add_note = findViewById(R.id.button_add_note);
+        button_add_new_note = findViewById(R.id.button_add_new_note);
+
+        // Load and show created notes
+        loadNotes();
+
+        button_add_new_note.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCreateNoteActivity();
+            }
+        });
 
     }
 
-    public void createNote() {
+    // find noteId, verify user, and list
+    private void loadNotes() {
+
+
 
     }
 
-    public void updateNote() {
+    private void openCreateNoteActivity() {
+
+        Intent intent = new Intent(this, CreateNoteActivity.class);
+        startActivity(intent);
 
     }
 
-    public void deleteNote() {
-
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
+    }
 
 }
