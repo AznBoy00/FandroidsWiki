@@ -768,6 +768,7 @@
     <string name="note_deletion_dialog_title">Confirm Deletion</string>
     <string name="deletion_success">Note Deleted!</string>
     <string name="save_success">Note Saved!</string>
+    <string name="menu_text_take_notes_here">Take notes</string>
 
 
 </resources>
