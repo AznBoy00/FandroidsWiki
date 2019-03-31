@@ -426,6 +426,14 @@
             android:name=".googleVision.SearchResultsFromGoogleVisionActivity"
             android:label="@string/title_activity_search_results_from_google_vision"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".notes.NotesActivity"
+            android:label="NotesActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".notes.NoteEditorActivity"
+            android:label="NoteEditorActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

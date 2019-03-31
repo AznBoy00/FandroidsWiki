@@ -754,5 +754,12 @@
     <!--Authentication-->
     <string name="sign_in">Sign out</string>
 
+    <!--Note Taker-->
+    <string name="share_with_title">Share with…</string>
+    <string name="action_warning">This cannot be undone!</string>
+    <string name="note_deletion_dialog_title">Confirm Deletion</string>
+    <string name="deletion_success">Note Deleted!</string>
+    <string name="save_success">Note Saved!</string>
+
 
 </resources>
