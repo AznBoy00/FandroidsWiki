@@ -89,18 +89,6 @@
             </intent-filter>
         </activity>
         <!-- Activity for Note feature -->
-        <activity
-            android:name=".note.MyNoteActivity"
-            android:label="@string/title_activity_note" />
-        <activity
-            android:name=".note.CreateNoteActivity"
-            android:label="@string/title_activity_note" />
-        <activity
-            android:name=".note.EditNoteActivity"
-            android:label="@string/title_activity_note" />
-        <activity
-            android:name=".note.ViewNoteActivity"
-            android:label="@string/title_activity_note" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
