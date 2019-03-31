@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#ffffff"
+    android:layout_height="match_parent"
+    tools:context="org.wikipedia.note.RegistrationActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registration"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textAppearance="?android:textAppearanceLarge"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Email:"
+        android:textColor="#000000"
+        android:id="@+id/email_reg"
+        android:textColorHint="#000000"
+        android:background="#B0B0B0"
+        android:padding="15dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Password:"
+        android:inputType="textPassword"
+        android:textColor="@android:color/white"
+        android:id="@+id/password_reg"
+        android:textColorHint="#000000"
+        android:background="#B0B0B0"
+        android:padding="15dp"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:background="#000000"
+        android:padding="15dp"
+        android:text="Registration"
+        android:textColor="#ffffff"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:id="@+id/btn_reg"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Already have account? Sign in here."
+        android:gravity="center"
+        android:id="@+id/signinhere"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@android:color/white"
+        android:padding="10dp"
+        />
+
+
+</LinearLayout>
