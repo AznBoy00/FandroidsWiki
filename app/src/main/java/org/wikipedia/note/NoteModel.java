@@ -1,4 +1,4 @@
-package org.wikipedia;
+package org.wikipedia.note;
 
 import java.util.List;
 
@@ -7,11 +7,12 @@ import androidx.annotation.Nullable;
 public class NoteModel {
 
     private int noteId;
+    //TODO remove authorId attrib
     private int authorId;
     private int noteBookId;
     private String noteTitle;
     private String noteContent;
-    private List<String> screenshots;
+    //private List<String> screenshots;
     private String createdTime;
     private String lastModifiedTime;
 
@@ -21,7 +22,7 @@ public class NoteModel {
         this.noteBookId = noteBookId;
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
-        this.screenshots = screenshots;
+        //this.screenshots = screenshots;
         this.createdTime = createdTime;
         this.lastModifiedTime = lastModifiedTime;
     }
@@ -71,13 +72,13 @@ public class NoteModel {
         this.noteContent = noteContent;
     }
 
-    public List<String> getScreenshots() {
-        return screenshots;
-    }
+//    public List<String> getScreenshots() {
+//        return screenshots;
+//    }
 
-    public void setScreenshots(List<String> screenshots) {
-        this.screenshots = screenshots;
-    }
+//    public void setScreenshots(List<String> screenshots) {
+//        this.screenshots = screenshots;
+//    }
 
     public String getCreatedTime() {
         return createdTime;

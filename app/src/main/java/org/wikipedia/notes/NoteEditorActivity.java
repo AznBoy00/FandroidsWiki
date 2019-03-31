@@ -71,7 +71,7 @@ public class NoteEditorActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(NoteEditorActivity.this, R.string.deletion_success, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(NoteEditorActivity.this, R.string.deletion_success, Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     });
@@ -85,11 +85,11 @@ public class NoteEditorActivity extends AppCompatActivity {
         switch (id) {
             case (R.id.action_delete): {
                 if (mNote.getPushId() != null) {
-                    new ConfirmationDialog()
-                            .setTitle(R.string.note_deletion_dialog_title)
-                            .setMessage(R.string.action_warning)
-                            .setOnYesClickListener(onYesDeleteNote)
-                            .show(getSupportFragmentManager(), DELETE_NOTE_TAG);
+//                    new ConfirmationDialog()
+//                            .setTitle(R.string.note_deletion_dialog_title)
+//                            .setMessage(R.string.action_warning)
+//                            .setOnYesClickListener(onYesDeleteNote)
+//                            .show(getSupportFragmentManager(), DELETE_NOTE_TAG);
 
                 }
             }
@@ -104,7 +104,7 @@ public class NoteEditorActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(NoteEditorActivity.this, R.string.save_success, Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(NoteEditorActivity.this, R.string.save_success, Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }
@@ -115,7 +115,7 @@ public class NoteEditorActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(NoteEditorActivity.this, R.string.save_success, Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(NoteEditorActivity.this, R.string.save_success, Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }

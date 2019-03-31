@@ -36,7 +36,7 @@ public class Note implements Serializable {
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, note.getName());
             shareIntent.putExtra(Intent.EXTRA_TEXT, note.getText());
-            context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_with_title)));
+            //context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_with_title)));
         } catch (Exception e) {
             e.printStackTrace();
         }
