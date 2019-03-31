@@ -3,6 +3,8 @@ package org.wikipedia.note;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import org.wikipedia.R;
+
 public class NoteActivity extends AppCompatActivity {
 
     @Override

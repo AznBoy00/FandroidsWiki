@@ -67,6 +67,8 @@ public class MainDrawerView extends ScrollView {
     Button button_qr_reader;
     @BindView(R.id.wiki_plusplus)
     Button button_wiki_plusplus;
+    @BindView(R.id.note)
+    Button button_note;
 
 
     public MainDrawerView(Context context) {
@@ -112,6 +114,7 @@ public class MainDrawerView extends ScrollView {
                 button_smart_camera.setVisibility(View.VISIBLE);
                 button_notify_me.setVisibility(View.VISIBLE);
                 button_qr_reader.setVisibility(View.VISIBLE);
+                button_note.setVisibility(View.VISIBLE);
             }
         } else {
             accountNameView.setVisibility(GONE);
@@ -123,6 +126,7 @@ public class MainDrawerView extends ScrollView {
             button_smart_camera.setVisibility(View.GONE);
             button_notify_me.setVisibility(View.GONE);
             button_qr_reader.setVisibility(View.GONE);
+            button_note.setVisibility(View.GONE);
         }
     }
 

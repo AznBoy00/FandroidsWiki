@@ -168,6 +168,8 @@
                 android:background="#FFFFFF"
                 android:text="@string/citation_copy_citation" />
 
+
+
         </LinearLayout>
     </FrameLayout>
 </FrameLayout>

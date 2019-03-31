@@ -758,6 +758,9 @@
     <string name="send">Send</string>
     <string name="title_activity_chat_2">Wiki Group Chat</string>
     <string name="group_chat_button_name">\t\t Group Chat</string>
+    <string name="note_button_name">\t\t My Notes</string>
+    <string name="title_activity_note">Wiki Note</string>
+    <string name="add_note">Add Note</string>
 
 
 </resources>
