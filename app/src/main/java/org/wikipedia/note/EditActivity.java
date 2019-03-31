@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.util.Date;
+import org.wikipedia.R;
 
 public class EditActivity extends AppCompatActivity {
 
