@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/base10"
     tools:context="org.wikipedia.nfc.NfcActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/page_toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:elevation="4dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/page_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/PageToolbarTheme"
+            app:titleTextColor="#FFFFFF"
+            app:navigationIcon="@drawable/ic_icon_w_back">
+        </android.support.v7.widget.Toolbar>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/color_state_white"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:layout_marginTop="30dp"
+            android:text="@string/nfc_title"/>
+
+        <LinearLayout
+            android:id="@+id/globalLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_share"
+                style="@style/App.Button"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:text="@string/nfc_broadcast"
+                android:onClick="sendArticle"/>
+
+            <Button
+                android:id="@+id/button_receive"
+                style="@style/App.Button"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="80dp"
+                android:background="#FFFFFF"
+                android:text="@string/nfc_receive"
+                android:onClick="receiveArticle"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>
