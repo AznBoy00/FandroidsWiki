@@ -762,6 +762,7 @@
     <string name="title_activity_note">Wiki Note</string>
     <string name="add_note">Add Note</string>
 
+
     <!--Note Taker-->
     <string name="share_with_title">Share with…</string>
     <string name="action_warning">This cannot be undone!</string>
@@ -769,6 +770,9 @@
     <string name="deletion_success">Note Deleted!</string>
     <string name="save_success">Note Saved!</string>
     <string name="menu_text_take_notes_here">Take notes</string>
+    <string name="my_notes">My Notes</string>
+    <string name="add_note">Add Note</string>
+
 
 
 </resources>
