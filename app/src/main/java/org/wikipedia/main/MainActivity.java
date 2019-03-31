@@ -14,11 +14,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -56,15 +58,20 @@ import butterknife.ButterKnife;
 
 // 390 Project Imports
 
+import static android.view.View.VISIBLE;
 import static org.wikipedia.Constants.ACTIVITY_REQUEST_INITIAL_ONBOARDING;
 
 public class MainActivity extends SingleFragmentActivity<MainFragment>
         implements MainFragment.Callback {
 
-    @BindView(R.id.navigation_drawer) WikiDrawerLayout drawerLayout;
-    @BindView(R.id.navigation_drawer_view) MainDrawerView drawerView;
-    @BindView(R.id.single_fragment_toolbar) Toolbar toolbar;
-    @BindView(R.id.single_fragment_toolbar_wordmark) View wordMark;
+    @BindView(R.id.navigation_drawer)
+    WikiDrawerLayout drawerLayout;
+    @BindView(R.id.navigation_drawer_view)
+    MainDrawerView drawerView;
+    @BindView(R.id.single_fragment_toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.single_fragment_toolbar_wordmark)
+    View wordMark;
 
     Button button_smart_camera;
     Button button_notify_me;
@@ -75,6 +82,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     //Firebase
     private String username;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
 
 
     public static Intent newIntent(@NonNull Context context) {
@@ -85,18 +93,77 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // initialize firebase
+        // Initialize firebase
         FirebaseApp.initializeApp(this);
 
         ButterKnife.bind(this);
         AnimationUtil.setSharedElementTransitions(this);
         new AppShortcuts().init();
 
-
+        // Firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        username = user.getDisplayName();
-        Toast.makeText(MainActivity.this, "Welcome back!!! "+user.getDisplayName(), Toast.LENGTH_SHORT).show();
+        user = firebaseAuth.getCurrentUser();
+  /*      if (user != null) {
+            username = user.getDisplayName();
+            Toast.makeText(MainActivity.this, "Welcome back!!! " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+        }*/
+
+        // 390 Project Addition button
+        button_smart_camera = findViewById(R.id.smart_camera);
+        button_qr_reader = findViewById(R.id.button_qr_reader);
+        button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
+        button_notify_me = findViewById(R.id.notification_settings);
+
+
+        // check weather user authenticated or not
+        if (FirebaseAuth.getInstance().getCurrentUser()==null) {
+            button_smart_camera.setVisibility(View.GONE);
+            button_qr_reader.setVisibility(View.GONE);
+            button_notify_me.setVisibility(View.GONE);
+            button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    openPageActivity();
+                }
+            });
+        } else {
+            //button_smart_camera = findViewById(R.id.smart_camera);
+            Log.e("MainActivity22222!!!!!",FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+            username = user.getDisplayName();
+            Toast.makeText(MainActivity.this, "Welcome back " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
+            button_smart_camera.setVisibility(View.VISIBLE);
+            button_smart_camera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openMLActivity();
+                }
+            });
+
+            //button_qr_reader = findViewById(R.id.button_qr_reader);
+            button_qr_reader.setVisibility(View.VISIBLE);
+            button_qr_reader.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openQrCodeActivity();
+                }
+            });
+
+            //for other option
+            //button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
+            button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    openPageActivity();
+                }
+            });
+
+            //button_notify_me = findViewById(R.id.notification_settings);
+            button_notify_me.setVisibility(View.VISIBLE);
+            button_notify_me.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openNotificationActivity();
+                }
+            });
+        }
 
         if (Prefs.isInitialOnboardingEnabled() && savedInstanceState == null) {
             // Updating preference so the search multilingual tooltip
@@ -126,41 +193,9 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         drawerView.setCallback(new DrawerViewCallback());
         shouldShowMainDrawer(true);
 
-        // 390 Project Addition - Test Button for Random Article
-
-        button_smart_camera = findViewById(R.id.smart_camera);
-        button_smart_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMLActivity();
-            }
-        });
-
-        button_qr_reader = findViewById(R.id.button_qr_reader);
-        button_qr_reader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openQrCodeActivity();
-            }
-        });
-
-        button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
-        button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openPageActivity();
-            }
-        });
-
-        button_notify_me = findViewById(R.id.notification_settings);
-        button_notify_me.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNotificationActivity();
-            }
-        });
     }
 
-    public void openMLActivity(){
+    public void openMLActivity() {
 
         Intent intent = new Intent(getApplicationContext(), MLActivity.class);
         startActivity(intent);
@@ -176,7 +211,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         startActivity(intent);
     }
 
-    public void openPageActivity(){
+    public void openPageActivity() {
         //Intent intent = new Intent(this, signInToWiki.class);
         Intent intent = new Intent(this, signInToWiki.class);
         startActivity(intent);
@@ -196,14 +231,15 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         return R.layout.activity_main;
     }
 
-    @Override protected MainFragment createFragment() {
+    @Override
+    protected MainFragment createFragment() {
         return MainFragment.newInstance();
     }
 
     @Override
     public void onTabChanged(@NonNull NavTab tab) {
         if (tab.equals(NavTab.EXPLORE)) {
-            getToolbarWordmark().setVisibility(View.VISIBLE);
+            getToolbarWordmark().setVisibility(VISIBLE);
             getSupportActionBar().setTitle("");
             controlNavTabInFragment = false;
         } else {
@@ -226,7 +262,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
 
     @Override
     public void onSearchClose(boolean shouldFinishActivity) {
-        getToolbar().setVisibility(View.VISIBLE);
+        getToolbar().setVisibility(VISIBLE);
         shouldShowMainDrawer(true);
         if (shouldFinishActivity) {
             finish();
@@ -288,7 +324,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     }
 
     public boolean isFloatingQueueEnabled() {
-        return getFragment().getFloatingQueueView().getVisibility() == View.VISIBLE;
+        return getFragment().getFloatingQueueView().getVisibility() == VISIBLE;
     }
 
     public View getFloatingQueueImageView() {
@@ -334,7 +370,8 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     }
 
     private class DrawerViewCallback implements MainDrawerView.Callback {
-        @Override public void loginLogoutClick() {
+        @Override
+        public void loginLogoutClick() {
             if (AccountUtil.isLoggedIn()) {
                 WikipediaApp.getInstance().logOut();
                 FeedbackUtil.showMessage(MainActivity.this, R.string.toast_logout_complete);
@@ -349,33 +386,40 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             closeMainDrawer();
         }
 
-        @Override public void notificationsClick() {
+        @Override
+        public void notificationsClick() {
             if (AccountUtil.isLoggedIn()) {
                 startActivity(NotificationActivity.newIntent(MainActivity.this));
                 closeMainDrawer();
             }
         }
 
-        @Override public void settingsClick() {
+        @Override
+        public void settingsClick() {
             startActivityForResult(SettingsActivity.newIntent(MainActivity.this), Constants.ACTIVITY_REQUEST_SETTINGS);
             closeMainDrawer();
         }
 
-        @Override public void configureFeedClick() {
+        @Override
+        public void configureFeedClick() {
             if (getFragment().getCurrentFragment() instanceof FeedFragment) {
                 ((FeedFragment) getFragment().getCurrentFragment()).showConfigureActivity(-1);
             }
             closeMainDrawer();
         }
 
-        @Override public void aboutClick() {
+        @Override
+        public void aboutClick() {
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
             closeMainDrawer();
         }
 
         @Override
         public void loginLogoutClickByfirebase() {
-            Toast.makeText(MainActivity.this,"Thank you " + username,Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Log out " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
+            AuthUI.getInstance().signOut(MainActivity.this);
+            //getFragment().onLoginRequested();
+            closeMainDrawer();
         }
     }
 }

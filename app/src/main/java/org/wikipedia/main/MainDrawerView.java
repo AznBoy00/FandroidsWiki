@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -58,6 +59,16 @@ public class MainDrawerView extends ScrollView {
     @Nullable
     Callback callback;
 
+    @BindView(R.id.smart_camera)
+    Button button_smart_camera;
+    @BindView(R.id.notification_settings)
+    Button button_notify_me;
+    @BindView(R.id.button_qr_reader)
+    Button button_qr_reader;
+    @BindView(R.id.wiki_plusplus)
+    Button button_wiki_plusplus;
+
+
     public MainDrawerView(Context context) {
         super(context);
         init();
@@ -98,6 +109,9 @@ public class MainDrawerView extends ScrollView {
                 accountAvatar.setVisibility(View.VISIBLE);
                 accountWikiGlobe.setVisibility(View.GONE);
                 notificationsContainer.setVisibility(View.VISIBLE);
+                button_smart_camera.setVisibility(View.VISIBLE);
+                button_notify_me.setVisibility(View.VISIBLE);
+                button_qr_reader.setVisibility(View.VISIBLE);
             }
         } else {
             accountNameView.setVisibility(GONE);
@@ -106,6 +120,9 @@ public class MainDrawerView extends ScrollView {
             accountAvatar.setVisibility(View.GONE);
             accountWikiGlobe.setVisibility(View.VISIBLE);
             notificationsContainer.setVisibility(View.GONE);
+            button_smart_camera.setVisibility(View.GONE);
+            button_notify_me.setVisibility(View.GONE);
+            button_qr_reader.setVisibility(View.GONE);
         }
     }
 
@@ -156,6 +173,7 @@ public class MainDrawerView extends ScrollView {
         if (callback != null) {
             //callback.loginLogoutClick();
             callback.loginLogoutClickByfirebase();
+            updateState();
         }
     }
 

@@ -77,8 +77,8 @@ public class signInToWiki extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     onSignedInInitialize(user.getDisplayName());
-                    Toast.makeText(signInToWiki.this, "Welcome back "+user.getDisplayName(), Toast.LENGTH_SHORT).show();
-
+                    Intent intent = new Intent(signInToWiki.this, MainActivity.class);
+                    startActivity(intent);
                 } else {
                     onSignOutCleanUp();
                     startActivityForResult(
@@ -125,6 +125,12 @@ public class signInToWiki extends AppCompatActivity {
             firebaseAuth.removeAuthStateListener(authStateListener);
         }
         detachDataReadListener();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
     }
 
     private void onSignedInInitialize(String usename) {
