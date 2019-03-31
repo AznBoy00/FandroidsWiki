@@ -43,6 +43,7 @@
     <string name="menu_page_recently_viewed">Recently viewed</string>
     <string name="menu_page_citation">Cite this page</string>
     <string name="menu_page_generate_qr_code">Generate QR code</string>
+    <string name="menu_page_share_nfc">Share via NFC</string>
 
 
     <!-- Long press menu -->
@@ -99,6 +100,11 @@
     <string name="citation_second_title">Here is your citation!</string>
     <string name="citation_box_text">We are currently generating your citation!\nPlease wait a few seconds....</string>
     <string name="citation_copy_citation">Copy citation</string>
+
+    <!-- NFC page -->
+    <string name="nfc_title">NFC</string>
+    <string name="nfc_broadcast">Share article</string>
+    <string name="nfc_receive">Receive article</string>
 
     <string name="search_no_results_found">No results found</string>
     <string name="search_reading_list_no_results">No results found in \"%s\"</string>

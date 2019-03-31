@@ -325,7 +325,6 @@ dependencies {
 }
 
 
-
 private setSigningConfigKey(config, Properties props) {
     if (props) {
         config.storeFile = props['keystore'] == null ? null : file(props['keystore'])

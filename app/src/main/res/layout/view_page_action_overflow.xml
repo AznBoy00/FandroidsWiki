@@ -86,6 +86,11 @@
                 style="@style/OverflowMenuItem"
                 android:text="@string/menu_page_generate_qr_code"/>
 
+            <TextView
+                android:id="@+id/page_action_overflow_share_nfc"
+                style="@style/OverflowMenuItem"
+                android:text="@string/menu_page_share_nfc"/>
+
 
         </LinearLayout>
 

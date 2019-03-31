@@ -57,6 +57,7 @@ import org.wikipedia.history.HistoryEntry;
 import org.wikipedia.language.LangLinksActivity;
 import org.wikipedia.main.MainActivity;
 import org.wikipedia.navtab.NavTab;
+import org.wikipedia.nfc.NfcActivity;
 import org.wikipedia.page.linkpreview.LinkPreviewDialog;
 import org.wikipedia.page.tabs.Tab;
 import org.wikipedia.page.tabs.TabActivity;
@@ -759,6 +760,11 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
             startActivity(intent);
         }
 
+        @Override
+        public void shareViaNfc() {
+            Intent intent = new Intent(getApplicationContext(), NfcActivity.class);
+            startActivity(intent);
+        }
 
     }
 
