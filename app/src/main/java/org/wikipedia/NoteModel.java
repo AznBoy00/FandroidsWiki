@@ -1,0 +1,97 @@
+package org.wikipedia;
+
+import java.util.List;
+
+import androidx.annotation.Nullable;
+
+public class NoteModel {
+
+    private int noteId;
+    private int authorId;
+    private int noteBookId;
+    private String noteTitle;
+    private String noteContent;
+    private List<String> screenshots;
+    private String createdTime;
+    private String lastModifiedTime;
+
+    public NoteModel(int noteId, int authorId, int noteBookId, String noteTitle, String noteContent, List<String> screenshots, String createdTime, String lastModifiedTime) {
+        this.noteId = noteId;
+        this.authorId = authorId;
+        this.noteBookId = noteBookId;
+        this.noteTitle = noteTitle;
+        this.noteContent = noteContent;
+        this.screenshots = screenshots;
+        this.createdTime = createdTime;
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        return super.equals(obj);
+    }
+
+    public int getNoteId() {
+        return noteId;
+    }
+
+    public void setNoteId(int noteId) {
+        this.noteId = noteId;
+    }
+
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
+    public int getNoteBookId() {
+        return noteBookId;
+    }
+
+    public void setNoteBookId(int noteBookId) {
+        this.noteBookId = noteBookId;
+    }
+
+    public String getNoteTitle() {
+        return noteTitle;
+    }
+
+    public void setNoteTitle(String noteTitle) {
+        this.noteTitle = noteTitle;
+    }
+
+    public String getNoteContent() {
+        return noteContent;
+    }
+
+    public void setNoteContent(String noteContent) {
+        this.noteContent = noteContent;
+    }
+
+    public List<String> getScreenshots() {
+        return screenshots;
+    }
+
+    public void setScreenshots(List<String> screenshots) {
+        this.screenshots = screenshots;
+    }
+
+    public String getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(String createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public String getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    public void setLastModifiedTime(String lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+}

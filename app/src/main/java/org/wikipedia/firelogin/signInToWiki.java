@@ -103,8 +103,7 @@ public class signInToWiki extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(signInToWiki.this, "Sign in", Toast.LENGTH_SHORT).show();
-            }
-            else if (resultCode == RESULT_CANCELED) {
+            } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(signInToWiki.this, "Please sign in again", Toast.LENGTH_SHORT).show();
                 finish();
             }

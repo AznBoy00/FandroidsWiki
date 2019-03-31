@@ -3,11 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_citation_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/base10"
-    tools:context="org.wikipedia.citation.CitationActivity">
+    tools:context="org.wikipedia.note.NoteActivity">
 
     <!-- Old code - ?attr does not work for background -->
     <!--<FrameLayout-->
@@ -66,78 +65,6 @@
                 android:textAlignment="center"
                 android:textColor="@color/color_state_white"
                 android:textSize="20sp" />
-
-            <LinearLayout
-                android:id="@+id/firstButtonRow"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="20dp"
-                android:gravity="center">
-
-                <RadioGroup
-                    android:id="@+id/citation_radiogroup_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:checkedButton="@+id/button_apa"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/button_apa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:background="@drawable/citation_style_button_selected"
-                        android:button="@android:color/transparent"
-                        android:checked="true"
-                        android:clickable="true"
-                        android:paddingLeft="0dp"
-                        android:text="@string/citation_apa"
-                        android:textColor="@color/color_state_black" />
-
-                    <RadioButton
-                        android:id="@+id/button_mla"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:background="@drawable/citation_style_button_unselected"
-                        android:button="@android:color/transparent"
-                        android:checked="false"
-                        android:clickable="true"
-                        android:paddingLeft="0dp"
-                        android:text="@string/citation_mla"
-                        android:textColor="@color/color_state_white" />
-
-                    <RadioButton
-                        android:id="@+id/button_ieee"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:background="@drawable/citation_style_button_unselected"
-                        android:button="@android:color/transparent"
-                        android:checked="false"
-                        android:clickable="true"
-                        android:paddingLeft="0dp"
-                        android:text="@string/citation_ieee"
-                        android:textColor="@color/color_state_white" />
-
-                    <RadioButton
-                        android:id="@+id/button_latex"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_weight="1"
-                        android:background="@drawable/citation_style_button_unselected"
-                        android:button="@android:color/transparent"
-                        android:checked="false"
-                        android:clickable="true"
-                        android:paddingLeft="0dp"
-                        android:text="@string/citation_latex"
-                        android:textColor="@color/color_state_white" />
-                </RadioGroup>
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/secondTitle"

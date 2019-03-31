@@ -275,4 +275,32 @@
         android:textAlignment="viewStart"
         android:textColor="@color/base0" />
 
+
+    <Button
+        android:id="@+id/group_chat"
+        style="@style/TransparentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_qr_code"
+        android:fontFamily="sans-serif"
+        android:text="@string/group_chat_button_name"
+        android:textAllCaps="false"
+        android:textAlignment="viewStart"
+        android:textColor="@color/base0"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/note"
+        style="@style/TransparentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_qr_code"
+        android:fontFamily="sans-serif"
+        android:background="@android:color/transparent"
+        android:text="@string/note_button_name"
+        android:textAlignment="viewStart"
+        android:textColor="@color/base0" />
+
+
 </LinearLayout>
