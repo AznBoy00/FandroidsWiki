@@ -1,7 +1,5 @@
 package org.wikipedia.main;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -24,7 +22,6 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.squareup.haha.perflib.Main;
 
 import org.wikipedia.Constants;
 import org.wikipedia.R;
@@ -34,15 +31,13 @@ import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.chatactivity.ChatActivity;
 import org.wikipedia.feed.FeedFragment;
-import org.wikipedia.firelogin.wikiSignIn;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
-import org.wikipedia.note.NoteActivity;
+import org.wikipedia.note.MyNoteActivity;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
-import org.wikipedia.qrcode.QRCodeGenerateActivity;
 import org.wikipedia.qrcode.QRCodeScanActivity;
 import org.wikipedia.readinglist.ReadingListSyncBehaviorDialogs;
 import org.wikipedia.readinglist.database.ReadingListDbHelper;
@@ -247,7 +242,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     }
 
     private void openNoteActivity() {
-        Intent intent = new Intent(this, NoteActivity.class);
+        Intent intent = new Intent(this, MyNoteActivity.class);
         startActivity(intent);
     }
 

@@ -2,7 +2,7 @@ package org.wikipedia.note;
 
 import android.support.annotation.Nullable;
 
-public class NoteModel {
+public class Note {
 
     private int noteId;
     private int authorId;
@@ -12,7 +12,7 @@ public class NoteModel {
     private String createdTime;
     private String lastModifiedTime;
 
-    public NoteModel(int noteId, int authorId, int noteBookId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {
+    public Note(int noteId, int authorId, int noteBookId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {
         this.noteId = noteId;
         this.authorId = authorId;
         this.noteBookId = noteBookId;

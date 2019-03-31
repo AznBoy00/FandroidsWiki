@@ -90,7 +90,7 @@
         </activity>
         <!-- Activity for Note feature -->
         <activity
-            android:name=".note.NoteActivity"
+            android:name=".note.MyNoteActivity"
             android:label="@string/title_activity_note" />
 
         <meta-data
