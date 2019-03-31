@@ -32,6 +32,7 @@ import org.wikipedia.WikipediaApp;
 import org.wikipedia.activity.SingleFragmentActivity;
 import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
+import org.wikipedia.chatactivity.ChatActivity;
 import org.wikipedia.feed.FeedFragment;
 import org.wikipedia.firelogin.wikiSignIn;
 import org.wikipedia.history.HistoryFragment;
@@ -77,6 +78,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     Button button_notify_me;
     Button button_qr_reader;
     Button button_wiki_plusplus;
+    Button button_group_chat;
     private boolean controlNavTabInFragment;
 
     //Firebase
@@ -113,10 +115,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         button_qr_reader = findViewById(R.id.button_qr_reader);
         button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
         button_notify_me = findViewById(R.id.notification_settings);
+        button_group_chat = findViewById(R.id.group_chat);
 
 
         // check weather user authenticated or not
-        if (FirebaseAuth.getInstance().getCurrentUser()==null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             button_smart_camera.setVisibility(View.GONE);
             button_qr_reader.setVisibility(View.GONE);
             button_notify_me.setVisibility(View.GONE);
@@ -127,7 +130,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             });
         } else {
             //button_smart_camera = findViewById(R.id.smart_camera);
-            Log.e("MainActivity22222!!!!!",FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+            Log.e("MainActivity22222!!!!!", FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
             username = user.getDisplayName();
             Toast.makeText(MainActivity.this, "Welcome back " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
             button_smart_camera.setVisibility(View.VISIBLE);
@@ -163,6 +166,16 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                     openNotificationActivity();
                 }
             });
+
+
+            button_group_chat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openChatActivity();
+                }
+            });
+
+
         }
 
         if (Prefs.isInitialOnboardingEnabled() && savedInstanceState == null) {
@@ -214,6 +227,12 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     public void openPageActivity() {
         //Intent intent = new Intent(this, signInToWiki.class);
         Intent intent = new Intent(this, signInToWiki.class);
+        startActivity(intent);
+    }
+
+    public void openChatActivity() {
+        //Intent intent = new Intent(this, signInToWiki.class);
+        Intent intent = new Intent(this, ChatActivity.class);
         startActivity(intent);
     }
 
