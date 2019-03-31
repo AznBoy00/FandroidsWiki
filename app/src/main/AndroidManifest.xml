@@ -44,11 +44,6 @@
     <!-- Permission for NFC -->
     <uses-permission android:name="android.permission.NFC" />
     <uses-feature android:name="android.hardware.nfc" />
-    <intent-filter>
-        <action android:name="android.nfc.action.NDEF_DISCOVERED" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <data android:mimeType="text/plain"/>
-    </intent-filter>
 
     <uses-feature
         android:name="android.hardware.location"
@@ -433,7 +428,14 @@
             android:name=".googleVision.SearchResultsFromGoogleVisionActivity"
             android:label="@string/title_activity_search_results_from_google_vision"
             android:theme="@style/AppTheme" />
-        <activity android:name=".nfc.NfcActivity"></activity>
+        <activity android:name=".nfc.NfcActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
