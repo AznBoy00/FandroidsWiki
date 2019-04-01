@@ -38,7 +38,7 @@ public class CreateNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note_create);
+        setContentView(R.layout.activity_create_new_note);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 

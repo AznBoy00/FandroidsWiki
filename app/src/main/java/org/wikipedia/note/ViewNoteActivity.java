@@ -12,6 +12,8 @@ import org.wikipedia.R;
 public class ViewNoteActivity extends AppCompatActivity {
 
     private String userName;
+    private String noteId;
+
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
@@ -24,6 +26,12 @@ public class ViewNoteActivity extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Notes");
+
+        try {
+            noteId = getIntent().getStringExtra("noteId");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
