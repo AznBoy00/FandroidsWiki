@@ -32,7 +32,7 @@
             tools:layout_editor_absoluteY="45dp" />
 
         <EditText
-            android:id="@+id/note_content"
+            android:id="@+id/new_note_content"
             android:layout_width="match_parent"
             android:layout_height="462dp"
             android:layout_marginStart="8dp"
@@ -40,7 +40,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@color/accent90"
-            android:gravity="start|top|left"
+            android:gravity="start"
             android:text=""
             android:textAlignment="viewStart"
             android:textSize="12sp"
