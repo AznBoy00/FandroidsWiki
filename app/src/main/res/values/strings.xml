@@ -765,6 +765,7 @@
     <string name="add_new_note">add_new_note</string>
     <string name="note_title">Note Title</string>
     <string name="updated_time">Updated time</string>
+    <string name="menu_text_select_add_notes">Add notes</string>
 
 
 </resources>
