@@ -62,22 +62,34 @@ public class MyNoteActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                openViewNoteActivity();
+                Note clickedNote = (Note) notesListView.getItemAtPosition(position);
+                String noteId = clickedNote.getNoteId();
+                Intent intent = new Intent(MyNoteActivity.this, ViewNoteActivity.class);
+                intent.putExtra("noteId", noteId);
+                startActivity(intent);
+
+                //openViewNoteActivity();
 
             }
         });
 
         attachDatabaseReadListener();
 
-
     }
 
-    private void openViewNoteActivity() {
+    /**private void openViewNoteActivity(String noteId) {
 
-        Intent intent = new Intent(this, CreateNoteActivity.class);
+     Intent intent = new Intent(this, CreateNoteActivity.class);
+     startActivity(intent);
+
+     } **/
+
+    /** private void openViewNoteActivity() {
+
+        Intent intent = new Intent(this, ViewNoteActivity.class);
         startActivity(intent);
 
-    }
+    } **/
 
     private void openCreateNoteActivity() {
 

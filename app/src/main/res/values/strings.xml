@@ -770,7 +770,13 @@
 
     <string name="button_delete">Delete</string>
     <string name="button_edit">Edit</string>
-
+    <string name="note_id">Note ID:</string>
+    <string name="note_id_insert">note id?</string>
+    <string name="user_id">User ID:</string>
+    <string name="user_id_insert">user id?</string>
+    <string name="notebook_id">NoteBook ID:</string>
+    <string name="notebook_id_insert">notebook id?</string>
+    <string name="save">Save</string>
 
 
 </resources>
