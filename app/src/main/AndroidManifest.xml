@@ -78,7 +78,8 @@
         <activity
             android:name=".mlkit.MLActivity"
             android:label="@string/title_activity_ml"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- Activities for QR Code Generator and Scanner -->
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- Activities for QR Code Generator and Scanner -->
         <activity android:name=".qrcode.QRCodeGenerateActivity" />
         <activity android:name=".qrcode.QRCodeScanActivity">
             <intent-filter>
@@ -87,6 +88,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Activity for Note feature -->
+        <activity
+            android:name=".note.MyNoteActivity"
+            android:label="@string/title_activity_note" />
+        <activity
+            android:name=".note.CreateNoteActivity"
+            android:label="@string/title_activity_note" />
+        <activity
+            android:name=".note.EditNoteActivity"
+            android:label="@string/title_activity_note" />
+        <activity
+            android:name=".note.ViewNoteActivity"
+            android:label="@string/title_activity_note" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
