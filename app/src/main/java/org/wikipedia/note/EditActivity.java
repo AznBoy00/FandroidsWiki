@@ -71,7 +71,7 @@ public class EditActivity extends AppCompatActivity {
         desc=mdescription.getText().toString().trim();
 
         String date= DateFormat.getDateInstance().format(new Date());
-        Note data=new Note(Integer.parseInt(post_key),title,desc,date);
+        Note data=new Note(post_key,title,desc,date);
         mDatabase.child(post_key).setValue(data);
 
     }

@@ -4,17 +4,19 @@ import android.support.annotation.Nullable;
 
 public class Note {
 
-    private int noteId;
-    private int authorId;
-    private int noteBookId;
+    private String noteId;
+    private String userId;
+    private String noteBookId;
     private String noteTitle;
     private String noteContent;
     private String createdTime;
     private String lastModifiedTime;
 
-    public Note(int noteId, int authorId, int noteBookId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {
+    public Note(){}
+
+    public Note(String noteId, String userId, String noteBookId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {
         this.noteId = noteId;
-        this.authorId = authorId;
+        this.userId = userId;
         this.noteBookId = noteBookId;
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
@@ -22,8 +24,8 @@ public class Note {
         this.lastModifiedTime = lastModifiedTime;
     }
 
-    // TODO Delete this constructor once you add authorId, noteBookId, lastModifiedTime
-    public Note(int noteId, String noteTitle, String noteContent, String createdTime) {
+    // TODO Delete this constructor once you add userId, noteBookId, lastModifiedTime
+    public Note(String noteId, String noteTitle, String noteContent, String createdTime) {
         this.noteId = noteId;
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
@@ -35,27 +37,27 @@ public class Note {
         return super.equals(obj);
     }
 
-    public int getNoteId() {
+    public String getNoteId() {
         return noteId;
     }
 
-    public void setNoteId(int noteId) {
+    public void setNoteId(String noteId) {
         this.noteId = noteId;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public int getNoteBookId() {
+    public String getNoteBookId() {
         return noteBookId;
     }
 
-    public void setNoteBookId(int noteBookId) {
+    public void setNoteBookId(String noteBookId) {
         this.noteBookId = noteBookId;
     }
 

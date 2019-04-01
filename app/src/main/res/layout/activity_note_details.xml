@@ -9,20 +9,26 @@
     android:layout_height="match_parent"
     tools:context="org.wikipedia.note.DetailsActivity">
 
-    <include layout="@layout/my_notes_toolbar"
-        android:id="@+id/details_toolbar"/>
+    <include
+        android:id="@+id/details_toolbar"
+        layout="@layout/my_notes_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/date_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:padding="15dp"
         android:text="Date"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/details_toolbar"
-        app:layout_constraintTop_toTopOf="@+id/details_toolbar"
-        app:layout_constraintVertical_bias="0.121"
+        app:layout_constraintBottom_toTopOf="@+id/title_details"
+        app:layout_constraintTop_toBottomOf="@+id/details_toolbar"
+        app:layout_constraintVertical_bias="0.518"
         tools:layout_editor_absoluteX="0dp" />
 
 
@@ -30,31 +36,33 @@
         android:id="@+id/title_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="252dp"
         android:paddingLeft="15dp"
         android:paddingTop="5dp"
         android:text="Title"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/details_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@+id/details_toolbar"
-        app:layout_constraintVertical_bias="0.234"
+        app:layout_constraintVertical_bias="0.259"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/description_Details"
         android:layout_width="match_parent"
         android:layout_height="98dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:paddingLeft="15dp"
         android:paddingTop="5dp"
         android:text="Description"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/details_toolbar"
-        app:layout_constraintTop_toTopOf="@+id/details_toolbar"
-        app:layout_constraintVertical_bias="0.356"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_details"
+        app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp" />
 
 </android.support.constraint.ConstraintLayout>
