@@ -38,7 +38,7 @@ public class CreateNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note_create);
+        setContentView(R.layout.activity_create_new_note);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -59,8 +59,9 @@ public class CreateNoteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String str = user.getUid();
                 currentTime = dateFormat.format(Calendar.getInstance().getTime());
-                Note newNote = new Note("", user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
-                databaseReference.push().setValue(newNote);
+                String noteId = databaseReference.push().getKey();
+                Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
+                databaseReference.child(noteId).setValue(newNote);
 
                 onFinish();
             }

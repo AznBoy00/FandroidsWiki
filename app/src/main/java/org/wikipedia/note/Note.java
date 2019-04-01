@@ -13,7 +13,13 @@ public class Note {
     private String lastModifiedTime;
 
     public Note() {
-
+        this.noteId = "";
+        this.userId = "";
+        this.noteBookId = "";
+        this.noteTitle = "";
+        this.noteContent = "";
+        this.createdTime = "";
+        this.lastModifiedTime = "";
     }
 
     /** public Note(String noteId, int authorId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {

@@ -86,6 +86,8 @@ public class MyNoteActivity extends AppCompatActivity {
 
     }
 
+
+
     private void attachDatabaseReadListener() {
         if (childEventListener == null) {
             childEventListener = new ChildEventListener() {
