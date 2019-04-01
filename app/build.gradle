@@ -315,7 +315,7 @@ dependencies {
 
     // Displaying images
     implementation 'com.github.bumptech.glide:glide:3.6.1'
-    implementation 'com.google.android.material:material:1.0.0'
+    //implementation 'com.google.android.material:material:1.0.0'
 
     //implementation 'com.github.d-max:spots-dialog:1.1@aar'
     //Firestore
