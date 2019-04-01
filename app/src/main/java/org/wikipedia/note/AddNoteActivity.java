@@ -41,7 +41,7 @@ public class AddNoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
-        toolbar=findViewById(R.id.add_note_tolbar);
+        toolbar=findViewById(R.id.notes_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add Note");
 

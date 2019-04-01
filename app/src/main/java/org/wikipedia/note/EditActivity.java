@@ -36,7 +36,7 @@ public class EditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_edit_note);
 
         toolbar=findViewById(R.id.edt_note);
         setSupportActionBar(toolbar);

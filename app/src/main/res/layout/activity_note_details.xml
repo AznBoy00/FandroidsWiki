@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_height="match_parent"
+    tools:context="org.wikipedia.note.DetailsActivity">
+
+    <include layout="@layout/my_notes_toolbar"
+        android:id="@+id/details_toolbar"/>
+
+    <TextView
+        android:id="@+id/date_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="15dp"
+        android:text="Date"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="@+id/details_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/details_toolbar"
+        app:layout_constraintVertical_bias="0.121"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+    <TextView
+        android:id="@+id/title_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp"
+        android:text="Title"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/details_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/details_toolbar"
+        app:layout_constraintVertical_bias="0.234"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/description_Details"
+        android:layout_width="match_parent"
+        android:layout_height="98dp"
+        android:layout_marginBottom="8dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="5dp"
+        android:text="Description"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/details_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/details_toolbar"
+        app:layout_constraintVertical_bias="0.356"
+        tools:layout_editor_absoluteX="0dp" />
+
+</android.support.constraint.ConstraintLayout>

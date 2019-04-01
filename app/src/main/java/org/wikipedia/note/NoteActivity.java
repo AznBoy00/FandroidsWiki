@@ -92,7 +92,7 @@ public class NoteActivity extends AppCompatActivity {
             @Override
             public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.item_data, parent, false);
+                        .inflate(R.layout.note_item_data, parent, false);
 
                 return new MyViewHolder(view);
             }

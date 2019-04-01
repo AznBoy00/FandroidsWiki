@@ -1,63 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_margin="10dp"
-    android:background="#B0B0B0"
-    android:layout_height="wrap_content">
+    android:background="#ffffff">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#B0B0B0">
+
         <RelativeLayout
             android:layout_width="0dp"
-            android:gravity="center"
-            android:layout_margin="10dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_margin="10dp"
+            android:layout_weight="2"
+            android:gravity="center">
+
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:text="Title.."
-                android:padding="5dp"
-                android:maxLines="1"
-                android:textStyle="bold"
                 android:id="@+id/title_xml"
-                android:textAppearance="?android:textAppearanceMedium"
-                />
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:padding="5dp"
                 android:maxLines="1"
-                android:layout_below="@+id/title_xml"
-                android:textStyle="bold"
+                android:padding="5dp"
+                android:text="Title.."
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_xml"
+                android:maxLines="1"
+                android:padding="5dp"
+                android:text="Description"
                 android:textAppearance="?android:textAppearanceSmall"
-                />
+                android:textColor="#000000"
+                android:textStyle="bold" />
 
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_margin="10dp"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_weight="1">
 
             <TextView
+                android:id="@+id/date_xml"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:id="@+id/date_xml"
+                android:text="4/01/2019"
                 android:textAppearance="?android:textAppearanceSmall"
-                />
+                android:textColor="#000000"
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </LinearLayout>
