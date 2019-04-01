@@ -46,7 +46,6 @@
         android:layout_height="wrap_content"
         android:padding="6dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
         <Button

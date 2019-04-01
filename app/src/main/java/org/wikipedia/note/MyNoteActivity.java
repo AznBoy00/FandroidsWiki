@@ -58,7 +58,7 @@ public class MyNoteActivity extends AppCompatActivity {
         List<Note> myNotes = new ArrayList<>();
         noteAdapter = new NoteAdapter(this, R.layout.item_notes, myNotes);
         notesListView.setAdapter(noteAdapter);
-        notesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /** notesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -71,7 +71,7 @@ public class MyNoteActivity extends AppCompatActivity {
                 //openViewNoteActivity();
 
             }
-        });
+        }); **/
 
         attachDatabaseReadListener();
 
