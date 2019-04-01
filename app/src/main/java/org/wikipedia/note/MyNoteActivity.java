@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -57,12 +58,26 @@ public class MyNoteActivity extends AppCompatActivity {
         List<Note> myNotes = new ArrayList<>();
         noteAdapter = new NoteAdapter(this, R.layout.item_notes, myNotes);
         notesListView.setAdapter(noteAdapter);
+        notesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                openViewNoteActivity();
+
+            }
+        });
 
         attachDatabaseReadListener();
 
+
     }
 
-    // find noteId, verify user, and list
+    private void openViewNoteActivity() {
+
+        Intent intent = new Intent(this, CreateNoteActivity.class);
+        startActivity(intent);
+
+    }
 
     private void openCreateNoteActivity() {
 
