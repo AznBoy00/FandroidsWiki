@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 public class Note {
 
     private String noteId;
-    private int authorId;
-    // private int noteBookId;
+    private String userId;
+    private String noteBookId;
     private String noteTitle;
     private String noteContent;
     private String createdTime;
@@ -16,9 +16,14 @@ public class Note {
 
     }
 
-    public Note(String noteId, int authorId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {
+    /** public Note(String noteId, int authorId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {
         this.noteId = noteId;
-        this.authorId = authorId;
+        this.authorId = authorId; **/
+
+    public Note(String noteId, String userId, String noteBookId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {
+        this.noteId = noteId;
+        this.userId = userId;
+        this.noteBookId = noteBookId;
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
         this.createdTime = createdTime;
@@ -50,21 +55,21 @@ public class Note {
         this.noteId = noteId;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    /** public int getNoteBookId() {
+    public String getNoteBookId() {
         return noteBookId;
     }
 
-    public void setNoteBookId(int noteBookId) {
+    public void setNoteBookId(String noteBookId) {
         this.noteBookId = noteBookId;
-    } **/
+    }
 
     public String getNoteTitle() {
         return noteTitle;
