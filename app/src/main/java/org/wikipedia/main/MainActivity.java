@@ -31,9 +31,11 @@ import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.chatactivity.ChatActivity;
 import org.wikipedia.feed.FeedFragment;
+import org.wikipedia.firelogin.signInToWiki;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
+import org.wikipedia.note.MyNotesActivity;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
@@ -47,15 +49,14 @@ import org.wikipedia.util.AnimationUtil;
 import org.wikipedia.util.DimenUtil;
 import org.wikipedia.util.FeedbackUtil;
 import org.wikipedia.views.WikiDrawerLayout;
-import org.wikipedia.firelogin.signInToWiki;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-// 390 Project Imports
-
 import static android.view.View.VISIBLE;
 import static org.wikipedia.Constants.ACTIVITY_REQUEST_INITIAL_ONBOARDING;
+
+// 390 Project Imports
 
 public class MainActivity extends SingleFragmentActivity<MainFragment>
         implements MainFragment.Callback {
@@ -103,7 +104,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         user = firebaseAuth.getCurrentUser();
   /*      if (user != null) {
             username = user.getDisplayName();
-            Toast.makeText(MainActivity.this, "Welcome back!!! " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(NoteTakerActivity.this, "Welcome back!!! " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
         }*/
 
         // 390 Project Addition button
@@ -241,7 +242,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     }
 
     private void openNoteActivity() {
-        Intent intent = new Intent(this, MyNoteActivity.class);
+        Intent intent = new Intent(this, MyNotesActivity.class);
         startActivity(intent);
     }
 

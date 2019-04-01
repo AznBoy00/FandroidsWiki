@@ -52,9 +52,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="3/26/2018"
                 android:padding="10dp"
-                android:textColor="@color/dat_color"
+                android:textColor="#000000"
                 android:textStyle="bold"
                 android:id="@+id/date_xml"
                 android:textAppearance="?android:textAppearanceSmall"

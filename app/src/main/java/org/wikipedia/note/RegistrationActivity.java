@@ -55,7 +55,7 @@ public class RegistrationActivity extends AppCompatActivity {
         signHere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MyNotesActivity.class));
             }
         });
 

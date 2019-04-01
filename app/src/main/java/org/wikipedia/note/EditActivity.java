@@ -14,9 +14,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.wikipedia.R;
+
 import java.text.DateFormat;
 import java.util.Date;
-import org.wikipedia.R;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -70,7 +71,7 @@ public class EditActivity extends AppCompatActivity {
         desc=mdescription.getText().toString().trim();
 
         String date= DateFormat.getDateInstance().format(new Date());
-        Note data=new Note(title,desc,date,post_key);
+        Note data=new Note(Integer.parseInt(post_key),title,desc,date);
         mDatabase.child(post_key).setValue(data);
 
     }

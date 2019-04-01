@@ -196,7 +196,7 @@ public class signInToWiki extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_google_sign_in);
         if (findViewById(R.id.sign_in_button).getVisibility() != View.VISIBLE) {
-            Intent mainFeed = new Intent(activity, MainActivity.class);
+            Intent mainFeed = new Intent(activity, NoteTakerActivity.class);
             startActivity(mainFeed);
         }
 

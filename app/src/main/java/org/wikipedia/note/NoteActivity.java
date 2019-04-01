@@ -175,7 +175,7 @@ public class NoteActivity extends AppCompatActivity {
             case R.id.logout:
 
                 mAuth.signOut();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MyNotesActivity.class));
                 break;
 
         }

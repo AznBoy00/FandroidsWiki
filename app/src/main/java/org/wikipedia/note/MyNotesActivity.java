@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import org.wikipedia.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MyNotesActivity extends AppCompatActivity {
 
     private EditText email;
     private EditText password;

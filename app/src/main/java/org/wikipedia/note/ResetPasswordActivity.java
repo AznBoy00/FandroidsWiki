@@ -52,7 +52,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
 
                             Toast.makeText(getApplicationContext(),"Please Check your maill", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MyNotesActivity.class));
 
                         }else {
                             Toast.makeText(getApplicationContext(),"Failed..", Toast.LENGTH_SHORT).show();

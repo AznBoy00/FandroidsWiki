@@ -879,7 +879,7 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
 
     /**
      * Reload the main page in the new language, after delaying for one second in order to:
-     * (1) Make sure that onStart in MainActivity gets called, thus registering the activity for the bus.
+     * (1) Make sure that onStart in NoteTakerActivity gets called, thus registering the activity for the bus.
      * (2) Ensure a smooth transition, which is very jarring without a delay.
      */
     private void loadNewLanguageMainPage() {

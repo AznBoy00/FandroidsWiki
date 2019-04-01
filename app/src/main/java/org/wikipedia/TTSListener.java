@@ -15,7 +15,7 @@ public class TTSListener implements TextToSpeech.OnInitListener {
         if (status == TextToSpeech.SUCCESS) {
              int supported = mSpeech.setLanguage(Locale.US);
 //                if ((supported != TextToSpeech.LANG_AVAILABLE) && (supported != TextToSpeech.LANG_COUNTRY_AVAILABLE)) {
-//                    Toast.makeText(MainActivity.this, "不支持当前语言！", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(NoteTakerActivity.this, "不支持当前语言！", Toast.LENGTH_SHORT).show();
 //                    Log.i(TAG, "onInit: 支持当前选择语言");
 //                }else{
 //

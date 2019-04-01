@@ -16,9 +16,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.wikipedia.R;
+
 import java.text.DateFormat;
 import java.util.Date;
-import org.wikipedia.R;
 
 
 public class AddNoteActivity extends AppCompatActivity {
@@ -86,10 +87,8 @@ public class AddNoteActivity extends AppCompatActivity {
 
         String date= DateFormat.getDateInstance().format(new Date());
         //TODO adapt to constructor
-        Note data=new Note(id,title,description,date);
+        Note data=new Note(Integer.parseInt(id),title,description,date);
         mDatabase.child(id).setValue(data);
-
-
     }
 
     @Override
