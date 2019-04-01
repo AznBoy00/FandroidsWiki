@@ -18,7 +18,7 @@ public class ViewNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_note);
+        setContentView(R.layout.activity_note_view);
 
         userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
