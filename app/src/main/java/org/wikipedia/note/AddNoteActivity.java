@@ -29,11 +29,10 @@ public class AddNoteActivity extends AppCompatActivity {
     private EditText mTitle;
     private EditText mDescription;
 
-    //Database..
+    //Database
 
-    private DatabaseReference mDatabase;
+    private DatabaseReference myDBRef;
     private FirebaseAuth mAuth;
-
 
     private ProgressDialog mDialog;
 
@@ -52,7 +51,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
         String uid=mUser.getUid();
 
-        mDatabase= FirebaseDatabase.getInstance().getReference().child("Note").child(uid);
+        myDBRef= FirebaseDatabase.getInstance().getReference().child("Note").child(uid);
 
         mDialog=new ProgressDialog(this);
 
@@ -83,12 +82,12 @@ public class AddNoteActivity extends AppCompatActivity {
             return;
         }
 
-        String id=mDatabase.push().getKey();
+        String id=myDBRef.push().getKey();
 
         String date= DateFormat.getDateInstance().format(new Date());
         //TODO adapt to constructor
         Note data=new Note(id,title,description,date);
-        mDatabase.child(id).setValue(data);
+        myDBRef.child(id).setValue(data);
     }
 
     @Override

@@ -35,7 +35,7 @@ import org.wikipedia.firelogin.signInToWiki;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
-import org.wikipedia.note.MyNotesActivity;
+import org.wikipedia.note.NoteActivity;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
@@ -79,7 +79,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     private boolean controlNavTabInFragment;
 
     //Firebase
-    private String username;
+    private String mUsername;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
 
@@ -103,7 +103,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
   /*      if (user != null) {
-            username = user.getDisplayName();
+            mUsername = user.getDisplayName();
             Toast.makeText(NoteTakerActivity.this, "Welcome back!!! " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
         }*/
 
@@ -130,7 +130,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         } else {
             //button_smart_camera = findViewById(R.id.smart_camera);
             Log.e("MainActivity22222!!!!!", FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-            username = user.getDisplayName();
+            mUsername = user.getDisplayName();
             Toast.makeText(MainActivity.this, "Welcome back " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
             button_smart_camera.setVisibility(View.VISIBLE);
             button_smart_camera.setOnClickListener(new View.OnClickListener() {
@@ -242,7 +242,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     }
 
     private void openNoteActivity() {
-        Intent intent = new Intent(this, MyNotesActivity.class);
+        Intent intent = new Intent(this, NoteActivity.class);
         startActivity(intent);
     }
 

@@ -9,8 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -21,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import org.wikipedia.R;
 
 
@@ -33,7 +32,7 @@ public class NoteActivity extends AppCompatActivity {
 
     //Firebase
 
-    private DatabaseReference mDatabase;
+    private DatabaseReference myDBRef;
     private FirebaseAuth mAuth;
 
     private RecyclerView mRecyclerView;
@@ -53,9 +52,9 @@ public class NoteActivity extends AppCompatActivity {
         FirebaseUser mUser=mAuth.getCurrentUser();
         String uid=mUser.getUid();
 
-        mDatabase= FirebaseDatabase.getInstance().getReference().child("Note").child(uid);
+        myDBRef= FirebaseDatabase.getInstance().getReference().child("Note").child(uid);
 
-        mDatabase.keepSynced(true);
+        myDBRef.keepSynced(true);
 
         mRecyclerView=findViewById(R.id.recyclerview);
 
@@ -67,7 +66,7 @@ public class NoteActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-        fbBtn=findViewById(R.id.flot_btn);
+        fbBtn=findViewById(R.id.float_btn);
 
         fbBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +84,7 @@ public class NoteActivity extends AppCompatActivity {
 
         FirebaseRecyclerOptions<Note> options =
                 new FirebaseRecyclerOptions.Builder<Note>()
-                        .setQuery(mDatabase, Note.class)
+                        .setQuery(myDBRef, Note.class)
                         .build();
 
         FirebaseRecyclerAdapter firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Note, MyViewHolder>(options) {
@@ -163,6 +162,7 @@ public class NoteActivity extends AppCompatActivity {
 
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.logout_menu,menu);
@@ -181,7 +181,7 @@ public class NoteActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+*/
 
 
 }

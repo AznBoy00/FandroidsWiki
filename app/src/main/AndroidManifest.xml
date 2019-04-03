@@ -304,13 +304,10 @@
         <activity android:name=".firelogin.wikiSignIn" />
 
         <!-- Note Taker feature -->
-        <activity android:name=".note.MyNotesActivity" />
         <activity android:name=".note.EditActivity" />
         <activity android:name=".note.DetailsActivity" />
         <activity android:name=".note.AddNoteActivity" />
         <activity android:name=".note.NoteActivity" />
-        <activity android:name=".note.RegistrationActivity" />
-        <activity android:name=".note.ResetPasswordActivity" />
 
         <provider
             android:name=".database.AppContentProvider"

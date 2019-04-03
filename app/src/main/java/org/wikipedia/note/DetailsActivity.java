@@ -23,7 +23,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView title;
     private TextView description;
 
-    private DatabaseReference mDatabse;
+    private DatabaseReference myDBRef;
 
     private FirebaseAuth mAuth;
 
@@ -53,7 +53,7 @@ public class DetailsActivity extends AppCompatActivity {
         String uid=mUser.getUid();
 
 
-        mDatabse= FirebaseDatabase.getInstance().getReference().child("Note").child(uid);
+        myDBRef= FirebaseDatabase.getInstance().getReference().child("Note").child(uid);
 
 
 
@@ -92,6 +92,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.details_menu,menu);
@@ -104,7 +105,7 @@ public class DetailsActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.delete:
 
-                mDatabse.child(post_key).removeValue();
+                myDBRef.child(post_key).removeValue();
 
                 Toast.makeText(getApplicationContext(),"Note Deleted", Toast.LENGTH_SHORT).show();
 
