@@ -5,7 +5,7 @@
     <color name="base100">#FFFFFF</color> <!-- B AAA: Base background, Highlight from grey -->
     <color name="base90">#f8f9fa</color> <!-- B AAA: Button / 3D widget background -->
     <color name="base80">#eaecf0</color> <!-- B AAA: Disabled text input background -->
-    <color name="base70">#c8ccd1</color> <!-- B AAA: Disabled button / 3D widget background -->
+    <color name="base70">#C8CCD1</color> <!-- B AAA: Disabled button / 3D widget background -->
     <color name="base50">#a2a9b1</color> <!-- B AAA: Highlighted border -->
     <color name="base30">#72777d</color> <!-- B&W AA: Disabled elements text, Placeholder text, Active border -->
     <color name="base20">#54595d</color> <!-- W AAA: Emphasized secondary text at level AAA need -->
