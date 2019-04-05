@@ -32,6 +32,7 @@ public class EditNoteActivity extends AppCompatActivity {
     private EditText noteContent;
     private String noteId;
     private Note note;
+    private NoteBook noteBookId;
     private DatabaseReference noteDBRef;
     private NoteAdapter noteAdapter;
     private ChildEventListener childEventListener;

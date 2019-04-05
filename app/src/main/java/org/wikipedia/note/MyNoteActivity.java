@@ -28,6 +28,7 @@ public class MyNoteActivity extends AppCompatActivity {
     private Button button_add_new_note;
 
     private String userName;
+    private NoteBook noteBookId;
     private NoteAdapter noteAdapter;
 
     // Firebase connection
