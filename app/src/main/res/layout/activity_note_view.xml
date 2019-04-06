@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    >
+    android:layout_height="wrap_content"
+    android:background="#000000"
+    android:padding="5dp">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
     <TableLayout
         android:id="@+id/table1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF">
 
         <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:text="@string/note_id" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="@string/note_id_insert" />
+                android:text="@string/note_id"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:padding="5dp"
+                android:text="@string/note_id_insert"
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
@@ -44,7 +56,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="@string/user_id" />
+                android:text="@string/user_id"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView4"
@@ -52,7 +70,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="@string/user_id_insert" />
+                android:padding="5dp"
+                android:text="@string/user_id_insert"
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
@@ -65,7 +85,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="@string/notebook_id" />
+                android:text="@string/notebook_id"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView6"
@@ -73,7 +99,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="@string/notebook_id_insert" />
+                android:padding="5dp"
+                android:text="@string/notebook_id_insert"
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
@@ -86,7 +114,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="TextView" />
+                android:text="@string/created_at"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView8"
@@ -94,7 +128,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="TextView" />
+                android:padding="5dp"
+                android:text="@string/created_at_insert"
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
@@ -105,17 +141,21 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:text="TextView" />
+                android:text="@string/last_modified"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:text="TextView" />
+                android:padding="5dp"
+                android:text="@string/last_modified_insert"
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
@@ -128,15 +168,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="TextView" />
+                android:text="@string/note_title2"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:text="TextView" />
+                android:padding="5dp"
+                android:text="@string/note_title_insert"
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
@@ -149,15 +195,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:text="TextView" />
+                android:text="@string/note_content"
+                android:textSize="25sp" />
         </TableRow>
 
         <TableRow
@@ -165,22 +204,50 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
-                android:text="TextView" />
+                android:text="@string/note_content_insert"
+                android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:text="TextView" />
         </TableRow>
 
     </TableLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="517dp"
+        android:gravity="end"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/button_edit_note2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Return_btn" />
+
+        <Button
+            android:id="@+id/button_edit_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_edit" />
+
+        <Button
+            android:id="@+id/button_delete_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_delete" />
+
+    </LinearLayout>
 
 </RelativeLayout>

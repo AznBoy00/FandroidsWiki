@@ -770,13 +770,22 @@
 
     <string name="button_delete">Delete</string>
     <string name="button_edit">Edit</string>
-    <string name="note_id">Note ID:</string>
+    <string name="note_id">Note ID: </string>
     <string name="note_id_insert">note id?</string>
-    <string name="user_id">User ID:</string>
+    <string name="user_id">User ID: </string>
     <string name="user_id_insert">user id?</string>
-    <string name="notebook_id">NoteBook ID:</string>
+    <string name="notebook_id">NoteBook ID: </string>
     <string name="notebook_id_insert">notebook id?</string>
     <string name="save">Save</string>
+    <string name="created_at">Created at: </string>
+    <string name="created_at_insert">Created time?</string>
+    <string name="last_modified">Last modified: </string>
+    <string name="last_modified_insert">last modified?</string>
+    <string name="note_title_insert">Note title?</string>
+    <string name="note_content">Note Content: </string>
+    <string name="note_content_insert">note content?</string>
+    <string name="Return_btn">Return</string>
+    <string name="note_title2">Note title:</string>
 
 
 </resources>
