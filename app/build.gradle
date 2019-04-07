@@ -316,6 +316,11 @@ dependencies {
     // Displaying images
     implementation 'com.github.bumptech.glide:glide:3.6.1'
 
+    // Beacon
+    implementation 'org.altbeacon:android-beacon-library:2+'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+
     //implementation 'com.github.d-max:spots-dialog:1.1@aar'
     //Firestore
 /*    implementation 'com.google.firebase:firebase-database:16.1.0'

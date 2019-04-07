@@ -17,7 +17,7 @@
     <color name="base0">#000000</color> <!-- W AAA: Emphasized copy color, Active button widgets text -->
 
     <!-- Accent -->
-    <color name="accent90">#eaf3ff</color> <!-- B AAA: Hovered buttons, Active menu, Items background -->
+    <color name="accent90">#EAF3FF</color> <!-- B AAA: Hovered buttons, Active menu, Items background -->
     <color name="accent75">#69f</color> <!-- AAA "Stratosphere blue" -->
     <color name="accent50">#3366CC</color> <!-- W AA Progressive: Primary buttons, Links, Page accents, Focus outlines -->
     <color name="accent30">#2a4b8d</color> <!-- W AAA: Active buttons, Active links -->
@@ -28,7 +28,7 @@
     <color name="red50">#d33</color> <!-- Foundation Red: B&W AA Destructive: Destructive actions, Buttons and links, Alerts -->
 
     <!-- Supplementary -->
-    <color name="green50">#00af89</color> <!-- Foundation Green: B AA: Secondary link highlight, Positive messages -->
+    <color name="green50">#00AF89</color> <!-- Foundation Green: B AA: Secondary link highlight, Positive messages -->
     <color name="green30">#14866d</color> <!-- W AA: -->
     <color name="yellow50">#fc3</color> <!-- Foundation Yellow: B AAA: Warning messages -->
 

@@ -32,6 +32,8 @@ import org.wikipedia.WikipediaApp;
 import org.wikipedia.activity.SingleFragmentActivity;
 import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
+import org.wikipedia.beacon.BeaconActivity;
+import org.wikipedia.beacon.BeaconService;
 import org.wikipedia.chatactivity.ChatActivity;
 import org.wikipedia.feed.FeedFragment;
 import org.wikipedia.firelogin.wikiSignIn;
@@ -94,6 +96,10 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Start Beacon Service
+        //Intent beaconservice = new Intent(this,BeaconService.class);
+        //startService(beaconservice);
 
         // Initialize firebase
         FirebaseApp.initializeApp(this);
@@ -171,7 +177,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             button_group_chat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openChatActivity();
+                    openBeaconActivity();
                 }
             });
 
@@ -233,6 +239,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     public void openChatActivity() {
         //Intent intent = new Intent(this, signInToWiki.class);
         Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
+    }
+
+    public void openBeaconActivity() {
+        Intent intent = new Intent(this, BeaconActivity.class);
         startActivity(intent);
     }
 
