@@ -25,6 +25,7 @@ import java.util.List;
 public class MyNoteActivity extends AppCompatActivity {
 
     private ListView notesListView;
+    private Button button_return;
     private Button button_add_new_note;
 
     private String userName;
@@ -46,7 +47,16 @@ public class MyNoteActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference().child("Notes");
 
         notesListView = findViewById(R.id.notes_listView);
+        button_return = findViewById(R.id.button_return);
         button_add_new_note = findViewById(R.id.button_add_new_note);
+
+        button_return.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         button_add_new_note.setOnClickListener(new View.OnClickListener() {
             @Override

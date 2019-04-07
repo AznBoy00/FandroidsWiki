@@ -27,6 +27,7 @@ public class EditNoteActivity extends AppCompatActivity {
     private String userName;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private Button returnButton;
     private Button noteSaveButton;
     private EditText noteTitle;
     private EditText noteContent;
@@ -55,9 +56,18 @@ public class EditNoteActivity extends AppCompatActivity {
 
         noteTitle = (EditText) findViewById(R.id.note_title);
         noteContent = (EditText) findViewById(R.id.note_content);
+        returnButton = findViewById(R.id.button_return);
         noteSaveButton = (Button) findViewById(R.id.button_save_note_from_edit);
         noteTitle.setText("");
         noteContent.setText("");
+
+        returnButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         saveNote();
 
@@ -139,9 +149,5 @@ public class EditNoteActivity extends AppCompatActivity {
     protected void onFinish() {
         this.finish();
     }
-
-
-
-
 
 }

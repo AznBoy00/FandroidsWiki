@@ -63,8 +63,14 @@
                 android:layout_weight="1" />
 
             <Button
+                android:id="@+id/button_return"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Return"/>
+
+            <Button
                 android:id="@+id/button_save_note_from_edit"
-                style="@style/App.Button.White"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

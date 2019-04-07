@@ -1,14 +1,16 @@
 package org.wikipedia.note;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +23,7 @@ import org.wikipedia.R;
 
 public class ViewNoteActivity extends AppCompatActivity {
 
+    //private Context context;
     private Note note;
     private String userName;
     private String noteId;
@@ -67,12 +70,71 @@ public class ViewNoteActivity extends AppCompatActivity {
 
         //Log.e("get Note from db? ", note.getNoteContent());
 
-        Button btn1 = findViewById(R.id.button_edit_note);
-        Button btn2 = findViewById(R.id.button_delete_note);
+        Button btn1 = findViewById(R.id.button_return_note);
+        Button btn2 = findViewById(R.id.button_edit_note);
+        Button btn3 = findViewById(R.id.button_delete_note);
+
+        onReturnListener(btn1);
+        onEditListener(btn2, noteId);
+        onDeleteListener(btn3, noteId);
 
 
         //btn1.setVisibility(View.GONE);
         //setVisibility(View.GONE);
+
+    }
+
+    private void onReturnListener(Button btn) {
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFinish();
+            }
+        });
+
+    }
+
+    private void onEditListener(Button btn, String id) {
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editNoteActivity(id);
+            }
+        });
+    }
+
+    private void onDeleteListener(Button btn, String id) {
+
+        btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                deleteNoteActivity(id);
+            }
+
+        });
+
+    }
+
+    private void editNoteActivity(String id) {
+
+        Intent intent = new Intent(ViewNoteActivity.this, EditNoteActivity.class);
+        intent.putExtra("noteId",id);
+        startActivity(intent);
+
+    }
+
+    private void deleteNoteActivity(String id) {
+
+        FirebaseDatabase.getInstance().getReference().child("Notes").child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                onFinish();
+            }
+        });
 
     }
 

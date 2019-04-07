@@ -762,7 +762,7 @@
     <string name="title_activity_note">Wiki Note</string>
     <string name="add_note">Add Note</string>
     <string name="my_notes">My Notes</string>
-    <string name="add_new_note">Add New Note</string>
+    <string name="add_new_note">Add Note</string>
     <string name="note_title">Note Title</string>
     <string name="updated_time">Updated time</string>
 
@@ -784,8 +784,8 @@
     <string name="note_title_insert">Note title?</string>
     <string name="note_content">Note Content: </string>
     <string name="note_content_insert">note content?</string>
-    <string name="Return_btn">Return</string>
     <string name="note_title2">Note title:</string>
+    <string name="button_return">Return</string>
 
 
 </resources>
