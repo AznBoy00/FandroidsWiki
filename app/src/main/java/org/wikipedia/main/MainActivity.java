@@ -123,6 +123,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             button_smart_camera.setVisibility(View.GONE);
             button_qr_reader.setVisibility(View.GONE);
             button_notify_me.setVisibility(View.GONE);
+            button_group_chat.setVisibility(View.GONE);
             button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     openPageActivity();
@@ -167,7 +168,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 }
             });
 
-
+            button_group_chat.setVisibility(View.VISIBLE);
             button_group_chat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -434,11 +435,31 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         }
 
         @Override
-        public void loginLogoutClickByfirebase() {
+        public void LogoutClickByfirebase() {
             Toast.makeText(MainActivity.this, "Log out " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
             AuthUI.getInstance().signOut(MainActivity.this);
             //getFragment().onLoginRequested();
             closeMainDrawer();
+        }
+
+        @Override
+        public void qrCodeReadClick(){
+            openQrCodeActivity();
+        }
+
+        @Override
+        public void mlKitClick(){
+            openMLActivity();
+        }
+
+        @Override
+        public void groupChatClick(){
+            openChatActivity();
+        }
+
+        @Override
+        public void notificationClick(){
+            openNotificationActivity();
         }
     }
 }
