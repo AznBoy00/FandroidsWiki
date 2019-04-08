@@ -1,7 +1,5 @@
 package org.wikipedia.main;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -24,7 +22,6 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.squareup.haha.perflib.Main;
 
 import org.wikipedia.Constants;
 import org.wikipedia.R;
@@ -34,14 +31,13 @@ import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
 import org.wikipedia.chatactivity.ChatActivity;
 import org.wikipedia.feed.FeedFragment;
-import org.wikipedia.firelogin.wikiSignIn;
+import org.wikipedia.firelogin.SignInToWiki;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
-import org.wikipedia.qrcode.QRCodeGenerateActivity;
 import org.wikipedia.qrcode.QRCodeScanActivity;
 import org.wikipedia.readinglist.ReadingListSyncBehaviorDialogs;
 import org.wikipedia.readinglist.database.ReadingListDbHelper;
@@ -52,7 +48,6 @@ import org.wikipedia.util.AnimationUtil;
 import org.wikipedia.util.DimenUtil;
 import org.wikipedia.util.FeedbackUtil;
 import org.wikipedia.views.WikiDrawerLayout;
-import org.wikipedia.firelogin.signInToWiki;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -226,13 +221,13 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     }
 
     public void openPageActivity() {
-        //Intent intent = new Intent(this, signInToWiki.class);
-        Intent intent = new Intent(this, signInToWiki.class);
+        //Intent intent = new Intent(this, SignInToWiki.class);
+        Intent intent = new Intent(this, SignInToWiki.class);
         startActivity(intent);
     }
 
     public void openChatActivity() {
-        //Intent intent = new Intent(this, signInToWiki.class);
+        //Intent intent = new Intent(this, SignInToWiki.class);
         Intent intent = new Intent(this, ChatActivity.class);
         startActivity(intent);
     }
