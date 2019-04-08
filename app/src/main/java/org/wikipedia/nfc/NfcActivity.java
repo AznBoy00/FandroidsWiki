@@ -2,6 +2,7 @@ package org.wikipedia.nfc;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -13,6 +14,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.wikipedia.R;
+import org.wikipedia.WikipediaApp;
+import org.wikipedia.page.PageBackStackItem;
+import org.wikipedia.page.tabs.Tab;
 
 public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessageCallback {
 
@@ -33,7 +37,7 @@ public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessag
             finish();
             return;
         } else if (!nfcAdapter.isEnabled()) {
-            Toast.makeText(this, "Please enable NFC to use this feature",
+            Toast.makeText(this, "Please enable NFC to use this feature.",
                     Toast.LENGTH_LONG).show();
         }
     }
@@ -43,7 +47,14 @@ public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessag
      * When the user clicks on the Share Article button, it will send the link via NFC
      */
     public void sendArticle(View view) {
-        Toast.makeText(this, "Sending article....",
+        WikipediaApp app = WikipediaApp.getInstance();
+        Tab currentTab = app.getTabList().get(app.getTabList().size() - 1);
+        PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
+        String url = lastTab.getTitle().getCanonicalUri();
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+
+        Toast.makeText(this, "Sending article.",
                 Toast.LENGTH_LONG).show();
         nfcAdapter.setNdefPushMessageCallback(this, this);
     }
@@ -54,14 +65,18 @@ public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessag
      * sent from nearby devices
      */
     public void receiveArticle(View view) {
-        Toast.makeText(this, "Waiting to receive article....",
+        Toast.makeText(this, "Waiting to receive article.",
                 Toast.LENGTH_LONG).show();
         onResume();
     }
 
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
-        String url = "REPLACE THIS TEXT WITH WIKIPEDIA ARTICLE'S URL";
+        WikipediaApp app = WikipediaApp.getInstance();
+        Tab currentTab = app.getTabList().get(app.getTabList().size() - 1);
+        PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
+        String url = lastTab.getTitle().getCanonicalUri();
+
         NdefRecord ndefRecord = NdefRecord.createMime("text/plain", url.getBytes());
         NdefMessage message = new NdefMessage(ndefRecord);
         return message;
@@ -69,7 +84,7 @@ public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessag
 
     @Override
     public void onResume() {
-        Toast.makeText(this, "Scanning.....",
+        Toast.makeText(this, "Scanning.",
                 Toast.LENGTH_LONG).show();
         super.onResume();
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
