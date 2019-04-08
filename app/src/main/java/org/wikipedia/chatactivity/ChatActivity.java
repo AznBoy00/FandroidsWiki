@@ -48,9 +48,12 @@ public class ChatActivity extends AppCompatActivity {
     private MessageAdapter mMessageAdapter;
     private ProgressBar mProgressBar;
     private ImageButton mPhotoPickerButton;
+    private ImageButton discardImgSelectionButton;
     private EditText mMessageEditText;
     private Button mSendButton;
     private ImageView messageImgPreView;
+
+    private Uri filePath = null;
 
     private String mUsername;
     private FirebaseUser user;
@@ -87,6 +90,14 @@ public class ChatActivity extends AppCompatActivity {
         mMessageEditText = (EditText) findViewById(R.id.messageEditText);
         mSendButton = (Button) findViewById(R.id.sendButton);
         messageImgPreView = (ImageView) findViewById(R.id.messageImgPreView);
+
+        discardImgSelectionButton = (ImageButton) findViewById(R.id.discardImgSelectionButton);
+
+        if(filePath == null){
+            discardImgSelectionButton.setVisibility(View.GONE);
+        }
+
+        initialDiscardImgSelectionButtonListener();
 
         // Initialize message ListView and its adapter
         List<Message> friendlyMessages = new ArrayList<>();
@@ -231,7 +242,8 @@ public class ChatActivity extends AppCompatActivity {
         super.onActivityResult(0 + requestCode, 0 + resultCode, data);
         if(requestCode == IMAGE_PICK_REQUEST_CODE && resultCode == RESULT_OK)
         {
-            Uri filePath = data.getData();
+            filePath = data.getData();
+            discardImgSelectionButton.setVisibility(View.VISIBLE);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 messageImgPreView.setImageBitmap(bitmap);
@@ -244,6 +256,18 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
 
+    private void initialDiscardImgSelectionButtonListener(){
+
+        discardImgSelectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filePath =null;
+                discardImgSelectionButton.setVisibility(View.GONE);
+                messageImgPreView.setImageBitmap(null);
+            }
+
+        });
+    }
     //endregion
 
 }
