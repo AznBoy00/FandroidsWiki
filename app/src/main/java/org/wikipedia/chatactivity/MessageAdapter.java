@@ -40,29 +40,34 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         TextView authorTextView = (TextView) convertView.findViewById(R.id.nameTextView);
 
         Message message = getItem(position);
-
-        lastUID = currentUID;
+        if(position>0) {
+            lastUID = getItem(position-1).getUID();
+        }else {
+            lastUID = "-1";
+        }
         currentUID = message.getUID();
 
         if(currentUID.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()) )
         {
             messageContainer.setGravity(Gravity.RIGHT);
             messageContainer.setPadding(0,0,12,0);
+            messageTextView.setBackgroundResource(R.drawable.edit_improve_tag_selected_light);
             //authorTextView.setGravity(Gravity.RIGHT);
         }else {
 
             messageContainer.setGravity(Gravity.LEFT);
+            //messageTextView.setBackgroundColor(0xDBDBDB);
         }
 
-//        if(!lastUID.equals(currentUID)) {
-//            authorTextView.setVisibility(View.VISIBLE);
-//            authorTextView.setText(message.getName() + "\n" + currentUID);
-//            //authorTextView.setText(message.getName() + getCurrentLastPositionString(position));
-//        }else {
-//            authorTextView.setVisibility(View.GONE);
-//        }
-        testCount++;
-        authorTextView.setText(message.getName() + "\n" + testCount + " | " + position);
+        if(!lastUID.equals(currentUID)) {
+            authorTextView.setVisibility(View.VISIBLE);
+            authorTextView.setText(message.getName() + "\n" + currentUID);
+            //authorTextView.setText(message.getName() + getCurrentLastPositionString(position));
+        }else {
+            authorTextView.setVisibility(View.GONE);
+        }
+
+//        authorTextView.setText(message.getName() + "\n" + " | " + position);
 
         boolean isPhoto = message.getPhotoUrl() != null;
         if (isPhoto) {
