@@ -20,7 +20,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,8 +33,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.wikipedia.R;
+import org.wikipedia.main.MainActivity;
+import org.wikipedia.views.FaceAndColorDetectImageView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,6 +69,7 @@ public class ChatActivity extends AppCompatActivity {
     //Firebase db
     private FirebaseDatabase database;
     private DatabaseReference myDBRef;
+    private StorageReference myStorageRef;
     private ChildEventListener childEventListener;
 
     private Query maxLoadLimitQuery;
@@ -81,6 +90,7 @@ public class ChatActivity extends AppCompatActivity {
         //firebase db
         database = FirebaseDatabase.getInstance();
         myDBRef = database.getReference().child("messages");
+        myStorageRef = FirebaseStorage.getInstance().getReference();
         setMaxLoadLimit(100);
 
         // Initialize references to views
@@ -129,7 +139,11 @@ public class ChatActivity extends AppCompatActivity {
                 if (charSequence.toString().trim().length() > 0) {
                     mSendButton.setEnabled(true);
                 } else {
-                    mSendButton.setEnabled(false);
+                    if(filePath == null) {
+                        mSendButton.setEnabled(false);
+                    }else {
+                        mSendButton.setEnabled(true);
+                    }
                 }
             }
 
@@ -144,8 +158,41 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // firebase db
-                Message Message = new Message(mMessageEditText.getText().toString(), mUsername, null, user.getUid());
-                myDBRef.push().setValue(Message);
+                if(filePath == null) {
+                    Message Message = new Message(mMessageEditText.getText().toString(), mUsername, null, user.getUid());
+                    myDBRef.push().setValue(Message);
+                }else {
+                    Message message = new Message(mMessageEditText.getText().toString(), mUsername, null, user.getUid());
+                    final String key = myDBRef.push().getKey();
+
+                    final String imgUrl = "images/group_chat/" + user.getUid() + "/" + key ;
+
+                    StorageReference storageRef = myStorageRef.child("images/").child("group_chat/").child(user.getUid()+"/").child(key);
+                    storageRef.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(ChatActivity.this, "Image fire succeeded.", Toast.LENGTH_SHORT).show();
+                            message.setPhotoUrl(imgUrl);
+                            myDBRef.child(key).setValue(message);
+
+                            //initial image picker
+                            filePath =null;
+                            discardImgSelectionButton.setVisibility(View.GONE);
+                            messageImgPreView.setImageBitmap(null);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(ChatActivity.this, "Image fire failed.", Toast.LENGTH_SHORT).show();
+                            myDBRef.child(key).setValue(message);
+
+                            //initial image picker
+                            filePath =null;
+                            discardImgSelectionButton.setVisibility(View.GONE);
+                            messageImgPreView.setImageBitmap(null);
+                        }
+                    });
+                }
                 // Clear input box after press send
                 mMessageEditText.setText("");
             }
@@ -247,6 +294,8 @@ public class ChatActivity extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 messageImgPreView.setImageBitmap(bitmap);
+
+                mSendButton.setEnabled(true);
             }catch (IOException e)
             {
                 e.printStackTrace();

@@ -2,20 +2,33 @@ package org.wikipedia.chatactivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.sax.Element;
+import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import org.wikipedia.chatactivity.ChatActivity;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.wikipedia.R;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class MessageAdapter extends ArrayAdapter<Message> {
@@ -23,6 +36,8 @@ public class MessageAdapter extends ArrayAdapter<Message> {
     private String lastUID ="";
     private String currentUID ="";
     private int testCount =0;
+    private StorageReference storageRef =  FirebaseStorage.getInstance().getReferenceFromUrl("gs://soen390teamfandroidswiki-383a4.appspot.com/");
+    private final String TAG = "MessageAdapter: ";
 
     public MessageAdapter(Context context, int resource, List<Message> objects) {
         super(context, resource, objects);
@@ -72,11 +87,40 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
         boolean isPhoto = message.getPhotoUrl() != null;
         if (isPhoto) {
-            messageTextView.setVisibility(View.GONE);
+
+            //storageRef.child(message.getPhotoUrl());
             photoImageView.setVisibility(View.VISIBLE);
-            Glide.with(photoImageView.getContext())
-                    .load(message.getPhotoUrl())
-                    .into(photoImageView);
+            String key = message.getPhotoUrl().replace("images/group_chat/"+message.getUID()+"/","");
+            String text = message.getText();
+            String path = message.getPhotoUrl();
+            Log.e(""+TAG,"key "+ key);
+            Log.e(""+TAG,"path "+ path);
+            //loadImage(""+key,""+message.getPhotoUrl(), photoImageView);
+            try{
+                File imgFile = File.createTempFile("images", "jpg");
+                storageRef.child(path+".jpg" ).getFile(imgFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                        photoImageView.setImageBitmap(bitmap);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+//            if(text.length()>0) {
+//                messageTextView.setVisibility(View.VISIBLE);
+//                messageTextView.setText(text);
+//            }
+//            Glide.with(photoImageView.getContext())
+//                    .load(message.getPhotoUrl()+".jpg")
+//                    .into(photoImageView);
         } else {
             messageTextView.setVisibility(View.VISIBLE);
             photoImageView.setVisibility(View.GONE);
@@ -102,5 +146,27 @@ public class MessageAdapter extends ArrayAdapter<Message> {
             return ""+ "at the last position " + atPosition;
         }
     }
+
+    public void loadImage(String fileName, String path, ImageView imageView){
+        try{
+            final File imgFile = File.createTempFile(""+ fileName, "jpg");
+            storageRef.child(path+".jpg" ).getFile(imgFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                    imageView.setImageBitmap(bitmap);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 
 }
