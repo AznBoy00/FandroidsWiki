@@ -37,8 +37,7 @@ public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessag
             finish();
             return;
         } else if (!nfcAdapter.isEnabled()) {
-            Toast.makeText(this, "Please enable NFC to use this feature.",
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enable NFC.", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -54,9 +53,8 @@ public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessag
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
 
-        Toast.makeText(this, "Sending article.",
-                Toast.LENGTH_LONG).show();
-        nfcAdapter.setNdefPushMessageCallback(this, this);
+        Toast.makeText(this, "Sending article.", Toast.LENGTH_LONG).show();
+        nfcAdapter.setNdefPushMessageCallback(this::createNdefMessage, this);
     }
 
     /**
@@ -65,8 +63,7 @@ public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessag
      * sent from nearby devices
      */
     public void receiveArticle(View view) {
-        Toast.makeText(this, "Waiting to receive article.",
-                Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Waiting to receive article.", Toast.LENGTH_LONG).show();
         onResume();
     }
 
@@ -84,8 +81,7 @@ public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessag
 
     @Override
     public void onResume() {
-        Toast.makeText(this, "Scanning.",
-                Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Scanning.", Toast.LENGTH_LONG).show();
         super.onResume();
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
             showMessage(getIntent());
