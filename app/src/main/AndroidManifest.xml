@@ -298,7 +298,7 @@
         <activity
             android:name=".page.tabs.TabActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".firelogin.signInToWiki" />
+        <activity android:name=".firelogin.SignInToWiki" />
         <activity android:name=".firelogin.wikiSignIn" />
 
         <provider
