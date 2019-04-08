@@ -43,7 +43,7 @@
         android:id="@+id/messageListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/linearLayout"
+        android:layout_above="@+id/linearLayout_input"
         android:layout_below="@+id/activityChatTopLinearLayout"
         android:layout_marginBottom="13dp"
         android:divider="@android:color/transparent"
@@ -52,38 +52,55 @@
         tools:listitem="@layout/item_message" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayout_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/photoPickerButton"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@android:drawable/ic_menu_gallery" />
-
-        <EditText
-            android:id="@+id/messageEditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            android:backgroundTint="@color/green30"
-            />
-
-        <Button
-            android:id="@+id/sendButton"
+        <ImageView
+            android:id="@+id/messageImgPreView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:enabled="false"
-            android:text="@string/send" />
-    </LinearLayout>
+            android:maxWidth="160dp"
+            android:maxHeight="160dp"
+            android:adjustViewBounds="true" />
 
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/photoPickerButton"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@android:drawable/ic_menu_gallery" />
+
+            <EditText
+                android:id="@+id/messageEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:backgroundTint="@color/green30"
+                />
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:enabled="false"
+                android:text="@string/send" />
+        </LinearLayout>
+    </LinearLayout>
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"

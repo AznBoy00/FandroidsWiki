@@ -1,6 +1,10 @@
 package org.wikipedia.chatactivity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
@@ -28,6 +33,7 @@ import com.google.firebase.database.Query;
 
 import org.wikipedia.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +50,7 @@ public class ChatActivity extends AppCompatActivity {
     private ImageButton mPhotoPickerButton;
     private EditText mMessageEditText;
     private Button mSendButton;
+    private ImageView messageImgPreView;
 
     private String mUsername;
     private FirebaseUser user;
@@ -55,6 +62,8 @@ public class ChatActivity extends AppCompatActivity {
 
     private Query maxLoadLimitQuery;
     private int maxLoadLimit = 100; //default 100
+
+    private final int IMAGE_PICK_REQUEST_CODE = 39001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +86,7 @@ public class ChatActivity extends AppCompatActivity {
         mPhotoPickerButton = (ImageButton) findViewById(R.id.photoPickerButton);
         mMessageEditText = (EditText) findViewById(R.id.messageEditText);
         mSendButton = (Button) findViewById(R.id.sendButton);
+        messageImgPreView = (ImageView) findViewById(R.id.messageImgPreView);
 
         // Initialize message ListView and its adapter
         List<Message> friendlyMessages = new ArrayList<>();
@@ -93,6 +103,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // TODO: Fire an intent to show an image picker
                 // pick a picture
+                pickIMG();
             }
         });
 
@@ -206,5 +217,33 @@ public class ChatActivity extends AppCompatActivity {
     public int getMaxLoadLimit(){
         return this.maxLoadLimit;
     }
+
+    //region image
+    private void pickIMG(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent.createChooser(intent,"Images"), 0 + IMAGE_PICK_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(0 + requestCode, 0 + resultCode, data);
+        if(requestCode == IMAGE_PICK_REQUEST_CODE && resultCode == RESULT_OK)
+        {
+            Uri filePath = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                messageImgPreView.setImageBitmap(bitmap);
+            }catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            Log.e(""+TAG," file path: "+ filePath);
+            //final String photoUrl = "images/" + user.getUid() + "/";
+        }
+    }
+
+    //endregion
 
 }
