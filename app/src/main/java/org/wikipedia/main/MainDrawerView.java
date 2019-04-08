@@ -54,6 +54,8 @@ public class MainDrawerView extends ScrollView {
         void groupChatClick();
 
         void notificationClick();
+
+        void noteClick();
     }
 
     @BindView(R.id.main_drawer_account_name)
@@ -235,6 +237,14 @@ public class MainDrawerView extends ScrollView {
         if (callback != null && user != null) {
             Log.e("test", "test");
             callback.groupChatClick();
+        }
+    }
+
+    @OnClick({R.id.note})
+    void onNoteClick() {
+        if (callback != null && user != null) {
+            Log.e("test", "test");
+            callback.noteClick();
         }
     }
 

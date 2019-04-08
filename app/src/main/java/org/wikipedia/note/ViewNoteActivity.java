@@ -103,6 +103,7 @@ public class ViewNoteActivity extends AppCompatActivity {
                 editNoteActivity(id);
             }
         });
+
     }
 
     private void onDeleteListener(Button btn, String id) {
@@ -123,6 +124,8 @@ public class ViewNoteActivity extends AppCompatActivity {
         Intent intent = new Intent(ViewNoteActivity.this, EditNoteActivity.class);
         intent.putExtra("noteId",id);
         startActivity(intent);
+        //startActivityForResult(intent, 1);
+        finish();
 
     }
 
@@ -136,6 +139,16 @@ public class ViewNoteActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            Intent refresh = new Intent(this, ViewNoteActivity.class);
+            startActivity(refresh);
+            this.finish();
+        }
     }
 
     public void attachDatabaseReadListener(){
@@ -197,4 +210,27 @@ public class ViewNoteActivity extends AppCompatActivity {
         this.finish();
     }
 
+    @Override
+    protected void onPause() {
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
+    }
 }

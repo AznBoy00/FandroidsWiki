@@ -87,6 +87,8 @@ public class EditNoteActivity extends AppCompatActivity {
                 Log.e(TAG,noteId +"\n"+note.getNoteContent());
                 databaseReference.child(noteId).setValue(note);
 
+                //setResult(RESULT_OK, null);
+                //finish();
                 onFinish();
             }
         });
@@ -149,5 +151,6 @@ public class EditNoteActivity extends AppCompatActivity {
     protected void onFinish() {
         this.finish();
     }
+
 
 }

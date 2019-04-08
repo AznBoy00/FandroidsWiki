@@ -175,6 +175,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 }
             });
 
+            button_note.setVisibility(View.VISIBLE);
             button_note.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -470,6 +471,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         @Override
         public void notificationClick(){
             openNotificationActivity();
+        }
+
+        @Override
+        public void noteClick() {
+            openNoteActivity();
         }
     }
 }
