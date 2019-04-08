@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -44,6 +46,7 @@ public class ChatActivity extends AppCompatActivity {
     private Button mSendButton;
 
     private String mUsername;
+    private FirebaseUser user;
 
     //Firebase db
     private FirebaseDatabase database;
@@ -61,6 +64,7 @@ public class ChatActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mUsername = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         //firebase db
         database = FirebaseDatabase.getInstance();
@@ -118,7 +122,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // firebase db
-                Message Message = new Message(mMessageEditText.getText().toString(), mUsername, null);
+                Message Message = new Message(mMessageEditText.getText().toString(), mUsername, null, user.getUid());
                 myDBRef.push().setValue(Message);
                 // Clear input box after press send
                 mMessageEditText.setText("");
@@ -138,6 +142,7 @@ public class ChatActivity extends AppCompatActivity {
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     Message message = dataSnapshot.getValue(Message.class);
                     mMessageAdapter.add(message);
+                    Log.e(""+TAG, "  friend message size = "+ mMessageAdapter.getCount());
                 }
 
                 @Override
