@@ -316,6 +316,12 @@ dependencies {
     // Displaying images
     implementation 'com.github.bumptech.glide:glide:3.6.1'
 
+    //Firebase Chat
+    implementation 'com.firebase:firebase-client-android:2.5.2+'
+    implementation 'com.android.volley:volley:1.1.0'
+
+
+
     //implementation 'com.github.d-max:spots-dialog:1.1@aar'
     //Firestore
 /*    implementation 'com.google.firebase:firebase-database:16.1.0'
