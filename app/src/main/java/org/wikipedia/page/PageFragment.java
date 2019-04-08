@@ -180,6 +180,7 @@ public class PageFragment extends Fragment implements BackPressedHandler {
     private boolean isTTSReading;
     private String readingStr;
     private int count;
+    private String articleTitle ="";
     @NonNull
     private final SwipeRefreshLayout.OnRefreshListener pageRefreshListener = this::refreshPage;
 
@@ -245,22 +246,34 @@ public class PageFragment extends Fragment implements BackPressedHandler {
 
         @Override
         public void textToSpeech() {
-            String articleTitle;
+            final String TAG_d =" FROM TTS";
+            //String articleTitle ="";
+            String currentArticleTitle="";
             URL wikiSearchQuery;
+            // Transforms the article's title to a string that will be ready to be integrated to an URL
+            currentArticleTitle = model.getTitle().getDisplayText().replace(" ", "%20");
+            if(!articleTitle.equals(currentArticleTitle))
+            {
+                Log.i(""+TAG_d," reset "+ (!articleTitle.equals(currentArticleTitle)));
+                articleTitle = currentArticleTitle;
+                count = 0;
+            }
+            Log.i(""+TAG_d,"current_: "+model.getTitle().getDisplayText());
             if(count == 0)
             {
                 count++;
-                // Transforms the article's title to a string that will be ready to be integrated to an URL
-                articleTitle = (model.getTitle().getDisplayText()).replace(" ", "%20");
+
                 // Builds the articleTitle to an URL
                 wikiSearchQuery = NetworkUtils.buildUrl(articleTitle);
                 try {
                     readingStr = new WikiQueryTask().execute(wikiSearchQuery).get();
+
+                    Log.i(TAG_d, " "+readingStr);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 isTTSReading = true;
-
+                Log.i(""+TAG_d,"reading_str: "+readingStr);
                 //fixed bug for different api version
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
                     mSpeech.speak(readingStr,TextToSpeech.QUEUE_FLUSH, null, null);
@@ -269,6 +282,7 @@ public class PageFragment extends Fragment implements BackPressedHandler {
                 }
 
             }else {
+                Log.i(""+TAG_d,"reading_str: "+readingStr);
                 playTTS();
             }
         }
