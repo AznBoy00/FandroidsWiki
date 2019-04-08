@@ -79,6 +79,8 @@ public class MainDrawerView extends ScrollView {
     Button button_wiki_plusplus;
     @BindView(R.id.group_chat)
     Button button_group_chat;
+    @BindView(R.id.direct_message)
+    Button button_direct_message;
 
 
     public MainDrawerView(Context context) {
@@ -127,6 +129,7 @@ public class MainDrawerView extends ScrollView {
                 button_qr_reader.setVisibility(View.VISIBLE);
                 button_group_chat.setVisibility(View.VISIBLE);
                 button_wiki_plusplus.setVisibility(View.GONE);
+                button_direct_message.setVisibility(View.VISIBLE);
             }
         } else {
             accountNameView.setVisibility(GONE);
@@ -139,6 +142,7 @@ public class MainDrawerView extends ScrollView {
             button_notify_me.setVisibility(View.GONE);
             button_qr_reader.setVisibility(View.GONE);
             button_group_chat.setVisibility(View.GONE);
+            button_direct_message.setVisibility(View.GONE);
             button_wiki_plusplus.setVisibility(View.VISIBLE);
         }
     }
