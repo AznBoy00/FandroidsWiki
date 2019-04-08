@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import org.wikipedia.R;
 
@@ -44,12 +45,13 @@ public class ChatActivity extends AppCompatActivity {
 
     private String mUsername;
 
-
     //Firebase db
     private FirebaseDatabase database;
     private DatabaseReference myDBRef;
     private ChildEventListener childEventListener;
 
+    private Query maxLoadLimitQuery;
+    private int maxLoadLimit = 100; //default 100
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class ChatActivity extends AppCompatActivity {
         //firebase db
         database = FirebaseDatabase.getInstance();
         myDBRef = database.getReference().child("messages");
+        setMaxLoadLimit(100);
 
         // Initialize references to views
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -74,6 +77,7 @@ public class ChatActivity extends AppCompatActivity {
         // Initialize message ListView and its adapter
         List<Message> friendlyMessages = new ArrayList<>();
         mMessageAdapter = new MessageAdapter(this, R.layout.item_message, friendlyMessages);
+        mMessageAdapter.setMaxLoadLimit(this.maxLoadLimit);
         mMessageListView.setAdapter(mMessageAdapter);
 
         // Initialize progress bar
@@ -156,13 +160,15 @@ public class ChatActivity extends AppCompatActivity {
 
                 }
             };
-            myDBRef.addChildEventListener(childEventListener);
+            //myDBRef.addChildEventListener(childEventListener);
+            maxLoadLimitQuery.addChildEventListener(childEventListener);
         }
     }
 
     private void detachDataReadListener() {
         if (childEventListener != null) {
-            myDBRef.removeEventListener(childEventListener);
+            //myDBRef.removeEventListener(childEventListener);
+            maxLoadLimitQuery.removeEventListener(childEventListener);
             childEventListener = null;
         }
     }
@@ -187,4 +193,14 @@ public class ChatActivity extends AppCompatActivity {
         super.onDestroy();
         finish();
     }
+
+    public void setMaxLoadLimit(int max){
+        this.maxLoadLimit = max;
+        maxLoadLimitQuery = myDBRef.orderByKey().limitToLast(maxLoadLimit);
+    }
+
+    public int getMaxLoadLimit(){
+        return this.maxLoadLimit;
+    }
+
 }
