@@ -2,31 +2,16 @@ package org.wikipedia.firelogin;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,9 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.wikipedia.R;
-import org.wikipedia.activity.BaseActivity;
+import org.wikipedia.directmessage.UserDetails;
 import org.wikipedia.main.MainActivity;
-import org.wikipedia.page.PageActivity;
 import org.wikipedia.model.User;
 
 import java.util.Arrays;
@@ -77,6 +61,15 @@ public class signInToWiki extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     onSignedInInitialize(user.getDisplayName());
+
+                    String userUID = firebaseAuth.getCurrentUser().getUid();
+                    String userDisplayName = firebaseAuth.getCurrentUser().getDisplayName();
+                    String userEmail = firebaseAuth.getCurrentUser().getEmail();
+
+                    UserDetails.username = userUID;
+
+                    writeNewUser(userUID, userDisplayName, userEmail);
+
                     Intent intent = new Intent(signInToWiki.this, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -94,6 +87,20 @@ public class signInToWiki extends AppCompatActivity {
                 }
             }
         };
+
+    }
+
+    private String usernameFromEmail(String email) {
+        if (email.contains("@")) {
+            return email.split("@")[0];
+        } else {
+            return email;
+        }
+    }
+
+    private void writeNewUser(String userId, String name, String email) {
+        User user = new User(name, email);
+        database.getReference().child("users").child(userId).setValue(user);
     }
 
     //Start another activity and receive a result back
@@ -180,7 +187,7 @@ public class signInToWiki extends AppCompatActivity {
         }
     }
 
-
+}
     /*    private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
     private final AppCompatActivity activity = signInToWiki.this;
@@ -309,55 +316,4 @@ public class signInToWiki extends AppCompatActivity {
 
             }
         });
-    }*//*
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-
-
-    }
-
-
-    private void signOut() {
-        // Firebase sign out
-        mAuth.signOut();
-        findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-        findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
-        // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
-                    }
-
-                });
-    }
-
-
-    private void updateUI(FirebaseUser user) {
-        //hideProgressDialog();
-        if (user != null) {
-            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
-            findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
-
-        } else {
-            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
-            findViewById(R.id.sign_out_button).setVisibility(View.GONE);
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.sign_in_button) {
-            signIn();
-        } else if (i == R.id.sign_out_button) {
-            signOut();
-        }
     }*/
-}
