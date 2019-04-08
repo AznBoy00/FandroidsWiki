@@ -38,6 +38,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         ImageView photoImageView = (ImageView) convertView.findViewById(R.id.photoImageView);
         TextView messageTextView = (TextView) convertView.findViewById(R.id.messageTextView);
         TextView authorTextView = (TextView) convertView.findViewById(R.id.nameTextView);
+        TextView positionTextView = (TextView) convertView.findViewById(R.id.lastPositionTextView);
 
         Message message = getItem(position);
         if(position>0) {
@@ -51,20 +52,20 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         {
             messageContainer.setGravity(Gravity.RIGHT);
             messageContainer.setPadding(0,0,12,0);
-            messageTextView.setBackgroundResource(R.drawable.edit_improve_tag_selected_light);
-            //authorTextView.setGravity(Gravity.RIGHT);
+            messageTextView.setBackgroundResource(R.drawable.edit_improve_tag_selected_dark);
         }else {
 
             messageContainer.setGravity(Gravity.LEFT);
-            //messageTextView.setBackgroundColor(0xDBDBDB);
         }
 
         if(!lastUID.equals(currentUID)) {
             authorTextView.setVisibility(View.VISIBLE);
-            authorTextView.setText(message.getName() + "\n" + currentUID);
-            //authorTextView.setText(message.getName() + getCurrentLastPositionString(position));
+            authorTextView.setText(message.getName());
+            positionTextView.setVisibility(View.VISIBLE);
+            positionTextView.setText(getCurrentLastPositionString(position));
         }else {
             authorTextView.setVisibility(View.GONE);
+            positionTextView.setVisibility(View.GONE);
         }
 
 //        authorTextView.setText(message.getName() + "\n" + " | " + position);
@@ -95,14 +96,11 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         int atPosition;
         if(maxLoadLimit>this.getCount()) {
             atPosition = this.getCount() - position;
-            return ""+ "\n at last position " + atPosition;
+            return ""+ "at the last position " + atPosition;
         }else {
             atPosition = this.maxLoadLimit - position;
-            return ""+ "\n at last position " + atPosition;
+            return ""+ "at the last position " + atPosition;
         }
     }
 
-//    public void setNameVisibility(boolean visibility){
-//
-//    }
 }

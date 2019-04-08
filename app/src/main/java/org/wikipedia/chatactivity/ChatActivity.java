@@ -142,7 +142,6 @@ public class ChatActivity extends AppCompatActivity {
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     Message message = dataSnapshot.getValue(Message.class);
                     mMessageAdapter.add(message);
-                    Log.e(""+TAG, "  friend message size = "+ mMessageAdapter.getCount());
                 }
 
                 @Override
