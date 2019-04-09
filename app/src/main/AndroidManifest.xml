@@ -34,6 +34,10 @@
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Request permission of camera for qr reader -->
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />

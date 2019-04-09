@@ -26,6 +26,7 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/nfc_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
@@ -71,5 +72,11 @@
         </LinearLayout>
 
     </FrameLayout>
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </FrameLayout>
