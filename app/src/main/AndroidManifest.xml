@@ -33,12 +33,7 @@
         android:maxSdkVersion="22" /> <!-- For notifications, e.g. User account notices, etc. -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.NFC" />
-    <uses-feature android:name="android.hardware.nfc" />
-
-    <!-- Request permission of camera for qr reader -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Request permission of camera for qr reader -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -77,25 +72,20 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".chatactivity.ChatActivity"
+            android:label="@string/title_activity_chat"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".mlkit.MLActivity"
             android:label="@string/title_activity_ml"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- Activities for QR Code Generator and Scanner -->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- Activities for QR Code Generator and Scanner -->
         <activity android:name=".qrcode.QRCodeGenerateActivity" />
-        <activity android:name=".qrcode.QRCodeScanActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".qrcode.QRCodeScanActivity" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
-            android:value="barcode" />
-
-        <!-- Multi-window support on Samsung devices -->
+            android:value="barcode" /> <!-- Multi-window support on Samsung devices -->
         <uses-library
             android:name="com.sec.android.app.multiwindow"
             android:required="false" />
@@ -107,7 +97,6 @@
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="label" />
-
         <!--
         The following is used for determining the distribution channel.
         Set "value" to "Google Play" for Google Play Store.
@@ -304,7 +293,7 @@
         <activity
             android:name=".page.tabs.TabActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".firelogin.signInToWiki" />
+        <activity android:name=".firelogin.SignInToWiki" />
         <activity android:name=".firelogin.wikiSignIn" />
 
         <provider
@@ -316,9 +305,7 @@
             android:authorities="@string/reading_lists_authority"
             android:exported="false"
             android:label="@string/user_option_sync_label"
-            android:syncable="true" />
-
-        <!-- QR reader -->
+            android:syncable="true" /> <!-- QR reader -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"

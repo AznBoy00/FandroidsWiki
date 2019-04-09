@@ -754,4 +754,16 @@
     <string name="qr_scanner_main_button">\t\t QR Code Scanner</string>
     <string name="qr_scanner_instruction">Scan this QR code to access the same wiki article.</string>
 
+    <!--Smart Camera-->
+    <string name="smart_camera_tool_bar_button">\t\t Smart Camera</string>>
+
+    <!--Authentication-->
+    <string name="sign_in">Sign out</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <!--LiveChat-->
+    <string name="send">Send</string>
+    <string name="title_activity_chat_2">Wiki Group Chat</string>
+    <string name="group_chat_button_name">\t\t Group Chat</string>
+
+
 </resources>

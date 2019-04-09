@@ -31,8 +31,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -83,7 +81,6 @@ import org.wikipedia.views.TabCountsView;
 import org.wikipedia.views.ViewUtil;
 import org.wikipedia.widgets.WidgetProviderFeaturedPage;
 import org.wikipedia.wiktionary.WiktionaryDialog;
-import org.wikipedia.firelogin.signInToWiki;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -215,7 +212,7 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
 //            public void onClick(View arg0) {
 //
 //                // Start NewActivity.class
-//                Intent myIntent = new Intent(PageActivity.this, signInToWiki.class);
+//                Intent myIntent = new Intent(PageActivity.this, SignInToWiki.class);
 //                startActivity(myIntent);
 //            }
 //        });
