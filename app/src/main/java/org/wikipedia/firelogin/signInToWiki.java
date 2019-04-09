@@ -66,7 +66,7 @@ public class signInToWiki extends AppCompatActivity {
                     String userDisplayName = firebaseAuth.getCurrentUser().getDisplayName();
                     String userEmail = firebaseAuth.getCurrentUser().getEmail();
 
-                    UserDetails.username = userUID;
+                    UserDetails.username = userDisplayName;
 
                     writeNewUser(userUID, userDisplayName, userEmail);
 
@@ -100,7 +100,7 @@ public class signInToWiki extends AppCompatActivity {
 
     private void writeNewUser(String userId, String name, String email) {
         User user = new User(name, email);
-        database.getReference().child("users").child(userId).setValue(user);
+        database.getReference().child("users").child(name).setValue(user);
     }
 
     //Start another activity and receive a result back
