@@ -1,7 +1,5 @@
 package org.wikipedia.main;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -24,7 +22,9 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.squareup.haha.perflib.Main;
+import com.google.firebase.perf.FirebasePerformance;
+import com.google.firebase.perf.metrics.AddTrace;
+import com.google.firebase.perf.metrics.Trace;
 
 import org.wikipedia.Constants;
 import org.wikipedia.R;
@@ -36,14 +36,13 @@ import org.wikipedia.beacon.BeaconActivity;
 import org.wikipedia.beacon.BeaconService;
 import org.wikipedia.chatactivity.ChatActivity;
 import org.wikipedia.feed.FeedFragment;
-import org.wikipedia.firelogin.wikiSignIn;
+import org.wikipedia.firelogin.SignInToWiki;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
-import org.wikipedia.qrcode.QRCodeGenerateActivity;
 import org.wikipedia.qrcode.QRCodeScanActivity;
 import org.wikipedia.readinglist.ReadingListSyncBehaviorDialogs;
 import org.wikipedia.readinglist.database.ReadingListDbHelper;
@@ -54,7 +53,6 @@ import org.wikipedia.util.AnimationUtil;
 import org.wikipedia.util.DimenUtil;
 import org.wikipedia.util.FeedbackUtil;
 import org.wikipedia.views.WikiDrawerLayout;
-import org.wikipedia.firelogin.signInToWiki;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -88,6 +86,9 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
 
+    //Performance Monitor
+    private Trace tracer;
+
 
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, MainActivity.class);
@@ -103,6 +104,10 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
 
         // Initialize firebase
         FirebaseApp.initializeApp(this);
+
+        // Add firebase performance monitor
+        tracer = FirebasePerformance.getInstance().newTrace("MainActivity");
+        tracer.start();
 
         ButterKnife.bind(this);
         AnimationUtil.setSharedElementTransitions(this);
@@ -129,6 +134,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             button_smart_camera.setVisibility(View.GONE);
             button_qr_reader.setVisibility(View.GONE);
             button_notify_me.setVisibility(View.GONE);
+            button_group_chat.setVisibility(View.GONE);
             button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     openPageActivity();
@@ -173,7 +179,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 }
             });
 
-
+            button_group_chat.setVisibility(View.VISIBLE);
             button_group_chat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -214,6 +220,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
 
     }
 
+    @AddTrace(name="openMLActivity", enabled = true)
     public void openMLActivity() {
 
         Intent intent = new Intent(getApplicationContext(), MLActivity.class);
@@ -231,13 +238,13 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     }
 
     public void openPageActivity() {
-        //Intent intent = new Intent(this, signInToWiki.class);
-        Intent intent = new Intent(this, signInToWiki.class);
+        //Intent intent = new Intent(this, SignInToWiki.class);
+        Intent intent = new Intent(this, SignInToWiki.class);
         startActivity(intent);
     }
 
     public void openChatActivity() {
-        //Intent intent = new Intent(this, signInToWiki.class);
+        //Intent intent = new Intent(this, SignInToWiki.class);
         Intent intent = new Intent(this, ChatActivity.class);
         startActivity(intent);
     }
@@ -445,11 +452,37 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         }
 
         @Override
-        public void loginLogoutClickByfirebase() {
+        public void LogoutClickByfirebase() {
             Toast.makeText(MainActivity.this, "Log out " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Toast.LENGTH_SHORT).show();
             AuthUI.getInstance().signOut(MainActivity.this);
             //getFragment().onLoginRequested();
             closeMainDrawer();
         }
+
+        @Override
+        public void qrCodeReadClick(){
+            openQrCodeActivity();
+        }
+
+        @Override
+        public void mlKitClick(){
+            openMLActivity();
+        }
+
+        @Override
+        public void groupChatClick(){
+            openChatActivity();
+        }
+
+        @Override
+        public void notificationClick(){
+            openNotificationActivity();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tracer.stop();
     }
 }
