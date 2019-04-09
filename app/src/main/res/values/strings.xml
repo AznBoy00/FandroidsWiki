@@ -102,7 +102,8 @@
     <string name="citation_copy_citation">Copy citation</string>
 
     <!-- NFC page -->
-    <string name="nfc_title">NFC</string>
+    <string name="nfc_title">Hold your device near another device.</string>
+    <string name="nfc_description">Hold your device near another device.</string>
     <string name="nfc_broadcast">Share article</string>
     <string name="nfc_receive">Receive article</string>
 
