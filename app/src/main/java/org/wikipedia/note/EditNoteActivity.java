@@ -1,5 +1,6 @@
 package org.wikipedia.note;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,7 +23,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class EditNoteActivity extends AppCompatActivity {
+public class EditNoteActivity extends Activity {
     private static final String TAG = "EditNoteActivity";
     private String userName;
     private FirebaseDatabase firebaseDatabase;
@@ -152,5 +153,34 @@ public class EditNoteActivity extends AppCompatActivity {
         this.finish();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
 }

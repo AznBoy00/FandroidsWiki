@@ -760,6 +760,9 @@
     <string name="group_chat_button_name">\t\t Group Chat</string>
     <string name="note_button_name">\t\t My Notes</string>
     <string name="title_activity_note">Wiki Note</string>
+    <string name="title_activity_note_create_dialog">Create Note</string>
+    <string name="title_activity_note_edit_dialog">Edit Note</string>
+    <string name="title_activity_note_view_dialog">Your note</string>
     <string name="add_note">Add Note</string>
     <string name="my_notes">My Notes</string>
     <string name="add_new_note">Add Note</string>
@@ -784,8 +787,12 @@
     <string name="note_title_insert">Note title?</string>
     <string name="note_content">Note Content: </string>
     <string name="note_content_insert">note content?</string>
-    <string name="note_title2">Note title:</string>
+    <string name="note_title2">Title:</string>
     <string name="button_return">Return</string>
+    <string name="note_view_content">Content:</string>
+    <string name="insert_title_here">Insert title here...</string>
+    <string name="insert_content_here">Insert content here...</string>
+    <string name="button_save">Save</string>
 
 
 </resources>

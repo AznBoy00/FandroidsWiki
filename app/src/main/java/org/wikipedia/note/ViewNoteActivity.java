@@ -1,5 +1,6 @@
 package org.wikipedia.note;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.wikipedia.R;
 
-public class ViewNoteActivity extends AppCompatActivity {
+public class ViewNoteActivity extends Activity {
 
     //private Context context;
     private Note note;
@@ -58,9 +59,9 @@ public class ViewNoteActivity extends AppCompatActivity {
             e.printStackTrace();
         } **/
 
-        noteIdShow  = findViewById(R.id.textView2);
-        userId  = findViewById(R.id.textView4);
-        notebookId  = findViewById(R.id.textView6);
+        //noteIdShow  = findViewById(R.id.textView2);
+        //userId  = findViewById(R.id.textView4);
+        //notebookId  = findViewById(R.id.textView6);
         createdAt  = findViewById(R.id.textView8);
         lastModified = findViewById(R.id.textView10);
         noteTitle = findViewById(R.id.textView12);
@@ -184,9 +185,9 @@ public class ViewNoteActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 note = dataSnapshot.getValue(Note.class);
-                noteIdShow.setText(note.getNoteId());
-                userId.setText(note.getUserId());
-                notebookId.setText(note.getNoteBookId());
+                //noteIdShow.setText(note.getNoteId());
+                //userId.setText(note.getUserId());
+                //notebookId.setText(note.getNoteBookId());
                 createdAt.setText(note.getCreatedTime());
                 lastModified.setText(note.getLastModifiedTime());
                 noteTitle.setText(note.getNoteTitle());
@@ -233,4 +234,15 @@ public class ViewNoteActivity extends AppCompatActivity {
         super.onDestroy();
         finish();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
 }

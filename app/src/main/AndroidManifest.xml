@@ -94,13 +94,16 @@
             android:label="@string/title_activity_note" />
         <activity
             android:name=".note.CreateNoteActivity"
-            android:label="@string/title_activity_note" />
+            android:label="@string/title_activity_note_create_dialog"
+            android:theme="@android:style/Theme.Dialog"/>
         <activity
             android:name=".note.EditNoteActivity"
-            android:label="@string/title_activity_note" />
+            android:label="@string/title_activity_note_edit_dialog"
+            android:theme="@android:style/Theme.Dialog"/>
         <activity
             android:name=".note.ViewNoteActivity"
-            android:label="@string/title_activity_note" />
+            android:label="@string/title_activity_note_view_dialog"
+            android:theme="@android:style/Theme.Dialog"/>
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"

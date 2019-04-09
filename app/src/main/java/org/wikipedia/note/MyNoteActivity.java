@@ -171,4 +171,20 @@ public class MyNoteActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+
 }

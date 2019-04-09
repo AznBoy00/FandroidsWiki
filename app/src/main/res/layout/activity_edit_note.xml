@@ -1,87 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="350dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#000000">
 
     <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="598dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_above="@+id/button_nav_bar">
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#A4D4B4"
+            android:layout_marginBottom="10dp">
 
         <EditText
             android:id="@+id/note_title"
             style="@style/Base.Widget.MaterialComponents.TextInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/accent90"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="45dp" />
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:background="#A4D4B4"
+            android:hint="@string/insert_title_here"
+            android:textSize="25sp"
+            android:inputType="none"
+            tools:ignore="Autofill" />
 
-        <EditText
-            android:id="@+id/note_content"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/accent90"
-            android:gravity="start"
-            android:text=""
-            android:textAlignment="viewStart"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/note_title"
-            app:layout_constraintVertical_bias="0.134" />
+        </ScrollView>
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:background="#A4D4B4">
 
-            <Space
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/note_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:background="#A4D4B4"
+                android:padding="10dp"
+                android:hint="@string/insert_content_here"
+                android:gravity="start"
+                android:textSize="20sp"
+                android:inputType="none"
+                tools:ignore="Autofill" />
 
-            <Button
-                android:id="@+id/button_return"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Return"/>
-
-            <Button
-                android:id="@+id/button_save_note_from_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Save"
-                android:textStyle="bold" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/button_nav_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#A4D4B4">
+
+        <Button
+            android:id="@+id/button_return"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_return"
+            android:textColor="#FFFFFF"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+
+        <Button
+            android:id="@+id/button_save_note_from_edit"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_save"
+            android:textColor="#FFFFFF"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
