@@ -3,13 +3,20 @@ buildscript {
     repositories {
         jcenter()
         google()
-
+        // Add repository
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.2.0'
 //        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
+        // Performance Monitoring plugin:
+        classpath 'com.google.firebase:firebase-plugins:1.1.5'
+        // Add dependency
+        classpath 'io.fabric.tools:gradle:1.26.1'
     }
 }
 
