@@ -77,20 +77,15 @@
         <activity
             android:name=".chatactivity.ChatActivity"
             android:label="@string/title_activity_chat"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+            
         <activity
             android:name=".mlkit.MLActivity"
             android:label="@string/title_activity_ml"
             android:theme="@style/AppTheme.NoActionBar" /> <!-- Activities for QR Code Generator and Scanner -->
         <activity android:name=".qrcode.QRCodeGenerateActivity" />
-        <activity android:name=".qrcode.QRCodeScanActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".qrcode.QRCodeScanActivity" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
@@ -301,7 +296,7 @@
         <activity
             android:name=".page.tabs.TabActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".firelogin.signInToWiki" />
+        <activity android:name=".firelogin.SignInToWiki" />
         <activity android:name=".firelogin.wikiSignIn" />
 
         <provider
