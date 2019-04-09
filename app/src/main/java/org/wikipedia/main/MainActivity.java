@@ -22,6 +22,9 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.perf.FirebasePerformance;
+import com.google.firebase.perf.metrics.AddTrace;
+import com.google.firebase.perf.metrics.Trace;
 
 import org.wikipedia.Constants;
 import org.wikipedia.R;
@@ -81,6 +84,9 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
 
+    //Performance Monitor
+    private Trace tracer;
+
 
     public static Intent newIntent(@NonNull Context context) {
         return new Intent(context, MainActivity.class);
@@ -92,6 +98,10 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
 
         // Initialize firebase
         FirebaseApp.initializeApp(this);
+
+        // Add firebase performance monitor
+        tracer = FirebasePerformance.getInstance().newTrace("MainActivity");
+        tracer.start();
 
         ButterKnife.bind(this);
         AnimationUtil.setSharedElementTransitions(this);
@@ -204,6 +214,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
 
     }
 
+    @AddTrace(name="openMLActivity", enabled = true)
     public void openMLActivity() {
 
         Intent intent = new Intent(getApplicationContext(), MLActivity.class);
@@ -456,5 +467,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         public void notificationClick(){
             openNotificationActivity();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tracer.stop();
     }
 }
