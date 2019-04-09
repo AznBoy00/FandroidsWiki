@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.provider.MediaStore;
 import android.sax.Element;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -36,8 +37,10 @@ public class MessageAdapter extends ArrayAdapter<Message> {
     private String lastUID ="";
     private String currentUID ="";
     private int testCount =0;
-    private StorageReference storageRef =  FirebaseStorage.getInstance().getReferenceFromUrl("gs://soen390teamfandroidswiki-383a4.appspot.com/");
+    private StorageReference storageRef =  FirebaseStorage.getInstance().getReference();
+//    private StorageReference storageRef =  FirebaseStorage.getInstance().getReferenceFromUrl("gs://soen390teamfandroidswiki-383a4.appspot.com/");
     private final String TAG = "MessageAdapter: ";
+    ImageView photoImageView;
 
     public MessageAdapter(Context context, int resource, List<Message> objects) {
         super(context, resource, objects);
@@ -50,7 +53,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         }
 
         LinearLayout messageContainer = (LinearLayout) convertView.findViewById(R.id.messageViewContainer);
-        ImageView photoImageView = (ImageView) convertView.findViewById(R.id.photoImageView);
+        photoImageView = (ImageView) convertView.findViewById(R.id.photoImageView);
         TextView messageTextView = (TextView) convertView.findViewById(R.id.messageTextView);
         TextView authorTextView = (TextView) convertView.findViewById(R.id.nameTextView);
         TextView positionTextView = (TextView) convertView.findViewById(R.id.lastPositionTextView);
@@ -86,6 +89,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 //        authorTextView.setText(message.getName() + "\n" + " | " + position);
 
         boolean isPhoto = message.getPhotoUrl() != null;
+
         if (isPhoto) {
 
             //storageRef.child(message.getPhotoUrl());
@@ -95,13 +99,26 @@ public class MessageAdapter extends ArrayAdapter<Message> {
             String path = message.getPhotoUrl();
             Log.e(""+TAG,"key "+ key);
             Log.e(""+TAG,"path "+ path);
+            Log.e(""+TAG,"ref "+ storageRef.toString());
             //loadImage(""+key,""+message.getPhotoUrl(), photoImageView);
             try{
-                File imgFile = File.createTempFile("images", "jpg");
-                storageRef.child(path+".jpg" ).getFile(imgFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                Log.e("" + TAG, " start - try ");
+                final File imgFile = File.createTempFile(""+key, "jpg");
+                Log.e("" + TAG, " try - done create temp imgFile ");
+                storageRef.child("images/").child("group_chat/").child(message.getUID()+"/").child(key+".jpg" )
+                        .getFile(imgFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                       Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+//                       Bitmap bitmap = MediaStore.Images.Media.getBitmap(imgFile.getAbsolutePath());
+//                        if(bitmap ==null) {
+//                            Log.e("" + TAG, "bitmap null ");
+//                        }else {
+//
+//                            Log.e("" + TAG, "bitmap  \n" + bitmap.getConfig());
+//                        }
+//                        Log.e("" + TAG, " photoImageView "+ photoImageView.getId());
+
                         photoImageView.setImageBitmap(bitmap);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
