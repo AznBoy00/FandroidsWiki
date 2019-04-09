@@ -217,6 +217,13 @@
             app:tint="?attr/material_theme_secondary_color" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?attr/material_theme_border_color" />
+
     <Button
         android:id="@+id/notification_settings"
         style="@style/TransparentButton"
@@ -291,13 +298,13 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/button_beacon"
+        android:id="@+id/button_nearby"
         style="@style/TransparentButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_qr_code"
         android:fontFamily="sans-serif"
-        android:text="Beacon 1"
+        android:text="@string/nearby_button_name"
         android:textAllCaps="false"
         android:textAlignment="viewStart"
         android:textColor="@color/base0"
