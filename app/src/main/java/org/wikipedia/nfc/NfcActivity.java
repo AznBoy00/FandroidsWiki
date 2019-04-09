@@ -35,8 +35,8 @@ public class NfcActivity extends Activity implements NfcAdapter.CreateNdefMessag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc);
 
-        Button buttonSend = findViewById(R.id.button_share);
-        Button buttonReceive = findViewById(R.id.button_receive);
+//        Button buttonSend = findViewById(R.id.button_share);
+//        Button buttonReceive = findViewById(R.id.button_receive);
         webView = (WebView) findViewById(R.id.webview);
         nfcFrameLayout = findViewById(R.id.nfc_frame_layout);
 
