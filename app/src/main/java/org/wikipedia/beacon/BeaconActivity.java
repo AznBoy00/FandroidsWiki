@@ -36,7 +36,7 @@ public class BeaconActivity extends AppCompatActivity {
     private final String TAG = "BeaconActivity";
 
 
-    private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
+    private static final int PERMISSION_REQUEST_COARSE_LOCATION = 39021;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

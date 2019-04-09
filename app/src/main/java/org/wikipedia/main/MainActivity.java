@@ -79,6 +79,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     Button button_qr_reader;
     Button button_wiki_plusplus;
     Button button_group_chat;
+    Button button_beacon;
     private boolean controlNavTabInFragment;
 
     //Firebase
@@ -127,6 +128,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
         button_notify_me = findViewById(R.id.notification_settings);
         button_group_chat = findViewById(R.id.group_chat);
+        button_beacon = findViewById(R.id.button_beacon);
 
 
         // check weather user authenticated or not
@@ -183,10 +185,16 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             button_group_chat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openBeaconActivity();
+                    openChatActivity();
                 }
             });
 
+            button_beacon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openBeaconActivity();
+                }
+            });
 
         }
 
