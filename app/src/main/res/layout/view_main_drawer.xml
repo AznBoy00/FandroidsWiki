@@ -52,7 +52,8 @@
             android:textSize="14sp"
             tools:layout_editor_absoluteX="92dp"
             tools:layout_editor_absoluteY="46dp"
-            tools:text="Sample account name" />
+            tools:text="Sample account name"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/main_drawer_login_button"
@@ -219,10 +220,10 @@
         style="@style/TransparentButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_qr_code"
+        android:drawableStart="@drawable/ic_qr_code"
         android:fontFamily="sans-serif"
         android:background="@android:color/transparent"
-        android:text="\t\t Login to Wiki++"
+        android:text="@string/t_t_login_to_wiki"
         android:textAlignment="viewStart"
         android:textColor="@color/base0" />
 
@@ -231,9 +232,9 @@
         style="@style/TransparentButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_notifications_black_24dp"
+        android:drawableStart="@drawable/ic_notifications_black_24dp"
         android:fontFamily="sans-serif"
-        android:text="\t\t Notification Settings"
+        android:text="@string/t_t_notification_settings"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@color/base0"

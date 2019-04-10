@@ -1,5 +1,6 @@
 package org.wikipedia.note;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,6 +23,7 @@ import org.wikipedia.R;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class EditNoteActivity extends Activity {
     private static final String TAG = "EditNoteActivity";
@@ -39,6 +41,7 @@ public class EditNoteActivity extends Activity {
     private ChildEventListener childEventListener;
 
     String currentTime;
+    @SuppressLint("SimpleDateFormat")
     DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd, HH:mm:ss z");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
