@@ -11,21 +11,54 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
-            android:id="@+id/card_one"
-            android:textColor="#000"
-            android:layout_margin="10dp"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:id="@+id/card_zero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="UUID :"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="3dp"
+            android:text="Spotted Wiki :"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/wiki_spot_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/card_zero"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:text="Wiki Spot"
+            />
+
+        <TextView
+            android:id="@+id/card_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_zero"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="3dp"
+            android:text="UUID :"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/uuid"
-            android:layout_margin="10dp"
+            android:layout_margin="6dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/card_zero"
             android:layout_toRightOf="@id/card_one"
             android:paddingLeft="30sp"
             android:textSize="10sp"
@@ -34,60 +67,79 @@
 
         <TextView
             android:id="@+id/card_two"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:textSize="20sp"
-            android:layout_below="@id/card_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Major :"/>
+            android:layout_below="@id/card_one"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="3dp"
+            android:text="Major :"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/major"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/card_one"
+            android:layout_margin="6dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_toRightOf="@id/card_one"
             android:paddingLeft="30sp"
-            android:layout_margin="10dp"
-            android:layout_below="@id/card_one"
-            android:textSize="10sp"
             android:text="Major"
-            />
+            android:textSize="10sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/card_three"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:layout_below="@id/card_two"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Minor :"/>
+            android:layout_below="@id/card_two"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="3dp"
+            android:text="Minor :"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/minor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/card_two"
+            android:layout_margin="6dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_toRightOf="@id/card_one"
             android:paddingLeft="30sp"
-            android:textSize="10sp"
-            android:layout_margin="10dp"
-            android:layout_below="@id/card_two"
             android:text="Minor"
-            />
+            android:textSize="10sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/card_four"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_margin="10dp"
-            android:layout_below="@id/card_three"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Distance :"/>
+            android:layout_below="@id/card_three"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="3dp"
+            android:text="Distance :"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/distance"
@@ -96,7 +148,7 @@
             android:layout_toRightOf="@id/card_one"
             android:paddingLeft="30sp"
             android:textSize="10sp"
-            android:layout_margin="10dp"
+            android:layout_margin="6dp"
             android:layout_below="@id/card_three"
             android:text="Distance"
             />

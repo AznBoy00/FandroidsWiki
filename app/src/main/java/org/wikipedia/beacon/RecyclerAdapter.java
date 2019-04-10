@@ -7,23 +7,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.wikipedia.R;
 
 import java.util.ArrayList;
 
 public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+    private final String TAG = "RECYCLER_ADAPTER";
     ArrayList<ArrayList<String>> arr;
+    private DatabaseReference dbRef;
 
     // Constructor
     public RecyclerAdapter(ArrayList<ArrayList<String>> arr)
     {
         this.arr = arr;
+        dbRef = FirebaseDatabase.getInstance().getReference().child("beacons");
     }
 
     /*
        View Holder class to instantiate views
      */
     class ViewHolder extends RecyclerView.ViewHolder{
+
+        //Wiki spot
+        private TextView wikiSpot;
 
         //UUID
         private TextView uuid;
@@ -43,9 +52,10 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
             super(itemView);
 
             //Initializing views
+            wikiSpot = itemView.findViewById(R.id.wiki_spot_name);
             uuid = itemView.findViewById(R.id.uuid);
-            major = itemView.findViewById(R.id.major);
-            minor = itemView.findViewById(R.id.minor);
+//            major = itemView.findViewById(R.id.major);
+//            minor = itemView.findViewById(R.id.minor);
             distance = itemView.findViewById(R.id.distance);
         }
     }
@@ -69,10 +79,10 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
             holder.uuid.setText(arrayList.get(0));
 
             //Displaying Major
-            holder.major.setText(arrayList.get(1));
+//            holder.major.setText(arrayList.get(1));
 
             //Displaying Minor
-            holder.minor.setText(arrayList.get(2));
+//            holder.minor.setText(arrayList.get(2));
 
             //Displaying distance
             holder.distance.setText(arrayList.get(3));
