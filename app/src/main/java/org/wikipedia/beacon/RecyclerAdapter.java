@@ -2,13 +2,17 @@ package org.wikipedia.beacon;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.wikipedia.R;
 
@@ -75,15 +79,30 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
         // Checking if arrayList size > 0
         if (arrayList.size()>0){
 
+            String _uuid = arrayList.get(0);
             // Displaying UUID
-            holder.uuid.setText(arrayList.get(0));
+            holder.uuid.setText(_uuid);
+            Log.e(""+TAG,"" + _uuid);
+            dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.hasChild(""+_uuid)) {
+                        final String wikiSpotName = dataSnapshot.child(""+_uuid).child("name").getValue().toString();
+                        holder.wikiSpot.setText(wikiSpotName);
+                    }else {
+                        holder.wikiSpot.setText("Non-Wiki Spot");
+                    }
+                }
 
-            //Displaying Major
-//            holder.major.setText(arrayList.get(1));
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            //Displaying Minor
-//            holder.minor.setText(arrayList.get(2));
+                }
+            });
 
+            Log.e(""+TAG,"" + holder.wikiSpot.getText().toString());
+
+            Log.e(""+TAG," distance " + arrayList.get(3));
             //Displaying distance
             holder.distance.setText(arrayList.get(3));
         }
