@@ -108,8 +108,13 @@ public class BeaconService extends Service implements BeaconConsumer, MonitorNot
 
     // Method to start Broadcasting to restart the service
     // (BeaconBroadcast class)
+
     public void startBroadcasting(){
-        Intent broadcastIntent = new Intent("com.example.anmol.beacons.RestartBeaconService");
+        startBroadcasting(new Intent("com.example.anmol.beacons.RestartBeaconService"));
+    }
+
+    public void startBroadcasting(Intent broadcastIntent){
+//        Intent broadcastIntent = intent;
         sendBroadcast(broadcastIntent);
     }
 
