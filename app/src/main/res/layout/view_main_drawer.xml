@@ -45,17 +45,15 @@
 
         <TextView
             android:id="@+id/main_drawer_account_name"
-            android:layout_width="0dp"
+            android:layout_width="303dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:fontFamily="sans-serif-medium"
             android:textColor="?attr/material_theme_secondary_color"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/main_drawer_account_avatar_container"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/main_drawer_account_avatar_container"
-            app:layout_constraintTop_toTopOf="@+id/main_drawer_account_avatar_container"
-            tools:text="Sample account name" />
+            tools:layout_editor_absoluteX="92dp"
+            tools:layout_editor_absoluteY="46dp"
+            tools:text="Sample account name"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/main_drawer_login_button"
@@ -225,13 +223,25 @@
         android:background="?attr/material_theme_border_color" />
 
     <Button
+        android:id="@+id/wiki_plusplus"
+        style="@style/TransparentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_qr_code"
+        android:fontFamily="sans-serif"
+        android:background="@android:color/transparent"
+        android:text="@string/t_t_login_to_wiki"
+        android:textAlignment="viewStart"
+        android:textColor="@color/base0" />
+
+    <Button
         android:id="@+id/notification_settings"
         style="@style/TransparentButton"
-        android:layout_width="374dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_notifications_black_24dp"
+        android:drawableStart="@drawable/ic_notifications_black_24dp"
         android:fontFamily="sans-serif"
-        android:text="\t\t Notification Settings"
+        android:text="@string/t_t_notification_settings"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@color/base0"
@@ -269,20 +279,6 @@
         android:textSize="16sp"
         android:visibility="visible" />
 
-
-    <Button
-        android:id="@+id/wiki_plusplus"
-        style="@style/TransparentButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_qr_code"
-        android:fontFamily="sans-serif"
-        android:background="@android:color/transparent"
-        android:text="\t\t Login to Wiki++"
-        android:textAlignment="viewStart"
-        android:textColor="@color/base0" />
-
-
     <Button
         android:id="@+id/group_chat"
         style="@style/TransparentButton"
@@ -296,6 +292,19 @@
         android:textColor="@color/base0"
         android:textSize="16sp"
         android:visibility="visible" />
+
+    <Button
+        android:id="@+id/note"
+        style="@style/TransparentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/ic_qr_code"
+        android:fontFamily="sans-serif"
+        android:text="@string/note_button_name"
+        android:textAlignment="viewStart"
+        android:textColor="@color/base0" />
+
 
     <Button
         android:id="@+id/button_nearby"

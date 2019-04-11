@@ -56,6 +56,8 @@ public class MainDrawerView extends ScrollView {
         void notificationClick();
 
         void beaconClick();
+
+        void noteClick();
     }
 
     @BindView(R.id.main_drawer_account_name)
@@ -79,6 +81,8 @@ public class MainDrawerView extends ScrollView {
     Button button_qr_reader;
     @BindView(R.id.wiki_plusplus)
     Button button_wiki_plusplus;
+    @BindView(R.id.note)
+    Button button_note;
     @BindView(R.id.group_chat)
     Button button_group_chat;
     @BindView(R.id.button_nearby)
@@ -129,6 +133,7 @@ public class MainDrawerView extends ScrollView {
                 button_smart_camera.setVisibility(View.VISIBLE);
                 button_notify_me.setVisibility(View.VISIBLE);
                 button_qr_reader.setVisibility(View.VISIBLE);
+                button_note.setVisibility(View.VISIBLE);
                 button_group_chat.setVisibility(View.VISIBLE);
                 button_wiki_plusplus.setVisibility(View.GONE);
                 button_nearby.setVisibility(View.VISIBLE);
@@ -143,6 +148,7 @@ public class MainDrawerView extends ScrollView {
             button_smart_camera.setVisibility(View.GONE);
             button_notify_me.setVisibility(View.GONE);
             button_qr_reader.setVisibility(View.GONE);
+            button_note.setVisibility(View.GONE);
             button_group_chat.setVisibility(View.GONE);
             button_nearby.setVisibility(View.GONE);
             button_wiki_plusplus.setVisibility(View.VISIBLE);
@@ -246,6 +252,14 @@ public class MainDrawerView extends ScrollView {
         if (callback != null && user != null) {
             //Log.e("test", "test");
             callback.beaconClick();
+        }
+    }
+
+    @OnClick({R.id.note})
+    void onNoteClick() {
+        if (callback != null && user != null) {
+            Log.e("test", "test");
+            callback.noteClick();
         }
     }
 

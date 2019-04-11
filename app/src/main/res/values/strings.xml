@@ -758,6 +758,43 @@
     <string name="send">Send</string>
     <string name="title_activity_chat_2">Wiki Group Chat</string>
     <string name="group_chat_button_name">\t\t Group Chat</string>
+    <string name="note_button_name">\t\t My Notes</string>
+    <string name="title_activity_note">Wiki Note</string>
+    <string name="title_activity_note_create_dialog">Create Note</string>
+    <string name="title_activity_note_edit_dialog">Edit Note</string>
+    <string name="title_activity_note_view_dialog">Your note</string>
+    <string name="my_notes">My Notes</string>
+    <string name="add_new_note">Add Note</string>
+    <string name="note_title">Note Title</string>
+    <string name="updated_time">Updated time</string>
+
+    <string name="menu_text_select_add_notes">Add notes</string>
+
+    <string name="button_delete">Delete</string>
+    <string name="button_edit">Edit</string>
+    <string name="created_at">Created at: </string>
+    <string name="created_at_insert">Created time?</string>
+    <string name="last_modified">Last modified: </string>
+    <string name="last_modified_insert">last modified?</string>
+    <string name="note_title_insert">Note title?</string>
+    <string name="note_content_insert">note content?</string>
+    <string name="note_title2">Title:</string>
+    <string name="button_return">Return</string>
+    <string name="note_view_content">Content:</string>
+    <string name="insert_title_here">Insert title here...</string>
+    <string name="insert_content_here">Insert content here...</string>
+    <string name="button_save">Save</string>
+    <string name="t_t_login_to_wiki">Login to Wiki++</string>
+    <string name="t_t_notification_settings">Notification Settings</string>
+    <string name="welcome_to_wiki">WELCOME TO WIKI</string>
+    <string name="welcome_to_use_wiki_machine_learning_kit">Welcome to use wiki machine learning kit</string>
+    <string name="text">Text</string>
+    <string name="faces">Faces</string>
+    <string name="labels">Labels</string>
+    <string name="detect">DETECT</string>
+    <string name="results_obtained_from_keywords">Results obtained from keywords</string>
+    <string name="photo_picker">photo picker</string>
+
     <!--Beacon-->
     <string name="nearby_button_name">\t\t Nearby</string>
 
