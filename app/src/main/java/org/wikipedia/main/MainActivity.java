@@ -38,6 +38,7 @@ import org.wikipedia.firelogin.SignInToWiki;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
+import org.wikipedia.note.MyNoteActivity;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
@@ -77,6 +78,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     Button button_qr_reader;
     Button button_wiki_plusplus;
     Button button_group_chat;
+    Button button_note;
     private boolean controlNavTabInFragment;
 
     //Firebase
@@ -121,6 +123,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
         button_notify_me = findViewById(R.id.notification_settings);
         button_group_chat = findViewById(R.id.group_chat);
+        button_note = findViewById(R.id.note);
 
 
         // check weather user authenticated or not
@@ -128,6 +131,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             button_smart_camera.setVisibility(View.GONE);
             button_qr_reader.setVisibility(View.GONE);
             button_notify_me.setVisibility(View.GONE);
+            button_note.setVisibility(View.GONE);
             button_group_chat.setVisibility(View.GONE);
             button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -181,6 +185,13 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 }
             });
 
+            button_note.setVisibility(View.VISIBLE);
+            button_note.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openNoteActivity();
+                }
+            });
 
         }
 
@@ -240,6 +251,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     public void openChatActivity() {
         //Intent intent = new Intent(this, SignInToWiki.class);
         Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
+    }
+
+    private void openNoteActivity() {
+        Intent intent = new Intent(this, MyNoteActivity.class);
         startActivity(intent);
     }
 
@@ -466,6 +482,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         @Override
         public void notificationClick(){
             openNotificationActivity();
+        }
+
+        @Override
+        public void noteClick() {
+            openNoteActivity();
         }
     }
 
