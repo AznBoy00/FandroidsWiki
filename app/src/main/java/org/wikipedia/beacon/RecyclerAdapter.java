@@ -1,5 +1,9 @@
 package org.wikipedia.beacon;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,12 +27,16 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
     private final String TAG = "RECYCLER_ADAPTER";
     ArrayList<ArrayList<String>> arr;
     private DatabaseReference dbRef;
-
+    private Context context;
     // Constructor
     public RecyclerAdapter(ArrayList<ArrayList<String>> arr)
     {
         this.arr = arr;
         dbRef = FirebaseDatabase.getInstance().getReference().child("beacons");
+    }
+
+    public void setContext(Context context){
+        this.context = context;
     }
 
     /*
@@ -95,6 +103,9 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
                             @Override
                             public void onClick(View v){
                                 Toast.makeText(v.getContext(), "Spot Wiki "+ wikiSpotName, Toast.LENGTH_SHORT).show();
+                                String url = "https://en.wikipedia.org/wiki/"+wikiSpotName.replace(" ","_");
+                                Log.e("Beacon onclick url ", ""+Uri.parse(url));
+                                spotWikiClick(url);
                             }
                         });
                     }else {
@@ -120,4 +131,12 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
     {
         return arr.size();
     }
+
+    private void spotWikiClick(String url){
+        //TODO make it open page activity directly
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        this.context.startActivity(intent);
+    }
+
+
 }
