@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,13 +23,10 @@ public class MyNoteActivity extends AppCompatActivity {
 
     private ListView notesListView;
     private Button button_add_new_note;
-
     private String userName;
     private NoteBook noteBookId;
     private NoteAdapter noteAdapter;
 
-    // Firebase connection
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
 
@@ -41,42 +35,22 @@ public class MyNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Notes");
 
-        notesListView = findViewById(R.id.notes_listView);
-        button_add_new_note = findViewById(R.id.button_add_new_note);
+        ListView notesListView = findViewById(R.id.notes_listView);
+        Button button_return = findViewById(R.id.button_return);
+        Button button_add_new_note = findViewById(R.id.button_add_new_note);
 
-        button_add_new_note.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCreateNoteActivity();
-            }
-        });
+        button_return.setOnClickListener(v -> finish());
+
+        button_add_new_note.setOnClickListener(v -> openCreateNoteActivity());
 
         List<Note> myNotes = new ArrayList<>();
         noteAdapter = new NoteAdapter(this, R.layout.item_notes, myNotes);
         notesListView.setAdapter(noteAdapter);
-        notesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                openViewNoteActivity();
-
-            }
-        });
 
         attachDatabaseReadListener();
-
-
-    }
-
-    private void openViewNoteActivity() {
-
-        Intent intent = new Intent(this, CreateNoteActivity.class);
-        startActivity(intent);
 
     }
 
@@ -117,6 +91,7 @@ public class MyNoteActivity extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
+
             };
             databaseReference.addChildEventListener(childEventListener);
         }
@@ -135,19 +110,11 @@ public class MyNoteActivity extends AppCompatActivity {
         super.onResume();
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
         detachDataReadListener();
         noteAdapter.clear();
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        finish();
     }
 
 }

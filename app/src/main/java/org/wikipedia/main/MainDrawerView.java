@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -29,13 +30,14 @@ import butterknife.OnClick;
 public class MainDrawerView extends ScrollView {
 
     //Firebase
-    private String username;
+    //private String username;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
 
     public interface Callback {
         void loginLogoutClick();
 
-        void loginLogoutClickByfirebase();
+        void LogoutClickByfirebase();
 
         void notificationsClick();
 
@@ -44,6 +46,16 @@ public class MainDrawerView extends ScrollView {
         void configureFeedClick();
 
         void aboutClick();
+
+        void qrCodeReadClick();
+
+        void mlKitClick();
+
+        void groupChatClick();
+
+        void notificationClick();
+
+        void noteClick();
     }
 
     @BindView(R.id.main_drawer_account_name)
@@ -69,6 +81,8 @@ public class MainDrawerView extends ScrollView {
     Button button_wiki_plusplus;
     @BindView(R.id.note)
     Button button_note;
+    @BindView(R.id.group_chat)
+    Button button_group_chat;
 
 
     public MainDrawerView(Context context) {
@@ -93,8 +107,9 @@ public class MainDrawerView extends ScrollView {
     public void updateState() {
 
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        user = firebaseAuth.getCurrentUser();
         if (user != null) {
+            // keep original login
             if (AccountUtil.isLoggedIn()) {
                 accountNameView.setText(AccountUtil.getUserName());
                 accountNameView.setVisibility(VISIBLE);
@@ -115,6 +130,8 @@ public class MainDrawerView extends ScrollView {
                 button_notify_me.setVisibility(View.VISIBLE);
                 button_qr_reader.setVisibility(View.VISIBLE);
                 button_note.setVisibility(View.VISIBLE);
+                button_group_chat.setVisibility(View.VISIBLE);
+                button_wiki_plusplus.setVisibility(View.GONE);
             }
         } else {
             accountNameView.setVisibility(GONE);
@@ -127,6 +144,8 @@ public class MainDrawerView extends ScrollView {
             button_notify_me.setVisibility(View.GONE);
             button_qr_reader.setVisibility(View.GONE);
             button_note.setVisibility(View.GONE);
+            button_group_chat.setVisibility(View.GONE);
+            button_wiki_plusplus.setVisibility(View.VISIBLE);
         }
     }
 
@@ -174,10 +193,58 @@ public class MainDrawerView extends ScrollView {
 
     @OnClick(R.id.main_drawer_login_button)
     void onLoginClick() {
-        if (callback != null) {
+        if (callback != null && user != null) {
             //callback.loginLogoutClick();
-            callback.loginLogoutClickByfirebase();
+            callback.LogoutClickByfirebase();
             updateState();
+        } else if (callback != null) {
+
+            callback.loginLogoutClick();
+            updateState();
+        }
+    }
+
+    // call back to open qr read activity
+    @OnClick(R.id.button_qr_reader)
+    void onQRClick() {
+        if (callback != null && user != null) {
+            Log.e("test", "test");
+            callback.qrCodeReadClick();
+        }
+    }
+
+    //call back to open ml kit activity
+    @OnClick({R.id.smart_camera})
+    void onMLKitClick() {
+        if (callback != null && user != null) {
+            Log.e("test", "test");
+            callback.mlKitClick();
+        }
+    }
+
+    //call back to open notification setting activity
+    @OnClick({R.id.notification_settings})
+    void onNotificationClick() {
+        if (callback != null && user != null) {
+            Log.e("test", "test");
+            callback.notificationClick();
+        }
+    }
+
+    //call back to open group chat activity
+    @OnClick({R.id.group_chat})
+    void onGroupChatClick() {
+        if (callback != null && user != null) {
+            Log.e("test", "test");
+            callback.groupChatClick();
+        }
+    }
+
+    @OnClick({R.id.note})
+    void onNoteClick() {
+        if (callback != null && user != null) {
+            Log.e("test", "test");
+            callback.noteClick();
         }
     }
 
@@ -185,4 +252,5 @@ public class MainDrawerView extends ScrollView {
         inflate(getContext(), R.layout.view_main_drawer, this);
         ButterKnife.bind(this);
     }
+
 }

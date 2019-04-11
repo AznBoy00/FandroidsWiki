@@ -1,5 +1,8 @@
 package org.wikipedia.note;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,14 +21,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import java.util.Date;
+import java.util.Locale;
 
-public class CreateNoteActivity extends AppCompatActivity {
-    private static final String TAG = "CreateNoteActivity";
-
-    public final int DEFAULT_NOTE_CONTENT_LENGTH_LIMIT = 1000;
+public class CreateNoteActivity extends Activity {
 
     private FirebaseUser user;
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private DatabaseReference dbReferenceNoteBook;
     private Button noteSaveButton;
@@ -34,6 +35,7 @@ public class CreateNoteActivity extends AppCompatActivity {
     private ChildEventListener childEventListener;
 
     String currentTime;
+    @SuppressLint("SimpleDateFormat")
     DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd, HH:mm:ss z");
 
     @Override
@@ -43,13 +45,16 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Notes");
         dbReferenceNoteBook = firebaseDatabase.getReference().child("NoteBook");
 
-        newNoteTitle = (EditText) findViewById(R.id.new_note_title);
-        newNoteContent = (EditText) findViewById(R.id.new_note_content);
-        noteSaveButton = (Button) findViewById(R.id.button_save_note);
+        newNoteTitle = findViewById(R.id.new_note_title);
+        newNoteContent = findViewById(R.id.new_note_content);
+        Button noteReturnButton = findViewById(R.id.button_return);
+        noteSaveButton = findViewById(R.id.button_save_note);
+
+        noteReturnButton.setOnClickListener(v -> finish());
 
         saveNote();
 
@@ -77,13 +82,5 @@ public class CreateNoteActivity extends AppCompatActivity {
     protected void onFinish() {
         this.finish();
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        this.finish();
-    }
-
-
 
 }

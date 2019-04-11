@@ -1,5 +1,7 @@
 package org.wikipedia.note;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,11 +23,10 @@ import org.wikipedia.R;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
-public class EditNoteActivity extends AppCompatActivity {
+public class EditNoteActivity extends Activity {
     private static final String TAG = "EditNoteActivity";
-    private String userName;
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private Button noteSaveButton;
     private EditText noteTitle;
@@ -38,48 +39,45 @@ public class EditNoteActivity extends AppCompatActivity {
     private ChildEventListener childEventListener;
 
     String currentTime;
+    @SuppressLint("SimpleDateFormat")
     DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd, HH:mm:ss z");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
 
-        userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Notes");
         noteId = getIntent().getStringExtra("noteId");
-        noteDBRef = firebaseDatabase.getReference().child("Notes").child(noteId);
         note = new Note();
 
         attachDatabaseReadListener();
 
-        noteTitle = (EditText) findViewById(R.id.note_title);
-        noteContent = (EditText) findViewById(R.id.note_content);
-        noteSaveButton = (Button) findViewById(R.id.button_save_note_from_edit);
+        noteTitle = findViewById(R.id.note_title);
+        noteContent = findViewById(R.id.note_content);
+        Button returnButton = findViewById(R.id.button_return);
+        noteSaveButton = findViewById(R.id.button_save_note_from_edit);
         noteTitle.setText("");
         noteContent.setText("");
+
+        returnButton.setOnClickListener(v -> finish());
 
         saveNote();
 
     }
 
     public void saveNote() {
-        noteSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        noteSaveButton.setOnClickListener(v -> {
 
-                currentTime = dateFormat.format(Calendar.getInstance().getTime());
-                //String noteId = databaseReference.push().getKey();
+            currentTime = dateFormat.format(Calendar.getInstance().getTime());
 
-                note.setNoteTitle(noteTitle.getText().toString());
-                note.setNoteContent(noteContent.getText().toString());
-                note.setLastModifiedTime(currentTime);
-                Log.e(TAG,noteId +"\n"+note.getNoteContent());
-                databaseReference.child(noteId).setValue(note);
+            note.setNoteTitle(noteTitle.getText().toString());
+            note.setNoteContent(noteContent.getText().toString());
+            note.setLastModifiedTime(currentTime);
+            Log.e(TAG,noteId +"\n"+note.getNoteContent());
+            databaseReference.child(noteId).setValue(note);
 
-                onFinish();
-            }
+            onFinish();
         });
 
     }
@@ -92,6 +90,7 @@ public class EditNoteActivity extends AppCompatActivity {
                 if(temp.getNoteId().equals(noteId)) {
                     note = temp;
                     note.setNoteId(noteId);
+
                     if (note.getNoteTitle() != null)
                         noteTitle.setText(note.getNoteTitle());
                     else
@@ -101,7 +100,7 @@ public class EditNoteActivity extends AppCompatActivity {
                         noteContent.setText(note.getNoteContent());
                     else
                         noteContent.setText("");
-                    //detach
+
                     detachDataReadListener();
                 }
             }
@@ -140,9 +139,5 @@ public class EditNoteActivity extends AppCompatActivity {
     protected void onFinish() {
         this.finish();
     }
-
-
-
-
 
 }
