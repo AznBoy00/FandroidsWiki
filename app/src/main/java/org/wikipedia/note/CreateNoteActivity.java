@@ -24,14 +24,9 @@ import java.util.Locale;
 
 
 public class CreateNoteActivity extends Activity {
-    private static final String TAG = "CreateNoteActivity";
-
-    public final int DEFAULT_NOTE_CONTENT_LENGTH_LIMIT = 1000;
 
     private FirebaseUser user;
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private Button noteReturnButton;
     private Button noteSaveButton;
     private EditText newNoteTitle;
     private EditText newNoteContent;
@@ -47,38 +42,28 @@ public class CreateNoteActivity extends Activity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Notes");
 
-        newNoteTitle = (EditText) findViewById(R.id.new_note_title);
-        newNoteContent = (EditText) findViewById(R.id.new_note_content);
-        noteReturnButton = findViewById(R.id.button_return);
-        noteSaveButton = (Button) findViewById(R.id.button_save_note);
+        newNoteTitle = findViewById(R.id.new_note_title);
+        newNoteContent = findViewById(R.id.new_note_content);
+        Button noteReturnButton = findViewById(R.id.button_return);
+        noteSaveButton = findViewById(R.id.button_save_note);
 
-        noteReturnButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        noteReturnButton.setOnClickListener(v -> finish());
 
         saveNote();
 
     }
 
     public void saveNote() {
-        noteSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String str = user.getUid();
-                currentTime = dateFormat.format(Calendar.getInstance().getTime());
-                String noteId = databaseReference.push().getKey();
-                Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
-                databaseReference.child(noteId).setValue(newNote);
+        noteSaveButton.setOnClickListener(v -> {
+            currentTime = dateFormat.format(Calendar.getInstance().getTime());
+            String noteId = databaseReference.push().getKey();
+            Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
+            databaseReference.child(noteId).setValue(newNote);
 
-                onFinish();
-            }
+            onFinish();
         });
 
     }
@@ -87,33 +72,4 @@ public class CreateNoteActivity extends Activity {
         this.finish();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }

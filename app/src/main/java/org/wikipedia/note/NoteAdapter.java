@@ -21,56 +21,46 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.wikipedia.R;
+import org.wikipedia.main.MainActivity;
 
 import java.util.List;
 
 class NoteAdapter extends ArrayAdapter<Note> {
 
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference = firebaseDatabase.getReference().child("Notes");
-
     private Context  context;
-    public NoteAdapter(Context context, int resource, List<Note> objects) {
+    NoteAdapter(Context context, int resource, List<Note> objects) {
         super(context, resource, objects);
         this.context =context;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.item_notes, parent, false);
+    public View getView(int position, View view, ViewGroup parent) {
+        if (view == null) {
+            view = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.item_notes, parent, false);
         }
 
-        TextView note_title = convertView.findViewById(R.id.note_title);
-        TextView note_time = convertView.findViewById(R.id.note_time);
+        TextView note_title = view.findViewById(R.id.note_title);
+        TextView note_time = view.findViewById(R.id.note_time);
 
         Note note = getItem(position);
 
         note_title.setText(note.getNoteTitle());
         note_time.setText(note.getCreatedTime());
 
-        CardView noteCard = convertView.findViewById(R.id.note_card);
+        CardView noteCard = view.findViewById(R.id.note_card);
         onViewListener(noteCard, note.getNoteId());
 
-        Button editBtn = convertView.findViewById(R.id.edit_note);
+        Button editBtn = view.findViewById(R.id.edit_note);
         onEditListener(editBtn,note.getNoteId());
-        Button deleteBtn = convertView.findViewById(R.id.delete_note);
+        Button deleteBtn = view.findViewById(R.id.delete_note);
         onDeleteListener(deleteBtn, note.getNoteId());
 
-        return convertView;
+        return view;
     }
 
     private void onViewListener(CardView card, String noteId) {
 
-        card.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                openViewNoteActivity(noteId);
-
-            }
-
-        });
+        card.setOnClickListener(v -> openViewNoteActivity(noteId));
 
     }
 
@@ -90,27 +80,14 @@ class NoteAdapter extends ArrayAdapter<Note> {
 
     }
 
-    public void onEditListener(Button btn ,String id){
+    private void onEditListener(Button btn, String id){
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openEditNoteActivity(id);
-
-            }
-        } );
+        btn.setOnClickListener(v -> openEditNoteActivity(id));
     }
 
     private void onDeleteListener(Button btn, String id) {
 
-        btn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                deleteNoteActivity(id);
-            }
-
-        });
+        btn.setOnClickListener(v -> deleteNoteActivity(id));
 
     }
 
@@ -120,8 +97,7 @@ class NoteAdapter extends ArrayAdapter<Note> {
 
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Intent intent = new Intent(context, MyNoteActivity.class);
-                context.startActivity(intent);
+                notifyDataSetChanged();
             }
         });
 

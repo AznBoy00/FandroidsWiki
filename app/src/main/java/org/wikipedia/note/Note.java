@@ -22,10 +22,6 @@ public class Note {
         this.lastModifiedTime = "";
     }
 
-    /** public Note(String noteId, int authorId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {
-        this.noteId = noteId;
-        this.authorId = authorId; **/
-
     public Note(String noteId, String userId, String noteBookId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {
         this.noteId = noteId;
         this.userId = userId;
@@ -35,18 +31,6 @@ public class Note {
         this.createdTime = createdTime;
         this.lastModifiedTime = lastModifiedTime;
     }
-
-    /**public Note(int noteId, int authorId, int noteBookId, String noteTitle, String noteContent, String createdTime, String lastModifiedTime) {
-        this.noteId = noteId;
-        this.authorId = authorId;
-        this.noteBookId = noteBookId;
-        this.noteTitle = noteTitle;
-        this.noteContent = noteContent;
-        this.createdTime = createdTime;
-        this.lastModifiedTime = lastModifiedTime;
-    } **/
-
-
 
     @Override
     public boolean equals(@Nullable Object obj) {

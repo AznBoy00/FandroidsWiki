@@ -9,11 +9,10 @@ import org.wikipedia.R;
 
 public class MyNoteViewHolder extends RecyclerView.ViewHolder {
 
-    View myView;
-    CardView noteCard;
-    TextView noteTitle;
-    TextView noteTime;
-
+    private View myView;
+    private CardView noteCard;
+    private TextView noteTitle;
+    private TextView noteTime;
 
     public MyNoteViewHolder(View itemsView) {
         super(itemsView);

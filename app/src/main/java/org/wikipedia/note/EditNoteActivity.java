@@ -27,17 +27,12 @@ import java.util.Locale;
 
 public class EditNoteActivity extends Activity {
     private static final String TAG = "EditNoteActivity";
-    private String userName;
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private Button returnButton;
     private Button noteSaveButton;
     private EditText noteTitle;
     private EditText noteContent;
     private String noteId;
     private Note note;
-    private DatabaseReference noteDBRef;
-    private NoteAdapter noteAdapter;
     private ChildEventListener childEventListener;
 
     String currentTime;
@@ -48,53 +43,38 @@ public class EditNoteActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
 
-        userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Notes");
         noteId = getIntent().getStringExtra("noteId");
-        noteDBRef = firebaseDatabase.getReference().child("Notes").child(noteId);
         note = new Note();
 
         attachDatabaseReadListener();
 
-        noteTitle = (EditText) findViewById(R.id.note_title);
-        noteContent = (EditText) findViewById(R.id.note_content);
-        returnButton = findViewById(R.id.button_return);
-        noteSaveButton = (Button) findViewById(R.id.button_save_note_from_edit);
+        noteTitle = findViewById(R.id.note_title);
+        noteContent = findViewById(R.id.note_content);
+        Button returnButton = findViewById(R.id.button_return);
+        noteSaveButton = findViewById(R.id.button_save_note_from_edit);
         noteTitle.setText("");
         noteContent.setText("");
 
-        returnButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        returnButton.setOnClickListener(v -> finish());
 
         saveNote();
 
     }
 
     public void saveNote() {
-        noteSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        noteSaveButton.setOnClickListener(v -> {
 
-                currentTime = dateFormat.format(Calendar.getInstance().getTime());
-                //String noteId = databaseReference.push().getKey();
+            currentTime = dateFormat.format(Calendar.getInstance().getTime());
 
-                note.setNoteTitle(noteTitle.getText().toString());
-                note.setNoteContent(noteContent.getText().toString());
-                note.setLastModifiedTime(currentTime);
-                Log.e(TAG,noteId +"\n"+note.getNoteContent());
-                databaseReference.child(noteId).setValue(note);
+            note.setNoteTitle(noteTitle.getText().toString());
+            note.setNoteContent(noteContent.getText().toString());
+            note.setLastModifiedTime(currentTime);
+            Log.e(TAG,noteId +"\n"+note.getNoteContent());
+            databaseReference.child(noteId).setValue(note);
 
-                //setResult(RESULT_OK, null);
-                //finish();
-                onFinish();
-            }
+            onFinish();
         });
 
     }
@@ -107,6 +87,7 @@ public class EditNoteActivity extends Activity {
                 if(temp.getNoteId().equals(noteId)) {
                     note = temp;
                     note.setNoteId(noteId);
+
                     if (note.getNoteTitle() != null)
                         noteTitle.setText(note.getNoteTitle());
                     else
@@ -116,7 +97,7 @@ public class EditNoteActivity extends Activity {
                         noteContent.setText(note.getNoteContent());
                     else
                         noteContent.setText("");
-                    //detach
+
                     detachDataReadListener();
                 }
             }
@@ -154,36 +135,6 @@ public class EditNoteActivity extends Activity {
 
     protected void onFinish() {
         this.finish();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
 }

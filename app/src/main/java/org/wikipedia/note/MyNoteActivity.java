@@ -24,15 +24,8 @@ import java.util.List;
 
 public class MyNoteActivity extends AppCompatActivity {
 
-    private ListView notesListView;
-    private Button button_return;
-    private Button button_add_new_note;
-
-    private String userName;
     private NoteAdapter noteAdapter;
 
-    // Firebase connection
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
 
@@ -41,65 +34,24 @@ public class MyNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        userName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Notes");
 
-        notesListView = findViewById(R.id.notes_listView);
-        button_return = findViewById(R.id.button_return);
-        button_add_new_note = findViewById(R.id.button_add_new_note);
+        ListView notesListView = findViewById(R.id.notes_listView);
+        Button button_return = findViewById(R.id.button_return);
+        Button button_add_new_note = findViewById(R.id.button_add_new_note);
 
-        button_return.setOnClickListener(new View.OnClickListener() {
+        button_return.setOnClickListener(v -> finish());
 
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        button_add_new_note.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCreateNoteActivity();
-            }
-        });
+        button_add_new_note.setOnClickListener(v -> openCreateNoteActivity());
 
         List<Note> myNotes = new ArrayList<>();
         noteAdapter = new NoteAdapter(this, R.layout.item_notes, myNotes);
         notesListView.setAdapter(noteAdapter);
-        /** notesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Note clickedNote = (Note) notesListView.getItemAtPosition(position);
-                String noteId = clickedNote.getNoteId();
-                Intent intent = new Intent(MyNoteActivity.this, ViewNoteActivity.class);
-                intent.putExtra("noteId", noteId);
-                startActivity(intent);
-
-                //openViewNoteActivity();
-
-            }
-        }); **/
 
         attachDatabaseReadListener();
 
     }
-
-    /**private void openViewNoteActivity(String noteId) {
-
-     Intent intent = new Intent(this, CreateNoteActivity.class);
-     startActivity(intent);
-
-     } **/
-
-    /** private void openViewNoteActivity() {
-
-        Intent intent = new Intent(this, ViewNoteActivity.class);
-        startActivity(intent);
-
-    } **/
 
     private void openCreateNoteActivity() {
 
@@ -138,6 +90,7 @@ public class MyNoteActivity extends AppCompatActivity {
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
+
             };
             databaseReference.addChildEventListener(childEventListener);
         }
@@ -156,35 +109,11 @@ public class MyNoteActivity extends AppCompatActivity {
         super.onResume();
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
         detachDataReadListener();
         noteAdapter.clear();
     }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        finish();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
 
 }
