@@ -76,6 +76,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
         // Getting Array List within respective position
         ArrayList<String> arrayList = arr.get(position);
 
+        Log.e(""+TAG," array_size " + arrayList.size());
         // Checking if arrayList size > 0
         if (arrayList.size()>0){
 
@@ -83,28 +84,28 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
             // Displaying UUID
             holder.uuid.setText(_uuid);
             Log.e(""+TAG,"" + _uuid);
-            dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.hasChild(""+_uuid)) {
-                        final String wikiSpotName = dataSnapshot.child(""+_uuid).child("name").getValue().toString();
-                        holder.wikiSpot.setText(wikiSpotName);
-                    }else {
-                        holder.wikiSpot.setText("Non-Wiki Spot");
-                    }
-                }
+//            dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    if (dataSnapshot.hasChild(""+_uuid)) {
+//                        final String wikiSpotName = dataSnapshot.child(""+_uuid).child("name").getValue().toString();
+//                        holder.wikiSpot.setText(wikiSpotName);
+//                    }else {
+//                        holder.wikiSpot.setText("Non-Wiki Spot");
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//            });
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
-            Log.e(""+TAG,"" + holder.wikiSpot.getText().toString());
-
-            Log.e(""+TAG," distance " + arrayList.get(3));
             //Displaying distance
             holder.distance.setText(arrayList.get(3));
+
+            holder.wikiSpot.setText(arrayList.get(4));
+            Log.e(""+TAG,"" + holder.wikiSpot.getText().toString());
         }
     }
     @Override

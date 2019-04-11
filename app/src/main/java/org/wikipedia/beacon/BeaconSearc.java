@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -40,13 +47,14 @@ public class BeaconSearc extends Fragment implements BeaconConsumer {
     // Progress bar
     private ProgressBar pb;
 
+    private DatabaseReference dbRef;
 
     private final String TAG = "BeaconSearc";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        dbRef = FirebaseDatabase.getInstance().getReference().child("beacons");
         Log.e(TAG, "onCreate");
         //getting beaconManager instance (object) for Beacon Activity class
         beaconManager = BeaconManager.getInstanceForApplication(getActivity());
@@ -199,7 +207,33 @@ public class BeaconSearc extends Fragment implements BeaconConsumer {
                         arr.add(major);
                         arr.add(minor);
                         arr.add(distance + " meters");
+
+                        String wikiSpotName = "Non-Wiki Spot";
+                        arr.add(wikiSpotName);
+                        ValueEventListener eventListener = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.hasChild(""+ uuid)) {
+                                    String log = "beacon inside searc ";
+                                    final String _wikiSpotName = dataSnapshot.child(""+ uuid).child("name").getValue().toString();
+                                    Log.e(""+log," arr size "+arr.size());
+                                    arr.set(4,_wikiSpotName);
+                                    Log.e(""+log," arr at 4  "+arr.get(4));
+                                }
+//                                else {
+//                                    final String wikiSpotName = "Non-Wiki Spot";
+//                                    arr.add(wikiSpotName);
+//                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        };
+                        dbRef.addListenerForSingleValueEvent(eventListener);
                         arrayList.add(arr);
+                        dbRef.removeEventListener(eventListener);
 
                     }
                     try {
@@ -279,4 +313,7 @@ public class BeaconSearc extends Fragment implements BeaconConsumer {
         //Unbinds an Android Activity or Service to the BeaconService to avoid leak.
         beaconManager.unbind(this);
     }
+
+
+
 }
