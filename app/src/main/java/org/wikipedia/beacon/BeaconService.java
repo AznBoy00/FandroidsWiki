@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.MonitorNotifier;
@@ -25,12 +24,12 @@ public class BeaconService extends Service implements BeaconConsumer, MonitorNot
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.e(TAG,"Oncreate");
+        //Log.e(TAG,"Oncreate");
         // Binding the BeaconNotification Application Class BeaconManager to BeaconService.
         //BeaconNotification.beaconManager.bind(this);
         //Intent intent = new Intent(this, ChatActivity.class);
         //PendingIntent pi = PendingIntent.getActivity(this,0,intent,0);
-
+        startBroadcasting();
     }
 
     @Nullable
@@ -42,7 +41,7 @@ public class BeaconService extends Service implements BeaconConsumer, MonitorNot
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Printing to check whether service called inside logcat
-        Log.e("BeaconService","OnStartCommand");
+        //Log.e("BeaconService","OnStartCommand");
 
         return Service.START_STICKY;
     }
@@ -110,11 +109,11 @@ public class BeaconService extends Service implements BeaconConsumer, MonitorNot
     // (BeaconBroadcast class)
 
     public void startBroadcasting(){
-        startBroadcasting(new Intent("com.example.anmol.beacons.RestartBeaconService"));
+        Intent intent = new Intent(this, BeaconBroadCast.class);
+        startBroadcasting(intent);
     }
 
     public void startBroadcasting(Intent broadcastIntent){
-//        Intent broadcastIntent = intent;
         sendBroadcast(broadcastIntent);
     }
 
@@ -126,6 +125,7 @@ public class BeaconService extends Service implements BeaconConsumer, MonitorNot
         startBroadcasting();
     }
 
+    //Help function
     @Override
     public void onTaskRemoved(Intent rootIntent) {
         super.onTaskRemoved(rootIntent);

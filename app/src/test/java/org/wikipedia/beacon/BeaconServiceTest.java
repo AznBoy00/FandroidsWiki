@@ -4,40 +4,32 @@ import android.content.Intent;
 
 import org.altbeacon.beacon.Region;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
-import static org.junit.Assert.*;
-
-@RunWith(MockitoJUnitRunner.class)
 public class BeaconServiceTest {
 
-    @Mock
-    Intent intent;
-    Region region;
+    private BeaconService beaconService = new BeaconService();
+    private Intent intent = mock(Intent.class);
+    private Region region = mock(Region.class);
+
+    // positive result
+    @Test
+    public void onStartCommandTestTrueResult() {
+        assertEquals(1, beaconService.onStartCommand(intent, 1, 1));
+    }
 
     @Test
-    public void didEnterRegionTest(){
-        Region region = mock(Region.class);
+    public void onStartCommandTestFalseResult() {
+        assertNotEquals(2, beaconService.onStartCommand(intent, 1, 1));
+    }
 
-        BeaconService beaconService = new BeaconService();
-
+    @Test
+    public void didEnterRegionTest() {
         beaconService.didEnterRegion(region);
-        verify(beaconService).showNotification("Found Beacon in the range","For more info go the app");
+
     }
 
-    @Test
-    public void startBroadcastingTest() {
-        BeaconService beaconService = new BeaconService();
-
-        beaconService.startBroadcasting(intent);
-
-        verify(beaconService).sendBroadcast(intent);
-    }
 }

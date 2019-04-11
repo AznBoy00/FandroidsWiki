@@ -1,3 +1,7 @@
+//Reference:
+//1.https://github.com/anmolduainter/BeaconPlay
+//2.https://medium.com/@anmoldua/starting-beacons-in-android-d23c8b388d35
+
 package org.wikipedia.beacon;
 
 import android.app.Application;
@@ -47,20 +51,20 @@ public class BeaconNotification extends Application implements BootstrapNotifier
 
         //Changes defaults scanning periods when ranging is performed.
         // Scan period times may be adjusted by internal algorithms or operating system.
-        beaconManager.setForegroundScanPeriod(1100l);
+        beaconManager.setForegroundScanPeriod(11001);
 
-        beaconManager.setForegroundBetweenScanPeriod(0l);
+        beaconManager.setForegroundBetweenScanPeriod(01);
 
         //Allows disabling use of Android L BLE Scanning APIs on devices with API 21+
         // If set to false (default), devices with API 21+ will use the Android L APIs to scan for beacons
-        beaconManager.setAndroidLScanningDisabled(true);
+        BeaconManager.setAndroidLScanningDisabled(true);
 
         //Sets the duration in milliseconds spent not scanning between each Bluetooth LE scan cycle
         // when no ranging/monitoring clients are in the foreground
         beaconManager.setBackgroundBetweenScanPeriod(01);
 
         //Sets the duration in milliseconds of each Bluetooth LE scan cycle to look for beacons.
-        beaconManager.setBackgroundScanPeriod(1100l);
+        beaconManager.setBackgroundScanPeriod(11001);
 
         try {
             //Updates an already running scan
@@ -102,8 +106,7 @@ public class BeaconNotification extends Application implements BootstrapNotifier
             // Starting the BeaconService class that extends Service
             Intent k = new Intent(getApplicationContext(),BeaconService.class);
             startService(k);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
         }
 
     }
@@ -119,8 +122,7 @@ public class BeaconNotification extends Application implements BootstrapNotifier
             // Starting the BeaconService class that extends Service
             Intent k = new Intent(getApplicationContext(), BeaconService.class);
             startService(k);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
         }
     }
 }
