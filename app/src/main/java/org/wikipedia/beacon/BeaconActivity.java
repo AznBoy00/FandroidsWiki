@@ -56,18 +56,18 @@ public class BeaconActivity extends AppCompatActivity {
 
     //Intializing of Layout Views
     public void initializedLayout(){
-        Log.e(TAG,"initializedLayout");
+        //Log.e(TAG,"initializedLayout");
         // Setting up of customized toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Setting up of View Pager
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         //Setting up of TabLayout
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -75,7 +75,7 @@ public class BeaconActivity extends AppCompatActivity {
 
     // Checking Permission whether ACCESS_COARSE_LOCATION permssion is granted or not
     public void checkPermission(){
-        Log.e(TAG,"checkPermission");
+        //Log.e(TAG,"checkPermission");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if (this.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
                 AlertDialog.Builder builder=new AlertDialog.Builder(this);
