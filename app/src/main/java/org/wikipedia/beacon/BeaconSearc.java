@@ -243,6 +243,7 @@ public class BeaconSearc extends Fragment implements BeaconConsumer {
 
                                 // Setting Up the Adapter for Recycler View
                                 adapter = new RecyclerAdapter(arrayList);
+                                ((RecyclerAdapter) adapter).setContext(getContext());
                                 rv.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();
                             }
