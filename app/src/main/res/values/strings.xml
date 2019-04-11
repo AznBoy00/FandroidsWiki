@@ -794,6 +794,7 @@
     <string name="labels">Labels</string>
     <string name="detect">DETECT</string>
     <string name="results_obtained_from_keywords">Results obtained from keywords</string>
+    <string name="photo_picker">photo picker</string>
 
 
 </resources>

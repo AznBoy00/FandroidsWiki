@@ -27,10 +27,15 @@ import java.util.List;
 
 class NoteAdapter extends ArrayAdapter<Note> {
 
-    private Context  context;
+    private List<Note> noteList;
+    private NoteAdapter adapter;
+    private Context context;
+
     NoteAdapter(Context context, int resource, List<Note> objects) {
         super(context, resource, objects);
-        this.context =context;
+        this.noteList = objects;
+        this.context = context;
+        this.adapter = this;
     }
 
     @Override
@@ -42,7 +47,7 @@ class NoteAdapter extends ArrayAdapter<Note> {
         TextView note_title = view.findViewById(R.id.note_title);
         TextView note_time = view.findViewById(R.id.note_time);
 
-        Note note = getItem(position);
+        Note note = noteList.get(position);
 
         note_title.setText(note.getNoteTitle());
         note_time.setText(note.getCreatedTime());
@@ -51,54 +56,41 @@ class NoteAdapter extends ArrayAdapter<Note> {
         onViewListener(noteCard, note.getNoteId());
 
         Button editBtn = view.findViewById(R.id.edit_note);
-        onEditListener(editBtn,note.getNoteId());
+        onEditListener(editBtn, note.getNoteId());
+
         Button deleteBtn = view.findViewById(R.id.delete_note);
-        onDeleteListener(deleteBtn, note.getNoteId());
+        onDeleteListener(note, deleteBtn, note.getNoteId());
 
         return view;
     }
 
     private void onViewListener(CardView card, String noteId) {
 
-        card.setOnClickListener(v -> openViewNoteActivity(noteId));
-
-    }
-
-    private void openViewNoteActivity(String noteId) {
-
-        Intent intent = new Intent(context, ViewNoteActivity.class);
-        intent.putExtra("noteId", noteId);
-        context.startActivity(intent);
-
-    }
-
-    private void openEditNoteActivity(String id) {
-
-        Intent intent = new Intent(context, EditNoteActivity.class);
-        intent.putExtra("noteId",id);
-        context.startActivity(intent);
+        card.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ViewNoteActivity.class);
+            intent.putExtra("noteId", noteId);
+            context.startActivity(intent);
+        });
 
     }
 
     private void onEditListener(Button btn, String id){
 
-        btn.setOnClickListener(v -> openEditNoteActivity(id));
+        btn.setOnClickListener(v -> {
+            Intent intent = new Intent(context, EditNoteActivity.class);
+            intent.putExtra("noteId",id);
+            context.startActivity(intent);
+            adapter.notifyDataSetChanged();
+        });
+
     }
 
-    private void onDeleteListener(Button btn, String id) {
+    private void onDeleteListener(Note note,Button btn, String id) {
 
-        btn.setOnClickListener(v -> deleteNoteActivity(id));
-
-    }
-
-    private void deleteNoteActivity(String id) {
-
-        FirebaseDatabase.getInstance().getReference().child("Notes").child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                notifyDataSetChanged();
-            }
+        btn.setOnClickListener(v -> {
+            FirebaseDatabase.getInstance().getReference().child("Notes").child(id).removeValue();
+            noteList.remove(note);
+            adapter.notifyDataSetChanged();
         });
 
     }

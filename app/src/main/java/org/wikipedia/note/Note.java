@@ -1,7 +1,5 @@
 package org.wikipedia.note;
 
-import android.support.annotation.Nullable;
-
 public class Note {
 
     private String noteId;
@@ -30,11 +28,6 @@ public class Note {
         this.noteContent = noteContent;
         this.createdTime = createdTime;
         this.lastModifiedTime = lastModifiedTime;
-    }
-
-    @Override
-    public boolean equals(@Nullable Object obj) {
-        return super.equals(obj);
     }
 
     public String getNoteId() {
