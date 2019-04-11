@@ -34,21 +34,27 @@ public class MyNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
+        // Firebase connection
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Notes");
 
+        // locate the appropriate elements in the layout xml
         ListView notesListView = findViewById(R.id.notes_listView);
         Button button_return = findViewById(R.id.button_return);
         Button button_add_new_note = findViewById(R.id.button_add_new_note);
 
+        // terminate this activity and return to Wiki's main menu
         button_return.setOnClickListener(v -> finish());
 
+        // open another activity to start creating Note object
         button_add_new_note.setOnClickListener(v -> openCreateNoteActivity());
 
+        // setup adapter to display CardView (list) of Notes
         List<Note> myNotes = new ArrayList<>();
         noteAdapter = new NoteAdapter(this, R.layout.item_notes, myNotes);
         notesListView.setAdapter(noteAdapter);
 
+        // read object data from Firebase
         attachDatabaseReadListener();
 
     }
@@ -59,8 +65,6 @@ public class MyNoteActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-
 
     private void attachDatabaseReadListener() {
         if (childEventListener == null) {
