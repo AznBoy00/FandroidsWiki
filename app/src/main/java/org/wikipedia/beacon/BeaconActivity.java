@@ -18,6 +18,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
 
 import org.wikipedia.R;
 
@@ -53,6 +55,7 @@ public class BeaconActivity extends AppCompatActivity {
         // Intializing of Layout Views
         initializedLayout();
 
+
     }
 
 
@@ -63,6 +66,7 @@ public class BeaconActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("WiKi Nearby");
 
         // Setting up of View Pager
         viewPager = findViewById(R.id.viewpager);
@@ -172,5 +176,16 @@ public class BeaconActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            default:
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
