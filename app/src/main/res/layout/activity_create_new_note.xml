@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="350dp">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_above="@+id/linearLayout4">
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#A4D4B4"
+            android:layout_marginBottom="10dp">
+
+        <EditText
+            android:id="@+id/new_note_title"
+            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:background="#A4D4B4"
+            android:inputType="none"
+            android:hint="@string/insert_title_here"
+            android:textSize="25sp"
+            tools:ignore="Autofill"
+            />
+
+        </ScrollView>
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#A4D4B4">
+
+            <EditText
+                android:id="@+id/new_note_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#A4D4B4"
+                android:padding="10dp"
+                android:hint="@string/insert_content_here"
+                android:gravity="start"
+                android:textSize="20sp"
+                android:inputType="none"
+                tools:ignore="Autofill" />
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#A4D4B4">
+
+        <Button
+            android:id="@+id/button_return"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_return"
+            android:textColor="#FFFFFF"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+
+        <Button
+            android:id="@+id/button_save_note"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_save"
+            android:textColor="#FFFFFF"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

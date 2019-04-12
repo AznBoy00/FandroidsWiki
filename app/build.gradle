@@ -196,6 +196,7 @@ android.applicationVariants.all { variant ->
 apply from: '../gradle/src/test.gradle'
 apply from: '../gradle/src/checkstyle.gradle'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 dependencies {
 
@@ -315,6 +316,18 @@ dependencies {
 
     // Displaying images
     implementation 'com.github.bumptech.glide:glide:3.6.1'
+    //implementation 'com.google.android.material:material:1.0.0'
+
+    // Add Performance Monitoring dependency line
+    implementation 'com.google.firebase:firebase-perf:16.2.5'
+
+    // Add Crashlytics
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+
+    // Beacon
+    implementation 'org.altbeacon:android-beacon-library:2+'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 
     //implementation 'com.github.d-max:spots-dialog:1.1@aar'
     //Firestore
