@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.MonitorNotifier;
@@ -109,12 +110,13 @@ public class BeaconService extends Service implements BeaconConsumer, MonitorNot
     // (BeaconBroadcast class)
 
     public void startBroadcasting(){
-        Intent intent = new Intent(this, BeaconBroadCast.class);
+        Intent intent = new Intent(this,BeaconBroadCast.class);
         startBroadcasting(intent);
     }
 
     public void startBroadcasting(Intent broadcastIntent){
-        sendBroadcast(broadcastIntent);
+        Intent intent = broadcastIntent;
+        sendBroadcast(intent);
     }
 
     // Override onDestroy method

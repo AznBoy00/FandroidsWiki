@@ -215,21 +215,15 @@
             app:tint="?attr/material_theme_secondary_color" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="?attr/material_theme_border_color" />
 
     <Button
         android:id="@+id/wiki_plusplus"
         style="@style/TransparentButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_qr_code"
-        android:fontFamily="sans-serif"
         android:background="@android:color/transparent"
+        android:drawableStart="@drawable/fui_ic_googleg_color_24dp"
+        android:fontFamily="sans-serif"
         android:text="@string/t_t_login_to_wiki"
         android:textAlignment="viewStart"
         android:textColor="@color/base0" />
@@ -248,12 +242,19 @@
         android:textSize="16sp"
         android:visibility="visible" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?attr/material_theme_border_color" />
+
     <Button
         android:id="@+id/smart_camera"
         style="@style/TransparentButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_qr_code"
+        android:drawableLeft="@drawable/icon_potd_photo_camera"
         android:fontFamily="sans-serif"
         android:text="@string/smart_camera_tool_bar_button"
         android:textAllCaps="false"
@@ -284,11 +285,11 @@
         style="@style/TransparentButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_qr_code"
+        android:drawableLeft="@drawable/ic_globe"
         android:fontFamily="sans-serif"
         android:text="@string/group_chat_button_name"
-        android:textAllCaps="false"
         android:textAlignment="viewStart"
+        android:textAllCaps="false"
         android:textColor="@color/base0"
         android:textSize="16sp"
         android:visibility="visible" />
@@ -299,11 +300,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/ic_qr_code"
+        android:drawableLeft="@drawable/ic_bookmark_border_black_24dp"
         android:fontFamily="sans-serif"
         android:text="@string/note_button_name"
         android:textAlignment="viewStart"
-        android:textColor="@color/base0" />
+        android:textAllCaps="false"
+        android:textColor="@color/base0"
+        android:textSize="16sp" />
 
 
     <Button
@@ -311,7 +314,7 @@
         style="@style/TransparentButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_qr_code"
+        android:drawableLeft="@drawable/ic_my_location_24dp"
         android:fontFamily="sans-serif"
         android:text="@string/nearby_button_name"
         android:textAllCaps="false"

@@ -13,9 +13,7 @@ public class BeaconServiceTest {
 
     private BeaconService beaconService = new BeaconService();
     private Intent intent = mock(Intent.class);
-    private Region region = mock(Region.class);
 
-    // positive result
     @Test
     public void onStartCommandTestTrueResult() {
         assertEquals(1, beaconService.onStartCommand(intent, 1, 1));
@@ -25,6 +23,5 @@ public class BeaconServiceTest {
     public void onStartCommandTestFalseResult() {
         assertNotEquals(2, beaconService.onStartCommand(intent, 1, 1));
     }
-    
 
 }

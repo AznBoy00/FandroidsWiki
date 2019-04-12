@@ -277,12 +277,10 @@
     <string name="captcha_image">Captcha image</string>
     <string name="gallery_fair_use_license">Fair use</string>
     <string name="gallery_uploader_unknown">Uploader unknown</string>
-    <string name="menu_new_tab">New tab</string>
     <string name="menu_close_all_tabs">Close all tabs</string>
     <string name="close_all_tabs_confirm">Are you sure you want to close all tabs?</string>
     <string name="close_all_tabs_confirm_yes">Yes</string>
     <string name="close_all_tabs_confirm_no">No</string>
-    <string name="button_close_tab">Close tab</string>
     <string name="tab_item_closed">%s closed.</string>
     <string name="tool_tip_bookmark_icon_title">Add to reading list</string>
     <string name="tool_tip_bookmark_icon_text">Tap on the bookmark icon to save the article to a reading list.</string>
@@ -758,7 +756,7 @@
     <string name="send">Send</string>
     <string name="title_activity_chat_2">Wiki Group Chat</string>
     <string name="group_chat_button_name">\t\t Group Chat</string>
-    <string name="note_button_name">\t\t My Notes</string>
+    <string name="note_button_name">\t\t Notes</string>
     <string name="title_activity_note">Wiki Note</string>
     <string name="title_activity_note_create_dialog">Create Note</string>
     <string name="title_activity_note_edit_dialog">Edit Note</string>
@@ -784,8 +782,8 @@
     <string name="insert_title_here">Insert title here...</string>
     <string name="insert_content_here">Insert content here...</string>
     <string name="button_save">Save</string>
-    <string name="t_t_login_to_wiki">Login to Wiki++</string>
-    <string name="t_t_notification_settings">Notification Settings</string>
+    <string name="t_t_login_to_wiki">\t\t Login to Wiki++</string>
+    <string name="t_t_notification_settings">\t\t Notification Settings</string>
     <string name="welcome_to_wiki">WELCOME TO WIKI</string>
     <string name="welcome_to_use_wiki_machine_learning_kit">Welcome to use wiki machine learning kit</string>
     <string name="text">Text</string>
