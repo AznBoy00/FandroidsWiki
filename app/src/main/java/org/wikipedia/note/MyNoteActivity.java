@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +29,8 @@ public class MyNoteActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseUser user = firebaseAuth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +52,13 @@ public class MyNoteActivity extends AppCompatActivity {
         // open another activity to start creating Note object
         button_add_new_note.setOnClickListener(v -> openCreateNoteActivity());
 
+        // read object data from Firebase
+        attachDatabaseReadListener();
+
         // setup adapter to display CardView (list) of Notes
         List<Note> myNotes = new ArrayList<>();
         noteAdapter = new NoteAdapter(this, R.layout.item_notes, myNotes);
         notesListView.setAdapter(noteAdapter);
-
-        // read object data from Firebase
-        attachDatabaseReadListener();
 
     }
 
@@ -72,7 +75,9 @@ public class MyNoteActivity extends AppCompatActivity {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     Note note = dataSnapshot.getValue(Note.class);
-                    noteAdapter.add(note);
+                    if (note.getUserId().equals(user.getUid())) {
+                        noteAdapter.add(note);
+                    }
                 }
 
                 @Override
