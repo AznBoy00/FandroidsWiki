@@ -56,6 +56,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         }else {
 
             messageContainer.setGravity(Gravity.LEFT);
+            messageTextView.setBackgroundResource(R.drawable.chip_background);
         }
 
         if(!lastUID.equals(currentUID)) {
@@ -93,14 +94,26 @@ public class MessageAdapter extends ArrayAdapter<Message> {
     }
 
     public String getCurrentLastPositionString(int position){
-        int atPosition;
-        if(maxLoadLimit>this.getCount()) {
-            atPosition = this.getCount() - position;
+       return getCurrentLastPositionString(position,0);
+    }
+
+    public String getCurrentLastPositionString(int position, int atPosition){
+
+        if(getMaxLoadLimit()>this.getTotalPosition()) {
+            atPosition = this.getTotalPosition() - position;
             return ""+ "at the last position " + atPosition;
         }else {
-            atPosition = this.maxLoadLimit - position;
+            atPosition = this.getMaxLoadLimit() - position;
             return ""+ "at the last position " + atPosition;
         }
+    }
+
+    public int getMaxLoadLimit(){
+        return maxLoadLimit;
+    }
+
+    public int getTotalPosition(){
+        return this.getCount();
     }
 
 }
