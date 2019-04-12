@@ -26,7 +26,7 @@
     <color name="red50">#d33</color> <!-- Foundation Red: B&W AA Destructive: Destructive actions, Buttons and links, Alerts -->
 
     <!-- Supplementary -->
-    <color name="green50">#00af89</color> <!-- Foundation Green: B AA: Secondary link highlight, Positive messages -->
+    <color name="green50">#00AF89</color> <!-- Foundation Green: B AA: Secondary link highlight, Positive messages -->
     <color name="green30">#14866d</color> <!-- W AA: -->
     <color name="yellow50">#fc3</color> <!-- Foundation Yellow: B AAA: Warning messages -->
 

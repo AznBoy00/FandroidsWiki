@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
@@ -60,7 +59,9 @@
             android:layout_toEndOf="@+id/sign_in_button"
             android:orientation="horizontal"
             android:visibility="gone"
-            tools:visibility="visible" android:paddingStart="100dp" android:paddingEnd="16dp">
+            tools:visibility="visible"
+            android:paddingStart="100dp"
+            android:paddingEnd="16dp">
 
         </LinearLayout>
 
