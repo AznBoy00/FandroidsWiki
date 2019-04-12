@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +29,6 @@ import butterknife.OnClick;
 public class MainDrawerView extends ScrollView {
 
     //Firebase
-    //private String username;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
 
@@ -81,7 +79,7 @@ public class MainDrawerView extends ScrollView {
     Button button_qr_reader;
     @BindView(R.id.wiki_plusplus)
     Button button_wiki_plusplus;
-    @BindView(R.id.note)
+    @BindView(R.id.notes)
     Button button_note;
     @BindView(R.id.group_chat)
     Button button_group_chat;
@@ -255,7 +253,7 @@ public class MainDrawerView extends ScrollView {
         }
     }
 
-    @OnClick({R.id.note})
+    @OnClick({R.id.notes})
     void onNoteClick() {
         if (callback != null && user != null) {
             Log.e("test", "test");

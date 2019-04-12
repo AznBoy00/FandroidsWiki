@@ -127,7 +127,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         button_notify_me = findViewById(R.id.notification_settings);
         button_group_chat = findViewById(R.id.group_chat);
         button_beacon = findViewById(R.id.button_nearby);
-        button_note = findViewById(R.id.note);
+        button_note = findViewById(R.id.notes);
 
 
         // check weather user authenticated or not
