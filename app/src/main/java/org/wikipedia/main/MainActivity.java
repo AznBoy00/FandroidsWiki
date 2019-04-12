@@ -40,6 +40,7 @@ import org.wikipedia.firelogin.SignInToWiki;
 import org.wikipedia.history.HistoryFragment;
 import org.wikipedia.mlkit.MLActivity;
 import org.wikipedia.navtab.NavTab;
+import org.wikipedia.note.MyNoteActivity;
 import org.wikipedia.notifications.NotificationActivity;
 import org.wikipedia.notifications.NotificationSchedulerActivity;
 import org.wikipedia.onboarding.InitialOnboardingActivity;
@@ -80,6 +81,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     Button button_wiki_plusplus;
     Button button_group_chat;
     Button button_beacon;
+    Button button_note;
     private boolean controlNavTabInFragment;
 
     //Firebase
@@ -98,10 +100,6 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Start Beacon Service
-        //Intent beaconservice = new Intent(this,BeaconService.class);
-        //startService(beaconservice);
 
         // Initialize firebase
         FirebaseApp.initializeApp(this);
@@ -129,6 +127,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         button_notify_me = findViewById(R.id.notification_settings);
         button_group_chat = findViewById(R.id.group_chat);
         button_beacon = findViewById(R.id.button_nearby);
+        button_note = findViewById(R.id.notes);
 
 
         // check weather user authenticated or not
@@ -136,6 +135,7 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             button_smart_camera.setVisibility(View.GONE);
             button_qr_reader.setVisibility(View.GONE);
             button_notify_me.setVisibility(View.GONE);
+            button_note.setVisibility(View.GONE);
             button_group_chat.setVisibility(View.GONE);
             button_beacon.setVisibility(View.GONE);
             button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +195,13 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 @Override
                 public void onClick(View view) {
                     openBeaconActivity();
+                }
+            });
+            button_note.setVisibility(View.VISIBLE);
+            button_note.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openNoteActivity();
                 }
             });
 
@@ -261,6 +268,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
 
     public void openBeaconActivity() {
         Intent intent = new Intent(this, BeaconActivity.class);
+        startActivity(intent);
+    }
+
+    private void openNoteActivity() {
+        Intent intent = new Intent(this, MyNoteActivity.class);
         startActivity(intent);
     }
 
@@ -492,6 +504,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         @Override
         public void beaconClick(){
             openBeaconActivity();
+        }
+
+        @Override
+        public void noteClick() {
+            openNoteActivity();
         }
     }
 

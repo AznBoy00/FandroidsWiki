@@ -1,9 +1,12 @@
+//Reference:
+//1.https://github.com/anmolduainter/BeaconPlay
+//2.https://medium.com/@anmoldua/starting-beacons-in-android-d23c8b388d35
+
 package org.wikipedia.beacon;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 
 public class BeaconBroadCast extends BroadcastReceiver {

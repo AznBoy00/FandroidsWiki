@@ -1,3 +1,7 @@
+//Reference:
+//1.https://github.com/anmolduainter/BeaconPlay
+//2.https://medium.com/@anmoldua/starting-beacons-in-android-d23c8b388d35
+
 package org.wikipedia.beacon;
 
 import android.content.Context;
@@ -30,7 +34,6 @@ import org.altbeacon.beacon.MonitorNotifier;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 import org.wikipedia.R;
-import org.wikipedia.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -314,7 +317,6 @@ public class BeaconSearc extends Fragment implements BeaconConsumer {
         //Unbinds an Android Activity or Service to the BeaconService to avoid leak.
         beaconManager.unbind(this);
     }
-
 
 
 }
