@@ -3,6 +3,7 @@
 
 package org.wikipedia.note;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +39,7 @@ class NoteAdapter extends ArrayAdapter<Note> {
         this.adapter = this;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         // locate the card's layout file and create View
@@ -52,7 +54,7 @@ class NoteAdapter extends ArrayAdapter<Note> {
         Note note = noteList.get(position);
 
         note_title.setText(note.getNoteTitle());
-        note_time.setText(note.getCreatedTime());
+        note_time.setText("Created at " + note.getCreatedTime());
 
         // open and show the details of selected Note
         CardView noteCard = view.findViewById(R.id.note_card);
