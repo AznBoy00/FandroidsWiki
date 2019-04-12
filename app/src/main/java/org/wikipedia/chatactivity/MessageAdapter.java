@@ -56,6 +56,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         }else {
 
             messageContainer.setGravity(Gravity.LEFT);
+            messageTextView.setBackgroundResource(R.drawable.chip_background);
         }
 
         if(!lastUID.equals(currentUID)) {
