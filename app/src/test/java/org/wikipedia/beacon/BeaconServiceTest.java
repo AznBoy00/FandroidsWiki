@@ -25,11 +25,6 @@ public class BeaconServiceTest {
     public void onStartCommandTestFalseResult() {
         assertNotEquals(2, beaconService.onStartCommand(intent, 1, 1));
     }
-
-    @Test
-    public void didEnterRegionTest() {
-        beaconService.didEnterRegion(region);
-
-    }
+    
 
 }
