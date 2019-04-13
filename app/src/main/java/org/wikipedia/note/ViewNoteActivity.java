@@ -46,8 +46,8 @@ public class ViewNoteActivity extends Activity {
         noteTitle = findViewById(R.id.noteTitle_insert);
         noteContent = findViewById(R.id.noteContent_insert);
 
-        Log.v(TAG, "title" + noteTitle.toString());
-        Log.v(TAG, "content" + noteContent.toString());
+        Log.d(TAG, "tttitle" + noteTitle.getText());
+        Log.d(TAG, "content" + noteContent.getText());
 
         attachDatabaseReadListener();
 
@@ -61,7 +61,7 @@ public class ViewNoteActivity extends Activity {
         onDeleteListener(button_delete, noteId);
 
         Button button_share = findViewById(R.id.button_share_note);
-        button_share.setOnClickListener( v -> shareViaNfc(noteTitle.toString(), noteContent.toString()) );
+        button_share.setOnClickListener( v -> shareViaNfc(noteTitle.getText() + "", noteContent.getText() + "") );
 
     }
 
@@ -108,9 +108,9 @@ public class ViewNoteActivity extends Activity {
         intent.putExtra("for", "note");
         intent.putExtra("title", title);
         intent.putExtra("content", content);
-        Log.v(TAG, "for=" + intent.getStringExtra("for"));
-        Log.v(TAG, "for=" + intent.getStringExtra("title"));
-        Log.v(TAG, "for=" + intent.getStringExtra("content"));
+        Log.d(TAG, "for=" + intent.getStringExtra("for"));
+        Log.d(TAG, "for=" + intent.getStringExtra("title"));
+        Log.d(TAG, "for=" + intent.getStringExtra("content"));
         startActivity(intent);
     }
 
