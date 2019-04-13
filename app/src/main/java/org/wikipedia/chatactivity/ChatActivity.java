@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -22,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import org.wikipedia.R;
 
@@ -43,13 +46,15 @@ public class ChatActivity extends AppCompatActivity {
     private Button mSendButton;
 
     private String mUsername;
-
+    private FirebaseUser user;
 
     //Firebase db
     private FirebaseDatabase database;
     private DatabaseReference myDBRef;
     private ChildEventListener childEventListener;
 
+    private Query maxLoadLimitQuery;
+    private int maxLoadLimit = 100; //default 100
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +64,13 @@ public class ChatActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mUsername = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         //firebase db
         database = FirebaseDatabase.getInstance();
         myDBRef = database.getReference().child("messages");
+        setMaxLoadLimit(100);
+        maxLoadLimitQuery = myDBRef.orderByKey().limitToLast(getMaxLoadLimit());
 
         // Initialize references to views
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -74,6 +82,7 @@ public class ChatActivity extends AppCompatActivity {
         // Initialize message ListView and its adapter
         List<Message> friendlyMessages = new ArrayList<>();
         mMessageAdapter = new MessageAdapter(this, R.layout.item_message, friendlyMessages);
+        mMessageAdapter.setMaxLoadLimit(getMaxLoadLimit());
         mMessageListView.setAdapter(mMessageAdapter);
 
         // Initialize progress bar
@@ -114,7 +123,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // firebase db
-                Message Message = new Message(mMessageEditText.getText().toString(), mUsername, null);
+                Message Message = new Message(mMessageEditText.getText().toString(), mUsername, null, user.getUid());
                 myDBRef.push().setValue(Message);
                 // Clear input box after press send
                 mMessageEditText.setText("");
@@ -156,13 +165,15 @@ public class ChatActivity extends AppCompatActivity {
 
                 }
             };
-            myDBRef.addChildEventListener(childEventListener);
+            //myDBRef.addChildEventListener(childEventListener);
+            maxLoadLimitQuery.addChildEventListener(childEventListener);
         }
     }
 
     private void detachDataReadListener() {
         if (childEventListener != null) {
-            myDBRef.removeEventListener(childEventListener);
+            //myDBRef.removeEventListener(childEventListener);
+            maxLoadLimitQuery.removeEventListener(childEventListener);
             childEventListener = null;
         }
     }
@@ -187,4 +198,13 @@ public class ChatActivity extends AppCompatActivity {
         super.onDestroy();
         finish();
     }
+
+    public void setMaxLoadLimit(int max){
+        maxLoadLimit = max;
+    }
+
+    public int getMaxLoadLimit(){
+        return this.maxLoadLimit;
+    }
+
 }

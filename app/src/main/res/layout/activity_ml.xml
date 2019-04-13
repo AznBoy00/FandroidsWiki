@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,20 +11,20 @@
         android:orientation="horizontal"
         android:layout_alignParentTop="true">
        <TextView
-           android:layout_width="match_parent"
+           android:layout_width="0dp"
            android:layout_height="wrap_content"
-           android:text="Welcome to use wiki machine learning kit"
+           android:text="@string/welcome_to_use_wiki_machine_learning_kit"
            android:layout_weight="0.25"
            android:textColor="@color/green30"
            android:textAlignment="center"/>
     </LinearLayout>
 
     <com.wonderkiln.camerakit.CameraView
-        android:id ="@+id/camera"
+        android:id="@+id/camera"
         android:layout_above="@id/linear"
         android:layout_below="@id/lineartop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.wonderkiln.camerakit.CameraView>
+        android:layout_height="match_parent" />
 
     <!--TODO Implement it -->
    <!-- <ProgressBar
@@ -45,28 +46,30 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text="Text"
-            />
+            android:text="@string/text"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text="Faces" />
+            android:text="@string/faces"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text="Labels"
-            />
+            android:text="@string/labels"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btn_detect"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text="DETECT" />
+            android:text="@string/detect"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 </RelativeLayout>

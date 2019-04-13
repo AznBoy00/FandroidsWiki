@@ -13,8 +13,6 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,13 +20,14 @@ import org.wikipedia.R;
 import org.wikipedia.directmessage.UserDetails;
 import org.wikipedia.main.MainActivity;
 import org.wikipedia.model.User;
+import org.wikipedia.main.MainActivity;
 
 import java.util.Arrays;
 
 
-public class signInToWiki extends AppCompatActivity {
+public class SignInToWiki extends AppCompatActivity {
 
-    private static final String TAG = "signInToWiki";
+    private static final String TAG = "SignInToWiki";
     public static final String ANONYMOUS = "anonymous";
     private static final int RC_SIGN_IN = 1;
 
@@ -42,6 +41,9 @@ public class signInToWiki extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
+    //SignInToWikiHelper
+    private SignInToWikiHelper signInToWikiHelper;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,14 +56,16 @@ public class signInToWiki extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         myDbRef = database.getReference().child("users");
 
-        // authentication listener
+        //SignInToWikiHelper
+        signInToWikiHelper = new SignInToWikiHelper();
+
+        //Authentication listener with firebase ui
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    onSignedInInitialize(user.getDisplayName());
-
+                if (signInToWikiHelper.isUserSignIn(user)==true) {
+                    username = signInToWikiHelper.onSignedInInitialize(user);
                     String userUID = firebaseAuth.getCurrentUser().getUid();
                     String userDisplayName = firebaseAuth.getCurrentUser().getDisplayName();
                     String userEmail = firebaseAuth.getCurrentUser().getEmail();
@@ -69,11 +73,10 @@ public class signInToWiki extends AppCompatActivity {
                     UserDetails.username = userDisplayName;
 
                     writeNewUser(userUID, userDisplayName, userEmail);
-
-                    Intent intent = new Intent(signInToWiki.this, MainActivity.class);
+                    Intent intent = new Intent(SignInToWiki.this, MainActivity.class);
                     startActivity(intent);
                 } else {
-                    onSignOutCleanUp();
+                    username=signInToWikiHelper.onSignOutCleanUp();
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
@@ -109,9 +112,9 @@ public class signInToWiki extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(signInToWiki.this, "Sign in", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignInToWiki.this, "Sign in", Toast.LENGTH_SHORT).show();
             } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(signInToWiki.this, "Please sign in again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignInToWiki.this, "Please sign in again", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -130,7 +133,7 @@ public class signInToWiki extends AppCompatActivity {
         if (authStateListener != null) {
             firebaseAuth.removeAuthStateListener(authStateListener);
         }
-        detachDataReadListener();
+        //detachDataReadListener();
     }
 
     @Override
@@ -138,59 +141,11 @@ public class signInToWiki extends AppCompatActivity {
         super.onDestroy();
         finish();
     }
-
-    private void onSignedInInitialize(String usename) {
-        this.username = usename;
-        //attachDatabaseReadListener();
-    }
-
-    private void onSignOutCleanUp() {
-        username = ANONYMOUS;
-    }
-
-    private void attachDatabaseReadListener() {
-        if (childEventListener == null) {
-            childEventListener = new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
-
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            };
-            myDbRef.addChildEventListener(childEventListener);
-        }
-    }
-
-    private void detachDataReadListener() {
-        if (childEventListener != null) {
-            myDbRef.removeEventListener(childEventListener);
-            childEventListener = null;
-        }
-    }
-
 }
+
     /*    private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
-    private final AppCompatActivity activity = signInToWiki.this;
+    private final AppCompatActivity activity = SignInToWiki.this;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;

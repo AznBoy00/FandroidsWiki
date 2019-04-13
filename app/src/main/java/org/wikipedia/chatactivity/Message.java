@@ -4,14 +4,16 @@ public class Message {
     private String text;
     private String name;
     private String photoUrl;
+    private String UID;
 
     public Message() {
     }
 
-    public Message(String text, String name, String photoUrl) {
+    public Message(String text, String name, String photoUrl, String UID) {
         this.text = text;
         this.name = name;
         this.photoUrl = photoUrl;
+        this.UID = UID;
     }
 
     public String getText() {
@@ -36,6 +38,14 @@ public class Message {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 
 }
