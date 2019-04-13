@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.wikipedia.R;
 import org.wikipedia.WikipediaApp;
@@ -149,9 +150,14 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
                     copyContent += "," + data[j];
                 }
             }
-            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+
+            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
                 Log.d(TAG, "User is logged in.");
                 currentTime = dateFormat.format( Calendar.getInstance().getTime());
+
+
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                databaseReference = firebaseDatabase.getReference().child("Notes");
 
                 copyNoteId = databaseReference.push().getKey();
                 copyNote = new Note(copyNoteId, user.getUid(), user.getUid(), copyTitle, copyContent, currentTime, currentTime);
