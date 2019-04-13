@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +33,7 @@ public class UserList extends AppCompatActivity {
     ArrayList<String> al = new ArrayList<>();
     int totalUsers = 0;
     ProgressDialog pd;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class UserList extends AppCompatActivity {
 
         usersList = (ListView)findViewById(R.id.usersList);
         noUsersText = (TextView)findViewById(R.id.noUsersText);
+        firebaseAuth = FirebaseAuth.getInstance();
 
         pd = new ProgressDialog(UserList.this);
         pd.setMessage("Loading...");
@@ -78,10 +81,11 @@ public class UserList extends AppCompatActivity {
             JSONObject obj = new JSONObject(s);
             Iterator i = obj.keys();
             String key = "";
-
+            UserDetails.username = firebaseAuth.getCurrentUser().getDisplayName();
             while(i.hasNext()){
                 key = i.next().toString();
-                Log.e(" JSON didnt work", "Contents of s " + key);
+//                Log.e(" User : ", "Key - " + key);
+//                Log.e(" User : ", "User - " + UserDetails.username);
                 if(!key.equals(UserDetails.username)) {
                     al.add(key);
                 }
@@ -90,7 +94,6 @@ public class UserList extends AppCompatActivity {
             }
 
         } catch (JSONException e) {
-            Log.e(" JSON didnt work", "Contents of s " + s);
             e.printStackTrace();
         }
 
