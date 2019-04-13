@@ -1,34 +1,18 @@
 package org.wikipedia.directmessage;
 
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-
-import org.json.JSONObject;
-import org.junit.Before;
 import org.junit.Test;
-import org.powermock.api.mockito.PowerMockito;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertArrayEquals;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class testUserList {
 
-
-    @Before
-    public void SetUp() {}
-
     @Test
-    public void testOnSuccess() throws Exception{
+    public void testOnSuccess() {
         Iterator<Integer> mockIterator = mock(Iterator.class);
         when(mockIterator.hasNext()).thenReturn(true, true, true, false);
         Integer[] keys = new Integer [] {1, 2, 3, 4};
