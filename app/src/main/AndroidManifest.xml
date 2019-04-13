@@ -315,6 +315,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".firelogin.SignInToWiki" />
         <activity android:name=".firelogin.wikiSignIn" />
+        <activity android:name=".directmessage.UserList" />
+        <activity android:name=".directmessage.Chat" />
 
         <provider
             android:name=".database.AppContentProvider"

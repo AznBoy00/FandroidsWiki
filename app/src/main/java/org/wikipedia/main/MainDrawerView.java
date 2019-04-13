@@ -83,6 +83,8 @@ public class MainDrawerView extends ScrollView {
     Button button_note;
     @BindView(R.id.group_chat)
     Button button_group_chat;
+    @BindView(R.id.direct_message)
+    Button button_direct_message;
     @BindView(R.id.button_nearby)
     Button button_nearby;
 
@@ -134,6 +136,7 @@ public class MainDrawerView extends ScrollView {
                 button_note.setVisibility(View.VISIBLE);
                 button_group_chat.setVisibility(View.VISIBLE);
                 button_wiki_plusplus.setVisibility(View.GONE);
+                button_direct_message.setVisibility(View.VISIBLE);
                 button_nearby.setVisibility(View.VISIBLE);
             }
         } else {
@@ -148,6 +151,7 @@ public class MainDrawerView extends ScrollView {
             button_qr_reader.setVisibility(View.GONE);
             button_note.setVisibility(View.GONE);
             button_group_chat.setVisibility(View.GONE);
+            button_direct_message.setVisibility(View.GONE);
             button_nearby.setVisibility(View.GONE);
             button_wiki_plusplus.setVisibility(View.VISIBLE);
         }
