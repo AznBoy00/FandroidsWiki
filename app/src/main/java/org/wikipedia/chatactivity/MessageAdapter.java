@@ -56,6 +56,7 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         }else {
 
             messageContainer.setGravity(Gravity.LEFT);
+            messageTextView.setBackgroundResource(R.drawable.chip_background);
         }
 
         if(!lastUID.equals(currentUID)) {
@@ -90,6 +91,9 @@ public class MessageAdapter extends ArrayAdapter<Message> {
 
     public void setMaxLoadLimit(int maxLoadLimit){
        this.maxLoadLimit = maxLoadLimit;
+    }
+    public int getMaxLoadLimit(){
+        return maxLoadLimit;
     }
 
     public String getCurrentLastPositionString(int position){

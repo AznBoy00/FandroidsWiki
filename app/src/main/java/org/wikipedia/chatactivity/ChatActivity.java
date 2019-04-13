@@ -70,6 +70,7 @@ public class ChatActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         myDBRef = database.getReference().child("messages");
         setMaxLoadLimit(100);
+        maxLoadLimitQuery = myDBRef.orderByKey().limitToLast(getMaxLoadLimit());
 
         // Initialize references to views
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -81,7 +82,7 @@ public class ChatActivity extends AppCompatActivity {
         // Initialize message ListView and its adapter
         List<Message> friendlyMessages = new ArrayList<>();
         mMessageAdapter = new MessageAdapter(this, R.layout.item_message, friendlyMessages);
-        mMessageAdapter.setMaxLoadLimit(this.maxLoadLimit);
+        mMessageAdapter.setMaxLoadLimit(getMaxLoadLimit());
         mMessageListView.setAdapter(mMessageAdapter);
 
         // Initialize progress bar
@@ -199,8 +200,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     public void setMaxLoadLimit(int max){
-        this.maxLoadLimit = max;
-        maxLoadLimitQuery = myDBRef.orderByKey().limitToLast(maxLoadLimit);
+        maxLoadLimit = max;
     }
 
     public int getMaxLoadLimit(){
