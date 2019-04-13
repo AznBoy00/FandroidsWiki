@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
@@ -40,6 +41,7 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
 
     private DatabaseReference databaseReference;
     private FirebaseUser user;
+    private FirebaseAuth firebaseAuth;
 
     NfcAdapter nfcAdapter;
     String useOfNFC;
@@ -129,6 +131,10 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
         String rawData = new String(nfcMessage.getRecords()[0].getPayload());
         Log.v(TAG, "rawData" + rawData);
         String[] data = rawData.split(",");
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+
         if(data[0].equals("article")) {
             String url = data[1];
             nfcFrameLayout.setVisibility(View.GONE);
@@ -143,7 +149,7 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
                     copyContent += "," + data[j];
                 }
             }
-            if (AccountUtil.isLoggedIn()) {
+            if (FirebaseAuth.getInstance().getCurrentUser() == null) {
                 Log.d(TAG, "User is logged in.");
                 currentTime = dateFormat.format( Calendar.getInstance().getTime());
 
