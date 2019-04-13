@@ -140,6 +140,86 @@
         android:layout_marginBottom="8dp"
         android:background="?attr/material_theme_border_color" />
 
+    <Button
+        android:id="@+id/smart_camera"
+        style="@style/TransparentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/icon_potd_photo_camera"
+        android:fontFamily="sans-serif"
+        android:text="@string/smart_camera_tool_bar_button"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/base0"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <!--
+    Icon ic_qr_code downloaded from : https://www.flaticon.com/authors/pixelmeetup
+    -->
+    <Button
+        android:id="@+id/button_qr_reader"
+        style="@style/TransparentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_qr_code"
+        android:fontFamily="sans-serif"
+        android:text="@string/qr_scanner_main_button"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/base0"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/group_chat"
+        style="@style/TransparentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_globe"
+        android:fontFamily="sans-serif"
+        android:text="@string/group_chat_button_name"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/base0"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/notes"
+        style="@style/TransparentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/ic_bookmark_border_black_24dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/note_button_name"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/base0"
+        android:textSize="16sp" />
+
+
+    <Button
+        android:id="@+id/button_nearby"
+        style="@style/TransparentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_my_location_24dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/nearby_button_name"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/base0"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?attr/material_theme_border_color" />
     <LinearLayout
         android:id="@+id/main_drawer_donate_container"
         style="@style/SideDrawerMenuItem">
@@ -241,87 +321,6 @@
         android:drawableStart="@drawable/ic_notifications_black_24dp"
         android:fontFamily="sans-serif"
         android:text="@string/t_t_notification_settings"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/base0"
-        android:textSize="16sp"
-        android:visibility="visible" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="?attr/material_theme_border_color" />
-
-    <Button
-        android:id="@+id/smart_camera"
-        style="@style/TransparentButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/icon_potd_photo_camera"
-        android:fontFamily="sans-serif"
-        android:text="@string/smart_camera_tool_bar_button"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/base0"
-        android:textSize="16sp"
-        android:visibility="visible" />
-
-    <!--
-    Icon ic_qr_code downloaded from : https://www.flaticon.com/authors/pixelmeetup
-    -->
-    <Button
-        android:id="@+id/button_qr_reader"
-        style="@style/TransparentButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_qr_code"
-        android:fontFamily="sans-serif"
-        android:text="@string/qr_scanner_main_button"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/base0"
-        android:textSize="16sp"
-        android:visibility="visible" />
-
-    <Button
-        android:id="@+id/group_chat"
-        style="@style/TransparentButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_globe"
-        android:fontFamily="sans-serif"
-        android:text="@string/group_chat_button_name"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/base0"
-        android:textSize="16sp"
-        android:visibility="visible" />
-
-    <Button
-        android:id="@+id/notes"
-        style="@style/TransparentButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/ic_bookmark_border_black_24dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/note_button_name"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textColor="@color/base0"
-        android:textSize="16sp" />
-
-
-    <Button
-        android:id="@+id/button_nearby"
-        style="@style/TransparentButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_my_location_24dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/nearby_button_name"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@color/base0"
