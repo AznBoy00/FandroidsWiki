@@ -138,7 +138,7 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
             copyTitle = data[1];
             copyContent = data[2];
             if (data.length > 2) {
-                for (int j = 2; j < data.length; j++) {
+                for (int j = 3; j < data.length; j++) {
                     copyContent += "," + data[j];
                 }
             }
