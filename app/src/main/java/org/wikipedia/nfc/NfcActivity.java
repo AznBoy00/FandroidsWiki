@@ -18,19 +18,41 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+
 import org.wikipedia.R;
 import org.wikipedia.WikipediaApp;
+import org.wikipedia.auth.AccountUtil;
+import org.wikipedia.note.CreateNoteActivity;
+import org.wikipedia.note.MyNoteActivity;
+import org.wikipedia.note.Note;
 import org.wikipedia.page.PageBackStackItem;
 import org.wikipedia.page.tabs.Tab;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback {
+    private DatabaseReference databaseReference;
+    private FirebaseUser user;
 
     NfcAdapter nfcAdapter;
     String useOfNFC;
     WebView webView;
     FrameLayout nfcFrameLayout;
+    DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd, HH:mm:ss z");
+    Intent noteIntent;
+
+    String noteTitle;
+    String noteContent;
+    String copyTitle;
+    String copyContent;
+    String copyNoteId;
+    String currentTime;
+    Note copyNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +98,9 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
             PageBackStackItem lastTab = currentTab.getBackStack().get(currentTab.getBackStackPosition());
             data = useOfNFC + "," + lastTab.getTitle().getCanonicalUri();
         } else if(useOfNFC.equals("note")) {
-            //DO SOMETHING FOR NOTES
+            noteTitle = getIntent().getStringExtra("title");
+            noteContent = getIntent().getStringExtra("content");
+            data = useOfNFC + "!@#" + noteTitle + "!@#" + noteContent;
         }
         NdefRecord ndefRecord = NdefRecord.createMime("text/plain", data.getBytes());
         NdefMessage message = new NdefMessage(ndefRecord);
@@ -101,14 +125,24 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
                 NfcAdapter.EXTRA_NDEF_MESSAGES);
         NdefMessage nfcMessage = (NdefMessage) message[0];
         String rawData = new String(nfcMessage.getRecords()[0].getPayload());
-        String[] data = rawData.split(",");
+        String[] data = rawData.split("!@#");
         if(data[0].equals("article")) {
             String url = data[1];
             nfcFrameLayout.setVisibility(View.GONE);
             webView.setVisibility(View.VISIBLE);
             webView.loadUrl(url);
         } else if(data[0].equals("note")) {
-            // DO SOMETHING FOR NOTES
+            copyTitle = data[1];
+            copyContent = data[2];
+            if (AccountUtil.isLoggedIn()) {
+                currentTime = dateFormat.format( Calendar.getInstance().getTime());
+
+                copyNoteId = databaseReference.push().getKey();
+                copyNote = new Note(copyNoteId, user.getUid(), user.getUid(), copyTitle, copyContent, currentTime, currentTime);
+
+                noteIntent = new Intent(this, MyNoteActivity.class);
+                startActivity(noteIntent);
+            }
         }
     }
 

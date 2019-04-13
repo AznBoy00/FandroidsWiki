@@ -59,7 +59,7 @@ public class ViewNoteActivity extends Activity {
         button_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareViaNfc();
+                shareViaNfc(noteTitle.toString(), noteContent.toString());
             }
         });
 
@@ -103,9 +103,11 @@ public class ViewNoteActivity extends Activity {
         });
     }
 
-    public void shareViaNfc() {
+    public void shareViaNfc(String title, String content) {
         Intent intent = new Intent(getApplicationContext(), NfcActivity.class);
         intent.putExtra("for", "note");
+        intent.putExtra("title", title);
+        intent.putExtra("content", content);
         startActivity(intent);
     }
 
