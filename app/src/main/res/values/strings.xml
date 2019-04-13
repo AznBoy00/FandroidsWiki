@@ -775,6 +775,7 @@
 
     <string name="menu_text_select_add_notes">Add notes</string>
 
+    <string name="button_share">Share NFC</string>
     <string name="button_delete">Delete</string>
     <string name="button_edit">Edit</string>
     <string name="created_at">Created at: </string>

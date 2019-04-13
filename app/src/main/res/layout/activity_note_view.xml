@@ -155,6 +155,14 @@
             android:textColor="#FFFFFF"
             style="@style/Widget.AppCompat.Button.Colored"/>
 
+        <Button
+            android:id="@+id/button_share_note"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_share"
+            android:textColor="#FFFFFF"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.wikipedia.R;
+import org.wikipedia.nfc.NfcActivity;
 
 public class ViewNoteActivity extends Activity {
 
@@ -54,6 +55,14 @@ public class ViewNoteActivity extends Activity {
         Button button_delete = findViewById(R.id.button_delete_note);
         onDeleteListener(button_delete, noteId);
 
+        Button button_share = findViewById(R.id.button_share_note);
+        button_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareViaNfc();
+            }
+        });
+
     }
 
     private void onEditListener(Button btn, String id) {
@@ -92,6 +101,12 @@ public class ViewNoteActivity extends Activity {
 
             }
         });
+    }
+
+    public void shareViaNfc() {
+        Intent intent = new Intent(getApplicationContext(), NfcActivity.class);
+        intent.putExtra("for", "note");
+        startActivity(intent);
     }
 
 }
