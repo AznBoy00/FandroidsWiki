@@ -763,6 +763,10 @@
     <string name="send">Send</string>
     <string name="title_activity_chat_2">Wiki Group Chat</string>
     <string name="group_chat_button_name">\t\t Group Chat</string>
+
+    <!--Direct chat-->
+    <string name="group_direct_chat_button_name">\t\t Wiki Chat</string>
+
     <string name="note_button_name">\t\t Notes</string>
     <string name="title_activity_note">Wiki Note</string>
     <string name="title_activity_note_create_dialog">Create Note</string>
@@ -803,5 +807,6 @@
 
     <!--Beacon-->
     <string name="nearby_button_name">\t\t Nearby</string>
+
 
 </resources>
