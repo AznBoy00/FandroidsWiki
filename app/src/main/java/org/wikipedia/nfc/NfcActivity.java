@@ -36,6 +36,8 @@ import java.util.Calendar;
 import java.util.List;
 
 public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback {
+    private static final String TAG = "NfcActivity";
+
     private DatabaseReference databaseReference;
     private FirebaseUser user;
 
@@ -100,7 +102,8 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
         } else if(useOfNFC.equals("note")) {
             noteTitle = getIntent().getStringExtra("title");
             noteContent = getIntent().getStringExtra("content");
-            data = useOfNFC + "!@#" + noteTitle + "!@#" + noteContent;
+            data = useOfNFC + "," + noteTitle + "," + noteContent;
+            Log.v(TAG, "data=" + data);
         }
         NdefRecord ndefRecord = NdefRecord.createMime("text/plain", data.getBytes());
         NdefMessage message = new NdefMessage(ndefRecord);
@@ -121,11 +124,11 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
     }
 
     public void showMessage(Intent intent) {
-        Parcelable[] message = intent.getParcelableArrayExtra(
-                NfcAdapter.EXTRA_NDEF_MESSAGES);
+        Parcelable[] message = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
         NdefMessage nfcMessage = (NdefMessage) message[0];
         String rawData = new String(nfcMessage.getRecords()[0].getPayload());
-        String[] data = rawData.split("!@#");
+        Log.v(TAG, "rawData" + rawData);
+        String[] data = rawData.split(",");
         if(data[0].equals("article")) {
             String url = data[1];
             nfcFrameLayout.setVisibility(View.GONE);
@@ -134,6 +137,11 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
         } else if(data[0].equals("note")) {
             copyTitle = data[1];
             copyContent = data[2];
+            if (data.length > 2) {
+                for (int j = 2; j < data.length; j++) {
+                    copyContent += "," + data[j];
+                }
+            }
             if (AccountUtil.isLoggedIn()) {
                 currentTime = dateFormat.format( Calendar.getInstance().getTime());
 
