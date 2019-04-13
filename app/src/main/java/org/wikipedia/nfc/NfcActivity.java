@@ -138,15 +138,18 @@ public class NfcActivity extends AppCompatActivity implements NfcAdapter.CreateN
             copyTitle = data[1];
             copyContent = data[2];
             if (data.length > 2) {
+                Log.d(TAG, "Data size > 2");
                 for (int j = 3; j < data.length; j++) {
                     copyContent += "," + data[j];
                 }
             }
             if (AccountUtil.isLoggedIn()) {
+                Log.d(TAG, "User is logged in.");
                 currentTime = dateFormat.format( Calendar.getInstance().getTime());
 
                 copyNoteId = databaseReference.push().getKey();
                 copyNote = new Note(copyNoteId, user.getUid(), user.getUid(), copyTitle, copyContent, currentTime, currentTime);
+                databaseReference.child(copyNoteId).setValue(copyNote);
 
                 noteIntent = new Intent(this, MyNoteActivity.class);
                 startActivity(noteIntent);
