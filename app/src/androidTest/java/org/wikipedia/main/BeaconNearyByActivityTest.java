@@ -75,6 +75,12 @@ public class BeaconNearyByActivityTest {
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.button_nearby), withText("\t\t Nearby"),
                         childAtPosition(
