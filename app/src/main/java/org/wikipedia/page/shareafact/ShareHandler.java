@@ -360,9 +360,9 @@ public class ShareHandler {
                     .setOnClickListener((v) -> dismiss());
             rootView.findViewById(R.id.add_to_notes_button)
                     .setOnClickListener((v) -> {
-                        Intent i = new Intent(context, CreateNoteActivity.class);
-                        i.putExtra("noteContent", selectedText);
-                        context.startActivity(i);
+                        Intent intent = new Intent(context, CreateNoteActivity.class);
+                        intent.putExtra("noteContent", selectedText);
+                        context.startActivity(intent);
                         completed = true;
                     });
             startExpanded();

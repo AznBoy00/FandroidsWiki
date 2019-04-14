@@ -52,7 +52,7 @@ public class CreateNoteActivity extends Activity {
         if(extras !=null)
         {
             noteContent = extras.getString("noteContent");
-            newNoteTitle.setText(noteContent.toUpperCase());
+            newNoteContent.setText(noteContent);
         }
           // collect object's data and put it on Firebase
         saveNote();
