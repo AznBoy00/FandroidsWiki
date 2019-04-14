@@ -3,7 +3,6 @@ package org.wikipedia.note;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -53,6 +52,7 @@ public class CreateNoteActivity extends Activity {
         if(extras !=null)
         {
             noteContent = extras.getString("noteContent");
+            newNoteTitle.setText(noteContent.toUpperCase());
         }
           // collect object's data and put it on Firebase
         saveNote();
@@ -62,9 +62,9 @@ public class CreateNoteActivity extends Activity {
         noteSaveButton.setOnClickListener(v -> {
             currentTime = dateFormat.format(Calendar.getInstance().getTime());
             String noteId = databaseReference.push().getKey();
-            if (noteContent!=null){
-                Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), noteContent, currentTime, currentTime);
-                databaseReference.child(noteId).setValue(newNote);
+            if (noteContent!= null){
+                Note newNoteFromHighLighter = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), noteContent, currentTime, currentTime);
+                databaseReference.child(noteId).setValue(newNoteFromHighLighter);
             }
             Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
             databaseReference.child(noteId).setValue(newNote);
