@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,8 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.wikipedia.R;
+import org.wikipedia.nfc.NfcActivity;
 
 public class ViewNoteActivity extends Activity {
+    private static final String TAG = "ViewNoteActivity";
 
     private Note note;
     private TextView createdAt;
@@ -25,6 +29,7 @@ public class ViewNoteActivity extends Activity {
 
     private DatabaseReference databaseReference;
 
+    // Display the data of Notes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,64 +41,47 @@ public class ViewNoteActivity extends Activity {
 
         note = new Note();
 
-        createdAt  = findViewById(R.id.textView8);
-        lastModified = findViewById(R.id.textView10);
-        noteTitle = findViewById(R.id.textView12);
-        noteContent = findViewById(R.id.textView14);
+        createdAt  = findViewById(R.id.createdAt_insert);
+        lastModified = findViewById(R.id.lastModified_insert);
+        noteTitle = findViewById(R.id.noteTitle_insert);
+        noteContent = findViewById(R.id.noteContent_insert);
+
+        Log.d(TAG, "tttitle" + noteTitle.getText());
+        Log.d(TAG, "content" + noteContent.getText());
 
         attachDatabaseReadListener();
 
-        Button btn1 = findViewById(R.id.button_return_note);
-        Button btn2 = findViewById(R.id.button_edit_note);
-        Button btn3 = findViewById(R.id.button_delete_note);
+        Button button_return = findViewById(R.id.button_return_note);
+        button_return.setOnClickListener(v -> finish());
 
-        onReturnListener(btn1);
-        onEditListener(btn2, noteId);
-        onDeleteListener(btn3, noteId);
+        Button button_edit = findViewById(R.id.button_edit_note);
+        onEditListener(button_edit, noteId);
 
-    }
+        Button button_delete = findViewById(R.id.button_delete_note);
+        onDeleteListener(button_delete, noteId);
 
-    private void onReturnListener(Button btn) {
-
-        btn.setOnClickListener(v -> onFinish());
+        Button button_share = findViewById(R.id.button_share_note);
+        button_share.setOnClickListener( v -> shareViaNfc(noteTitle.getText() + "", noteContent.getText() + "") );
 
     }
 
     private void onEditListener(Button btn, String id) {
 
-        btn.setOnClickListener(v -> editNoteActivity(id));
+        btn.setOnClickListener(v -> {
+            Intent intent = new Intent(ViewNoteActivity.this, EditNoteActivity.class);
+            intent.putExtra("noteId",id);
+            startActivity(intent);
+            finish();
+        });
 
     }
 
     private void onDeleteListener(Button btn, String id) {
 
-        btn.setOnClickListener(v -> deleteNoteActivity(id));
+        btn.setOnClickListener(v -> {
+            FirebaseDatabase.getInstance().getReference().child("Notes").child(id).removeValue().addOnCompleteListener(task -> finish());
+        });
 
-    }
-
-    private void editNoteActivity(String id) {
-
-        Intent intent = new Intent(ViewNoteActivity.this, EditNoteActivity.class);
-        intent.putExtra("noteId",id);
-        startActivity(intent);
-        finish();
-
-    }
-
-    private void deleteNoteActivity(String id) {
-
-        FirebaseDatabase.getInstance().getReference().child("Notes").child(id).removeValue().addOnCompleteListener(task -> onFinish());
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
-            Intent refresh = new Intent(this, ViewNoteActivity.class);
-            startActivity(refresh);
-            this.finish();
-        }
     }
 
     public void attachDatabaseReadListener(){
@@ -115,8 +103,15 @@ public class ViewNoteActivity extends Activity {
         });
     }
 
-    protected void onFinish() {
-        this.finish();
+    public void shareViaNfc(String title, String content) {
+        Intent intent = new Intent(getApplicationContext(), NfcActivity.class);
+        intent.putExtra("for", "note");
+        intent.putExtra("title", title);
+        intent.putExtra("content", content);
+        Log.d(TAG, "for=" + intent.getStringExtra("for"));
+        Log.d(TAG, "for=" + intent.getStringExtra("title"));
+        Log.d(TAG, "for=" + intent.getStringExtra("content"));
+        startActivity(intent);
     }
 
 }

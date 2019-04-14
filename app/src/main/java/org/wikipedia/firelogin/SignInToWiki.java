@@ -17,6 +17,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.wikipedia.R;
+import org.wikipedia.directmessage.UserDetails;
+import org.wikipedia.main.MainActivity;
+import org.wikipedia.model.User;
 import org.wikipedia.main.MainActivity;
 
 import java.util.Arrays;
@@ -63,6 +66,13 @@ public class SignInToWiki extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (signInToWikiHelper.isUserSignIn(user)==true) {
                     username = signInToWikiHelper.onSignedInInitialize(user);
+                    String userUID = firebaseAuth.getCurrentUser().getUid();
+                    String userDisplayName = firebaseAuth.getCurrentUser().getDisplayName();
+                    String userEmail = firebaseAuth.getCurrentUser().getEmail();
+
+                    UserDetails.username = userDisplayName;
+
+                    writeNewUser(userUID, userDisplayName, userEmail);
                     Intent intent = new Intent(SignInToWiki.this, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -80,6 +90,20 @@ public class SignInToWiki extends AppCompatActivity {
                 }
             }
         };
+
+    }
+
+    private String usernameFromEmail(String email) {
+        if (email.contains("@")) {
+            return email.split("@")[0];
+        } else {
+            return email;
+        }
+    }
+
+    private void writeNewUser(String userId, String name, String email) {
+        User user = new User(name, email);
+        database.getReference().child("users").child(name).setValue(user);
     }
 
     //Start another activity and receive a result back
@@ -117,7 +141,7 @@ public class SignInToWiki extends AppCompatActivity {
         super.onDestroy();
         finish();
     }
-
+}
 
     /*    private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -247,55 +271,4 @@ public class SignInToWiki extends AppCompatActivity {
 
             }
         });
-    }*//*
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-
-
-    }
-
-
-    private void signOut() {
-        // Firebase sign out
-        mAuth.signOut();
-        findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-        findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
-        // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
-                    }
-
-                });
-    }
-
-
-    private void updateUI(FirebaseUser user) {
-        //hideProgressDialog();
-        if (user != null) {
-            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
-            findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
-
-        } else {
-            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
-            findViewById(R.id.sign_out_button).setVisibility(View.GONE);
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.sign_in_button) {
-            signIn();
-        } else if (i == R.id.sign_out_button) {
-            signOut();
-        }
     }*/
-}

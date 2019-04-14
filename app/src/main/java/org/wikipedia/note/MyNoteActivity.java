@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,28 +30,36 @@ public class MyNoteActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private ChildEventListener childEventListener;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseUser user = firebaseAuth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
+        // Firebase connection
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Notes");
 
+        // locate the appropriate elements in the layout xml
         ListView notesListView = findViewById(R.id.notes_listView);
         Button button_return = findViewById(R.id.button_return);
         Button button_add_new_note = findViewById(R.id.button_add_new_note);
 
+        // terminate this activity and return to Wiki's main menu
         button_return.setOnClickListener(v -> finish());
 
+        // open another activity to start creating Note object
         button_add_new_note.setOnClickListener(v -> openCreateNoteActivity());
 
+        // read object data from Firebase
+        attachDatabaseReadListener();
+
+        // setup adapter to display CardView (list) of Notes
         List<Note> myNotes = new ArrayList<>();
         noteAdapter = new NoteAdapter(this, R.layout.item_notes, myNotes);
         notesListView.setAdapter(noteAdapter);
-
-        attachDatabaseReadListener();
 
     }
 
@@ -60,15 +70,15 @@ public class MyNoteActivity extends AppCompatActivity {
 
     }
 
-
-
     private void attachDatabaseReadListener() {
         if (childEventListener == null) {
             childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     Note note = dataSnapshot.getValue(Note.class);
-                    noteAdapter.add(note);
+                    if (note.getUserId().equals(user.getUid())) {
+                        noteAdapter.add(note);
+                    }
                 }
 
                 @Override

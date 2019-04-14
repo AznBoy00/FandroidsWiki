@@ -56,6 +56,7 @@ public class EditNoteActivity extends Activity {
 
         returnButton.setOnClickListener(v -> finish());
 
+        // collect edited data and replace the object on Firebase
         saveNote();
 
     }
@@ -71,7 +72,7 @@ public class EditNoteActivity extends Activity {
             Log.e(TAG,noteId +"\n"+note.getNoteContent());
             databaseReference.child(noteId).setValue(note);
 
-            onFinish();
+            finish();
         });
 
     }
@@ -128,10 +129,6 @@ public class EditNoteActivity extends Activity {
             databaseReference.removeEventListener(childEventListener);
             childEventListener = null;
         }
-    }
-
-    protected void onFinish() {
-        this.finish();
     }
 
 }

@@ -4,6 +4,7 @@
     package="org.wikipedia"
     android:installLocation="auto"
     tools:node="strict">
+
     <!--
     If the build is intended to be Google Play-updateable, the package name
     should be the same as for Google Play (name depends on Beta or Stable).
@@ -33,6 +34,13 @@
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Request permission of camera for qr reader -->
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- User permission of bluetooth -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -70,11 +78,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity android:name=".beacon.BeaconActivity"></activity>
         <activity
             android:name=".chatactivity.ChatActivity"
             android:label="@string/title_activity_chat"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
+
         <activity
             android:name=".mlkit.MLActivity"
             android:label="@string/title_activity_ml"
@@ -108,8 +118,7 @@
 
         <meta-data
             android:name="com.sec.android.support.multiwindow"
-            android:value="true" />
-        <!--         The following is used for google firebase ml kit -->
+            android:value="true" /> <!-- The following is used for google firebase ml kit -->
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="label" />
@@ -311,6 +320,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".firelogin.SignInToWiki" />
         <activity android:name=".firelogin.wikiSignIn" />
+        <activity android:name=".directmessage.UserList" />
+        <activity android:name=".directmessage.Chat" />
 
         <provider
             android:name=".database.AppContentProvider"
@@ -331,6 +342,20 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <!-- For beacon -->
+        <service android:name=".beacon.BeaconService" />
+        <receiver
+            android:name=".beacon.BeaconBroadCast"
+            android:enabled="true"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped">
+            <intent-filter>
+                <action android:name="com.example.anmol.beacons.RestartBeaconService" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
         <receiver
             android:name=".widgets.WidgetProviderSearch"
@@ -429,6 +454,13 @@
             android:name=".googleVision.SearchResultsFromGoogleVisionActivity"
             android:label="@string/title_activity_search_results_from_google_vision"
             android:theme="@style/AppTheme" />
+        <activity android:name=".nfc.NfcActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

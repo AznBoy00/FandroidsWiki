@@ -32,7 +32,10 @@ import org.wikipedia.WikipediaApp;
 import org.wikipedia.activity.SingleFragmentActivity;
 import org.wikipedia.appshortcuts.AppShortcuts;
 import org.wikipedia.auth.AccountUtil;
+import org.wikipedia.beacon.BeaconActivity;
+import org.wikipedia.beacon.BeaconService;
 import org.wikipedia.chatactivity.ChatActivity;
+import org.wikipedia.directmessage.UserList;
 import org.wikipedia.feed.FeedFragment;
 import org.wikipedia.firelogin.SignInToWiki;
 import org.wikipedia.history.HistoryFragment;
@@ -78,6 +81,8 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     Button button_qr_reader;
     Button button_wiki_plusplus;
     Button button_group_chat;
+    Button button_direct_message;
+    Button button_beacon;
     Button button_note;
     private boolean controlNavTabInFragment;
 
@@ -123,7 +128,9 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         button_wiki_plusplus = findViewById(R.id.wiki_plusplus);
         button_notify_me = findViewById(R.id.notification_settings);
         button_group_chat = findViewById(R.id.group_chat);
-        button_note = findViewById(R.id.note);
+        button_direct_message = findViewById(R.id.direct_message);
+        button_beacon = findViewById(R.id.button_nearby);
+        button_note = findViewById(R.id.notes);
 
 
         // check weather user authenticated or not
@@ -133,6 +140,8 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
             button_notify_me.setVisibility(View.GONE);
             button_note.setVisibility(View.GONE);
             button_group_chat.setVisibility(View.GONE);
+            button_direct_message.setVisibility(View.GONE);
+            button_beacon.setVisibility(View.GONE);
             button_wiki_plusplus.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     openPageActivity();
@@ -185,6 +194,20 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
                 }
             });
 
+            button_direct_message.setVisibility(View.VISIBLE);
+            button_direct_message.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openUserListActivity();
+                }
+            });
+            button_beacon.setVisibility(View.VISIBLE);
+            button_beacon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openBeaconActivity();
+                }
+            });
             button_note.setVisibility(View.VISIBLE);
             button_note.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -251,6 +274,16 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
     public void openChatActivity() {
         //Intent intent = new Intent(this, SignInToWiki.class);
         Intent intent = new Intent(this, ChatActivity.class);
+        startActivity(intent);
+    }
+
+    public void openUserListActivity() {
+        Intent intent = new Intent(this, UserList.class);
+        startActivity(intent);
+    }
+    
+    public void openBeaconActivity() {
+        Intent intent = new Intent(this, BeaconActivity.class);
         startActivity(intent);
     }
 
@@ -482,6 +515,11 @@ public class MainActivity extends SingleFragmentActivity<MainFragment>
         @Override
         public void notificationClick(){
             openNotificationActivity();
+        }
+
+        @Override
+        public void beaconClick(){
+            openBeaconActivity();
         }
 
         @Override

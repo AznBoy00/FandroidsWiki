@@ -38,6 +38,7 @@ public class CreateNoteActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_note);
 
+        // get the info of Wiki++ user
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -53,32 +54,24 @@ public class CreateNoteActivity extends Activity {
         {
             noteContent = extras.getString("noteContent");
         }
+          // collect object's data and put it on Firebase
         saveNote();
-
     }
 
     public void saveNote() {
-        noteSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String str = user.getUid();
-                currentTime = dateFormat.format(Calendar.getInstance().getTime());
-                String noteId = databaseReference.push().getKey();
-                if (noteContent!=null){
-                    Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), noteContent, currentTime, currentTime);
-                    databaseReference.child(noteId).setValue(newNote);
-                }
-                Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
+        noteSaveButton.setOnClickListener(v -> {
+            currentTime = dateFormat.format(Calendar.getInstance().getTime());
+            String noteId = databaseReference.push().getKey();
+            if (noteContent!=null){
+                Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), noteContent, currentTime, currentTime);
                 databaseReference.child(noteId).setValue(newNote);
-
-                onFinish();
             }
+            Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
+            databaseReference.child(noteId).setValue(newNote);
+
+            finish();
         });
 
-    }
-
-    protected void onFinish() {
-        this.finish();
     }
 
 }

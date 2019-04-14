@@ -3,6 +3,7 @@
 
 package org.wikipedia.note;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -38,8 +39,10 @@ class NoteAdapter extends ArrayAdapter<Note> {
         this.adapter = this;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View view, ViewGroup parent) {
+        // locate the card's layout file and create View
         if (view == null) {
             view = ((Activity) getContext()).getLayoutInflater().inflate(R.layout.item_notes, parent, false);
         }
@@ -47,17 +50,21 @@ class NoteAdapter extends ArrayAdapter<Note> {
         TextView note_title = view.findViewById(R.id.note_title);
         TextView note_time = view.findViewById(R.id.note_time);
 
+        // get the proper Note to perform following tasks
         Note note = noteList.get(position);
 
         note_title.setText(note.getNoteTitle());
-        note_time.setText(note.getCreatedTime());
+        note_time.setText("Created at " + note.getCreatedTime());
 
+        // open and show the details of selected Note
         CardView noteCard = view.findViewById(R.id.note_card);
         onViewListener(noteCard, note.getNoteId());
 
+        // open and allow modifying the Note
         Button editBtn = view.findViewById(R.id.edit_note);
         onEditListener(editBtn, note.getNoteId());
 
+        // delete the Note from arrayList and Firebase
         Button deleteBtn = view.findViewById(R.id.delete_note);
         onDeleteListener(note, deleteBtn, note.getNoteId());
 
