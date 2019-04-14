@@ -24,7 +24,6 @@ public class MyNoteActivity extends AppCompatActivity {
     private ListView notesListView;
     private Button button_add_new_note;
     private String userName;
-    private NoteBook noteBookId;
     private NoteAdapter noteAdapter;
 
     private DatabaseReference databaseReference;

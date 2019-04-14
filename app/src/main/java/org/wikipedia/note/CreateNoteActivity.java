@@ -2,9 +2,7 @@ package org.wikipedia.note;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,17 +19,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import java.util.Date;
-import java.util.Locale;
-
 public class CreateNoteActivity extends Activity {
 
     private FirebaseUser user;
     private DatabaseReference databaseReference;
-    private DatabaseReference dbReferenceNoteBook;
     private Button noteSaveButton;
     private EditText newNoteTitle;
     private EditText newNoteContent;
+    private String noteContent;
     private ChildEventListener childEventListener;
 
     String currentTime;
@@ -47,15 +42,17 @@ public class CreateNoteActivity extends Activity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Notes");
-        dbReferenceNoteBook = firebaseDatabase.getReference().child("NoteBook");
-
         newNoteTitle = findViewById(R.id.new_note_title);
         newNoteContent = findViewById(R.id.new_note_content);
         Button noteReturnButton = findViewById(R.id.button_return);
         noteSaveButton = findViewById(R.id.button_save_note);
 
         noteReturnButton.setOnClickListener(v -> finish());
-
+        Bundle extras = getIntent().getExtras();
+        if(extras !=null)
+        {
+            noteContent = extras.getString("noteContent");
+        }
         saveNote();
 
     }
@@ -67,11 +64,12 @@ public class CreateNoteActivity extends Activity {
                 String str = user.getUid();
                 currentTime = dateFormat.format(Calendar.getInstance().getTime());
                 String noteId = databaseReference.push().getKey();
+                if (noteContent!=null){
+                    Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), noteContent, currentTime, currentTime);
+                    databaseReference.child(noteId).setValue(newNote);
+                }
                 Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
                 databaseReference.child(noteId).setValue(newNote);
-                // add note to noteBook
-                AddToNoteBook addToNoteBook = new AddToNoteBook();
-                addToNoteBook.saveToNoteBook(noteId, user.getUid());
 
                 onFinish();
             }

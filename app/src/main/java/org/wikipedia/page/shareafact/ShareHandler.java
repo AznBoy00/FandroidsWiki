@@ -1,6 +1,7 @@
 package org.wikipedia.page.shareafact;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +23,7 @@ import org.wikipedia.bridge.CommunicationBridge;
 import org.wikipedia.dataclient.ServiceFactory;
 import org.wikipedia.dataclient.mwapi.MwQueryPage;
 import org.wikipedia.gallery.ImageLicense;
+import org.wikipedia.note.CreateNoteActivity;
 import org.wikipedia.page.Namespace;
 import org.wikipedia.page.NoDimBottomSheetDialog;
 import org.wikipedia.page.Page;
@@ -54,12 +56,20 @@ public class ShareHandler {
     private static final String PAYLOAD_PURPOSE_DEFINE = "define";
     private static final String PAYLOAD_PURPOSE_EDIT_HERE = "edit_here";
     private static final String PAYLOAD_TEXT_KEY = "text";
+    private static final String PAYLOAD_PURPOSE_ADD_TO_NOTES = "addToNotes";
 
     @NonNull private final PageFragment fragment;
     @NonNull private final CommunicationBridge bridge;
     @Nullable private ActionMode webViewActionMode;
     @Nullable private ShareAFactFunnel funnel;
     private CompositeDisposable disposables = new CompositeDisposable();
+
+    private Context context;
+    public ShareHandler (Context context) {
+        this.context = context;
+        bridge = null;
+        fragment=null;
+    }
 
     private void createFunnel() {
         WikipediaApp app = WikipediaApp.getInstance();
@@ -86,6 +96,11 @@ public class ShareHandler {
                 case PAYLOAD_PURPOSE_EDIT_HERE:
                     onEditHerePayload(messagePayload.optInt("sectionID", 0), text);
                     break;
+                //<------------- SOEN 390 Notes feature -------------------->
+                case PAYLOAD_PURPOSE_ADD_TO_NOTES:
+                    addToNotes(text);
+                    break;
+                //<------------- SOEN 390 Notes feature END-------------------->
                 default:
                     L.d("Unknown purpose=" + purpose);
             }
@@ -126,6 +141,18 @@ public class ShareHandler {
         }
     }
 
+    //<------------- SOEN 390 Notes feature -------------------->
+    public void addToNotes(String text){
+        onAddToNotes(text.toLowerCase(Locale.getDefault()));
+    }
+
+    private void onAddToNotes(String text){
+        if (funnel == null) {
+            createFunnel();
+        }
+        addNote(text);
+    }
+    //<------------- SOEN 390 Notes feature END-------------------->
     private void showCopySnackbar() {
         FeedbackUtil.showMessage(fragment.getActivity(), R.string.text_copied);
     }
@@ -163,6 +190,12 @@ public class ShareHandler {
                 }));
     }
 
+    private void addNote(@NonNull CharSequence input) {
+        final String selectedText = StringUtil.sanitizeText(input.toString());
+        final PageTitle title = fragment.getTitle();
+        fragment.showBottomSheet(new PreviewDialog(fragment.getContext(),selectedText));
+    }
+
     /**
      * @param mode ActionMode under which this context is starting.
      */
@@ -188,6 +221,13 @@ public class ShareHandler {
             leaveActionMode();
             return true;
         });
+
+        //<------------- SOEN 390 Notes feature -------------------->
+        MenuItem addItemToNotes = menu.findItem(R.id.menu_text_select_add_notes);
+            addItemToNotes.setOnMenuItemClickListener(new RequestTextSelectOnMenuItemClickListener(PAYLOAD_PURPOSE_ADD_TO_NOTES));
+
+        //<------------- SOEN 390 Notes feature END-------------------->
+
         MenuItem defineItem = menu.findItem(R.id.menu_text_select_define);
         if (shouldEnableWiktionaryDialog()) {
             defineItem.setVisible(true);
@@ -310,6 +350,24 @@ public class ShareHandler {
             });
             startExpanded();
         }
+
+        //<------------- SOEN 390 Notes feature -------------------->
+        PreviewDialog(final Context context, final String selectedText) {
+            super(context);
+            View rootView = LayoutInflater.from(context).inflate(R.layout.dialog_add_to_notes_preview, null);
+            setContentView(rootView);
+            rootView.findViewById(R.id.close_button)
+                    .setOnClickListener((v) -> dismiss());
+            rootView.findViewById(R.id.add_to_notes_button)
+                    .setOnClickListener((v) -> {
+                        Intent i = new Intent(context, CreateNoteActivity.class);
+                        i.putExtra("noteContent", selectedText);
+                        context.startActivity(i);
+                        completed = true;
+                    });
+            startExpanded();
+        }
+        //<------------- SOEN 390 Notes feature END-------------------->
 
         static void shareAsText(@NonNull Context context, @NonNull PageTitle title,
                                 @NonNull String selectedText, @Nullable ShareAFactFunnel funnel) {
