@@ -25,6 +25,7 @@ public class CreateNoteActivity extends Activity {
     private Button noteSaveButton;
     private EditText newNoteTitle;
     private EditText newNoteContent;
+    private String noteTitle;
     private String noteContent;
     private ChildEventListener childEventListener;
 
@@ -51,6 +52,8 @@ public class CreateNoteActivity extends Activity {
         Bundle extras = getIntent().getExtras();
         if(extras !=null)
         {
+            noteTitle = extras.get("noteTitle").toString();
+            newNoteTitle.setText(noteTitle);
             noteContent = extras.getString("noteContent");
             newNoteContent.setText(noteContent);
         }

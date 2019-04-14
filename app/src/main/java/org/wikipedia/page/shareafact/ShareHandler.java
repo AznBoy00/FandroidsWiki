@@ -193,7 +193,7 @@ public class ShareHandler {
     private void addNote(@NonNull CharSequence input) {
         final String selectedText = StringUtil.sanitizeText(input.toString());
         final PageTitle title = fragment.getTitle();
-        fragment.showBottomSheet(new PreviewDialog(fragment.getContext(),selectedText));
+        fragment.showBottomSheet(new PreviewDialog(fragment.getContext(), title, selectedText));
     }
 
     /**
@@ -352,7 +352,7 @@ public class ShareHandler {
         }
 
         //<------------- SOEN 390 Notes feature -------------------->
-        PreviewDialog(final Context context, final String selectedText) {
+        PreviewDialog(final Context context, final PageTitle title, final String selectedText) {
             super(context);
             View rootView = LayoutInflater.from(context).inflate(R.layout.dialog_add_to_notes_preview, null);
             setContentView(rootView);
@@ -361,6 +361,7 @@ public class ShareHandler {
             rootView.findViewById(R.id.add_to_notes_button)
                     .setOnClickListener((v) -> {
                         Intent intent = new Intent(context, CreateNoteActivity.class);
+                        intent.putExtra("noteTitle", title);
                         intent.putExtra("noteContent", selectedText);
                         context.startActivity(intent);
                         completed = true;
