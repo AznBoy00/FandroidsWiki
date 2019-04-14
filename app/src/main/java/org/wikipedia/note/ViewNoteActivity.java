@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,8 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.wikipedia.R;
+import org.wikipedia.nfc.NfcActivity;
 
 public class ViewNoteActivity extends Activity {
+    private static final String TAG = "ViewNoteActivity";
 
     private Note note;
     private TextView createdAt;
@@ -43,6 +46,9 @@ public class ViewNoteActivity extends Activity {
         noteTitle = findViewById(R.id.noteTitle_insert);
         noteContent = findViewById(R.id.noteContent_insert);
 
+        Log.d(TAG, "tttitle" + noteTitle.getText());
+        Log.d(TAG, "content" + noteContent.getText());
+
         attachDatabaseReadListener();
 
         Button button_return = findViewById(R.id.button_return_note);
@@ -53,6 +59,9 @@ public class ViewNoteActivity extends Activity {
 
         Button button_delete = findViewById(R.id.button_delete_note);
         onDeleteListener(button_delete, noteId);
+
+        Button button_share = findViewById(R.id.button_share_note);
+        button_share.setOnClickListener( v -> shareViaNfc(noteTitle.getText() + "", noteContent.getText() + "") );
 
     }
 
@@ -92,6 +101,17 @@ public class ViewNoteActivity extends Activity {
 
             }
         });
+    }
+
+    public void shareViaNfc(String title, String content) {
+        Intent intent = new Intent(getApplicationContext(), NfcActivity.class);
+        intent.putExtra("for", "note");
+        intent.putExtra("title", title);
+        intent.putExtra("content", content);
+        Log.d(TAG, "for=" + intent.getStringExtra("for"));
+        Log.d(TAG, "for=" + intent.getStringExtra("title"));
+        Log.d(TAG, "for=" + intent.getStringExtra("content"));
+        startActivity(intent);
     }
 
 }
