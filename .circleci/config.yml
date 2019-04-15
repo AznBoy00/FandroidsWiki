@@ -37,6 +37,16 @@ jobs:
 
       - run:
           name: Update SDK Manager
+          command: echo "deb https://repo.logdna.com stable main" | sudo tee /etc/apt/sources.list.d/logdna.list
+          command: wget -O- https://repo.logdna.com/logdna.gpg | sudo apt-key add -
+          command: sudo apt-get update
+          command: sudo apt-get install logdna-agent < "/dev/null" 
+          command: sudo logdna-agent -k 368c227c81b63798d760204031a410c0 
+          command: sudo update-rc.d logdna-agent defaults
+          command: sudo /etc/init.d/logdna-agent start
+
+      - run:
+          name: Update SDK Manager
           command: sdkmanager --update
 
       - run:
