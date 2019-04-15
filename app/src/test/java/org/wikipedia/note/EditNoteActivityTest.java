@@ -15,6 +15,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -80,5 +81,13 @@ public class EditNoteActivityTest {
         assertEquals(newNote.getNoteContent(), newNoteContent);
         System.out.println("The new title is :" + newNote.getNoteTitle() + "\nThe olde title is :" + noteTitle);
     }
-    
+
+    @Test
+    public void editNoteTestFail() {
+        editNote = new EditNoteActivity();
+        editNote.saveMyNote(newNoteTitle, newNoteContent, noteId, newNote, mockedDatabaseReference);
+        assertNotEquals(newNoteTitle, noteTitle);
+        assertNotEquals(newNoteContent, noteContent);
+    }
+
 }

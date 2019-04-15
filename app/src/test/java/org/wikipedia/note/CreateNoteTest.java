@@ -15,6 +15,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -51,7 +52,7 @@ public class CreateNoteTest {
     }
 
     @Test
-    public void saveNoteTest() {
+    public void saveNoteTestSuccess() {
         when(mockedDatabaseReference.child(anyString())).thenReturn(mockedDatabaseReference);
         when(mockedDatabaseReference.push()).thenReturn(mockedDatabaseReference);
         when(mockedDatabaseReference.getKey()).thenReturn("1234567");
@@ -76,6 +77,25 @@ public class CreateNoteTest {
         System.out.println(newNote.getNoteContent());
         System.out.println(newNote.getUserId());
         System.out.println(newNote.getNoteId());
+    }
+
+    @Test
+    public void saveNoteTestFail() {
+        when(mockedDatabaseReference.child(anyString())).thenReturn(mockedDatabaseReference);
+        when(mockedDatabaseReference.push()).thenReturn(mockedDatabaseReference);
+        when(mockedDatabaseReference.getKey()).thenReturn("1234567");
+        when(mockedDatabaseReference.child(noteId)).thenReturn(mockedDatabaseReference);
+
+        noteId = mockedDatabaseReference.push().getKey();
+        userId = user.getUid();
+        noteBookId = user.getUid();
+
+        newNote = createNote.saveMyNote(noteId, userId, noteBookId, noteTitle, noteContent, mockedDatabaseReference);
+
+        assertNotEquals(null, ("Title note test"));
+        assertNotEquals(null, ("Content note test"));
+        assertNotEquals(null, ("abcd123"));
+        assertNotEquals(null, ("1234567"));
     }
 
 }
