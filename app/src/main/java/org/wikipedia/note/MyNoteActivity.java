@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -25,6 +23,9 @@ import java.util.List;
 
 public class MyNoteActivity extends AppCompatActivity {
 
+    private ListView notesListView;
+    private Button button_add_new_note;
+    private String userName;
     private NoteAdapter noteAdapter;
 
     private DatabaseReference databaseReference;
