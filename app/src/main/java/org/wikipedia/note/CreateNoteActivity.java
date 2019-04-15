@@ -71,7 +71,7 @@ public class CreateNoteActivity extends Activity {
         });
     }
 
-    // Method created to help for Unit Testing
+    // Method created to help making the code testable
     public Note saveMyNote(String noteId, String userId, String noteBookId, String noteTitle, String noteContent, DatabaseReference databaseReference) {
         currentTime = dateFormat.format(Calendar.getInstance().getTime());
         Note newNote = new Note(noteId, userId, noteBookId, noteTitle, noteContent, currentTime, currentTime);
