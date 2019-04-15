@@ -49,6 +49,26 @@ public class NoteEditTest {
         // Skip open drawer and sign in (firebase)
         // At lease 2 Notes were created and can be found in Note feature
 
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Some of the members' phone has multi-version chinese installed might need the following action
+//        ViewInteraction appCompatButton1 = onView(
+//                allOf(withId(android.R.id.button2), withText("No thanks"),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withId(R.id.buttonPanel),
+//                                        0),
+//                                2)));
+//        appCompatButton1.perform(scrollTo(), click());
+
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
