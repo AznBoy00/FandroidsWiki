@@ -36,13 +36,31 @@ jobs:
           - v1-dependencies-
 
       - run:
-          name: LogDNA Config
+          name: LogDNA Repo
           command: echo "deb https://repo.logdna.com stable main" | sudo tee /etc/apt/sources.list.d/logdna.list
+          
+      - run:
+          name: LogDNA Key   
           command: wget -O- https://repo.logdna.com/logdna.gpg | sudo apt-key add -
+
+     - run:
+          name: Update           
           command: sudo apt-get update
+
+     - run:
+          name: install LogDNA
           command: sudo apt-get install logdna-agent < "/dev/null" 
+
+     - run:
+          name: LogDNA Key Config
           command: sudo logdna-agent -k 368c227c81b63798d760204031a410c0 
+
+     - run:
+          name: LogDNA Update Defaults       
           command: sudo update-rc.d logdna-agent defaults
+
+     - run:
+          name: LogDNA Start    
           command: sudo /etc/init.d/logdna-agent start
 
       - run:
