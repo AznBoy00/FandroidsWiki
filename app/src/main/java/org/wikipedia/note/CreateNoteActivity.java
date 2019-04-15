@@ -50,31 +50,40 @@ public class CreateNoteActivity extends Activity {
 
         noteReturnButton.setOnClickListener(v -> finish());
         Bundle extras = getIntent().getExtras();
-        if(extras !=null)
-        {
+        if (extras != null) {
             noteTitle = extras.get("noteTitle").toString();
             newNoteTitle.setText(noteTitle);
             noteContent = extras.getString("noteContent");
             newNoteContent.setText(noteContent);
         }
-          // collect object's data and put it on Firebase
+        // collect object's data and put it on Firebase
         saveNote();
     }
 
     public void saveNote() {
         noteSaveButton.setOnClickListener(v -> {
-            currentTime = dateFormat.format(Calendar.getInstance().getTime());
+            //currentTime = dateFormat.format(Calendar.getInstance().getTime());
             String noteId = databaseReference.push().getKey();
-            if (noteContent!= null){
-                Note newNoteFromHighLighter = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), noteContent, currentTime, currentTime);
-                databaseReference.child(noteId).setValue(newNoteFromHighLighter);
+            if (noteContent != null) {
+                //Note newNoteFromHighLighter = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), noteContent, currentTime, currentTime);
+                //databaseReference.child(noteId).setValue(newNoteFromHighLighter);
+                saveMyNote(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), noteContent, databaseReference);
             }
-            Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
-            databaseReference.child(noteId).setValue(newNote);
+            saveMyNote(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), databaseReference);
+            //Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
+            //databaseReference.child(noteId).setValue(newNote);
 
             finish();
         });
+    }
 
+    // Method created to help for Unit Testing
+    public Note saveMyNote(String noteId, String userId, String noteBookId, String noteTitle, String noteContent, DatabaseReference databaseReference) {
+        currentTime = dateFormat.format(Calendar.getInstance().getTime());
+        Note newNote = new Note(noteId, userId, noteBookId, noteTitle, noteContent, currentTime, currentTime);
+        databaseReference.child(noteId).setValue(newNote);
+        finish();
+        return newNote;
     }
 
 }
