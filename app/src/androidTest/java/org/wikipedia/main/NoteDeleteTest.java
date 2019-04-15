@@ -22,8 +22,6 @@ import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
@@ -37,13 +35,13 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class NoteEditTest {
+public class NoteDeleteTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void noteEditTest() {
+    public void noteDeleteTest() {
 
         // Skip setting languages when first installing the app
         // Skip open drawer and sign in (firebase)
@@ -89,8 +87,6 @@ public class NoteEditTest {
                         isDisplayed()));
         openNoteFeature.perform(click());
 
-        // Below open a note's info page and do edit
-
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
@@ -116,15 +112,15 @@ public class NoteEditTest {
             e.printStackTrace();
         }
 
-        ViewInteraction editButton = onView(
-                allOf(withId(R.id.button_edit_note), withText("Edit"),
+        ViewInteraction deleteButton = onView(
+                allOf(withId(R.id.button_delete_note), withText("Delete"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.button_nav_bar),
-                                        0),
-                                1),
+                                        1),
+                                0),
                         isDisplayed()));
-        editButton.perform(click());
+        deleteButton.perform(click());
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
@@ -135,113 +131,20 @@ public class NoteEditTest {
             e.printStackTrace();
         }
 
-        ViewInteraction editTitle = onView(
-                allOf(withId(R.id.note_title),
-                        childAtPosition(
-                                allOf(withId(R.id.scrollView1),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                0)),
-                                0)));
-        editTitle.perform(replaceText("E.Test Edit Step 1"), closeSoftKeyboard());
+        // Below click on the delete button of edit from the 1st card item assuming there's 1
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        ViewInteraction editContent = onView(
-                allOf(withId(R.id.note_content),
-                        childAtPosition(
-                                allOf(withId(R.id.scrollView2),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                0)));
-
-        editContent.perform(replaceText("Espresso Test for edit after entering note's info view"), closeSoftKeyboard());
-
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        ViewInteraction saveButton = onView(
-                allOf(withId(R.id.button_save_note_from_edit), withText("Save"),
-                        childAtPosition(
-                                allOf(withId(R.id.button_nav_bar),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.RelativeLayout")),
-                                                1)),
-                                1),
-                        isDisplayed()));
-        saveButton.perform(click());
-
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        // Below click on the image button of edit from the 1st card item assuming there's 1
-
-        DataInteraction chooseEditOnCard = onData(anything())
+        DataInteraction chooseDeleteOnCard = onData(anything())
                 .inAdapterView(allOf(withId(R.id.notes_listView),
                         isDisplayed()))
-                .atPosition(1)
-                .onChildView(allOf(withId(R.id.edit_note),
+                .atPosition(0)
+                .onChildView(allOf(withId(R.id.delete_note),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
                                         0),
-                                1),
+                                2),
                         isDisplayed()));
-        chooseEditOnCard.perform(click());
-
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        editTitle.perform(replaceText("E.Test Edit Step 2"), closeSoftKeyboard());
-
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        editContent.perform(replaceText("Espresso Test for edit after clicking the image button of edit on card"), closeSoftKeyboard());
-
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        saveButton.perform(click());
-
+        chooseDeleteOnCard.perform(click());
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
