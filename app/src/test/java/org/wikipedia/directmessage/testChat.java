@@ -20,7 +20,8 @@ public class testChat {
         assertEquals(testMessage, mockTextView.getText());
 
         // Edge case: Check that message isn't unnecessarily large
-        when(mockTextView.getText().length()).thenReturn(99999);
+        when(mockTextView.getText()).thenReturn(testMessage);
+        when(mockTextView.length()).thenReturn(99999);
         assertTrue(mockTextView.getText().length() <= 999999999);
     }
 }
