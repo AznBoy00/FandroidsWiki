@@ -35,6 +35,7 @@ public class EditNoteActivity extends Activity {
     String currentTime;
     @SuppressLint("SimpleDateFormat")
     DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd, HH:mm:ss z");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +70,7 @@ public class EditNoteActivity extends Activity {
             note.setNoteTitle(noteTitle.getText().toString());
             note.setNoteContent(noteContent.getText().toString());
             note.setLastModifiedTime(currentTime);
-            Log.e(TAG,noteId +"\n"+note.getNoteContent());
+            Log.e(TAG, noteId + "\n" + note.getNoteContent());
             databaseReference.child(noteId).setValue(note);
 
             finish();
@@ -77,12 +78,12 @@ public class EditNoteActivity extends Activity {
 
     }
 
-    public void attachDatabaseReadListener(){
+    public void attachDatabaseReadListener() {
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Note temp = dataSnapshot.getValue(Note.class);
-                if(temp.getNoteId().equals(noteId)) {
+                if (temp.getNoteId().equals(noteId)) {
                     note = temp;
                     note.setNoteId(noteId);
 

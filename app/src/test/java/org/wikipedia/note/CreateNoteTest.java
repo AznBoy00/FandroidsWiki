@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(JUnit4.class)
 @PrepareForTest({FirebaseDatabase.class})
-public class CreateNoteActivityTest {
+public class CreateNoteTest {
     private CreateNoteActivity createNote = new CreateNoteActivity();
     private DatabaseReference mockedDatabaseReference;
     private FirebaseDatabase mockedFirebaseDatabase;
@@ -77,4 +77,5 @@ public class CreateNoteActivityTest {
         System.out.println(newNote.getUserId());
         System.out.println(newNote.getNoteId());
     }
+
 }
