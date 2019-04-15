@@ -86,8 +86,8 @@ public class EditNoteActivityTest {
     public void editNoteTestFail() {
         editNote = new EditNoteActivity();
         editNote.saveMyNote(newNoteTitle, newNoteContent, noteId, newNote, mockedDatabaseReference);
-        assertNotEquals(newNoteTitle, noteTitle);
-        assertNotEquals(newNoteContent, noteContent);
+        assertNotEquals(noteTitle, newNoteTitle);
+        assertNotEquals(noteContent,newNoteContent);
     }
 
 }
