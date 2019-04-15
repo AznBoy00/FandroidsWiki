@@ -53,7 +53,7 @@ jobs:
 
       - run:
           name: LogDNA Key Config
-          command: sudo logdna-agent -k 368c227c81b63798d760204031a410c0 
+          command: sudo logdna-agent -k 8b01454459c5bbe8f8d3ea49cda7e747 
 
       - run:
           name: LogDNA Update Defaults       
