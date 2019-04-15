@@ -36,7 +36,7 @@ jobs:
           - v1-dependencies-
 
       - run:
-          name: Update SDK Manager
+          name: LogDNA Config
           command: echo "deb https://repo.logdna.com stable main" | sudo tee /etc/apt/sources.list.d/logdna.list
           command: wget -O- https://repo.logdna.com/logdna.gpg | sudo apt-key add -
           command: sudo apt-get update
