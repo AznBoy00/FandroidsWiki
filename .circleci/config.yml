@@ -43,23 +43,23 @@ jobs:
           name: LogDNA Key   
           command: wget -O- https://repo.logdna.com/logdna.gpg | sudo apt-key add -
 
-     - run:
+      - run:
           name: Update           
           command: sudo apt-get update
 
-     - run:
+      - run:
           name: install LogDNA
           command: sudo apt-get install logdna-agent < "/dev/null" 
 
-     - run:
+      - run:
           name: LogDNA Key Config
           command: sudo logdna-agent -k 368c227c81b63798d760204031a410c0 
 
-     - run:
+      - run:
           name: LogDNA Update Defaults       
           command: sudo update-rc.d logdna-agent defaults
 
-     - run:
+      - run:
           name: LogDNA Start    
           command: sudo /etc/init.d/logdna-agent start
 
