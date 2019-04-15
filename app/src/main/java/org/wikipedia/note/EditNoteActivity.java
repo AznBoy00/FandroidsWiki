@@ -64,18 +64,26 @@ public class EditNoteActivity extends Activity {
 
     public void saveNote() {
         noteSaveButton.setOnClickListener(v -> {
+            String note_title = noteTitle.getText().toString();
+            String note_content = noteContent.getText().toString();
+            noteId = getIntent().getStringExtra("noteId");
 
-            currentTime = dateFormat.format(Calendar.getInstance().getTime());
-
-            note.setNoteTitle(noteTitle.getText().toString());
-            note.setNoteContent(noteContent.getText().toString());
-            note.setLastModifiedTime(currentTime);
-            Log.e(TAG, noteId + "\n" + note.getNoteContent());
-            databaseReference.child(noteId).setValue(note);
-
-            finish();
+            saveMyNote(note_title,note_content,noteId, note, databaseReference);
         });
+    }
 
+    // Method created to help making the code testable
+    public Note saveMyNote(String note_title, String note_content, String noteId,Note note, DatabaseReference databaseReference) {
+        currentTime = dateFormat.format(Calendar.getInstance().getTime());
+
+        note.setNoteTitle(note_title);
+        note.setNoteContent(note_content);
+        note.setLastModifiedTime(currentTime);
+        Log.e(TAG, noteId + "\n" + note.getNoteContent());
+        databaseReference.child(noteId).setValue(note);
+
+        finish();
+        return note;
     }
 
     public void attachDatabaseReadListener() {

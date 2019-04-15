@@ -25,7 +25,8 @@ import static org.mockito.Mockito.when;
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(JUnit4.class)
 @PrepareForTest({FirebaseDatabase.class})
-public class CreateNoteTest {
+public class EditNoteActivityTest {
+    private EditNoteActivity editNote;
     private CreateNoteActivity createNote = new CreateNoteActivity();
     private DatabaseReference mockedDatabaseReference;
     private FirebaseDatabase mockedFirebaseDatabase;
@@ -36,6 +37,8 @@ public class CreateNoteTest {
     private String noteId;
     private String userId;
     private String noteBookId;
+    private String newNoteTitle = "New Title note";
+    private String newNoteContent = "New Content note";
 
     @Before
     public void before() {
@@ -49,10 +52,7 @@ public class CreateNoteTest {
 
         PowerMockito.mockStatic(FirebaseDatabase.class);
         when(FirebaseDatabase.getInstance()).thenReturn(mockedFirebaseDatabase);
-    }
 
-    @Test
-    public void saveNoteTestSuccess() {
         when(mockedDatabaseReference.child(anyString())).thenReturn(mockedDatabaseReference);
         when(mockedDatabaseReference.push()).thenReturn(mockedDatabaseReference);
         when(mockedDatabaseReference.getKey()).thenReturn("1234567");
@@ -71,31 +71,23 @@ public class CreateNoteTest {
         assertEquals(newNote.getNoteContent(), ("Content note test"));
         assertEquals(newNote.getUserId(), ("abcd123"));
         assertEquals(newNote.getNoteId(), ("1234567"));
-
-        //Showing the values of newNote for verification purpose
-        System.out.println(newNote.getNoteTitle());
-        System.out.println(newNote.getNoteContent());
-        System.out.println(newNote.getUserId());
-        System.out.println(newNote.getNoteId());
     }
 
     @Test
-    public void saveNoteTestFail() {
-        when(mockedDatabaseReference.child(anyString())).thenReturn(mockedDatabaseReference);
-        when(mockedDatabaseReference.push()).thenReturn(mockedDatabaseReference);
-        when(mockedDatabaseReference.getKey()).thenReturn("1234567");
-        when(mockedDatabaseReference.child(noteId)).thenReturn(mockedDatabaseReference);
+    public void editNoteTestSuccess() {
+        editNote = new EditNoteActivity();
+        editNote.saveMyNote(newNoteTitle, newNoteContent, noteId, newNote, mockedDatabaseReference);
+        assertEquals(newNote.getNoteTitle(), newNoteTitle);
+        assertEquals(newNote.getNoteContent(), newNoteContent);
+        System.out.println("The new title is :" + newNote.getNoteTitle() + "\nThe olde title is :" + noteTitle);
+    }
 
-        noteId = mockedDatabaseReference.push().getKey();
-        userId = user.getUid();
-        noteBookId = user.getUid();
-
-        newNote = createNote.saveMyNote(noteId, userId, noteBookId, noteTitle, noteContent, mockedDatabaseReference);
-
-        assertNotEquals(null, ("Title note test"));
-        assertNotEquals(null, ("Content note test"));
-        assertNotEquals(null, ("abcd123"));
-        assertNotEquals(null, ("1234567"));
+    @Test
+    public void editNoteTestFail() {
+        editNote = new EditNoteActivity();
+        editNote.saveMyNote(newNoteTitle, newNoteContent, noteId, newNote, mockedDatabaseReference);
+        assertNotEquals(noteTitle, newNoteTitle);
+        assertNotEquals(noteContent,newNoteContent);
     }
 
 }
