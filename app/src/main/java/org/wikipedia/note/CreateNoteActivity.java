@@ -62,17 +62,11 @@ public class CreateNoteActivity extends Activity {
 
     public void saveNote() {
         noteSaveButton.setOnClickListener(v -> {
-            //currentTime = dateFormat.format(Calendar.getInstance().getTime());
             String noteId = databaseReference.push().getKey();
             if (noteContent != null) {
-                //Note newNoteFromHighLighter = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), noteContent, currentTime, currentTime);
-                //databaseReference.child(noteId).setValue(newNoteFromHighLighter);
                 saveMyNote(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), noteContent, databaseReference);
             }
             saveMyNote(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), databaseReference);
-            //Note newNote = new Note(noteId, user.getUid(), user.getUid(), newNoteTitle.getText().toString(), newNoteContent.getText().toString(), currentTime, currentTime);
-            //databaseReference.child(noteId).setValue(newNote);
-
             finish();
         });
     }
