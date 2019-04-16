@@ -1,4 +1,4 @@
-infile = r"log.txt"
+infile = r"app/build/reports.html"
 
 important = []
 keep_phrases = ["BUILD FAILED",
