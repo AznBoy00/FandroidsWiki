@@ -1,167 +1,35 @@
 {
   "project_info": {
-    "project_number": "843860646823",
-    "firebase_url": "https://soen390wikiapp-7a552.firebaseio.com",
-    "project_id": "soen390wikiapp-7a552",
-    "storage_bucket": "soen390wikiapp-7a552.appspot.com"
+    "project_number": "22570193864",
+    "firebase_url": "https://soen390teamfandroidswiki-383a4.firebaseio.com",
+    "project_id": "soen390teamfandroidswiki-383a4",
+    "storage_bucket": "soen390teamfandroidswiki-383a4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:843860646823:android:0adf75eedeb14e18",
-        "android_client_info": {
-          "package_name": "org.wikipedia"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "843860646823-7pci71fgl16rm8rnpgtnsi6fdm6p5fi2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "org.wikipedia",
-            "certificate_hash": "6d49e91f7beae2c4da932414301329579a728f6f"
-          }
-        },
-        {
-          "client_id": "843860646823-lt5norr9rcbk3u9pco2km96tu6i642ou.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAU5dxhgdIYUK3yVbbjIzJnxpv9q7Qnmvc"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "843860646823-lt5norr9rcbk3u9pco2km96tu6i642ou.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:843860646823:android:2cf39642a6c8a54f",
-        "android_client_info": {
-          "package_name": "org.wikipedia.alpha"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "843860646823-191v5n292de49sdomblnf8ia038bkpat.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "org.wikipedia.alpha",
-            "certificate_hash": "6d49e91f7beae2c4da932414301329579a728f6f"
-          }
-        },
-        {
-          "client_id": "843860646823-lt5norr9rcbk3u9pco2km96tu6i642ou.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAU5dxhgdIYUK3yVbbjIzJnxpv9q7Qnmvc"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "843860646823-lt5norr9rcbk3u9pco2km96tu6i642ou.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:843860646823:android:0d3283c3aa6156ae",
-        "android_client_info": {
-          "package_name": "org.wikipedia.beta"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "843860646823-l0cipn6d708ci37f9a7c8o1uu0kts5id.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "org.wikipedia.beta",
-            "certificate_hash": "6d49e91f7beae2c4da932414301329579a728f6f"
-          }
-        },
-        {
-          "client_id": "843860646823-lt5norr9rcbk3u9pco2km96tu6i642ou.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAU5dxhgdIYUK3yVbbjIzJnxpv9q7Qnmvc"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "843860646823-lt5norr9rcbk3u9pco2km96tu6i642ou.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:843860646823:android:e10a8bed8dc677ef",
+        "mobilesdk_app_id": "1:22570193864:android:e10a8bed8dc677ef",
         "android_client_info": {
           "package_name": "org.wikipedia.dev"
         }
       },
       "oauth_client": [
         {
-          "client_id": "843860646823-omecrp876e87t2p59m0lia9k7ur3gk83.apps.googleusercontent.com",
+          "client_id": "22570193864-7i9d4i67ekqlbt7cqvbupcj3h8fbv897.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "org.wikipedia.dev",
-            "certificate_hash": "6d49e91f7beae2c4da932414301329579a728f6f"
+            "certificate_hash": "794c4ebbe1edb4f0943b2cf3b7404ea5e29e5f41"
           }
         },
         {
-          "client_id": "843860646823-lt5norr9rcbk3u9pco2km96tu6i642ou.apps.googleusercontent.com",
+          "client_id": "22570193864-19sa8vv9vmnnhhhdfcc9mm4ln34ip60n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAU5dxhgdIYUK3yVbbjIzJnxpv9q7Qnmvc"
+          "current_key": "AIzaSyDDTyl9bjEIFzKHJHjwAE4sUUunhWkkz0E"
         }
       ],
       "services": {
@@ -172,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "843860646823-lt5norr9rcbk3u9pco2km96tu6i642ou.apps.googleusercontent.com",
+              "client_id": "22570193864-19sa8vv9vmnnhhhdfcc9mm4ln34ip60n.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -55,7 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/firstTitle"
@@ -79,7 +80,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:checkedButton="@+id/button_apa"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="UselessParent">
 
                     <RadioButton
                         android:id="@+id/button_apa"
@@ -91,9 +93,9 @@
                         android:button="@android:color/transparent"
                         android:checked="true"
                         android:clickable="true"
-                        android:paddingLeft="0dp"
                         android:text="@string/citation_apa"
-                        android:textColor="@color/color_state_black" />
+                        android:textColor="@color/color_state_black"
+                        tools:ignore="KeyboardInaccessibleWidget" />
 
                     <RadioButton
                         android:id="@+id/button_mla"
@@ -105,9 +107,9 @@
                         android:button="@android:color/transparent"
                         android:checked="false"
                         android:clickable="true"
-                        android:paddingLeft="0dp"
                         android:text="@string/citation_mla"
-                        android:textColor="@color/color_state_white" />
+                        android:textColor="@color/color_state_white"
+                        tools:ignore="KeyboardInaccessibleWidget" />
 
                     <RadioButton
                         android:id="@+id/button_ieee"
@@ -119,9 +121,9 @@
                         android:button="@android:color/transparent"
                         android:checked="false"
                         android:clickable="true"
-                        android:paddingLeft="0dp"
                         android:text="@string/citation_ieee"
-                        android:textColor="@color/color_state_white" />
+                        android:textColor="@color/color_state_white"
+                        tools:ignore="KeyboardInaccessibleWidget" />
 
                     <RadioButton
                         android:id="@+id/button_latex"
@@ -133,9 +135,9 @@
                         android:button="@android:color/transparent"
                         android:checked="false"
                         android:clickable="true"
-                        android:paddingLeft="0dp"
                         android:text="@string/citation_latex"
-                        android:textColor="@color/color_state_white" />
+                        android:textColor="@color/color_state_white"
+                        tools:ignore="KeyboardInaccessibleWidget" />
                 </RadioGroup>
             </LinearLayout>
 

@@ -31,8 +31,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -57,6 +55,7 @@ import org.wikipedia.history.HistoryEntry;
 import org.wikipedia.language.LangLinksActivity;
 import org.wikipedia.main.MainActivity;
 import org.wikipedia.navtab.NavTab;
+import org.wikipedia.nfc.NfcActivity;
 import org.wikipedia.page.linkpreview.LinkPreviewDialog;
 import org.wikipedia.page.tabs.Tab;
 import org.wikipedia.page.tabs.TabActivity;
@@ -82,7 +81,6 @@ import org.wikipedia.views.TabCountsView;
 import org.wikipedia.views.ViewUtil;
 import org.wikipedia.widgets.WidgetProviderFeaturedPage;
 import org.wikipedia.wiktionary.WiktionaryDialog;
-import org.wikipedia.firelogin.signInToWiki;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -214,7 +212,7 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
 //            public void onClick(View arg0) {
 //
 //                // Start NewActivity.class
-//                Intent myIntent = new Intent(PageActivity.this, signInToWiki.class);
+//                Intent myIntent = new Intent(PageActivity.this, SignInToWiki.class);
 //                startActivity(myIntent);
 //            }
 //        });
@@ -759,6 +757,12 @@ public class PageActivity extends BaseActivity implements PageFragment.Callback,
             startActivity(intent);
         }
 
+        @Override
+        public void shareViaNfc() {
+            Intent intent = new Intent(getApplicationContext(), NfcActivity.class);
+            intent.putExtra("for", "article");
+            startActivity(intent);
+        }
 
     }
 

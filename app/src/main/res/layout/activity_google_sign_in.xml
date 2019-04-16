@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
@@ -40,7 +39,7 @@
     <RelativeLayout
         android:id="@+id/SignIn"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#cacaca">
 
@@ -58,12 +57,11 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/sign_in_button"
-            android:layout_toRightOf="@+id/sign_in_button"
             android:orientation="horizontal"
-            android:paddingLeft="100dp"
-            android:paddingRight="16dp"
             android:visibility="gone"
-            tools:visibility="visible" android:paddingStart="100dp" android:paddingEnd="16dp">
+            tools:visibility="visible"
+            android:paddingStart="100dp"
+            android:paddingEnd="16dp">
 
         </LinearLayout>
 
@@ -74,7 +72,7 @@
             android:layout_alignTop="@+id/sign_out_and_disconnect"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="24dp"
-            android:text="sign out"
+            android:text="@string/sign_out"
             android:theme="@style/App.Button.Blue"
             android:visibility="invisible"
             tools:visibility="visible" />

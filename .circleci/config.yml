@@ -36,6 +36,15 @@ jobs:
           - v1-dependencies-
 
       - run:
+          command: |  # use pipenv to install dependencies
+            sudo apt-get update 
+            sudo apt-get install python
+
+      - run:
+          name: Update           
+          command: sudo apt-get update
+
+      - run:
           name: Update SDK Manager
           command: sdkmanager --update
 
@@ -64,9 +73,12 @@ jobs:
           name: Run Lint Tests
           command: ./gradlew lint
 
+
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
           destination: reports
+          when: always
 
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: app/build/test-results
+          when: always

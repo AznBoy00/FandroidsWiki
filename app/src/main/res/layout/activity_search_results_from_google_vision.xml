@@ -35,8 +35,8 @@
                 android:layout_height="match_parent"
                 android:textAlignment="center"
                 android:gravity="center_vertical"
-                android:text="Results obtained from keywords"
-                android:textSize="16dip"
+                android:text="@string/results_obtained_from_keywords"
+                android:textSize="16sp"
                 android:theme="@style/PageToolbarTheme"
                 android:textStyle="bold"/>
         </FrameLayout>
@@ -61,8 +61,7 @@
             android:id="@+id/webview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
     </LinearLayout>
 

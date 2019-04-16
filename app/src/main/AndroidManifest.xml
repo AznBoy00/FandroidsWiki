@@ -4,6 +4,7 @@
     package="org.wikipedia"
     android:installLocation="auto"
     tools:node="strict">
+
     <!--
     If the build is intended to be Google Play-updateable, the package name
     should be the same as for Google Play (name depends on Beta or Stable).
@@ -32,15 +33,18 @@
         android:maxSdkVersion="22" /> <!-- For notifications, e.g. User account notices, etc. -->
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- For Nearby feature -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Request permission of camera for qr reader -->
 
-    <!-- Request permission of camera for qr reader-->
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- User permission of bluetooth -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
-
     <uses-feature
         android:name="android.hardware.location"
         android:required="false"
@@ -74,38 +78,50 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity android:name=".beacon.BeaconActivity"></activity>
+        <activity
+            android:name=".chatactivity.ChatActivity"
+            android:label="@string/title_activity_chat"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".mlkit.MLActivity"
             android:label="@string/title_activity_ml"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <!-- Activities for QR Code Generator and Scanner -->
-        <activity android:name=".qrcode.QRCodeGenerateActivity"></activity>
+        <activity android:name=".qrcode.QRCodeGenerateActivity" />
+        <activity android:name=".qrcode.QRCodeScanActivity" />
+        <!-- Activity for Note feature -->
+        <activity
+            android:name=".note.MyNoteActivity"
+            android:label="@string/title_activity_note" />
+        <activity
+            android:name=".note.CreateNoteActivity"
+            android:label="@string/title_activity_note_create_dialog"
+            android:theme="@android:style/Theme.Dialog"/>
+        <activity
+            android:name=".note.EditNoteActivity"
+            android:label="@string/title_activity_note_edit_dialog"
+            android:theme="@android:style/Theme.Dialog"/>
+        <activity
+            android:name=".note.ViewNoteActivity"
+            android:label="@string/title_activity_note_view_dialog"
+            android:theme="@android:style/Theme.Dialog"/>
 
-        <activity android:name=".qrcode.QRCodeScanActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
-
-        <!-- Multi-window support on Samsung devices -->
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" /> <!-- Multi-window support on Samsung devices -->
         <uses-library
             android:name="com.sec.android.app.multiwindow"
             android:required="false" />
 
         <meta-data
             android:name="com.sec.android.support.multiwindow"
-            android:value="true" />
-        <!--
-        The following is used for google firebase ml kit
-        -->
+            android:value="true" /> <!-- The following is used for google firebase ml kit -->
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="label" />
-
         <!--
         The following is used for determining the distribution channel.
         Set "value" to "Google Play" for Google Play Store.
@@ -302,10 +318,10 @@
         <activity
             android:name=".page.tabs.TabActivity"
             android:theme="@style/AppTheme" />
-
-        <activity android:name=".firelogin.signInToWiki"/>
-
-        <activity android:name=".firelogin.wikiSignIn"/>
+        <activity android:name=".firelogin.SignInToWiki" />
+        <activity android:name=".firelogin.wikiSignIn" />
+        <activity android:name=".directmessage.UserList" />
+        <activity android:name=".directmessage.Chat" />
 
         <provider
             android:name=".database.AppContentProvider"
@@ -316,9 +332,7 @@
             android:authorities="@string/reading_lists_authority"
             android:exported="false"
             android:label="@string/user_option_sync_label"
-            android:syncable="true" />
-
-        <!-- QR reader -->
+            android:syncable="true" /> <!-- QR reader -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -328,6 +342,20 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <!-- For beacon -->
+        <service android:name=".beacon.BeaconService" />
+        <receiver
+            android:name=".beacon.BeaconBroadCast"
+            android:enabled="true"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped">
+            <intent-filter>
+                <action android:name="com.example.anmol.beacons.RestartBeaconService" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
         <receiver
             android:name=".widgets.WidgetProviderSearch"
@@ -412,6 +440,7 @@
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <receiver android:name=".savedpages.SavedPageSyncNotification" />
+
         <activity
             android:name=".citation.CitationActivity"
             android:label="@string/title_activity_citation"
@@ -421,12 +450,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.wikipedia.page.PageActivity" />
         </activity>
-
         <activity
             android:name=".googleVision.SearchResultsFromGoogleVisionActivity"
             android:label="@string/title_activity_search_results_from_google_vision"
             android:theme="@style/AppTheme" />
+        <activity android:name=".nfc.NfcActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
-
