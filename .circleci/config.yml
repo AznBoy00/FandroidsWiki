@@ -73,7 +73,7 @@ jobs:
       #    name: Run Lint Tests
       #    command: ./gradlew lint
 
-      -run:
+      - run:
           name: Run Log Parser
           command: python3 log-parser.py
 
