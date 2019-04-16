@@ -34,6 +34,10 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "build.gradle" }}
           - v1-dependencies-
+      - run:
+          command: |  # use pipenv to install dependencies
+            sudo pip install pipenv
+            pipenv install
 
       - run:
           name: LogDNA Repo
@@ -91,6 +95,10 @@ jobs:
       - run:
           name: Run Lint Tests
           command: ./gradlew lint
+
+      -run:
+          name: Run Log Parser
+          command: python log-parser.py
 
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
