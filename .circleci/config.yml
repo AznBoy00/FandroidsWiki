@@ -38,7 +38,7 @@ jobs:
       - run:
           command: |  # use pipenv to install dependencies
             sudo apt-get update 
-            sudo apt-get install python3.6
+            sudo apt-get install python
 
       - run:
           name: Update           
@@ -75,7 +75,7 @@ jobs:
 
       - run:
           name: Run Log Parser
-          command: python3 log-parser.py
+          command: python log-parser.py
 
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: app/build/reports
